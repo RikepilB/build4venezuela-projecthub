@@ -6,6 +6,7 @@ import { builderRepository, membershipRepository, projectRepository } from "@/li
 import { BuilderGrid } from "@/components/builders/BuilderGrid";
 import { localePath } from "@/lib/i18n/href";
 import { normalize } from "@/lib/text";
+import { builderFilterOptions, applyBuilderFilter } from "@/lib/builders/filter";
 
 // Collapsible secondary form — code-split so its client JS defers until the roster
 // has rendered. ssr stays on (default) so the markup is still server-rendered.
@@ -17,10 +18,6 @@ const AddBuilderForm = dynamic(
 type SP = Record<string, string | string[] | undefined>;
 const one = (v: SP[string]) => (typeof v === "string" && v ? v : undefined);
 const SELECT = "rounded-token border border-border bg-surface px-3 py-2 text-sm text-text";
-
-function uniqueSorted(values: string[]): string[] {
-  return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
-}
 
 export default async function BuildersPage({
   params,
@@ -39,9 +36,11 @@ export default async function BuildersPage({
   const stack = one(sp.stack);
 
   const all = await builderRepository.list();
-  const availabilityOptions = uniqueSorted(all.map((b) => b.availability));
-  const timezoneOptions = uniqueSorted(all.map((b) => b.timezone));
-  const stackOptions = uniqueSorted(all.flatMap((b) => b.stack));
+  const {
+    availability: availabilityOptions,
+    timezone: timezoneOptions,
+    stack: stackOptions,
+  } = builderFilterOptions(all);
 
   // "Working on": link each builder to the projects they joined (matched by name).
   const [memberships, allProjects] = await Promise.all([
@@ -62,12 +61,7 @@ export default async function BuildersPage({
     all.map((b) => [b.id, projectsByName.get(normalize(b.alias)) ?? []] as const),
   );
 
-  const builders = all.filter((b) => {
-    if (availability && b.availability !== availability) return false;
-    if (timezone && b.timezone !== timezone) return false;
-    if (stack && !b.stack.some((s) => normalize(s) === normalize(stack))) return false;
-    return true;
-  });
+  const builders = applyBuilderFilter(all, { availability, timezone, stack });
 
   return (
     <section className="flex flex-col gap-6">

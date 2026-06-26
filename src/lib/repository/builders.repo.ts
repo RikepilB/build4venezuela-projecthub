@@ -1,5 +1,6 @@
 import { loadBuilders } from "../data-files";
 import { readCustomBuilders, appendCustomBuilder } from "../builders/builders-store";
+import { normalizeAvailability, normalizeTimezone } from "../builders/normalize";
 import { fetchRemoteBuilders } from "../sheet/builders-csv";
 import { BuilderSchema } from "../schemas";
 import { slugify } from "../slug";
@@ -28,12 +29,23 @@ async function loadRoster(): Promise<Builder[]> {
   return loadBuilders();
 }
 
+// Fold the free-text availability/timezone to canonical buckets so the builders
+// filter groups people instead of offering one option per typo. Done on read so it
+// covers every source (sheet, committed JSON, self-adds) regardless of freshness.
+function canonicalize(b: Builder): Builder {
+  return {
+    ...b,
+    availability: normalizeAvailability(b.availability),
+    timezone: normalizeTimezone(b.timezone),
+  };
+}
+
 // Imported roster + self-adds, deduped by id (roster wins). A self-add only shows
 // if it isn't already on the sheet.
 async function listBuilders(): Promise<Builder[]> {
   const [roster, custom] = await Promise.all([loadRoster(), readCustomBuilders()]);
   const ids = new Set(roster.map((b) => b.id));
-  return [...roster, ...custom.filter((b) => !ids.has(b.id))];
+  return [...roster, ...custom.filter((b) => !ids.has(b.id))].map(canonicalize);
 }
 
 // Builders come from the hackathon Google Sheet via scripts/import-builders.mjs

@@ -15,6 +15,19 @@ export const Complexity = z.enum(["low", "medium", "high"]);
 export const Priority = z.enum(["low", "medium", "high"]);
 // internal = posted here · external = discovered OSS repo · initiative = known relief site (link-out, PII-gated)
 export const ProjectSource = z.enum(["internal", "external", "initiative"]);
+// Verified relief-resource categories for the /resources directory. Synced from the
+// "Plataformas activas" Google-Sheet tab via scripts/import-platforms.mjs.
+export const ResourceType = z.enum([
+  "search",
+  "official",
+  "resources",
+  "dev",
+  "donation",
+  "finance",
+  "psychosocial",
+  "telecom",
+  "other",
+]);
 
 // https-only guard: z.url() alone would accept javascript:/data: URIs.
 const httpsUrl = z
@@ -88,6 +101,21 @@ export const MembershipSchema = z.object({
 // What the "I'm building this" form posts; server fills created_at.
 export const MembershipInputSchema = MembershipSchema.omit({ created_at: true });
 
+// A verified relief resource (link-out or contact). Distinct from Project: these are
+// vetted platforms/orgs/lines to USE, not buildable hackathon projects. See /resources.
+export const ResourceSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(2).max(160),
+  type: ResourceType,
+  url: httpsUrl.optional(), // primary https link when the resource is a website
+  contact: z.string().min(1).max(160).optional(), // phone / account for offline channels
+  summary: z.string().max(600).default(""),
+  languages: z.array(Locale).default([]),
+  verified_source: z.string().max(120).default(""), // who vouches for it (e.g. "UNICEF")
+  active: z.boolean().default(true),
+});
+
 export const ProjectsFileSchema = z.array(ProjectSchema);
+export const ResourcesFileSchema = z.array(ResourceSchema);
 export const BuildersFileSchema = z.array(BuilderSchema);
 export const MembershipsFileSchema = z.array(MembershipSchema);

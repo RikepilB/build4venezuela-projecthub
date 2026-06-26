@@ -6,6 +6,7 @@ export const en = {
     home: "Search",
     board: "Board",
     ecosystem: "Ecosystem",
+    resources: "Resources",
     builders: "Builders",
     submit: "Publish project",
   },
@@ -26,6 +27,29 @@ export const en = {
     step2Body: "If it exists, join the repo and contribute. If not, publish it with your stack and needs.",
     step3Title: "3 · Build & ship",
     step3Body: "Find teammates, track progress, and when your MVP is ready, submit it to Build4Venezuela.",
+  },
+  landing: {
+    publishCta: "Publish a project",
+    // live stats bar
+    statProjects: "projects",
+    statBuilders: "builders",
+    statLive: "live tools",
+    statNeeds: "open needs",
+    // featured projects
+    featuredTitle: "Live on the board",
+    featuredBody: "The team's top-voted relief projects right now. Jump into one — or search for yours first.",
+    featuredCta: "See all projects",
+    // builders teaser
+    buildersBody: "Designers, devs and translators from the hackathon roster — filter by stack, availability and timezone.",
+    buildersCta: "Browse builders",
+    // ecosystem teaser
+    ecosystemBody: "Relief tools you can use right now — no need to rebuild them.",
+    ecosystemCta: "Explore the ecosystem",
+    // final CTA band
+    ctaTitle: "Have an idea? Search first, then publish.",
+    ctaBody: "Thirty seconds of searching saves weeks of duplicated effort. If it doesn't exist yet, publish it and find your team.",
+    ctaPublish: "Publish a project",
+    ctaBrowse: "Browse the board",
   },
   search: {
     resultsFor: "Results for",
@@ -66,6 +90,25 @@ export const en = {
       "Existing relief projects and tools you can use or reference right now — live sites without an open repo to join. For hackathon projects to build on, see the board.",
     visit: "Visit site",
     empty: "No existing projects listed yet.",
+  },
+  resources: {
+    title: "Verified resources",
+    subtitle:
+      "Vetted relief platforms, donation channels, official organizations and support lines for the Venezuela earthquake — synced from the team's verified directory. Use these; don't rebuild them.",
+    visit: "Open",
+    verifiedBy: "Verified by",
+    empty: "No resources listed yet.",
+    types: {
+      search: "Find people",
+      official: "Official organizations",
+      resources: "Resource hubs",
+      dev: "Tech / open source",
+      donation: "Donations",
+      finance: "Emergency finance",
+      psychosocial: "Psychosocial support",
+      telecom: "Telecom",
+      other: "Other",
+    },
   },
   radar: {
     total: "Projects",

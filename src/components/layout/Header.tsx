@@ -33,6 +33,12 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             {dict.nav.ecosystem}
           </Link>
           <Link
+            href={localePath(locale, "/resources")}
+            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
+          >
+            {dict.nav.resources}
+          </Link>
+          <Link
             href={localePath(locale, "/builders")}
             className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
           >

@@ -5,10 +5,11 @@ import {
   ProjectSchema,
   BuilderSchema,
   MembershipSchema,
+  ResourceSchema,
 } from "./schemas";
 import { readVotes } from "./votes/votes-store";
 import { readRepoOverrides } from "./repos/repo-overrides-store";
-import type { Project, Builder, Membership } from "./types";
+import type { Project, Builder, Membership, Resource } from "./types";
 
 // Server-only JSON data access. The repository layer (src/lib/repository) is the
 // public seam; this module just reads/writes the local files. P1 replaces the
@@ -69,6 +70,20 @@ export const loadProjects = cache(async (): Promise<Project[]> => {
 export const loadBuilders = cache(async (): Promise<Builder[]> => {
   const rows = await readArray("builders.json");
   return keepValid<Builder>(rows, BuilderSchema);
+});
+
+// Verified relief resources: the sheet-synced directory (resources.seed.json, written
+// by scripts/import-platforms.mjs) PLUS hand-curated extras (resources.extra.json,
+// never touched by the importer so manual adds survive a re-sync). Deduped by id.
+export const loadResources = cache(async (): Promise<Resource[]> => {
+  const [synced, extra] = await Promise.all([
+    readArray("resources.seed.json"),
+    readArray("resources.extra.json"),
+  ]);
+  const all = keepValid<Resource>([...synced, ...extra], ResourceSchema);
+  const byId = new Map<string, Resource>();
+  for (const r of all) if (!byId.has(r.id)) byId.set(r.id, r);
+  return [...byId.values()];
 });
 
 // Self-registered builders ("add yourself") live in a SEPARATE file from the imported

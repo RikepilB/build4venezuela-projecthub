@@ -1,0 +1,12 @@
+[
+  {
+    "id": "res-centro-recursos-venezuela",
+    "name": "Centro de Recursos Venezuela",
+    "type": "resources",
+    "url": "https://centrorecursosvenezuela.netlify.app",
+    "summary": "Centro de recursos para la respuesta al terremoto de Venezuela — reúne plataformas de búsqueda, ayuda y donación en un solo lugar. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  }
+]

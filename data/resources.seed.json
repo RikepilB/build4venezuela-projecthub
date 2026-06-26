@@ -1,0 +1,196 @@
+[
+  {
+    "id": "res-desaparecidos-terremoto-venezuela",
+    "name": "Desaparecidos Terremoto Venezuela",
+    "type": "search",
+    "url": "https://desaparecidosterremotovenezuela.com",
+    "summary": "56.000+ reportados | 37.000+ sin contacto | 19.000+ localizados. Buscar por nombre/cédula, reportar, marcar como encontrado. Sin registro.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "CNN / El Caribe",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-te-busca",
+    "name": "Venezuela Te Busca",
+    "type": "search",
+    "url": "https://venezuelatebusca.com",
+    "summary": "26.000+ registros. Sección especial Terremoto 2026. Buscar, registrar, marcar localizado.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "El Caribe",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-earthquake-map-github",
+    "name": "venezuela-earthquake-map (GitHub)",
+    "type": "dev",
+    "url": "https://github.com/nochinxx/venezuela-earthquake-map",
+    "summary": "Heatmap en tiempo real. Agrega reportes de YouTube, X/Twitter e Instagram cada 10 min. Centros de acopio verificados. Directorio 30+ hospitales. Licencia MIT.",
+    "languages": [
+      "es",
+      "en"
+    ],
+    "verified_source": "GitHub",
+    "active": true
+  },
+  {
+    "id": "res-yummy-sos",
+    "name": "Yummy SOS",
+    "type": "dev",
+    "url": "https://sos.yummyrides.com",
+    "summary": "Reporte de daños estructurales con foto y GPS. Yummy moviliza repartidores para llevar agua, alimentos y medicamentos sin costo a refugios.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Yummy",
+    "active": true
+  },
+  {
+    "id": "res-ayuda-terremoto-venezuela",
+    "name": "Ayuda Terremoto Venezuela",
+    "type": "resources",
+    "url": "https://recursos-venezuela.netlify.app",
+    "summary": "Agregador verificado: plataformas de búsqueda, instrucciones de supervivencia, canales de donación. Links a GlobalGiving, UNICEF y Cruz Roja.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Netlify / ciudadanos",
+    "active": true
+  },
+  {
+    "id": "res-cruz-roja-espanola",
+    "name": "Cruz Roja Española",
+    "type": "donation",
+    "url": "https://www2.cruzroja.es/-/ayuda-terremoto-venezuela-2026",
+    "summary": "Canal oficial. Bizum al 33512 o SMS VENEZUELA al 38092 (6€ íntegros). Coordinación con Cruz Roja Venezolana.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Cruz Roja",
+    "active": true
+  },
+  {
+    "id": "res-unicef-emergencia-venezuela",
+    "name": "UNICEF Emergencia Venezuela",
+    "type": "donation",
+    "url": "https://www.unicef.es/emergencia-terremoto-venezuela",
+    "summary": "Fondos para protección infantil, refugio, alimentos e insumos. 3,9M niños en zonas afectadas.",
+    "languages": [
+      "es",
+      "en"
+    ],
+    "verified_source": "UNICEF",
+    "active": true
+  },
+  {
+    "id": "res-save-the-children",
+    "name": "Save the Children",
+    "type": "donation",
+    "url": "https://www.savethechildren.es/terremoto-venezuela",
+    "summary": "Fondo 'Terremoto en Venezuela'. Orientado a menores. Donación desde 30€.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Save the Children",
+    "active": true
+  },
+  {
+    "id": "res-we-love-foundation-gofundme",
+    "name": "We Love Foundation (GoFundMe)",
+    "type": "donation",
+    "url": "https://www.gofundme.com/we-love-venezuela-terremoto-2026",
+    "summary": "Meta inicial $300k ya superada. Con Global Empowerment Mission. Alimentos, agua, atención médica, kits higiene.",
+    "languages": [
+      "es",
+      "en"
+    ],
+    "verified_source": "CriptoNoticias",
+    "active": true
+  },
+  {
+    "id": "res-paho-oms-venezuela-response",
+    "name": "PAHO/OMS Venezuela Response",
+    "type": "official",
+    "url": "https://www.paho.org/en/venezuela-earthquake-response",
+    "summary": "Respuesta oficial sanitaria. Situación epidemiológica. Coordinación internacional.",
+    "languages": [
+      "en"
+    ],
+    "verified_source": "PAHO/WHO",
+    "active": true
+  },
+  {
+    "id": "res-reliefweb-venezuela-situation",
+    "name": "ReliefWeb — Venezuela Situation",
+    "type": "official",
+    "url": "https://reliefweb.int/report/venezuela-bolivarian-republic/venezuela-earthquake-situation-overview-25-june-2026",
+    "summary": "Informe OCHA. Fuente humanitaria de referencia. Se actualiza con datos de campo.",
+    "languages": [
+      "en"
+    ],
+    "verified_source": "OCHA/ONU",
+    "active": true
+  },
+  {
+    "id": "res-psicolinea-venezuela-ucab",
+    "name": "PsicoLínea Venezuela (UCAB)",
+    "type": "psychosocial",
+    "contact": "Tel: 0414-121 78 82 / 0424-172 39 81",
+    "summary": "Atención psicológica gratuita. Impulsado por la Universidad Católica Andrés Bello. Solo disponible dentro de Venezuela.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "The Objective",
+    "active": true
+  },
+  {
+    "id": "res-grupo-venemergencia",
+    "name": "Grupo Venemergencia",
+    "type": "psychosocial",
+    "url": "https://www.instagram.com/venemergencia",
+    "summary": "Plataforma médica venezolana operativa. Atiende afectados físicos y psicológicos.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "The Objective",
+    "active": true
+  },
+  {
+    "id": "res-meru-remesas-sin-comision",
+    "name": "Meru (remesas sin comisión)",
+    "type": "finance",
+    "url": "https://www.instagram.com/somosmeru",
+    "summary": "Exoneración indefinida de tarifas para depósitos/retiros en Venezuela. Pago Móvil, transferencias, cripto.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "CriptoNoticias",
+    "active": true
+  },
+  {
+    "id": "res-banesco-duplica-donaciones",
+    "name": "Banesco Duplica Donaciones",
+    "type": "finance",
+    "contact": "Cuenta: 0134-0008-37-0081096451",
+    "summary": "Banco venezolano duplica el aporte y lo dona a Cruz Roja.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "CriptoNoticias",
+    "active": true
+  },
+  {
+    "id": "res-movistar-o2-masorange",
+    "name": "Movistar / O2 / MasOrange",
+    "type": "telecom",
+    "summary": "Llamadas internacionales gratuitas entre España y Venezuela activadas por la emergencia.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "CriptoNoticias",
+    "active": true
+  }
+]

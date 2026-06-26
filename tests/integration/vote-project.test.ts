@@ -16,23 +16,24 @@ function form(slug: string): FormData {
 beforeEach(() => vi.clearAllMocks());
 
 describe("upvoteProject", () => {
+  // useActionState signature: (prevState, formData) → { ok }.
   it("votes and revalidates for a valid slug", async () => {
     vi.mocked(projectRepository.vote).mockResolvedValue(1);
-    await upvoteProject(form("relief-map"));
+    await expect(upvoteProject(null, form("relief-map"))).resolves.toEqual({ ok: true });
     expect(projectRepository.vote).toHaveBeenCalledWith("relief-map");
     expect(revalidatePath).toHaveBeenCalledTimes(2); // board + detail
   });
 
   it("ignores slugs that fail the boundary regex", async () => {
     for (const bad of ["../etc", "Foo", "a b", ""]) {
-      await upvoteProject(form(bad));
+      await expect(upvoteProject(null, form(bad))).resolves.toEqual({ ok: false });
     }
     expect(projectRepository.vote).not.toHaveBeenCalled();
   });
 
-  it("swallows a read-only-FS failure without throwing or revalidating", async () => {
+  it("reports a read-only-FS failure as { ok: false } without throwing or revalidating", async () => {
     vi.mocked(projectRepository.vote).mockRejectedValue(new Error("EROFS"));
-    await expect(upvoteProject(form("relief-map"))).resolves.toBeUndefined();
+    await expect(upvoteProject(null, form("relief-map"))).resolves.toEqual({ ok: false });
     expect(revalidatePath).not.toHaveBeenCalled();
   });
 });

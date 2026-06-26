@@ -25,8 +25,7 @@
     "owner": "open",
     "source": "internal",
     "complexity": "low",
-    "priority": "high",
-    "use_case": "Vibe building"
+    "priority": "high"
   },
   {
     "id": "idea-dashboard-en-tiempo-real-del-terremoto",
@@ -53,14 +52,15 @@
     "owner": "open",
     "source": "internal",
     "complexity": "low",
-    "priority": "high",
-    "use_case": "Vibe building"
+    "priority": "high"
   },
   {
-    "id": "idea-mapa-de-necesidades-vs-recursos",
-    "slug": "idea-mapa-de-necesidades-vs-recursos",
-    "name": "Mapa de necesidades vs. recursos",
+    "id": "idea-mapa-de-necesidades-vs-recursos-resqlink",
+    "slug": "idea-mapa-de-necesidades-vs-recursos-resqlink",
+    "name": "Mapa de necesidades vs. recursos ResQLink",
     "summary": "Voluntarios no saben dónde hay déficit. Damnificados no saben dónde hay ayuda disponible.",
+    "repo_url": "https://github.com/otobonh/resqlink-ai",
+    "demo_url": "https://resqlink-ai.netlify.app",
     "stack": [
       "React",
       "Mapbox",
@@ -72,46 +72,16 @@
     "categories": [
       "needs-map"
     ],
-    "status": "planning",
+    "status": "live",
     "needs": {
       "contributors": [],
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "open",
+    "owner": "Omar Tobon",
     "source": "internal",
     "complexity": "medium",
-    "priority": "high",
-    "use_case": "Vibe building"
-  },
-  {
-    "id": "idea-panel-de-coordinacion-de-voluntarios",
-    "slug": "idea-panel-de-coordinacion-de-voluntarios",
-    "name": "Panel de coordinación de voluntarios",
-    "summary": "Equipos de rescate sin visibilidad de quién cubre qué zona. Duplican esfuerzos.",
-    "stack": [
-      "React",
-      "Firebase",
-      "Supabase",
-      "Kanban"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "open",
-    "source": "internal",
-    "complexity": "medium",
-    "priority": "medium",
-    "use_case": "Vibe building"
+    "priority": "high"
   },
   {
     "id": "idea-agente-ai-de-triaje-de-necesidades",
@@ -137,14 +107,13 @@
     "owner": "open",
     "source": "internal",
     "complexity": "medium",
-    "priority": "high",
-    "use_case": "Vibe building"
+    "priority": "high"
   },
   {
-    "id": "idea-bot-de-whatsapp-para-busqueda",
-    "slug": "idea-bot-de-whatsapp-para-busqueda",
-    "name": "Bot de WhatsApp para búsqueda",
-    "summary": "WhatsApp funciona en Venezuela aunque internet completo esté caído. Pero las plataformas de búsqueda requieren navegador.",
+    "id": "idea-bot-de-whatsapp-para-busqueda-de-personas",
+    "slug": "idea-bot-de-whatsapp-para-busqueda-de-personas",
+    "name": "Bot de WhatsApp para búsqueda de personas",
+    "summary": "Bot de whatsapp que permita a las personas buscar a sus desaparecidos con datos o una foto. Se usa WhatsApp ya que es el medio de comunicación mas conocido por las personas. Comunicarse por whatsapp para crear la solución: https://discord.gg/SAKnrgxUG",
     "stack": [
       "Go",
       "Node",
@@ -164,11 +133,10 @@
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "open",
+    "owner": "Diego Fabrizio Mucha Alvarez",
     "source": "internal",
     "complexity": "medium",
-    "priority": "high",
-    "use_case": "️ Código / Backend"
+    "priority": "high"
   },
   {
     "id": "idea-api-normalizada-open-source",
@@ -195,8 +163,7 @@
     "owner": "open",
     "source": "internal",
     "complexity": "high",
-    "priority": "high",
-    "use_case": "️ Código / Backend"
+    "priority": "high"
   },
   {
     "id": "idea-deduplicacion-automatica-de-reportes",
@@ -223,8 +190,7 @@
     "owner": "open",
     "source": "internal",
     "complexity": "medium",
-    "priority": "medium",
-    "use_case": "️ Código / Backend"
+    "priority": "medium"
   },
   {
     "id": "idea-pwa-offline-first-para-reportes",
@@ -251,8 +217,7 @@
     "owner": "open",
     "source": "internal",
     "complexity": "high",
-    "priority": "high",
-    "use_case": "Offline / Conectividad"
+    "priority": "high"
   },
   {
     "id": "idea-sms-ussd-gateway-de-busqueda",
@@ -279,8 +244,7 @@
     "owner": "open",
     "source": "internal",
     "complexity": "high",
-    "priority": "high",
-    "use_case": "Offline / Conectividad"
+    "priority": "high"
   },
   {
     "id": "idea-sincronizacion-mesh-entre-dispositivos",
@@ -304,17 +268,16 @@
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "* Rodrigo (Ruy): * Victor Maldonado: ‪‑‬\n* Carlos Ramirez:",
+    "owner": "Rodrigo",
     "source": "internal",
     "complexity": "high",
-    "priority": "high",
-    "use_case": "Offline / Conectividad"
+    "priority": "high"
   },
   {
     "id": "idea-construir-una-fuente-de-informacion-indexada-rag-para-consultas-de-inf",
     "slug": "idea-construir-una-fuente-de-informacion-indexada-rag-para-consultas-de-inf",
     "name": "Construir una fuente de información indexada (RAG) para consultas de información en lenguaje natural.",
-    "summary": "Una persona con  conectividad baja puede hacer consultas de informacion mediante whatsapp",
+    "summary": "Una persona con conectividad baja puede hacer consultas de informacion mediante whatsapp",
     "stack": [
       "Python",
       "Pgvector",
@@ -332,9 +295,9 @@
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "* Carlos Urias:",
+    "owner": "Carlos Urias",
     "source": "internal",
-    "use_case": "️ Código / Backend"
+    "priority": "medium"
   },
   {
     "id": "idea-scraper-rag-unificado-de-desaparecidos",
@@ -358,14 +321,66 @@
     },
     "owner": "David Montejo",
     "source": "internal",
-    "complexity": "high"
+    "complexity": "high",
+    "priority": "medium"
   },
   {
-    "id": "idea-reencuentros-terremotos-venezuela-una-plataforma-para-centralizar-imag",
-    "slug": "idea-reencuentros-terremotos-venezuela-una-plataforma-para-centralizar-imag",
-    "name": "Reencuentros Terremotos Venezuela\n\nUna plataforma para centralizar imágenes o videos cortos de personas y animales, con ",
-    "summary": "-Centraliza la información: Une en un solo lugar los reportes de personas y animales encontrados para que no se pierdan en el caos de las redes.\n\n-Acelera los reencuentros: Usa Inteligencia Artificial para generar coincidencias rápidas entre los videos y las familias que buscan.\n\n-Vence la mala conectividad: Permite registrar y buscar información clave de forma segura, incluso con fallas severas de internet.\n\n-Soporta alta demanda: Ofrece una infraestructura robusta que no se cae ante miles de visitas simultáneas durante la emergencia.",
-    "stack": [],
+    "id": "idea-voces-unidas",
+    "slug": "idea-voces-unidas",
+    "name": "Voces Unidas",
+    "summary": "Silencio Tecnológico: Pérdida total de comunicación en zonas críticas, impidiendo el reporte de heridos, fallecidos y daños estructurales. Asimetría de Datos: Existencia de puntos ciegos para autoridades y ONGs; falta de evidencia técnica para justificar y canalizar ayuda internacional. Respuesta Ineficiente: El despliegue de recursos se basa en la intuición y no en un mapeo real de la vulnerabilidad en terreno. Dependencia Extrema: Ausencia de mecanismos de auto-gestión local (trueque) que permitan a la comunidad sostenerse mientras llega la ayuda externa. Falta de Validación: Imposibilidad d",
+    "stack": [
+      "LoRa"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "ERICK AVILA",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-consulta-offline-si-un-familiar-ha-sido-localizado-sin-datos",
+    "slug": "idea-consulta-offline-si-un-familiar-ha-sido-localizado-sin-datos",
+    "name": "Consulta offline si un familiar ha sido localizado, sin datos.",
+    "summary": "La idea consiste en crear una Progressive Web App (PWA)",
+    "stack": [
+      "Supabase"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Jhon Ponton",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-vzla-dedup-limpiar-registros-de-personas-desaparecidas",
+    "slug": "idea-vzla-dedup-limpiar-registros-de-personas-desaparecidas",
+    "name": "VZLA_DEDUP, limpiar registros de personas desaparecidas.",
+    "summary": "Esto es un problema conocido como Entity Resolution, la idea general es: 1. Normalización 2. Blocking: Agrupar candidatos por fonética, primeras letras, estado/ciudad. Algoritmos como Soundex o Metaphone en español. 3. Similarity scoring: para cada par candidato, calcular similitud: nombres, Coincidencia de cédula si está disponible, Edad aproximada, estado donde fue visto. 4. Clustering: Registros que superan un umbral de similitud, se marcan como probable duplicado para revisión humana. 5. Revisión humana: El algoritmo no decide solo, propone.",
+    "stack": [
+      "Python",
+      "RestAPI"
+    ],
     "languages": [
       "es"
     ],
@@ -378,8 +393,52 @@
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "Alejandra Castaño Alzate",
+    "owner": "Mathias Aivasovsky",
     "source": "internal",
-    "use_case": "Busco personas con conocimientos técnicos"
+    "priority": "medium"
+  },
+  {
+    "id": "idea-plataforma-osint-de-conciencia-situacional-osint-venezuela",
+    "slug": "idea-plataforma-osint-de-conciencia-situacional-osint-venezuela",
+    "name": "Plataforma OSINT de Conciencia Situacional OSINT Venezuela",
+    "summary": "Coordinación / Inteligencia Humanitaria",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-buscachat",
+    "slug": "idea-buscachat",
+    "name": "BuscaChat",
+    "summary": "BuscaChat — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
   }
 ]

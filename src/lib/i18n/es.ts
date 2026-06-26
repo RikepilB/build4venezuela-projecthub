@@ -84,6 +84,9 @@ export const es: typeof en = {
     viewDetails: "Ver detalles",
     submitToMain: "Publicar en Build4Venezuela",
     vote: "Votar — prioriza esto",
+    addRepo: "+ Agregar repo",
+    assigned: "en el equipo",
+    contributors: "colaboradores",
   },
   submit: {
     title: "Publica tu proyecto",
@@ -159,6 +162,12 @@ export const es: typeof en = {
     joinName: "Tu nombre / alias",
     joinRole: "Rol (opcional)",
     joinSubmit: "Soy parte de esto",
+    addRepoTitle: "Agrega el repo del proyecto",
+    addRepoHint: "Pega la URL de GitHub para que otros lo encuentren y contribuyan.",
+    addRepoSubmit: "Adjuntar repo",
+    addRepoSuccess: "Repo adjuntado 🎉",
+    addRepoInvalid: "Ingresa una URL válida de repo en github.com (https).",
+    addRepoError: "No se pudo guardar ahora — intenta de nuevo.",
   },
   footer: {
     builtBy: "Hecho por",

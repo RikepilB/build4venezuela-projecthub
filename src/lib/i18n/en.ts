@@ -82,6 +82,9 @@ export const en = {
     viewDetails: "View details",
     submitToMain: "Submit to Build4Venezuela",
     vote: "Upvote — prioritize this",
+    addRepo: "+ Add repo",
+    assigned: "on the team",
+    contributors: "contributors",
   },
   submit: {
     title: "Publish your project",
@@ -157,6 +160,12 @@ export const en = {
     joinName: "Your name / alias",
     joinRole: "Role (optional)",
     joinSubmit: "I'm building this",
+    addRepoTitle: "Add the project's repo",
+    addRepoHint: "Paste the GitHub URL so others can find it and contribute.",
+    addRepoSubmit: "Attach repo",
+    addRepoSuccess: "Repo attached 🎉",
+    addRepoInvalid: "Enter a valid https github.com repo URL.",
+    addRepoError: "Couldn't save right now — try again.",
   },
   footer: {
     builtBy: "Built by",

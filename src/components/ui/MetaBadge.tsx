@@ -52,3 +52,23 @@ export function StarBadge({ count }: { count: number }) {
     </Pill>
   );
 }
+
+// People who joined the project (memberships / "who's building what").
+export function PeopleBadge({ count, label }: { count: number; label: string }) {
+  return (
+    <Pill tone="border-accent/40 bg-accent/10 text-accent">
+      <span aria-hidden>👥</span>
+      {count.toLocaleString("en-US")} {label}
+    </Pill>
+  );
+}
+
+// GitHub repo contributor count (cached when the repo is attached/imported).
+export function ContributorsBadge({ count, label }: { count: number; label: string }) {
+  return (
+    <Pill tone="border-border bg-surface-2 text-muted">
+      <span aria-hidden>🛠</span>
+      {count.toLocaleString("en-US")} {label}
+    </Pill>
+  );
+}

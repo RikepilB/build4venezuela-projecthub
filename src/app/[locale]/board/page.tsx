@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, getDictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
-import { projectRepository } from "@/lib/repository";
+import { projectRepository, membershipRepository } from "@/lib/repository";
 import { applyFilter } from "@/lib/repository/projects.repo";
 import { isEcosystemProject } from "@/lib/ecosystem";
 import { FilterBar } from "@/components/board/FilterBar";
@@ -52,11 +52,18 @@ export default async function BoardPage({
   // One ranked read; derive the filtered view in-memory (applyFilter is pure and
   // order-preserving) so RadarStats and the grid share a single dataset. Existing
   // live sites (no repo) live on /ecosystem — the board is for hackathon repos.
-  const ranked = await projectRepository.list();
+  // Memberships load in parallel → "people assigned" count per card.
+  const [ranked, memberships] = await Promise.all([
+    projectRepository.list(),
+    membershipRepository.list(),
+  ]);
   const all = ranked.filter((p) => !isEcosystemProject(p));
   const filtered = applyFilter(all, filter);
   const projects = showAll ? filtered : filtered.filter((p) => p.priority === "high");
   const highCount = all.filter((p) => p.priority === "high").length;
+
+  const teamCounts = new Map<string, number>();
+  for (const m of memberships) teamCounts.set(m.project_slug, (teamCounts.get(m.project_slug) ?? 0) + 1);
 
   return (
     <section className="flex flex-col gap-6">
@@ -106,7 +113,13 @@ export default async function BoardPage({
       {projects.length > 0 ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
-            <ProjectCard key={p.id} project={p} locale={locale} dict={dict} />
+            <ProjectCard
+              key={p.id}
+              project={p}
+              locale={locale}
+              dict={dict}
+              teamCount={teamCounts.get(p.slug) ?? 0}
+            />
           ))}
         </div>
       ) : (

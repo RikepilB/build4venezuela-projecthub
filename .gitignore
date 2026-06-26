@@ -50,6 +50,9 @@ next-env.d.ts
 /data/*.tmp
 # community upvotes — runtime state written by the vote action, not seed data.
 /data/votes.json
+# user-attached repos (slug → repo URL + contributor count), written by the attach
+# action — runtime state, not seed. Redis-backed on Vercel.
+/data/repo-overrides.json
 # team memberships — who joined which project (runtime PII), written by the join action.
 /data/memberships.json
 

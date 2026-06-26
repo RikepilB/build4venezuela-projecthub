@@ -63,3 +63,6 @@ next-env.d.ts
 /opencode.json
 
 .vercel
+
+# machine-local GSD planning state — never commit to the public repo
+.planning/

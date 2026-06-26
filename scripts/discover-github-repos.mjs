@@ -60,6 +60,35 @@ const slugify = (s) =>
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Accent-stripped, lowercased text (keeps spaces) for keyword matching.
+const normText = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+// Map a repo's name+description+topics onto the project taxonomy. Each entry is
+// [categoryId, fragments]; a fragment hit adds that category. Multi-category by
+// design (a "buscador de desaparecidos con mapa" is missing-persons + needs-map),
+// so the board's category filter actually partitions the 40+ external repos
+// instead of lumping them all under "coordination". Falls back to coordination.
+const CATEGORY_KEYWORDS = [
+  ["missing-persons", ["desaparec", "busca", "buscador", "busqueda", "localiza", "reencuentr", "victima", "atrapad", "encontrad", "paradero", "missing", "reunite", "person finder", "pfif"]],
+  ["shelter", ["refugio", "albergue", "shelter", "hogar"]],
+  ["aid-center", ["acopio", "donaci", "donar", "insumo", "suministr", "ayuda humanitaria", "recurso"]],
+  ["needs-map", ["mapa", " map", "dashboard", "necesidad"]],
+  ["medical", ["medic", "hospital", "salud", "health", "herido", "clinica"]],
+  ["transport", ["transport", "evacua", "rescate vehic"]],
+  ["tracking", ["ocr", "dedup", "duplicad", "scraper", "indexa", "seguimiento", "base de datos"]],
+];
+function deriveCategories(name, summary, stack) {
+  const t = normText(`${name} ${summary} ${stack.join(" ")}`);
+  const out = [];
+  for (const [cat, frags] of CATEGORY_KEYWORDS) {
+    if (frags.some((f) => t.includes(f))) out.push(cat);
+  }
+  if (out.length === 0 || /coordina|plataforma|hub|infraestructura|emergencia|relief/.test(t)) {
+    if (!out.includes("coordination")) out.push("coordination");
+  }
+  return out.slice(0, 4);
+}
+
 function headers() {
   const h = {
     Accept: "application/vnd.github+json",
@@ -112,7 +141,7 @@ function toProject(repo) {
     demo_url: repo.homepage && String(repo.homepage).startsWith("https://") ? repo.homepage : undefined,
     stack,
     languages: ["es"],
-    categories: ["coordination"],
+    categories: deriveCategories(name, summary, stack),
     status: repo.homepage ? "live" : "wip",
     needs: { contributors: [], api_credits: [], sponsors: [] },
     owner: String(repo.owner?.login ?? "unknown"),

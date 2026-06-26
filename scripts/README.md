@@ -27,5 +27,34 @@ npm run data:github
 
 - Backs off on 403/429 honoring `Retry-After` / `X-RateLimit-Reset`; sleeps ~2s between queries.
 - Run manually/occasionally — never on every build/request.
+- Categories are derived from each repo's name/description/topics (multi-category), not
+  hardcoded — so the board's category filter actually partitions the external repos.
 - **Does NOT scrape missing-persons registries** (PII). Those are hand-seeded link-out
   cards in `data/projects.seed.json` (`source: "initiative"`), gated on owner consent.
+
+## `import-ideas.mjs` → `data/ideas.seed.json`
+Imports the hackathon "ideas" tab (Capa / Idea / Problema / Stack / Responsable / Impacto /
+Dificultad) from the team Google Sheet (public CSV export by gid).
+
+```powershell
+npm run data:ideas
+```
+
+- Cleans messy cells: collapses multi-line names, strips bidi/zero-width chars, pulls a
+  single name out of bullet/phone/handle owner cells, lifts pasted demo/repo URLs into
+  `demo_url`/`repo_url`, defaults unrated impact to `medium`.
+- Skips ideas already hand-curated in `data/projects.seed.json` (no duplicate cards).
+
+## `import-platforms.mjs` → `data/resources.seed.json`
+Imports the **"Plataformas activas"** tab (verified relief platforms & resources) — the
+source for the app's `/resources` directory. Fetches by sheet **name** via the gviz endpoint
+(survives tab reordering — no gid to keep in sync).
+
+```powershell
+npm run data:platforms
+```
+
+- Maps the emoji-prefixed `Tipo` to a resource type (search / donation / official / …),
+  splits the URL column into a real link vs. a phone/account `contact`, parses `Idioma`.
+- Hand-curated extras that aren't in the sheet go in `data/resources.extra.json` (never
+  overwritten by this importer, so manual adds survive a re-sync).

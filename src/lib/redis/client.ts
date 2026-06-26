@@ -50,4 +50,11 @@ export const redis = {
     const r = await call(`lrange/${encodeURIComponent(key)}/0/-1`);
     return Array.isArray(r) ? (r as string[]) : null;
   },
+
+  // SET key value → true on success ("OK"), false on failure. Single overwriting value
+  // (e.g. a project's attached-repo override, read back via mget).
+  async set(key: string, value: string): Promise<boolean> {
+    const r = await call(`set/${encodeURIComponent(key)}/${encodeURIComponent(value)}`);
+    return r === "OK";
+  },
 };

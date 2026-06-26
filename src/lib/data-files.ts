@@ -7,6 +7,7 @@ import {
   MembershipSchema,
 } from "./schemas";
 import { readVotes } from "./votes/votes-store";
+import { readRepoOverrides } from "./repos/repo-overrides-store";
 import type { Project, Builder, Membership } from "./types";
 
 // Server-only JSON data access. The repository layer (src/lib/repository) is the
@@ -49,10 +50,20 @@ export const loadProjects = cache(async (): Promise<Project[]> => {
     readArray("external-projects.seed.json"),
   ]);
   const projects = keepValid<Project>([...internal, ...ideas, ...external], ProjectSchema);
-  // Community upvotes live in a separate store (slug → count) so they apply across all
-  // project sources (internal/ideas/external) without rewriting the seed files.
-  const votes = await readVotes(projects.map((p) => p.slug));
-  return projects.map((p) => ({ ...p, votes: votes[p.slug] ?? p.votes ?? 0 }));
+  // Community upvotes AND user-attached repos live in separate stores keyed by slug so
+  // they apply across all sources (internal/ideas/external) without rewriting seed —
+  // and persist on Vercel's read-only FS (Redis). Overlaid here on every read.
+  const slugs = projects.map((p) => p.slug);
+  const [votes, repoOverrides] = await Promise.all([readVotes(slugs), readRepoOverrides(slugs)]);
+  return projects.map((p) => {
+    const ov = repoOverrides[p.slug];
+    return {
+      ...p,
+      votes: votes[p.slug] ?? p.votes ?? 0,
+      repo_url: ov?.url ?? p.repo_url,
+      contributors: ov?.contributors ?? p.contributors,
+    };
+  });
 });
 
 export const loadBuilders = cache(async (): Promise<Builder[]> => {

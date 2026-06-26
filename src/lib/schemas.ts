@@ -48,6 +48,7 @@ export const ProjectSchema = z.object({
   priority: Priority.optional(), // impact / urgency
   use_case: z.string().min(1).max(280).optional(), // who it's for / when it's used
   stars: z.number().int().nonnegative().optional(), // GitHub stargazers (external repos)
+  contributors: z.number().int().nonnegative().optional(), // GitHub repo contributor count (cached at attach/import)
   progress: z.number().int().min(0).max(100).optional(), // 0–100% build progress
   votes: z.number().int().nonnegative().default(0), // community upvotes → prioritization
 });

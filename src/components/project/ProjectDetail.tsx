@@ -4,10 +4,11 @@ import type { Dictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { Tag } from "@/components/ui/Tag";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { PriorityBadge, ComplexityBadge, StarBadge, isVisiblePriority } from "@/components/ui/MetaBadge";
+import { PriorityBadge, ComplexityBadge, StarBadge, ContributorsBadge, isVisiblePriority } from "@/components/ui/MetaBadge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { VoteButton } from "@/components/board/VoteButton";
 import { ProjectTeam } from "./ProjectTeam";
+import { AddRepoForm } from "./AddRepoForm";
 import { categories, labelFor } from "@/lib/taxonomy";
 
 function NeedList({ title, items, empty }: { title: string; items: string[]; empty: string }) {
@@ -54,11 +55,14 @@ export function ProjectDetail({
         </div>
         <p className="mt-3 max-w-2xl text-muted">{project.summary}</p>
 
-        {(isVisiblePriority(project.priority) || project.complexity || project.stars != null) && (
+        {(isVisiblePriority(project.priority) || project.complexity || project.stars != null || project.contributors != null) && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {isVisiblePriority(project.priority) && <PriorityBadge level={project.priority} locale={locale} />}
             {project.complexity && <ComplexityBadge level={project.complexity} locale={locale} />}
             {project.stars != null && <StarBadge count={project.stars} />}
+            {project.contributors != null && (
+              <ContributorsBadge count={project.contributors} label={dict.card.contributors} />
+            )}
           </div>
         )}
       </div>
@@ -107,6 +111,9 @@ export function ProjectDetail({
           </a>
         )}
       </div>
+
+      {/* No repo yet → anyone can attach one (hackathon-open). */}
+      {!project.repo_url && <AddRepoForm slug={project.slug} dict={dict} />}
 
       <ProjectTeam slug={project.slug} dict={dict} />
 

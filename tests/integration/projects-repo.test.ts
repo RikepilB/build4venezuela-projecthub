@@ -56,6 +56,11 @@ describe("applyFilter", () => {
       "p1",
     ]);
   });
+
+  it("does not throw on an unknown need key (defends the board from a bogus ?need= URL)", () => {
+    expect(() => applyFilter(all, { need: "bogus" as never })).not.toThrow();
+    expect(applyFilter(all, { need: "bogus" as never })).toEqual([]);
+  });
 });
 
 describe("jsonProjectRepository", () => {

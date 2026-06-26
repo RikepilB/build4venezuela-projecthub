@@ -13,6 +13,8 @@ import type {
   ProjectSource,
   Complexity,
   Priority,
+  ResourceType,
+  ResourceSchema,
 } from "./schemas";
 
 export type Locale = z.infer<typeof Locale>;
@@ -28,6 +30,8 @@ export type Builder = z.infer<typeof BuilderSchema>;
 export type BuilderInput = z.infer<typeof BuilderInputSchema>;
 export type Membership = z.infer<typeof MembershipSchema>;
 export type MembershipInput = z.infer<typeof MembershipInputSchema>;
+export type ResourceType = z.infer<typeof ResourceType>;
+export type Resource = z.infer<typeof ResourceSchema>;
 
 export type ProjectFilter = {
   category?: string;

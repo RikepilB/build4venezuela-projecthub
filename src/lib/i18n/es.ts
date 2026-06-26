@@ -8,6 +8,7 @@ export const es: typeof en = {
     home: "Buscar",
     board: "Tablero",
     ecosystem: "Ecosistema",
+    resources: "Recursos",
     builders: "Constructores",
     submit: "Publicar proyecto",
   },
@@ -28,6 +29,29 @@ export const es: typeof en = {
     step2Body: "Si existe, únete al repo y contribuye. Si no, publícala con tu stack y necesidades.",
     step3Title: "3 · Construye y publica",
     step3Body: "Encuentra compañeros, sigue el progreso y, cuando tu MVP esté listo, publícalo en Build4Venezuela.",
+  },
+  landing: {
+    publishCta: "Publicar proyecto",
+    // live stats bar
+    statProjects: "proyectos",
+    statBuilders: "constructores",
+    statLive: "herramientas activas",
+    statNeeds: "necesidades abiertas",
+    // featured projects
+    featuredTitle: "Activos en el tablero",
+    featuredBody: "Los proyectos de ayuda más votados por el equipo ahora mismo. Únete a uno — o busca el tuyo primero.",
+    featuredCta: "Ver todos los proyectos",
+    // builders teaser
+    buildersBody: "Diseñadores, devs y traductores del roster del hackathon — filtra por stack, disponibilidad y zona horaria.",
+    buildersCta: "Ver constructores",
+    // ecosystem teaser
+    ecosystemBody: "Herramientas de ayuda que puedes usar ahora mismo — no hace falta reconstruirlas.",
+    ecosystemCta: "Explorar el ecosistema",
+    // final CTA band
+    ctaTitle: "¿Tienes una idea? Busca primero, luego publica.",
+    ctaBody: "Treinta segundos de búsqueda ahorran semanas de trabajo duplicado. Si aún no existe, publícala y forma tu equipo.",
+    ctaPublish: "Publicar proyecto",
+    ctaBrowse: "Ver el tablero",
   },
   search: {
     resultsFor: "Resultados para",
@@ -68,6 +92,25 @@ export const es: typeof en = {
       "Proyectos y herramientas de ayuda que ya existen y puedes usar o consultar ahora — sitios en vivo sin un repo abierto para unirse. Para proyectos del hackathon en los que construir, ve al tablero.",
     visit: "Visitar sitio",
     empty: "Aún no hay proyectos existentes listados.",
+  },
+  resources: {
+    title: "Recursos verificados",
+    subtitle:
+      "Plataformas de ayuda, canales de donación, organismos oficiales y líneas de apoyo verificados para el terremoto de Venezuela — sincronizados desde el directorio del equipo. Úsalos; no los reconstruyas.",
+    visit: "Abrir",
+    verifiedBy: "Verificado por",
+    empty: "Aún no hay recursos listados.",
+    types: {
+      search: "Buscar personas",
+      official: "Organismos oficiales",
+      resources: "Centros de recursos",
+      dev: "Tech / código abierto",
+      donation: "Donaciones",
+      finance: "Finanzas de emergencia",
+      psychosocial: "Apoyo psicosocial",
+      telecom: "Telecomunicaciones",
+      other: "Otros",
+    },
   },
   radar: {
     total: "Proyectos",

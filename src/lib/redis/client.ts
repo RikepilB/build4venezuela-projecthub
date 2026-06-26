@@ -3,8 +3,10 @@
 // Enabled only when BOTH env vars are present. Every method fails soft: on any error
 // it logs context and returns null so a render never throws on a cache miss — the
 // caller falls back to the local JSON store. Secrets are read from env, never logged.
-const URL = process.env.UPSTASH_REDIS_REST_URL;
-const TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+// Accept either Upstash's native env names or Vercel's KV/Marketplace aliases, so the
+// vote store works whichever way the Redis integration is added on Vercel.
+const URL = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+const TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 
 async function call(pathname: string): Promise<unknown | null> {
   if (!URL || !TOKEN) return null;

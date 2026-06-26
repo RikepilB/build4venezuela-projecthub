@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useActionState, useEffect, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
 import { upvoteProject } from "@/actions/vote-project";
 
@@ -54,18 +54,25 @@ function Inner({ votes, voted, label }: { votes: number; voted: boolean; label: 
 // One vote per browser (localStorage guard) — best-effort, not a security control.
 // The server is the source of truth; this just stops obvious double-clicks.
 export function VoteButton({ slug, votes, label }: { slug: string; votes: number; label: string }) {
-  const voted = useHasVoted(slug);
+  const stored = useHasVoted(slug);
+  const [state, formAction] = useActionState(upvoteProject, null);
+
+  // Mark "voted" locally only AFTER the server confirms the write. A failed persist
+  // (read-only FS, no Redis) returns ok:false → the button stays usable instead of
+  // locking with an unchanged count. Side effect (not setState) → effect is fine here.
+  useEffect(() => {
+    if (state?.ok) {
+      try {
+        window.localStorage.setItem(`vote:${slug}`, "1");
+      } catch {
+        // storage unavailable — the server still recorded the vote
+      }
+    }
+  }, [state, slug]);
+
+  const voted = stored || state?.ok === true;
   return (
-    <form
-      action={upvoteProject}
-      onSubmit={() => {
-        try {
-          window.localStorage.setItem(`vote:${slug}`, "1");
-        } catch {
-          // storage unavailable — the server still records the vote
-        }
-      }}
-    >
+    <form action={formAction}>
       <input type="hidden" name="slug" value={slug} />
       <Inner votes={votes} voted={voted} label={label} />
     </form>

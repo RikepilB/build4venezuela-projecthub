@@ -23,7 +23,7 @@ export default async function NewProjectPage({
   return (
     <section className="mx-auto flex max-w-2xl flex-col gap-6">
       <header>
-        <h1 className="text-2xl font-semibold text-text">{dict.submit.title}</h1>
+        <h1 className="text-2xl font-extrabold uppercase tracking-tight text-text">{dict.submit.title}</h1>
         <p className="mt-1 text-muted">{dict.submit.subtitle}</p>
       </header>
 

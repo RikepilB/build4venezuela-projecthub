@@ -1,0 +1,40 @@
+// Minimal Upstash Redis REST client — fetch-based (no persistent socket), so it is
+// safe on Vercel's serverless/edge runtime where votes.json can't be written.
+// Enabled only when BOTH env vars are present. Every method fails soft: on any error
+// it logs context and returns null so a render never throws on a cache miss — the
+// caller falls back to the local JSON store. Secrets are read from env, never logged.
+const URL = process.env.UPSTASH_REDIS_REST_URL;
+const TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+async function call(pathname: string): Promise<unknown | null> {
+  if (!URL || !TOKEN) return null;
+  try {
+    const res = await fetch(`${URL}/${pathname}`, {
+      headers: { Authorization: `Bearer ${TOKEN}` },
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const json = (await res.json()) as { result?: unknown };
+    return json.result ?? null;
+  } catch (err) {
+    console.error(`[redis] ${pathname.split("/")[0]} failed, falling back:`, err);
+    return null;
+  }
+}
+
+export const redis = {
+  enabled: Boolean(URL && TOKEN),
+
+  // INCR key → new integer count, or null on failure.
+  async incr(key: string): Promise<number | null> {
+    const r = await call(`incr/${encodeURIComponent(key)}`);
+    return typeof r === "number" ? r : null;
+  },
+
+  // MGET keys → array of (string | null) in order, or null on failure.
+  async mget(keys: string[]): Promise<(string | null)[] | null> {
+    if (keys.length === 0) return null;
+    const r = await call(`mget/${keys.map((k) => encodeURIComponent(k)).join("/")}`);
+    return Array.isArray(r) ? (r as (string | null)[]) : null;
+  },
+};

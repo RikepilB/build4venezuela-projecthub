@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { loadProjects, appendInternalProject } from "../data-files";
+import { bumpVote } from "../votes/votes-store";
 import { searchProjects, type SearchHit } from "../search";
 import { slugify } from "../slug";
 import { ProjectSchema } from "../schemas";
@@ -10,9 +11,12 @@ export interface ProjectRepository {
   getBySlug(slug: string): Promise<Project | null>;
   search(query: string): Promise<SearchHit[]>;
   create(input: ProjectInput): Promise<Project>;
+  vote(slug: string): Promise<number>;
 }
 
-function applyFilter(projects: Project[], f?: ProjectFilter): Project[] {
+// Exported so the board can derive its filtered view from an already-loaded, already-
+// ranked list (one read) instead of calling list() twice. Pure — preserves order.
+export function applyFilter(projects: Project[], f?: ProjectFilter): Project[] {
   if (!f) return projects;
   return projects.filter((p) => {
     if (f.category && !p.categories.includes(f.category)) return false;
@@ -20,7 +24,25 @@ function applyFilter(projects: Project[], f?: ProjectFilter): Project[] {
     if (f.language && !p.languages.includes(f.language)) return false;
     if (f.status && p.status !== f.status) return false;
     if (f.need && p.needs[f.need].length === 0) return false;
+    if (f.complexity && p.complexity !== f.complexity) return false;
+    if (f.priority && p.priority !== f.priority) return false;
     return true;
+  });
+}
+
+// Radar ordering: community votes first (what the team wants to focus on), then
+// priority, then stars, then lifecycle — so the board reads as a ranked signal.
+const PRIORITY_WEIGHT: Record<string, number> = { high: 3, medium: 2, low: 1 };
+const STATUS_WEIGHT: Record<string, number> = { live: 4, mvp: 3, testing: 2, wip: 1, planning: 0 };
+export function rankProjects(projects: Project[]): Project[] {
+  return [...projects].sort((a, b) => {
+    const v = (b.votes ?? 0) - (a.votes ?? 0);
+    if (v !== 0) return v;
+    const p = (PRIORITY_WEIGHT[b.priority ?? ""] ?? 0) - (PRIORITY_WEIGHT[a.priority ?? ""] ?? 0);
+    if (p !== 0) return p;
+    const s = (b.stars ?? 0) - (a.stars ?? 0);
+    if (s !== 0) return s;
+    return (STATUS_WEIGHT[b.status] ?? 0) - (STATUS_WEIGHT[a.status] ?? 0);
   });
 }
 
@@ -29,7 +51,7 @@ function applyFilter(projects: Project[], f?: ProjectFilter): Project[] {
 export const jsonProjectRepository: ProjectRepository = {
   async list(filter) {
     const projects = await loadProjects();
-    return applyFilter(projects, filter);
+    return rankProjects(applyFilter(projects, filter));
   },
 
   async getBySlug(slug) {
@@ -61,5 +83,9 @@ export const jsonProjectRepository: ProjectRepository = {
     });
     await appendInternalProject(project);
     return project;
+  },
+
+  async vote(slug) {
+    return bumpVote(slug);
   },
 };

@@ -1,14 +1,30 @@
 "use client";
 
+import { useState } from "react";
 import { useActionState } from "react";
 import { submitProject } from "@/actions/submit-project";
 import { initialSubmitState } from "@/actions/submit-types";
 import type { Locale } from "@/lib/types";
 import type { Dictionary } from "@/lib/i18n/config";
-import { categories, statuses } from "@/lib/taxonomy";
+import { categories, statuses, priorities, complexities } from "@/lib/taxonomy";
 
 const INPUT =
   "w-full rounded-token border border-border bg-surface px-3 py-2 text-text placeholder:text-muted";
+
+// Quick-add chips for the most common stacks (max 10). Click to append; users can
+// still type anything else into the field.
+const QUICK_STACK = [
+  "Next.js",
+  "React",
+  "Node.js",
+  "TypeScript",
+  "Python",
+  "FastAPI",
+  "Supabase",
+  "Postgres",
+  "Tailwind",
+  "Mobile",
+];
 
 function Field({
   label,
@@ -39,6 +55,28 @@ export function SubmitProjectForm({
 }) {
   const [state, action, pending] = useActionState(submitProject, initialSubmitState);
   const err = (f: string) => state.fieldErrors?.[f];
+
+  // Controlled so the quick-add chips and free text stay in sync.
+  const [stack, setStack] = useState("");
+  const has = (t: string) =>
+    stack
+      .split(",")
+      .map((s) => s.trim().toLowerCase())
+      .includes(t.toLowerCase());
+  const toggleTech = (t: string) => {
+    if (has(t)) {
+      setStack(
+        stack
+          .split(",")
+          .map((s) => s.trim())
+          .filter((s) => s && s.toLowerCase() !== t.toLowerCase())
+          .join(", "),
+      );
+    } else {
+      const base = stack.replace(/,\s*$/, "").trim();
+      setStack(base ? `${base}, ${t}` : t);
+    }
+  };
 
   return (
     <form action={action} className="flex flex-col gap-5">
@@ -101,14 +139,46 @@ export function SubmitProjectForm({
         {err("categories") ? <span className="text-xs text-danger">{err("categories")}</span> : null}
       </fieldset>
 
-      <Field label={dict.submit.status}>
-        <select name="status" defaultValue="planning" className={INPUT}>
-          {statuses.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s[locale]}
-            </option>
-          ))}
-        </select>
+      <div className="grid gap-4 sm:grid-cols-3">
+        <Field label={dict.submit.status}>
+          <select name="status" defaultValue="planning" className={INPUT}>
+            {statuses.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s[locale]}
+              </option>
+            ))}
+          </select>
+        </Field>
+
+        <Field label={`${dict.submit.priority} · ${dict.submit.optional}`}>
+          <select name="priority" defaultValue="" className={INPUT}>
+            <option value="">{dict.submit.none}</option>
+            {priorities.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p[locale]}
+              </option>
+            ))}
+          </select>
+        </Field>
+
+        <Field label={`${dict.submit.complexity} · ${dict.submit.optional}`}>
+          <select name="complexity" defaultValue="" className={INPUT}>
+            <option value="">{dict.submit.none}</option>
+            {complexities.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c[locale]}
+              </option>
+            ))}
+          </select>
+        </Field>
+      </div>
+
+      <Field label={`${dict.submit.useCase} · ${dict.submit.optional}`}>
+        <input name="use_case" maxLength={280} className={INPUT} />
+      </Field>
+
+      <Field label={`${dict.submit.progress} · ${dict.submit.optional}`}>
+        <input name="progress" type="number" min={0} max={100} step={5} className={INPUT} />
       </Field>
 
       <Field label={`${dict.submit.repo} · ${dict.submit.optional}`} error={err("repo_url")}>
@@ -119,19 +189,46 @@ export function SubmitProjectForm({
         <input name="demo_url" type="url" placeholder="https://example.com" className={INPUT} />
       </Field>
 
-      <Field label={dict.submit.stack}>
-        <input name="stack" placeholder="Next.js, Postgres, Python" className={INPUT} />
+      <Field label={`${dict.submit.stack} · ${dict.submit.optional}`} error={err("stack")}>
+        <div className="flex flex-wrap gap-1.5">
+          {QUICK_STACK.map((t) => {
+            const on = has(t);
+            return (
+              <button
+                key={t}
+                type="button"
+                onClick={() => toggleTech(t)}
+                aria-pressed={on}
+                className={`rounded-full border px-2.5 py-0.5 text-xs font-medium transition ${
+                  on
+                    ? "border-primary bg-primary/15 text-primary"
+                    : "border-border bg-surface-2 text-muted hover:border-primary hover:text-primary"
+                }`}
+              >
+                {on ? "✓ " : "+ "}
+                {t}
+              </button>
+            );
+          })}
+        </div>
+        <input
+          name="stack"
+          value={stack}
+          onChange={(e) => setStack(e.target.value)}
+          placeholder="Next.js, Postgres, Python"
+          className={INPUT}
+        />
       </Field>
 
-      <Field label={dict.submit.needContributors}>
+      <Field label={`${dict.submit.needContributors} · ${dict.submit.optional}`}>
         <input name="need_contributors" placeholder="React dev, ES translator" className={INPUT} />
       </Field>
 
-      <Field label={dict.submit.needApiCredits}>
+      <Field label={`${dict.submit.needApiCredits} · ${dict.submit.optional}`}>
         <input name="need_api_credits" placeholder="OpenAI credits, Maps API" className={INPUT} />
       </Field>
 
-      <Field label={dict.submit.needSponsors}>
+      <Field label={`${dict.submit.needSponsors} · ${dict.submit.optional}`}>
         <input name="need_sponsors" placeholder="Hosting, SMS gateway" className={INPUT} />
       </Field>
 

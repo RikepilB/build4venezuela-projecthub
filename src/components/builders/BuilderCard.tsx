@@ -1,10 +1,21 @@
-import type { Builder } from "@/lib/types";
+import Link from "next/link";
+import type { Builder, Locale } from "@/lib/types";
 import type { Dictionary } from "@/lib/i18n/config";
+import { localePath } from "@/lib/i18n/href";
 import { Tag } from "@/components/ui/Tag";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
-const REL = "noopener noreferrer nofollow";
-
-export function BuilderCard({ builder, dict }: { builder: Builder; dict: Dictionary }) {
+export function BuilderCard({
+  builder,
+  dict,
+  projects,
+  locale,
+}: {
+  builder: Builder;
+  dict: Dictionary;
+  projects: { slug: string; name: string }[];
+  locale: Locale;
+}) {
   return (
     <article className="flex h-full flex-col gap-2 rounded-token border border-border bg-surface p-4">
       <div className="flex items-center justify-between gap-2">
@@ -19,6 +30,21 @@ export function BuilderCard({ builder, dict }: { builder: Builder; dict: Diction
           ))}
         </div>
       )}
+
+      {projects.length > 0 && (
+        <p className="text-xs text-muted">
+          <span className="font-medium text-text">{dict.builders.workingOn}: </span>
+          {projects.map((p, i) => (
+            <span key={p.slug}>
+              {i > 0 ? ", " : ""}
+              <Link href={localePath(locale, `/projects/${p.slug}`)} className="text-primary hover:underline">
+                {p.name}
+              </Link>
+            </span>
+          ))}
+        </p>
+      )}
+
       <dl className="mt-auto grid grid-cols-1 gap-1 text-xs text-muted sm:grid-cols-2">
         <div>
           <dt className="inline font-medium">{dict.builders.availability}: </dt>
@@ -30,14 +56,9 @@ export function BuilderCard({ builder, dict }: { builder: Builder; dict: Diction
         </div>
       </dl>
       {builder.linkedin_url ? (
-        <a
-          href={builder.linkedin_url}
-          target="_blank"
-          rel={REL}
-          className="text-sm font-medium text-primary hover:underline"
-        >
-          {dict.builders.profile} →
-        </a>
+        <ExternalLink href={builder.linkedin_url} className="text-sm font-medium">
+          {dict.builders.profile}
+        </ExternalLink>
       ) : null}
     </article>
   );

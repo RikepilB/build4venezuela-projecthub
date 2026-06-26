@@ -29,7 +29,6 @@ export function SearchBox({
         placeholder={placeholder}
         aria-label={placeholder}
         autoComplete="off"
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={autoFocus}
         className="w-full rounded-token border border-border bg-surface px-4 py-3 text-text placeholder:text-muted"
       />

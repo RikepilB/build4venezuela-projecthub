@@ -1,10 +1,18 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { isLocale, getDictionary } from "@/lib/i18n/config";
-import { builderRepository } from "@/lib/repository";
+import { builderRepository, membershipRepository, projectRepository } from "@/lib/repository";
 import { BuilderGrid } from "@/components/builders/BuilderGrid";
 import { localePath } from "@/lib/i18n/href";
 import { normalize } from "@/lib/text";
+
+// Collapsible secondary form — code-split so its client JS defers until the roster
+// has rendered. ssr stays on (default) so the markup is still server-rendered.
+const AddBuilderForm = dynamic(
+  () => import("@/components/builders/AddBuilderForm").then((m) => m.AddBuilderForm),
+  { loading: () => <div className="h-12 w-48 animate-pulse rounded-token bg-surface-2" /> },
+);
 
 type SP = Record<string, string | string[] | undefined>;
 const one = (v: SP[string]) => (typeof v === "string" && v ? v : undefined);
@@ -35,6 +43,25 @@ export default async function BuildersPage({
   const timezoneOptions = uniqueSorted(all.map((b) => b.timezone));
   const stackOptions = uniqueSorted(all.flatMap((b) => b.stack));
 
+  // "Working on": link each builder to the projects they joined (matched by name).
+  const [memberships, allProjects] = await Promise.all([
+    membershipRepository.list(),
+    projectRepository.list(),
+  ]);
+  const slugToName = new Map(allProjects.map((p) => [p.slug, p.name] as const));
+  const projectsByName = new Map<string, { slug: string; name: string }[]>();
+  for (const m of memberships) {
+    const name = slugToName.get(m.project_slug);
+    if (!name) continue;
+    const key = normalize(m.name);
+    const list = projectsByName.get(key) ?? [];
+    if (!list.some((x) => x.slug === m.project_slug)) list.push({ slug: m.project_slug, name });
+    projectsByName.set(key, list);
+  }
+  const workingOn = new Map<string, { slug: string; name: string }[]>(
+    all.map((b) => [b.id, projectsByName.get(normalize(b.alias)) ?? []] as const),
+  );
+
   const builders = all.filter((b) => {
     if (availability && b.availability !== availability) return false;
     if (timezone && b.timezone !== timezone) return false;
@@ -45,9 +72,14 @@ export default async function BuildersPage({
   return (
     <section className="flex flex-col gap-6">
       <header>
-        <h1 className="text-2xl font-semibold text-text">{dict.builders.title}</h1>
-        <p className="mt-1 text-muted">{dict.builders.subtitle}</p>
+        <p className="eyebrow">{dict.nav.builders}</p>
+        <h1 className="mt-1 text-3xl font-extrabold uppercase tracking-tight text-text sm:text-4xl">
+          {dict.builders.title}
+        </h1>
+        <p className="mt-2 text-muted">{dict.builders.subtitle}</p>
       </header>
+
+      <AddBuilderForm locale={locale} dict={dict} />
 
       <form
         method="get"
@@ -110,7 +142,7 @@ export default async function BuildersPage({
         {builders.length} {dict.builders.count}
       </p>
 
-      <BuilderGrid builders={builders} dict={dict} />
+      <BuilderGrid builders={builders} dict={dict} workingOn={workingOn} locale={locale} />
     </section>
   );
 }

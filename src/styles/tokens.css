@@ -1,31 +1,31 @@
 /* ── Design tokens — the ONLY re-skin layer ─────────────────────────────────
-   Branding (Moraleja) re-themes the app by changing these CSS variable values.
-   No component hardcodes a color/radius; they all map through @theme in
-   globals.css → Tailwind utilities (bg-surface, text-muted, rounded-token, …).
-   Keep this file token-only: variables, no component rules. */
+   Branded to match build4venezuela.com: brutalist / activist — pure black,
+   heavy mono type, cyan eyebrow labels, yellow CTAs, magenta accents, sharp
+   corners. Re-theme the whole app by changing these values; no component
+   hardcodes a color. */
 
 :root {
-  /* surfaces */
-  --b4v-bg: #f6f8fc;
-  --b4v-surface: #ffffff;
-  --b4v-surface-2: #eef2f9;
+  /* surfaces — pure black with near-black cards */
+  --b4v-bg: #000000;
+  --b4v-surface: #0b0b0d;
+  --b4v-surface-2: #17171b;
 
   /* text */
-  --b4v-text: #131820;
-  --b4v-muted: #54607a;
+  --b4v-text: #ffffff;
+  --b4v-muted: #8b919c;
 
-  /* lines */
-  --b4v-border: #d6deec;
+  /* lines (thin, dark) */
+  --b4v-border: #26262c;
 
-  /* brand (AA contrast on white) */
-  --b4v-primary: #1f4fd6; /* blue */
-  --b4v-primary-ink: #ffffff;
-  --b4v-accent: #9a6b00; /* goldenrod, AA on white */
+  /* brand */
+  --b4v-primary: #ffc400; /* yellow CTA */
+  --b4v-primary-ink: #000000;
+  --b4v-accent: #36c5f0; /* cyan — eyebrow labels, links */
 
   /* status */
-  --b4v-danger: #b3261e;
-  --b4v-success: #15784f;
+  --b4v-danger: #ff3b6b; /* magenta/red */
+  --b4v-success: #36e08b; /* live green */
 
-  /* shape */
-  --b4v-radius: 0.75rem;
+  /* shape — brutalist = near-square */
+  --b4v-radius: 0.25rem;
 }

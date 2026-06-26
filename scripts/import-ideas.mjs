@@ -32,7 +32,26 @@ const ProjectSchema = z.object({
   }),
   owner: z.string().min(1).max(80),
   source: z.enum(["internal", "external", "initiative"]),
+  complexity: z.enum(["low", "medium", "high"]).optional(),
+  priority: z.enum(["low", "medium", "high"]).optional(),
+  use_case: z.string().min(1).max(280).optional(),
 });
+
+// Map the sheet's Spanish Impacto/Dificultad cells to structured ranks.
+function mapPriority(impacto) {
+  const t = norm(impacto);
+  if (/muyalto|alto|alta/.test(t)) return "high";
+  if (/medio|media/.test(t)) return "medium";
+  if (/bajo|baja/.test(t)) return "low";
+  return undefined;
+}
+function mapComplexity(dificultad) {
+  const t = norm(dificultad);
+  if (/dificil|alto|alta|hard/.test(t)) return "high";
+  if (/medio|media|medium/.test(t)) return "medium";
+  if (/facil|bajo|baja|easy|low/.test(t)) return "low";
+  return undefined;
+}
 
 const norm = (s) =>
   String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -125,11 +144,9 @@ async function main() {
     const dificultad = stripEmoji(pick(row, ["dificultad"]));
     const stackText = pick(row, ["stacksugerido", "stack"]);
 
-    let summary = problema.length >= 10 ? problema : `${idea} — idea para el hackathon solidario.`;
-    const meta = [capa && `Capa: ${capa}`, impacto && `Impacto: ${impacto}`, dificultad && `Dificultad: ${dificultad}`]
-      .filter(Boolean)
-      .join(" · ");
-    if (meta && summary.length + meta.length + 4 <= 600) summary = `${summary}  [${meta}]`;
+    // Summary is the clean problem statement; Impacto/Dificultad/Capa now become
+    // structured fields (priority/complexity/use_case) instead of a [bracket].
+    const summary = problema.length >= 10 ? problema : `${idea} — idea para el hackathon solidario.`;
 
     const candidate = {
       id: `idea-${slugify(idea)}`,
@@ -143,6 +160,9 @@ async function main() {
       needs: { contributors: [], api_credits: [], sponsors: [] },
       owner: cleanOwner(pick(row, ["responsableideal", "responsable"])),
       source: "internal",
+      priority: mapPriority(impacto),
+      complexity: mapComplexity(dificultad),
+      use_case: capa ? capa.slice(0, 280) : undefined,
     };
     const parsed = ProjectSchema.safeParse(candidate);
     if (parsed.success) projects.push(parsed.data);

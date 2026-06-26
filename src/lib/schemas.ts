@@ -6,8 +6,13 @@ import { z } from "zod";
 // (importers, form action, repository reads). See .claude/rules/common/coding-rules.md.
 
 export const Locale = z.enum(["en", "es"]);
-export const ProjectStatus = z.enum(["live", "wip", "planning"]);
+// Lifecycle, ordered: planning (just published) → wip → testing → mvp (completed /
+// MVP ready, submittable to build4venezuela.com) → live.
+export const ProjectStatus = z.enum(["planning", "wip", "testing", "mvp", "live"]);
 export const NeedType = z.enum(["contributors", "api_credits", "sponsors"]);
+// Effort to build (rank). Impact/urgency (rank). Both ranked low → high.
+export const Complexity = z.enum(["low", "medium", "high"]);
+export const Priority = z.enum(["low", "medium", "high"]);
 // internal = posted here · external = discovered OSS repo · initiative = known relief site (link-out, PII-gated)
 export const ProjectSource = z.enum(["internal", "external", "initiative"]);
 
@@ -38,6 +43,13 @@ export const ProjectSchema = z.object({
   owner: z.string().min(1).max(80), // alias in P0; user id in P1
   source: ProjectSource.default("internal"),
   created_at: z.string().datetime().optional(),
+  // Discovery/radar fields (all optional so existing seed data stays valid).
+  complexity: Complexity.optional(), // how hard to build
+  priority: Priority.optional(), // impact / urgency
+  use_case: z.string().min(1).max(280).optional(), // who it's for / when it's used
+  stars: z.number().int().nonnegative().optional(), // GitHub stargazers (external repos)
+  progress: z.number().int().min(0).max(100).optional(), // 0–100% build progress
+  votes: z.number().int().nonnegative().default(0), // community upvotes → prioritization
 });
 
 // What the submit form posts; server fills id/slug/created_at/source.
@@ -59,5 +71,22 @@ export const BuilderSchema = z.object({
   status: z.string().max(60).default(""),
 });
 
+// What the "add yourself" form posts; server fills the id.
+export const BuilderInputSchema = BuilderSchema.omit({ id: true });
+
+// Team membership: a person joining a project (hackathon-open, no auth). Names are
+// runtime PII (data/memberships.json is gitignored). Linked to a Builder by name
+// when it lines up; free-text otherwise.
+export const MembershipSchema = z.object({
+  project_slug: z.string().min(1).max(120),
+  name: z.string().min(1).max(80),
+  role: z.string().max(80).default(""),
+  created_at: z.string().datetime().optional(),
+});
+
+// What the "I'm building this" form posts; server fills created_at.
+export const MembershipInputSchema = MembershipSchema.omit({ created_at: true });
+
 export const ProjectsFileSchema = z.array(ProjectSchema);
 export const BuildersFileSchema = z.array(BuilderSchema);
+export const MembershipsFileSchema = z.array(MembershipSchema);

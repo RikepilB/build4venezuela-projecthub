@@ -3,7 +3,7 @@
     "id": "idea-generador-de-fichas-de-desaparecido",
     "slug": "idea-generador-de-fichas-de-desaparecido",
     "name": "Generador de fichas de desaparecido",
-    "summary": "Cada familia crea su ficha de búsqueda manualmente, con formatos distintos. Dificulta la difusión.  [Capa: Vibe building · Impacto: Alto · Dificultad: Fácil]",
+    "summary": "Cada familia crea su ficha de búsqueda manualmente, con formatos distintos. Dificulta la difusión.",
     "stack": [
       "React",
       "HTML",
@@ -23,13 +23,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "low",
+    "priority": "high",
+    "use_case": "Vibe building"
   },
   {
     "id": "idea-dashboard-en-tiempo-real-del-terremoto",
     "slug": "idea-dashboard-en-tiempo-real-del-terremoto",
     "name": "Dashboard en tiempo real del terremoto",
-    "summary": "Los datos están dispersos en múltiples plataformas. No hay una vista consolidada para tomadores de decisión.  [Capa: Vibe building · Impacto: Alto · Dificultad: Fácil]",
+    "summary": "Los datos están dispersos en múltiples plataformas. No hay una vista consolidada para tomadores de decisión.",
     "stack": [
       "Chart.js",
       "Recharts",
@@ -48,13 +51,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "low",
+    "priority": "high",
+    "use_case": "Vibe building"
   },
   {
     "id": "idea-mapa-de-necesidades-vs-recursos",
     "slug": "idea-mapa-de-necesidades-vs-recursos",
     "name": "Mapa de necesidades vs. recursos",
-    "summary": "Voluntarios no saben dónde hay déficit. Damnificados no saben dónde hay ayuda disponible.  [Capa: Vibe building · Impacto: Alto · Dificultad: Medio]",
+    "summary": "Voluntarios no saben dónde hay déficit. Damnificados no saben dónde hay ayuda disponible.",
     "stack": [
       "React",
       "Mapbox",
@@ -73,13 +79,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "medium",
+    "priority": "high",
+    "use_case": "Vibe building"
   },
   {
     "id": "idea-panel-de-coordinacion-de-voluntarios",
     "slug": "idea-panel-de-coordinacion-de-voluntarios",
     "name": "Panel de coordinación de voluntarios",
-    "summary": "Equipos de rescate sin visibilidad de quién cubre qué zona. Duplican esfuerzos.  [Capa: Vibe building · Impacto: Medio · Dificultad: Medio]",
+    "summary": "Equipos de rescate sin visibilidad de quién cubre qué zona. Duplican esfuerzos.",
     "stack": [
       "React",
       "Firebase",
@@ -99,13 +108,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "medium",
+    "priority": "medium",
+    "use_case": "Vibe building"
   },
   {
     "id": "idea-agente-ai-de-triaje-de-necesidades",
     "slug": "idea-agente-ai-de-triaje-de-necesidades",
     "name": "Agente AI de triaje de necesidades",
-    "summary": "Usuarios describen situación en lenguaje natural; no saben a quién acudir.  [Capa: Vibe building · Impacto: Alto · Dificultad: Medio]",
+    "summary": "Usuarios describen situación en lenguaje natural; no saben a quién acudir.",
     "stack": [
       "React",
       "Claude API"
@@ -123,13 +135,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "medium",
+    "priority": "high",
+    "use_case": "Vibe building"
   },
   {
     "id": "idea-bot-de-whatsapp-para-busqueda",
     "slug": "idea-bot-de-whatsapp-para-busqueda",
     "name": "Bot de WhatsApp para búsqueda",
-    "summary": "WhatsApp funciona en Venezuela aunque internet completo esté caído. Pero las plataformas de búsqueda requieren navegador.  [Capa: ️ Código / Backend · Impacto: Alto · Dificultad: Medio]",
+    "summary": "WhatsApp funciona en Venezuela aunque internet completo esté caído. Pero las plataformas de búsqueda requieren navegador.",
     "stack": [
       "Go",
       "Node",
@@ -150,13 +165,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "medium",
+    "priority": "high",
+    "use_case": "️ Código / Backend"
   },
   {
     "id": "idea-api-normalizada-open-source",
     "slug": "idea-api-normalizada-open-source",
     "name": "API normalizada open source",
-    "summary": "Cada plataforma es un silo (desaparecidosterremoto, venezuelatebusca). No existe una API pública que las agregue.  [Capa: ️ Código / Backend · Impacto: Alto · Dificultad: Difícil]",
+    "summary": "Cada plataforma es un silo (desaparecidosterremoto, venezuelatebusca). No existe una API pública que las agregue.",
     "stack": [
       "Go",
       "FastAPI",
@@ -175,13 +193,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "high",
+    "priority": "high",
+    "use_case": "️ Código / Backend"
   },
   {
     "id": "idea-deduplicacion-automatica-de-reportes",
     "slug": "idea-deduplicacion-automatica-de-reportes",
     "name": "Deduplicación automática de reportes",
-    "summary": "Con 56k+ registros hay duplicados y datos incorrectos que dificultan la búsqueda.  [Capa: ️ Código / Backend · Impacto: Medio · Dificultad: Medio]",
+    "summary": "Con 56k+ registros hay duplicados y datos incorrectos que dificultan la búsqueda.",
     "stack": [
       "Python",
       "REST",
@@ -200,13 +221,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "medium",
+    "priority": "medium",
+    "use_case": "️ Código / Backend"
   },
   {
     "id": "idea-pwa-offline-first-para-reportes",
     "slug": "idea-pwa-offline-first-para-reportes",
     "name": "PWA offline-first para reportes",
-    "summary": "En zonas sin señal no se pueden registrar daños ni necesidades. Los datos se pierden.  [Capa: Offline / Conectividad · Impacto: Alto · Dificultad: Difícil]",
+    "summary": "En zonas sin señal no se pueden registrar daños ni necesidades. Los datos se pierden.",
     "stack": [
       "Go",
       "IndexedDB",
@@ -225,13 +249,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "high",
+    "priority": "high",
+    "use_case": "Offline / Conectividad"
   },
   {
     "id": "idea-sms-ussd-gateway-de-busqueda",
     "slug": "idea-sms-ussd-gateway-de-busqueda",
     "name": "SMS/USSD gateway de búsqueda",
-    "summary": "Zonas donde solo hay red 2G o SMS. Sin datos, sin acceso a plataformas web.  [Capa: Offline / Conectividad · Impacto: Alto · Dificultad: Difícil]",
+    "summary": "Zonas donde solo hay red 2G o SMS. Sin datos, sin acceso a plataformas web.",
     "stack": [
       "Go",
       "Twilio",
@@ -250,13 +277,16 @@
       "sponsors": []
     },
     "owner": "open",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "high",
+    "priority": "high",
+    "use_case": "Offline / Conectividad"
   },
   {
     "id": "idea-sincronizacion-mesh-entre-dispositivos",
     "slug": "idea-sincronizacion-mesh-entre-dispositivos",
     "name": "Sincronización mesh entre dispositivos",
-    "summary": "En zonas sin torres, los teléfonos cercanos podrían retransmitir datos entre sí.  [Capa: Offline / Conectividad · Impacto: Muy alto · Dificultad: Difícil/Medio]",
+    "summary": "En zonas sin torres, los teléfonos cercanos podrían retransmitir datos entre sí.",
     "stack": [
       "Go",
       "Bluetooth",
@@ -274,14 +304,17 @@
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "open",
-    "source": "internal"
+    "owner": "* Rodrigo (Ruy): * Victor Maldonado: ‪‑‬\n* Carlos Ramirez:",
+    "source": "internal",
+    "complexity": "high",
+    "priority": "high",
+    "use_case": "Offline / Conectividad"
   },
   {
     "id": "idea-construir-una-fuente-de-informacion-indexada-rag-para-consultas-de-inf",
     "slug": "idea-construir-una-fuente-de-informacion-indexada-rag-para-consultas-de-inf",
     "name": "Construir una fuente de información indexada (RAG) para consultas de información en lenguaje natural.",
-    "summary": "Una persona con  conectividad baja puede hacer consultas de informacion mediante whatsapp  [Capa: ️ Código / Backend]",
+    "summary": "Una persona con  conectividad baja puede hacer consultas de informacion mediante whatsapp",
     "stack": [
       "Python",
       "Pgvector",
@@ -299,14 +332,15 @@
       "api_credits": [],
       "sponsors": []
     },
-    "owner": "Carlos Urias",
-    "source": "internal"
+    "owner": "* Carlos Urias:",
+    "source": "internal",
+    "use_case": "️ Código / Backend"
   },
   {
     "id": "idea-scraper-rag-unificado-de-desaparecidos",
     "slug": "idea-scraper-rag-unificado-de-desaparecidos",
     "name": "Scraper + RAG unificado de desaparecidos",
-    "summary": "Las plataformas ciudadanas (desaparecidosterremoto.com, venezuelatebusca.com) son silos sin API. Más de 50k reportes dispersos en X/Instagram/Facebook con formatos distintos, duplicados y sin normalizar. Una persona con conectividad baja no puede hacer búsqueda cruzada.  [Dificultad: alto]",
+    "summary": "Las plataformas ciudadanas (desaparecidosterremoto.com, venezuelatebusca.com) son silos sin API. Más de 50k reportes dispersos en X/Instagram/Facebook con formatos distintos, duplicados y sin normalizar. Una persona con conectividad baja no puede hacer búsqueda cruzada.",
     "stack": [
       "API"
     ],
@@ -323,6 +357,29 @@
       "sponsors": []
     },
     "owner": "David Montejo",
-    "source": "internal"
+    "source": "internal",
+    "complexity": "high"
+  },
+  {
+    "id": "idea-reencuentros-terremotos-venezuela-una-plataforma-para-centralizar-imag",
+    "slug": "idea-reencuentros-terremotos-venezuela-una-plataforma-para-centralizar-imag",
+    "name": "Reencuentros Terremotos Venezuela\n\nUna plataforma para centralizar imágenes o videos cortos de personas y animales, con ",
+    "summary": "-Centraliza la información: Une en un solo lugar los reportes de personas y animales encontrados para que no se pierdan en el caos de las redes.\n\n-Acelera los reencuentros: Usa Inteligencia Artificial para generar coincidencias rápidas entre los videos y las familias que buscan.\n\n-Vence la mala conectividad: Permite registrar y buscar información clave de forma segura, incluso con fallas severas de internet.\n\n-Soporta alta demanda: Ofrece una infraestructura robusta que no se cae ante miles de visitas simultáneas durante la emergencia.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "missing-persons"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Alejandra Castaño Alzate",
+    "source": "internal",
+    "use_case": "Busco personas con conocimientos técnicos"
   }
 ]

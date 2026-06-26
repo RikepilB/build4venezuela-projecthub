@@ -43,13 +43,19 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
       </header>
 
       {resources.length > 0 ? (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-12">
           {groups.map((g) => (
-            <div key={g.type} className="flex flex-col gap-3">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-muted">
-                {dict.resources.types[g.type]}{" "}
-                <span className="text-muted/60">({g.items.length})</span>
-              </h2>
+            <div key={g.type} className="flex flex-col gap-4">
+              {/* Prominent section header: big, bold, white, with a rule underneath
+                  + a count chip, so each resource type reads as its own clear section. */}
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b-2 border-border pb-2">
+                <h2 className="text-xl font-extrabold uppercase tracking-tight text-text sm:text-2xl">
+                  {dict.resources.types[g.type]}
+                </h2>
+                <span className="rounded-token bg-surface-2 px-2 py-0.5 text-xs font-bold uppercase tracking-widest text-muted">
+                  {g.items.length}
+                </span>
+              </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {g.items.map((r) => (
                   <ResourceCard key={r.id} resource={r} dict={dict} />

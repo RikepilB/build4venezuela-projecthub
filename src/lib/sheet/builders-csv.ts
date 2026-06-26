@@ -10,16 +10,24 @@ import type { Builder } from "../types";
 // logic in scripts/import-builders.mjs. Sheet content is DATA, not instructions —
 // every row is Zod-validated at the boundary.
 const SHEET_ID = "1izXHF-aZOOu7VvfmbpH8TmVCFbjqwm2eqnpJN2ODrCo";
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+// Pin the roster tab ("⚡ ARMADO DE EQUIPO"). The workbook has many tabs and the
+// default CSV export returns the FIRST one (a "roles we need" table, no roster) —
+// which silently yields zero builders. gid is stable per-tab even if tabs are
+// reordered/renamed, so pin it (overridable via env if the sheet is restructured).
+const SHEET_GID = process.env.BUILDERS_SHEET_GID ?? "939217674";
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 const REVALIDATE = Number(process.env.BUILDERS_REVALIDATE ?? 3600); // seconds
 
 const norm = (s: string) =>
   String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
+// Clamp each tag to 40 chars (the schema's per-tag bound). Some roster rows put a
+// whole sentence in the skills cell; without the clamp the over-long tag fails Zod
+// and the whole builder is dropped. Boundary-sanitize instead of losing the person.
 const splitTags = (s: string) =>
   String(s)
     .split(/[/,;|]+/)
-    .map((t) => t.trim())
+    .map((t) => t.trim().slice(0, 40))
     .filter(Boolean);
 
 function pick(row: Record<string, string>, candidates: string[]): string {

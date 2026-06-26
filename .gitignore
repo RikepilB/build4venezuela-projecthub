@@ -44,6 +44,9 @@ next-env.d.ts
 # participant PII — names + LinkedIn from the hackathon sheet.
 # Regenerate locally with `npm run data:builders` (do not commit to a public repo).
 /data/builders.json
+# self-registered builders ("add yourself") — runtime PII, kept separate from the
+# imported roster so a re-import can't wipe them. Redis-backed on Vercel.
+/data/builders-custom.json
 /data/*.tmp
 # community upvotes — runtime state written by the vote action, not seed data.
 /data/votes.json

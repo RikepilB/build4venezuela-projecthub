@@ -60,11 +60,21 @@ export const loadBuilders = cache(async (): Promise<Builder[]> => {
   return keepValid<Builder>(rows, BuilderSchema);
 });
 
-// Append a self-registered builder (the "add yourself" form). Temp-then-rename so a
-// crash can't corrupt the roster. Throws on a read-only FS — caller surfaces it.
-export async function appendBuilder(builder: Builder): Promise<void> {
-  const file = path.join(DATA_DIR, "builders.json");
-  const existing = await readArray("builders.json");
+// Self-registered builders ("add yourself") live in a SEPARATE file from the imported
+// roster: scripts/import-builders.mjs overwrites builders.json wholesale, so keeping
+// self-adds here means a re-import can't wipe them. The Redis path (builders-store)
+// is preferred on Vercel; this file is the dev/offline fallback.
+export const loadCustomBuildersFile = cache(async (): Promise<Builder[]> => {
+  const rows = await readArray("builders-custom.json");
+  return keepValid<Builder>(rows, BuilderSchema);
+});
+
+// Append a self-registered builder to the custom file. Temp-then-rename so a crash
+// can't corrupt it. Throws on a read-only FS (Vercel) — the store falls back from here
+// to Redis, not the other way around, so callers should prefer the store.
+export async function appendCustomBuilderFile(builder: Builder): Promise<void> {
+  const file = path.join(DATA_DIR, "builders-custom.json");
+  const existing = await readArray("builders-custom.json");
   const next = [...existing, builder];
   const tmp = `${file}.tmp`;
   await fs.writeFile(tmp, `${JSON.stringify(next, null, 2)}\n`, "utf8");

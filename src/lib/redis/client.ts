@@ -37,4 +37,17 @@ export const redis = {
     const r = await call(`mget/${keys.map((k) => encodeURIComponent(k)).join("/")}`);
     return Array.isArray(r) ? (r as (string | null)[]) : null;
   },
+
+  // RPUSH key value → new list length, or null on failure. Append-only growing list
+  // (memberships, self-added builders); each element is one JSON-encoded record.
+  async rpush(key: string, value: string): Promise<number | null> {
+    const r = await call(`rpush/${encodeURIComponent(key)}/${encodeURIComponent(value)}`);
+    return typeof r === "number" ? r : null;
+  },
+
+  // LRANGE key 0 -1 → every element (in insertion order) as strings, or null on failure.
+  async lrange(key: string): Promise<string[] | null> {
+    const r = await call(`lrange/${encodeURIComponent(key)}/0/-1`);
+    return Array.isArray(r) ? (r as string[]) : null;
+  },
 };

@@ -8,7 +8,11 @@ import path from "node:path";
 import Papa from "papaparse";
 
 const SHEET_ID = "1izXHF-aZOOu7VvfmbpH8TmVCFbjqwm2eqnpJN2ODrCo";
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+// Pin the roster tab ("⚡ ARMADO DE EQUIPO"). The default CSV export returns the
+// workbook's FIRST tab (a "roles we need" table) — not the roster — so without a
+// gid this importer silently writes zero builders. gid is stable per-tab.
+const SHEET_GID = process.env.BUILDERS_SHEET_GID ?? "939217674";
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 const OUT = path.join(process.cwd(), "data", "builders.json");
 
 const httpsUrl = z
@@ -37,10 +41,13 @@ const norm = (s) =>
 const slug = (s) =>
   norm(s).slice(0, 60) || "builder";
 
+// Split a "skills" cell into tags. Some people type a whole sentence here, which
+// would blow the schema's 40-char per-tag bound and drop the entire person — so
+// clamp each tag to 40 chars rather than lose a real builder over a long label.
 const splitTags = (s) =>
   String(s)
     .split(/[/,;|]+/)
-    .map((t) => t.trim())
+    .map((t) => t.trim().slice(0, 40))
     .filter(Boolean);
 
 // Resolve a cell by fuzzy header match (handles "Nombre / Alias", "Stack/Skills", …).

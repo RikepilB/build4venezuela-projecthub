@@ -23,7 +23,7 @@ export function applyFilter(projects: Project[], f?: ProjectFilter): Project[] {
     if (f.stack && !p.stack.some((s) => s.toLowerCase() === f.stack?.toLowerCase())) return false;
     if (f.language && !p.languages.includes(f.language)) return false;
     if (f.status && p.status !== f.status) return false;
-    if (f.need && p.needs[f.need].length === 0) return false;
+    if (f.need && (p.needs[f.need] ?? []).length === 0) return false; // ?? [] = defense vs an unknown need key
     if (f.complexity && p.complexity !== f.complexity) return false;
     if (f.priority && p.priority !== f.priority) return false;
     return true;

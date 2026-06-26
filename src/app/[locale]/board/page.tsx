@@ -9,17 +9,29 @@ import { FilterBar } from "@/components/board/FilterBar";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { RadarStats } from "@/components/board/RadarStats";
 import { EmptyState } from "@/components/ui/EmptyState";
-import type {
-  Complexity,
-  Locale,
-  NeedType,
-  Priority,
-  ProjectFilter,
-  ProjectStatus,
-} from "@/lib/types";
+import { z } from "zod";
+import {
+  Complexity as ComplexityEnum,
+  Locale as LocaleEnum,
+  NeedType as NeedEnum,
+  Priority as PriorityEnum,
+  ProjectStatus as StatusEnum,
+} from "@/lib/schemas";
+import type { ProjectFilter } from "@/lib/types";
 
 type SP = Record<string, string | string[] | undefined>;
 const one = (v: SP[string]) => (typeof v === "string" && v ? v : undefined);
+
+// Read a searchParam only when it's a valid member of the given Zod enum, else
+// undefined. The URL is untrusted input: an unknown value must be dropped, not cast.
+// Matters most for `need`, which indexes p.needs — a bogus ?need= would otherwise
+// throw in applyFilter and crash the whole board render.
+function parseEnum<S extends z.ZodTypeAny>(schema: S, v: SP[string]): z.infer<S> | undefined {
+  const s = one(v);
+  if (!s) return undefined;
+  const r = schema.safeParse(s);
+  return r.success ? r.data : undefined;
+}
 
 export default async function BoardPage({
   params,
@@ -34,13 +46,13 @@ export default async function BoardPage({
 
   const sp = await searchParams;
   const filter: ProjectFilter = {
-    category: one(sp.category),
-    stack: one(sp.stack),
-    language: one(sp.language) as Locale | undefined,
-    status: one(sp.status) as ProjectStatus | undefined,
-    need: one(sp.need) as NeedType | undefined,
-    priority: one(sp.priority) as Priority | undefined,
-    complexity: one(sp.complexity) as Complexity | undefined,
+    category: one(sp.category), // free taxonomy id — a non-matching value just yields no results
+    stack: one(sp.stack), // free text — string compare, safe on garbage
+    language: parseEnum(LocaleEnum, sp.language),
+    status: parseEnum(StatusEnum, sp.status),
+    need: parseEnum(NeedEnum, sp.need),
+    priority: parseEnum(PriorityEnum, sp.priority),
+    complexity: parseEnum(ComplexityEnum, sp.complexity),
   };
 
   // The board lands on a high-signal view: only high-priority projects, so the

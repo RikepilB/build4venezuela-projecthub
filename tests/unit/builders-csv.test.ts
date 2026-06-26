@@ -36,4 +36,19 @@ describe("parseBuildersCsv", () => {
   it("returns [] when there are no data rows", () => {
     expect(parseBuildersCsv("Nombre/Alias,Rol,Stack\n")).toEqual([]);
   });
+
+  // Regression: some roster rows put a whole sentence in the skills cell. The schema
+  // caps a tag at 40 chars; without clamping, the over-long tag failed Zod and the
+  // entire (real) builder was dropped. Clamp at the boundary → keep the person.
+  it("keeps a builder whose skills cell is a long sentence by clamping each tag to <=40 chars", () => {
+    const csv = [
+      "Nombre/Alias,Rol principal,Stack-Skills,Perfil LinkedIn,Disponibilidad,Zona Horaria,Estado",
+      "Ruy,Product,Flujo de diseño largo que sobrepasa los cuarenta caracteres facilmente,,,,",
+    ].join("\n");
+    const out = parseBuildersCsv(csv);
+    expect(out).toHaveLength(1);
+    expect(out[0].alias).toBe("Ruy");
+    expect(out[0].stack).toHaveLength(1);
+    expect(out[0].stack[0].length).toBeLessThanOrEqual(40);
+  });
 });

@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -44,3 +45,15 @@ next-env.d.ts
 # Regenerate locally with `npm run data:builders` (do not commit to a public repo).
 /data/builders.json
 /data/*.tmp
+# community upvotes — runtime state written by the vote action, not seed data.
+/data/votes.json
+# team memberships — who joined which project (runtime PII), written by the join action.
+/data/memberships.json
+
+# machine-local agent / dev config — keep out of the public repo
+/CLAUDE.local.md
+/.claude/settings.local.json
+/.mcp.json
+/opencode.json
+
+.vercel

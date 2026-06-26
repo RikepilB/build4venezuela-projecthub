@@ -24,7 +24,7 @@ export function ExistingMatches({
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
             {strong.map((h) => (
-              <ProjectCard key={h.project.id} project={h.project} locale={locale} />
+              <ProjectCard key={h.project.id} project={h.project} locale={locale} dict={dict} />
             ))}
           </div>
         </section>
@@ -34,7 +34,7 @@ export function ExistingMatches({
           <h2 className="mb-3 text-sm font-semibold text-muted">{dict.search.possible}</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {possible.map((h) => (
-              <ProjectCard key={h.project.id} project={h.project} locale={locale} />
+              <ProjectCard key={h.project.id} project={h.project} locale={locale} dict={dict} />
             ))}
           </div>
         </section>

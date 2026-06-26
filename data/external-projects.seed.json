@@ -1,5 +1,111 @@
 [
   {
+    "id": "gh-alirioemendozaa-spec-rescate-ya",
+    "slug": "gh-alirioemendozaa-spec-rescate-ya",
+    "name": "Rescate-ya-",
+    "summary": "Rescate terremoto Venezuela",
+    "repo_url": "https://github.com/alirioemendozaa-spec/Rescate-ya-",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "alirioemendozaa-spec",
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
+  },
+  {
+    "id": "gh-raor00-earthquakevzla",
+    "slug": "gh-raor00-earthquakevzla",
+    "name": "Earthquakevzla",
+    "summary": "Plataforma de centralización de data del terremoto en Venezuela",
+    "repo_url": "https://github.com/raor00/Earthquakevzla",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "raor00",
+    "source": "external",
+    "stars": 1,
+    "complexity": "low",
+    "priority": "low"
+  },
+  {
+    "id": "gh-yordanbtc-sismove",
+    "slug": "gh-yordanbtc-sismove",
+    "name": "sismove",
+    "summary": "App para emergencias, creada en apoyo al terremoto ocurrido en Venezuela 24 de junio de 2026",
+    "repo_url": "https://github.com/yordanbtc/sismove",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "yordanbtc",
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
+  },
+  {
+    "id": "gh-calitotech-sos-venezuela-data",
+    "slug": "gh-calitotech-sos-venezuela-data",
+    "name": "sos-venezuela-data",
+    "summary": "Plataforma centralizada de datos de desaparecidos tras el terremoto en Venezuela (2026)",
+    "repo_url": "https://github.com/CalitoTech/sos-venezuela-data",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "CalitoTech",
+    "source": "external",
+    "stars": 1,
+    "complexity": "medium",
+    "priority": "low"
+  },
+  {
     "id": "gh-ecrespo-ocr-data-terremoto-venezuela-24062026",
     "slug": "gh-ecrespo-ocr-data-terremoto-venezuela-24062026",
     "name": "OCR-data_Terremoto_Venezuela_24062026",
@@ -21,7 +127,10 @@
       "sponsors": []
     },
     "owner": "ecrespo",
-    "source": "external"
+    "source": "external",
+    "stars": 4,
+    "complexity": "high",
+    "priority": "low"
   },
   {
     "id": "gh-pifanohey-venezuela-ayuda",
@@ -46,31 +155,10 @@
       "sponsors": []
     },
     "owner": "pifanohey",
-    "source": "external"
-  },
-  {
-    "id": "gh-raor00-earthquakevzla",
-    "slug": "gh-raor00-earthquakevzla",
-    "name": "Earthquakevzla",
-    "summary": "Plataforma de centralización de data del terremoto en Venezuela",
-    "repo_url": "https://github.com/raor00/Earthquakevzla",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "raor00",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-bitupx00-reportavnzla",
@@ -95,7 +183,10 @@
       "sponsors": []
     },
     "owner": "bitupx00",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-codeatd-acoven",
@@ -120,7 +211,10 @@
       "sponsors": []
     },
     "owner": "CODEATD",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-techprieto-directorio-ayuda-terremoto-venezuela",
@@ -145,7 +239,10 @@
       "sponsors": []
     },
     "owner": "TechPrieto",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-rypptc-aquiestoy",
@@ -169,7 +266,10 @@
       "sponsors": []
     },
     "owner": "rypptc",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-z1code-sosvenezuela2026",
@@ -200,7 +300,10 @@
       "sponsors": []
     },
     "owner": "Z1Code",
-    "source": "external"
+    "source": "external",
+    "stars": 2,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-jesusareyesv-vulnerables-terremoto-venezuela",
@@ -225,7 +328,10 @@
       "sponsors": []
     },
     "owner": "jesusareyesv",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-notigordi-buscador-vzla",
@@ -249,7 +355,10 @@
       "sponsors": []
     },
     "owner": "NotiGordi",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-scimoncfd-terremoto-venezuela-ocr",
@@ -273,7 +382,10 @@
       "sponsors": []
     },
     "owner": "ScimonCFD",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-estebansant-reporta-venezuela",
@@ -297,7 +409,10 @@
       "sponsors": []
     },
     "owner": "estebansant",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-orlancl2589-venezuelaterremoto-hub",
@@ -322,7 +437,10 @@
       "sponsors": []
     },
     "owner": "orlancl2589",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-aleprodev-info-hub-venezuela",
@@ -346,7 +464,10 @@
       "sponsors": []
     },
     "owner": "Aleprodev",
-    "source": "external"
+    "source": "external",
+    "stars": 1,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-manuelchapy-hogarparavenezuela-front",
@@ -368,7 +489,10 @@
       "sponsors": []
     },
     "owner": "manuelchapy",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-reservaciondirecta-terremoto-venezuela",
@@ -392,7 +516,10 @@
       "sponsors": []
     },
     "owner": "ReservacionDirecta",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-manuelchapy-hogarparavenezuela-back",
@@ -414,7 +541,10 @@
       "sponsors": []
     },
     "owner": "manuelchapy",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-javiergomezrcd-buscador-terremoto-venezuela",
@@ -439,31 +569,10 @@
       "sponsors": []
     },
     "owner": "javiergomezrcd",
-    "source": "external"
-  },
-  {
-    "id": "gh-calitotech-sos-venezuela-data",
-    "slug": "gh-calitotech-sos-venezuela-data",
-    "name": "sos-venezuela-data",
-    "summary": "Plataforma centralizada de datos de desaparecidos tras el terremoto en Venezuela (2026)",
-    "repo_url": "https://github.com/CalitoTech/sos-venezuela-data",
-    "stack": [
-      "TypeScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "CalitoTech",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-jfrancotine-venezuela",
@@ -487,7 +596,10 @@
       "sponsors": []
     },
     "owner": "jfrancotine",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-conce1994-buscador-venezuela",
@@ -511,7 +623,10 @@
       "sponsors": []
     },
     "owner": "conce1994",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-carlos29blanco-terremotovenezuela2026",
@@ -535,7 +650,10 @@
       "sponsors": []
     },
     "owner": "Carlos29Blanco",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-marketshopusa-rescate-venezuela-2026",
@@ -559,7 +677,10 @@
       "sponsors": []
     },
     "owner": "Marketshopusa",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "medium",
+    "priority": "low"
   },
   {
     "id": "gh-sosvenezuela-core",
@@ -581,7 +702,10 @@
       "sponsors": []
     },
     "owner": "sosvenezuela",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-bleiquelc-faro-ve",
@@ -605,7 +729,10 @@
       "sponsors": []
     },
     "owner": "bleiquelc",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-lbastidasdrotaca-dotcom-buscadorvictimas",
@@ -629,7 +756,10 @@
       "sponsors": []
     },
     "owner": "lbastidasdrotaca-dotcom",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-alejandroh-h-ayudemonos",
@@ -653,7 +783,10 @@
       "sponsors": []
     },
     "owner": "AlejandroH-H",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-jicandina-terremoto-venezuela-hoy",
@@ -677,7 +810,10 @@
       "sponsors": []
     },
     "owner": "Jicandina",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-caracasnoesloca-debug-caracas-ayuda",
@@ -701,7 +837,10 @@
       "sponsors": []
     },
     "owner": "caracasnoesloca-debug",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-juanjalvarezz27-ayuda-venezuela",
@@ -726,7 +865,10 @@
       "sponsors": []
     },
     "owner": "Juanjalvarezz27",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-guillermoscript-emergenciavzla",
@@ -750,7 +892,10 @@
       "sponsors": []
     },
     "owner": "guillermoscript",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-orianaparisi22-svg-levantando-a-venezuela",
@@ -775,7 +920,10 @@
       "sponsors": []
     },
     "owner": "orianaparisi22-svg",
-    "source": "external"
+    "source": "external",
+    "stars": 1,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-haigalves-terremotovenezuela2026",
@@ -800,7 +948,10 @@
       "sponsors": []
     },
     "owner": "haigalves",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-jonasgraterol-venezuela-rescate",
@@ -825,7 +976,10 @@
       "sponsors": []
     },
     "owner": "jonasgraterol",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-lealjesusalberto-s-o-s-terremoto-venezuela",
@@ -850,7 +1004,10 @@
       "sponsors": []
     },
     "owner": "lealjesusalberto",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-sabrinagar-red-hospitales-venezuela",
@@ -872,7 +1029,10 @@
       "sponsors": []
     },
     "owner": "SabrinaGar",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-nelsonr27-refugiovenezuela",
@@ -894,7 +1054,10 @@
       "sponsors": []
     },
     "owner": "nelsonr27",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   },
   {
     "id": "gh-andygnzlz26-buscavenezuela",
@@ -919,52 +1082,9 @@
       "sponsors": []
     },
     "owner": "Andygnzlz26",
-    "source": "external"
-  },
-  {
-    "id": "gh-impowder-ayudave",
-    "slug": "gh-impowder-ayudave",
-    "name": "ayudave",
-    "summary": "Esta web ha sido creada para colaborar junto a las todas las entidades desplegadas y el pueblo de Venezuela tras el terremoto ocurrido el 24/06/2026.",
-    "repo_url": "https://github.com/ImPowder/ayudave",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "ImPowder",
-    "source": "external"
-  },
-  {
-    "id": "gh-estebanparedes4-venezuela-sismos-2026",
-    "slug": "gh-estebanparedes4-venezuela-sismos-2026",
-    "name": "venezuela-sismos-2026",
-    "summary": "Mapa interactivo terremotos Venezuela Mw7.5 + Mw7.2 - 24 Jun 2026 - Emergencia activa",
-    "repo_url": "https://github.com/estebanparedes4/venezuela-sismos-2026",
-    "stack": [
-      "HTML"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "estebanparedes4",
-    "source": "external"
+    "source": "external",
+    "stars": 0,
+    "complexity": "low",
+    "priority": "low"
   }
 ]

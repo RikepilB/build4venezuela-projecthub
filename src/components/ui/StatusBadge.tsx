@@ -3,7 +3,9 @@ import { statuses, labelFor } from "@/lib/taxonomy";
 
 const STYLES: Record<ProjectStatus, string> = {
   live: "border-success/40 bg-success/10 text-success",
-  wip: "border-accent/40 bg-accent/10 text-accent",
+  mvp: "border-primary/50 bg-primary/15 text-primary",
+  testing: "border-accent/50 bg-accent/15 text-accent",
+  wip: "border-accent/25 bg-accent/5 text-accent",
   planning: "border-border bg-surface-2 text-muted",
 };
 

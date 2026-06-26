@@ -7,6 +7,8 @@ import { z } from "zod";
 import { writeFile, rename } from "node:fs/promises";
 import path from "node:path";
 
+// OSS / relief queries only. Public open-source repos — NEVER missing-persons
+// registries or other PII sources (those stay hand-seeded link-out cards).
 const QUERIES = [
   "venezuela terremoto",
   "venezuela earthquake",
@@ -14,10 +16,14 @@ const QUERIES = [
   "centros de acopio venezuela",
   "build4venezuela",
   "topic:venezuela topic:earthquake",
+  "topic:venezuela topic:disaster-relief",
+  "topic:humanitarian venezuela",
+  "venezuela ayuda humanitaria",
+  "earthquake relief coordination",
 ];
 const OUT = path.join(process.cwd(), "data", "external-projects.seed.json");
 const TOKEN = process.env.GITHUB_TOKEN;
-const MAX = 40;
+const MAX = 100;
 
 const httpsUrl = z.string().url().refine((u) => u.startsWith("https://"));
 const ProjectSchema = z.object({
@@ -38,6 +44,9 @@ const ProjectSchema = z.object({
   }),
   owner: z.string().min(1).max(80),
   source: z.enum(["internal", "external", "initiative"]),
+  stars: z.number().int().nonnegative().optional(),
+  complexity: z.enum(["low", "medium", "high"]).optional(),
+  priority: z.enum(["low", "medium", "high"]).optional(),
 });
 
 const slugify = (s) =>
@@ -63,7 +72,8 @@ function headers() {
 
 // Honor rate limits: back off on 403/429 using Retry-After / X-RateLimit-Reset.
 async function fetchSearch(q, attempt = 0) {
-  const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(q)}&sort=updated&per_page=50`;
+  // sort=stars: rank by community validation (mature relief repos first), not recency.
+  const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(q)}&sort=stars&per_page=50`;
   const res = await fetch(url, { headers: headers() });
   if ((res.status === 403 || res.status === 429) && attempt < 3) {
     const retryAfter = Number(res.headers.get("retry-after"));
@@ -88,6 +98,11 @@ function toProject(repo) {
   const desc = String(repo.description ?? "").trim();
   const summary = desc.length >= 10 ? desc.slice(0, 600) : `${name} — Venezuela relief open-source project.`;
   const stack = [repo.language, ...(repo.topics ?? [])].filter(Boolean).slice(0, 8).map(String);
+  const stars = Number.isFinite(repo.stargazers_count) ? repo.stargazers_count : 0;
+  // Rough effort signal from repo size (KB); a community signal from stars.
+  const size = Number(repo.size ?? 0);
+  const complexity = size > 50000 ? "high" : size > 5000 ? "medium" : "low";
+  const priority = stars >= 20 ? "high" : stars >= 5 ? "medium" : "low";
   return {
     id: `gh-${slugify(repo.full_name)}`,
     slug: `gh-${slugify(repo.full_name)}`,
@@ -102,6 +117,9 @@ function toProject(repo) {
     needs: { contributors: [], api_credits: [], sponsors: [] },
     owner: String(repo.owner?.login ?? "unknown"),
     source: "external",
+    stars,
+    complexity,
+    priority,
   };
 }
 

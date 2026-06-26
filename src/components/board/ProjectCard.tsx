@@ -1,33 +1,60 @@
 import Link from "next/link";
 import type { Locale, Project } from "@/lib/types";
+import type { Dictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { Tag } from "@/components/ui/Tag";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { NeedBadges } from "./NeedBadges";
-import { categories, labelFor } from "@/lib/taxonomy";
+import { VoteButton } from "./VoteButton";
 
-export function ProjectCard({ project, locale }: { project: Project; locale: Locale }) {
+// Deliberately sparse: only what a builder needs to pick a project and help —
+// name, stage, what it does, the stack to match skills, and what it needs.
+// Thumb/complexity/stars/use-case/progress live on the detail page, not here.
+export function ProjectCard({
+  project,
+  locale,
+  dict,
+}: {
+  project: Project;
+  locale: Locale;
+  dict: Dictionary;
+}) {
+  const detailHref = localePath(locale, `/projects/${project.slug}`);
   return (
-    <article className="flex h-full flex-col gap-3 rounded-token border border-border bg-surface p-4">
-      <div className="flex items-start justify-between gap-2">
-        <Link
-          href={localePath(locale, `/projects/${project.slug}`)}
-          className="font-semibold text-text hover:text-primary"
-        >
-          {project.name}
-        </Link>
-        <StatusBadge status={project.status} locale={locale} />
+    <article className="flex h-full gap-3 rounded-token border border-border bg-surface p-4">
+      <VoteButton slug={project.slug} votes={project.votes} label={dict.card.vote} />
+
+      <div className="flex flex-1 flex-col gap-2.5">
+        <div className="flex items-start justify-between gap-2">
+          <Link href={detailHref} className="font-semibold text-text hover:text-primary">
+            {project.name}
+          </Link>
+          <StatusBadge status={project.status} locale={locale} />
+        </div>
+
+        <p className="line-clamp-2 text-sm text-muted">{project.summary}</p>
+
+        {project.stack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {project.stack.slice(0, 3).map((s) => (
+              <Tag key={s}>{s}</Tag>
+            ))}
+          </div>
+        )}
+
+        <NeedBadges needs={project.needs} locale={locale} />
+
+        <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-sm">
+          {project.repo_url && <ExternalLink href={project.repo_url}>{dict.card.repo}</ExternalLink>}
+          <Link
+            href={detailHref}
+            className="font-medium text-text underline decoration-border underline-offset-2 hover:decoration-primary hover:text-primary"
+          >
+            {dict.card.viewDetails} →
+          </Link>
+        </div>
       </div>
-      <p className="line-clamp-3 text-sm text-muted">{project.summary}</p>
-      <div className="mt-auto flex flex-wrap gap-1.5">
-        {project.categories.map((c) => (
-          <Tag key={c}>{labelFor(categories, c, locale)}</Tag>
-        ))}
-        {project.stack.slice(0, 4).map((s) => (
-          <Tag key={s}>{s}</Tag>
-        ))}
-      </div>
-      <NeedBadges needs={project.needs} locale={locale} />
     </article>
   );
 }

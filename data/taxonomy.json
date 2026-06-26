@@ -25,13 +25,25 @@
     "Firecrawl"
   ],
   "statuses": [
-    { "id": "live", "en": "Live", "es": "En vivo" },
-    { "id": "wip", "en": "In progress", "es": "En progreso" },
-    { "id": "planning", "en": "Planning", "es": "Planeando" }
+    { "id": "planning", "en": "Just published", "es": "Recién publicado" },
+    { "id": "wip", "en": "In progress", "es": "En proceso" },
+    { "id": "testing", "en": "Testing", "es": "En pruebas" },
+    { "id": "mvp", "en": "Completed (MVP)", "es": "Completado (MVP)" },
+    { "id": "live", "en": "Live", "es": "En vivo" }
   ],
   "needTypes": [
     { "id": "contributors", "en": "Contributors", "es": "Colaboradores" },
     { "id": "api_credits", "en": "API credits", "es": "Créditos de API" },
     { "id": "sponsors", "en": "Sponsors", "es": "Patrocinadores" }
+  ],
+  "complexities": [
+    { "id": "low", "en": "Low effort", "es": "Esfuerzo bajo" },
+    { "id": "medium", "en": "Medium effort", "es": "Esfuerzo medio" },
+    { "id": "high", "en": "High effort", "es": "Esfuerzo alto" }
+  ],
+  "priorities": [
+    { "id": "low", "en": "Low priority", "es": "Prioridad baja" },
+    { "id": "medium", "en": "Medium priority", "es": "Prioridad media" },
+    { "id": "high", "en": "High priority", "es": "Prioridad alta" }
   ]
 }

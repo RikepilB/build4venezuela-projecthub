@@ -25,6 +25,9 @@ export async function submitProject(
   const localeRaw = String(formData.get("locale") ?? defaultLocale);
   const locale = isLocale(localeRaw) ? localeRaw : defaultLocale;
 
+  const progressRaw = String(formData.get("progress") ?? "").trim();
+  const progressNum = progressRaw ? Number(progressRaw) : undefined;
+
   // Build the candidate from untrusted form input — validated below at the boundary.
   const candidate = {
     name: String(formData.get("name") ?? "").trim(),
@@ -36,6 +39,10 @@ export async function submitProject(
     languages: formData.getAll("languages").map(String),
     categories: formData.getAll("categories").map(String),
     status: String(formData.get("status") ?? "planning"),
+    priority: emptyToUndefined(formData.get("priority")),
+    complexity: emptyToUndefined(formData.get("complexity")),
+    use_case: emptyToUndefined(formData.get("use_case")),
+    progress: progressNum !== undefined && Number.isFinite(progressNum) ? progressNum : undefined,
     needs: {
       contributors: splitTags(String(formData.get("need_contributors") ?? "")),
       api_credits: splitTags(String(formData.get("need_api_credits") ?? "")),

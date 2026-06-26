@@ -22,3 +22,18 @@ Build4Venezuela "search before you build" hub. See `README.md` for the product.
 ## Conventions
 - Many small files; immutable updates; handle errors explicitly (no empty catch).
 - External links: https-only + `rel="noopener noreferrer nofollow"`.
+- **Seed vs runtime data.** `data/*.seed.json` + `data/taxonomy.json` are committed seed;
+  `data/builders.json` and `data/votes.json` are gitignored runtime state (written by the
+  importer / vote action) — never commit them.
+- **Status is a lifecycle:** `planning → wip → testing → mvp → live`. Discovery fields
+  (`complexity`, `priority`, `use_case`, `stars`, `progress`, `votes`) are all optional on
+  `ProjectSchema` so existing seed stays valid.
+- **Vote counts are server-authoritative.** Display `project.votes` as-is; never add a client
+  optimistic `+1` (double-counts after `revalidatePath` and on later visits). Read the
+  localStorage "voted" guard via `useSyncExternalStore`, not `setState`-in-effect.
+
+## Open source / public repo
+- Public on GitHub (MIT). Never commit machine-local files: `CLAUDE.local.md`,
+  `.claude/settings.local.json`, `.mcp.json`, `opencode.json`, `.env*` (except `.env.example`),
+  and the gitignored `data/` runtime files. They're in `.gitignore` — keep them there.
+- Root must keep `LICENSE`, `CONTRIBUTING.md`, `README.md`, `SECURITY.md`, `.env.example`.

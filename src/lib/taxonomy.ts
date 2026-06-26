@@ -10,6 +10,8 @@ export interface TaxItem {
 export const categories = taxonomy.categories as TaxItem[];
 export const statuses = taxonomy.statuses as TaxItem[];
 export const needTypes = taxonomy.needTypes as TaxItem[];
+export const complexities = taxonomy.complexities as TaxItem[];
+export const priorities = taxonomy.priorities as TaxItem[];
 export const stacks = taxonomy.stacks as string[];
 
 export function labelFor(items: TaxItem[], id: string, locale: Locale): string {

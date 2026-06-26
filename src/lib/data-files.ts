@@ -1,10 +1,13 @@
+import { cache } from "react";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import {
   ProjectSchema,
   BuilderSchema,
+  MembershipSchema,
 } from "./schemas";
-import type { Project, Builder } from "./types";
+import { readVotes } from "./votes/votes-store";
+import type { Project, Builder, Membership } from "./types";
 
 // Server-only JSON data access. The repository layer (src/lib/repository) is the
 // public seam; this module just reads/writes the local files. P1 replaces the
@@ -35,18 +38,37 @@ function keepValid<T>(rows: unknown[], schema: { safeParse: (v: unknown) => { su
   return out;
 }
 
-export async function loadProjects(): Promise<Project[]> {
+// Memoized per request (React.cache): all repository methods that call loadProjects
+// in one render share a single set of file reads. Votes are overlaid from the
+// votes-store (Redis on Vercel, JSON locally) — read fresh each request so a new
+// upvote is never masked by a stale cache.
+export const loadProjects = cache(async (): Promise<Project[]> => {
   const [internal, ideas, external] = await Promise.all([
     readArray("projects.seed.json"),
     readArray("ideas.seed.json"),
     readArray("external-projects.seed.json"),
   ]);
-  return keepValid<Project>([...internal, ...ideas, ...external], ProjectSchema);
-}
+  const projects = keepValid<Project>([...internal, ...ideas, ...external], ProjectSchema);
+  // Community upvotes live in a separate store (slug → count) so they apply across all
+  // project sources (internal/ideas/external) without rewriting the seed files.
+  const votes = await readVotes(projects.map((p) => p.slug));
+  return projects.map((p) => ({ ...p, votes: votes[p.slug] ?? p.votes ?? 0 }));
+});
 
-export async function loadBuilders(): Promise<Builder[]> {
+export const loadBuilders = cache(async (): Promise<Builder[]> => {
   const rows = await readArray("builders.json");
   return keepValid<Builder>(rows, BuilderSchema);
+});
+
+// Append a self-registered builder (the "add yourself" form). Temp-then-rename so a
+// crash can't corrupt the roster. Throws on a read-only FS — caller surfaces it.
+export async function appendBuilder(builder: Builder): Promise<void> {
+  const file = path.join(DATA_DIR, "builders.json");
+  const existing = await readArray("builders.json");
+  const next = [...existing, builder];
+  const tmp = `${file}.tmp`;
+  await fs.writeFile(tmp, `${JSON.stringify(next, null, 2)}\n`, "utf8");
+  await fs.rename(tmp, file);
 }
 
 // Append a newly-submitted internal project. Temp-then-rename so a crash mid-write
@@ -56,6 +78,24 @@ export async function appendInternalProject(project: Project): Promise<void> {
   const file = path.join(DATA_DIR, "projects.seed.json");
   const existing = await readArray("projects.seed.json");
   const next = [...existing, project];
+  const tmp = `${file}.tmp`;
+  await fs.writeFile(tmp, `${JSON.stringify(next, null, 2)}\n`, "utf8");
+  await fs.rename(tmp, file);
+}
+
+// Team memberships ("who joined which project"). Gitignored runtime PII, like
+// builders.json. Read fresh per request (cache memoizes within one render).
+export const loadMemberships = cache(async (): Promise<Membership[]> => {
+  const rows = await readArray("memberships.json");
+  return keepValid<Membership>(rows, MembershipSchema);
+});
+
+// Append a team membership. Temp-then-rename so a crash can't corrupt the file.
+// Throws on a read-only FS — the join action surfaces it.
+export async function appendMembership(membership: Membership): Promise<void> {
+  const file = path.join(DATA_DIR, "memberships.json");
+  const existing = await readArray("memberships.json");
+  const next = [...existing, membership];
   const tmp = `${file}.tmp`;
   await fs.writeFile(tmp, `${JSON.stringify(next, null, 2)}\n`, "utf8");
   await fs.rename(tmp, file);

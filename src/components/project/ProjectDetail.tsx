@@ -4,6 +4,10 @@ import type { Dictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { Tag } from "@/components/ui/Tag";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { PriorityBadge, ComplexityBadge, StarBadge, isVisiblePriority } from "@/components/ui/MetaBadge";
+import { ProgressBar } from "@/components/ui/ProgressBar";
+import { VoteButton } from "@/components/board/VoteButton";
+import { ProjectTeam } from "./ProjectTeam";
 import { categories, labelFor } from "@/lib/taxonomy";
 
 function NeedList({ title, items, empty }: { title: string; items: string[]; empty: string }) {
@@ -44,11 +48,33 @@ export function ProjectDetail({
           ← {dict.detail.back}
         </Link>
         <div className="mt-3 flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-semibold text-text">{project.name}</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-text">{project.name}</h1>
           <StatusBadge status={project.status} locale={locale} />
+          <VoteButton slug={project.slug} votes={project.votes} label={dict.card.vote} />
         </div>
         <p className="mt-3 max-w-2xl text-muted">{project.summary}</p>
+
+        {(isVisiblePriority(project.priority) || project.complexity || project.stars != null) && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {isVisiblePriority(project.priority) && <PriorityBadge level={project.priority} locale={locale} />}
+            {project.complexity && <ComplexityBadge level={project.complexity} locale={locale} />}
+            {project.stars != null && <StarBadge count={project.stars} />}
+          </div>
+        )}
       </div>
+
+      {project.use_case && (
+        <p className="max-w-2xl text-sm text-muted">
+          <span className="font-semibold uppercase tracking-wide text-text">{dict.detail.useCase}: </span>
+          {project.use_case}
+        </p>
+      )}
+
+      {typeof project.progress === "number" && (
+        <div className="max-w-md">
+          <ProgressBar value={project.progress} label={dict.detail.progress} />
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-1.5">
         {project.categories.map((c) => (
@@ -65,9 +91,9 @@ export function ProjectDetail({
             href={project.repo_url}
             target="_blank"
             rel={REL}
-            className="rounded-token bg-primary px-4 py-2 text-sm font-medium text-primary-ink hover:opacity-90"
+            className="inline-flex items-center gap-1.5 rounded-token bg-primary px-4 py-2 text-sm font-medium text-primary-ink hover:opacity-90"
           >
-            {dict.detail.repo}
+            {dict.detail.repo} <span aria-hidden>↗</span>
           </a>
         )}
         {project.demo_url && (
@@ -75,12 +101,14 @@ export function ProjectDetail({
             href={project.demo_url}
             target="_blank"
             rel={REL}
-            className="rounded-token border border-border px-4 py-2 text-sm text-text hover:bg-surface-2"
+            className="inline-flex items-center gap-1.5 rounded-token border border-border px-4 py-2 text-sm text-text hover:bg-surface-2"
           >
-            {dict.detail.demo}
+            {dict.detail.demo} <span aria-hidden>↗</span>
           </a>
         )}
       </div>
+
+      <ProjectTeam slug={project.slug} dict={dict} />
 
       <section>
         <h2 className="mb-3 text-lg font-semibold text-text">{dict.detail.needs}</h2>
@@ -91,10 +119,13 @@ export function ProjectDetail({
         </div>
       </section>
 
-      {project.repo_url && (
-        <p className="rounded-token border border-border bg-surface-2 p-4 text-sm text-muted">
-          {dict.detail.join}
-        </p>
+      {project.needs.contributors.length > 0 && (
+        <Link
+          href={localePath(locale, "/builders")}
+          className="text-sm font-medium text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+        >
+          {dict.detail.findTeam} →
+        </Link>
       )}
     </article>
   );

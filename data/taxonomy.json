@@ -1,0 +1,37 @@
+{
+  "categories": [
+    { "id": "missing-persons", "en": "Missing persons", "es": "Personas desaparecidas" },
+    { "id": "shelter", "en": "Shelter", "es": "Refugios" },
+    { "id": "aid-center", "en": "Aid center", "es": "Centros de acopio" },
+    { "id": "needs-map", "en": "Needs map", "es": "Mapa de necesidades" },
+    { "id": "medical", "en": "Medical", "es": "Médico" },
+    { "id": "transport", "en": "Transport", "es": "Transporte" },
+    { "id": "translation", "en": "Translation", "es": "Traducción" },
+    { "id": "coordination", "en": "Coordination", "es": "Coordinación" },
+    { "id": "tracking", "en": "Case tracking", "es": "Seguimiento de casos" }
+  ],
+  "stacks": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "FastAPI",
+    "Django",
+    "Postgres",
+    "Supabase",
+    "Tailwind",
+    "Discord",
+    "Firecrawl"
+  ],
+  "statuses": [
+    { "id": "live", "en": "Live", "es": "En vivo" },
+    { "id": "wip", "en": "In progress", "es": "En progreso" },
+    { "id": "planning", "en": "Planning", "es": "Planeando" }
+  ],
+  "needTypes": [
+    { "id": "contributors", "en": "Contributors", "es": "Colaboradores" },
+    { "id": "api_credits", "en": "API credits", "es": "Créditos de API" },
+    { "id": "sponsors", "en": "Sponsors", "es": "Patrocinadores" }
+  ]
+}

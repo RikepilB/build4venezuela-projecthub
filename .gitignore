@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# participant PII — names + LinkedIn from the hackathon sheet.
+# Regenerate locally with `npm run data:builders` (do not commit to a public repo).
+/data/builders.json
+/data/*.tmp

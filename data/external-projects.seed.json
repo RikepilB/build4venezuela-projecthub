@@ -1,0 +1,970 @@
+[
+  {
+    "id": "gh-ecrespo-ocr-data-terremoto-venezuela-24062026",
+    "slug": "gh-ecrespo-ocr-data-terremoto-venezuela-24062026",
+    "name": "OCR-data_Terremoto_Venezuela_24062026",
+    "summary": "OCR-data_Terremoto_Venezuela_24062026 — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/ecrespo/OCR-data_Terremoto_Venezuela_24062026",
+    "stack": [
+      "Python"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "ecrespo",
+    "source": "external"
+  },
+  {
+    "id": "gh-pifanohey-venezuela-ayuda",
+    "slug": "gh-pifanohey-venezuela-ayuda",
+    "name": "venezuela-ayuda",
+    "summary": "Hub de recursos verificados para encontrar familiares y ayudar tras el terremoto de Venezuela 2026",
+    "repo_url": "https://github.com/pifanohey/venezuela-ayuda",
+    "demo_url": "https://venezuela-ayuda-drab.vercel.app",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "pifanohey",
+    "source": "external"
+  },
+  {
+    "id": "gh-raor00-earthquakevzla",
+    "slug": "gh-raor00-earthquakevzla",
+    "name": "Earthquakevzla",
+    "summary": "Plataforma de centralización de data del terremoto en Venezuela",
+    "repo_url": "https://github.com/raor00/Earthquakevzla",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "raor00",
+    "source": "external"
+  },
+  {
+    "id": "gh-bitupx00-reportavnzla",
+    "slug": "gh-bitupx00-reportavnzla",
+    "name": "reportavnzla",
+    "summary": "🇻🇪 ReportaVNZLA — Plataforma humanitaria sin fines de lucro para localizar personas tras el terremoto de Venezuela 2026",
+    "repo_url": "https://github.com/bitupx00/reportavnzla",
+    "demo_url": "https://reportavnzla.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "bitupx00",
+    "source": "external"
+  },
+  {
+    "id": "gh-codeatd-acoven",
+    "slug": "gh-codeatd-acoven",
+    "name": "acoven",
+    "summary": "Mapa colaborativo de centros de acopio - Terremoto Venezuela 2026 🇻🇪",
+    "repo_url": "https://github.com/CODEATD/acoven",
+    "demo_url": "https://acoven.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "CODEATD",
+    "source": "external"
+  },
+  {
+    "id": "gh-techprieto-directorio-ayuda-terremoto-venezuela",
+    "slug": "gh-techprieto-directorio-ayuda-terremoto-venezuela",
+    "name": "directorio-ayuda-terremoto-venezuela",
+    "summary": "Directorio comunitario de páginas de ayuda en relación al terremoto en Venezuela.",
+    "repo_url": "https://github.com/TechPrieto/directorio-ayuda-terremoto-venezuela",
+    "demo_url": "https://directorio-ayuda-terremoto-venezuel.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "TechPrieto",
+    "source": "external"
+  },
+  {
+    "id": "gh-rypptc-aquiestoy",
+    "slug": "gh-rypptc-aquiestoy",
+    "name": "aquiestoy",
+    "summary": "App para ayudar a la busqueda de personas en Venezuela - Terremoto Junio 2026",
+    "repo_url": "https://github.com/rypptc/aquiestoy",
+    "stack": [
+      "Python"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "rypptc",
+    "source": "external"
+  },
+  {
+    "id": "gh-z1code-sosvenezuela2026",
+    "slug": "gh-z1code-sosvenezuela2026",
+    "name": "sosvenezuela2026",
+    "summary": "Plataforma civil humanitaria del terremoto del 24-jun-2026 en Venezuela: mapa en vivo, directorio de personas, validación de daños estructurales y API pública abierta. Next.js + Postgres.",
+    "repo_url": "https://github.com/Z1Code/sosvenezuela2026",
+    "demo_url": "https://sosvenezuela2026.com",
+    "stack": [
+      "TypeScript",
+      "crisis-response",
+      "earthquake",
+      "humanitarian",
+      "nextjs",
+      "open-data",
+      "venezuela"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Z1Code",
+    "source": "external"
+  },
+  {
+    "id": "gh-jesusareyesv-vulnerables-terremoto-venezuela",
+    "slug": "gh-jesusareyesv-vulnerables-terremoto-venezuela",
+    "name": "vulnerables-terremoto-venezuela",
+    "summary": "vulnerables-terremoto-venezuela — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/jesusareyesv/vulnerables-terremoto-venezuela",
+    "demo_url": "https://vulnerables-terremoto-venezuela.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "jesusareyesv",
+    "source": "external"
+  },
+  {
+    "id": "gh-notigordi-buscador-vzla",
+    "slug": "gh-notigordi-buscador-vzla",
+    "name": "buscador-vzla",
+    "summary": "Buscador de personas tras el terremoto de Venezuela 026",
+    "repo_url": "https://github.com/NotiGordi/buscador-vzla",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "NotiGordi",
+    "source": "external"
+  },
+  {
+    "id": "gh-scimoncfd-terremoto-venezuela-ocr",
+    "slug": "gh-scimoncfd-terremoto-venezuela-ocr",
+    "name": "terremoto-venezuela-ocr",
+    "summary": "terremoto-venezuela-ocr — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/ScimonCFD/terremoto-venezuela-ocr",
+    "stack": [
+      "Python"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "ScimonCFD",
+    "source": "external"
+  },
+  {
+    "id": "gh-estebansant-reporta-venezuela",
+    "slug": "gh-estebansant-reporta-venezuela",
+    "name": "reporta-venezuela",
+    "summary": "Sitio web para crear reportes de infraestructuras afectadas por el terremoto en Venezuela del 24 de junio de 2026",
+    "repo_url": "https://github.com/estebansant/reporta-venezuela",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "estebansant",
+    "source": "external"
+  },
+  {
+    "id": "gh-orlancl2589-venezuelaterremoto-hub",
+    "slug": "gh-orlancl2589-venezuelaterremoto-hub",
+    "name": "VenezuelaTerremoto-HUB",
+    "summary": "VenezuelaTerremoto-HUB — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/orlancl2589/VenezuelaTerremoto-HUB",
+    "demo_url": "https://venezuela-hub.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "orlancl2589",
+    "source": "external"
+  },
+  {
+    "id": "gh-aleprodev-info-hub-venezuela",
+    "slug": "gh-aleprodev-info-hub-venezuela",
+    "name": "info-hub-venezuela",
+    "summary": "Recopilación de información relevante para la crisis del terremoto en Venezuela",
+    "repo_url": "https://github.com/Aleprodev/info-hub-venezuela",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Aleprodev",
+    "source": "external"
+  },
+  {
+    "id": "gh-manuelchapy-hogarparavenezuela-front",
+    "slug": "gh-manuelchapy-hogarparavenezuela-front",
+    "name": "hogarparavenezuela-front",
+    "summary": "aplicacion frontendt para plataforma sin fines de lucro con la finalidad de recabar informacion de los ninos victimas del terremoto en venezuela.",
+    "repo_url": "https://github.com/manuelchapy/hogarparavenezuela-front",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "manuelchapy",
+    "source": "external"
+  },
+  {
+    "id": "gh-reservaciondirecta-terremoto-venezuela",
+    "slug": "gh-reservaciondirecta-terremoto-venezuela",
+    "name": "terremoto-venezuela",
+    "summary": "terremoto-venezuela — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/ReservacionDirecta/terremoto-venezuela",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "ReservacionDirecta",
+    "source": "external"
+  },
+  {
+    "id": "gh-manuelchapy-hogarparavenezuela-back",
+    "slug": "gh-manuelchapy-hogarparavenezuela-back",
+    "name": "hogarparavenezuela-back",
+    "summary": "backend para plataforma sin fines de lucro con la finalidad de recabar informacion de los ninos victimas del terremoto en venezuela.",
+    "repo_url": "https://github.com/manuelchapy/hogarparavenezuela-back",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "manuelchapy",
+    "source": "external"
+  },
+  {
+    "id": "gh-javiergomezrcd-buscador-terremoto-venezuela",
+    "slug": "gh-javiergomezrcd-buscador-terremoto-venezuela",
+    "name": "buscador-terremoto-venezuela",
+    "summary": "buscador-terremoto-venezuela — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/javiergomezrcd/buscador-terremoto-venezuela",
+    "demo_url": "https://webpublica-git-main-despliegues-rcd.vercel.app",
+    "stack": [
+      "Python"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "javiergomezrcd",
+    "source": "external"
+  },
+  {
+    "id": "gh-calitotech-sos-venezuela-data",
+    "slug": "gh-calitotech-sos-venezuela-data",
+    "name": "sos-venezuela-data",
+    "summary": "Plataforma centralizada de datos de desaparecidos tras el terremoto en Venezuela (2026)",
+    "repo_url": "https://github.com/CalitoTech/sos-venezuela-data",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "CalitoTech",
+    "source": "external"
+  },
+  {
+    "id": "gh-jfrancotine-venezuela",
+    "slug": "gh-jfrancotine-venezuela",
+    "name": "Venezuela",
+    "summary": "Registro de personas desaparecidas o encontradas por el terremoto en venezuela",
+    "repo_url": "https://github.com/jfrancotine/Venezuela",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "jfrancotine",
+    "source": "external"
+  },
+  {
+    "id": "gh-conce1994-buscador-venezuela",
+    "slug": "gh-conce1994-buscador-venezuela",
+    "name": "Buscador-Venezuela",
+    "summary": "Buscador de personas hospitalizadas — Terremoto Venezuela 2026. Listas extraídas de centros de atención y hospitales.",
+    "repo_url": "https://github.com/conce1994/Buscador-Venezuela",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "conce1994",
+    "source": "external"
+  },
+  {
+    "id": "gh-carlos29blanco-terremotovenezuela2026",
+    "slug": "gh-carlos29blanco-terremotovenezuela2026",
+    "name": "TerremotoVenezuela2026",
+    "summary": "Terremotos de Venezuela — 24 de junio de 2026 (M7,2 y M7,5)",
+    "repo_url": "https://github.com/Carlos29Blanco/TerremotoVenezuela2026",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Carlos29Blanco",
+    "source": "external"
+  },
+  {
+    "id": "gh-marketshopusa-rescate-venezuela-2026",
+    "slug": "gh-marketshopusa-rescate-venezuela-2026",
+    "name": "rescate-venezuela-2026",
+    "summary": "Página de información ayuda y rescate a todas aquellas personas que sufrieron por el terremoto sucedido en Venezuela",
+    "repo_url": "https://github.com/Marketshopusa/rescate-venezuela-2026",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Marketshopusa",
+    "source": "external"
+  },
+  {
+    "id": "gh-sosvenezuela-core",
+    "slug": "gh-sosvenezuela-core",
+    "name": "core",
+    "summary": "Infraestructura abierta y colaborativa para construir herramientas de ayuda ante el terremoto de Venezuela (2026). Unir, no fragmentar. | Open collaborative infrastructure for Venezuela earthquake relief tools.",
+    "repo_url": "https://github.com/sosvenezuela/core",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "sosvenezuela",
+    "source": "external"
+  },
+  {
+    "id": "gh-bleiquelc-faro-ve",
+    "slug": "gh-bleiquelc-faro-ve",
+    "name": "faro-ve",
+    "summary": "PWA humanitaria · Mapa de Esperanza Venezuela · respuesta terremoto 24-jun-2026 · privacidad por diseño · federación PFIF v1.4 · AGPL-3.0",
+    "repo_url": "https://github.com/bleiquelc/faro-ve",
+    "stack": [
+      "Svelte"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "bleiquelc",
+    "source": "external"
+  },
+  {
+    "id": "gh-lbastidasdrotaca-dotcom-buscadorvictimas",
+    "slug": "gh-lbastidasdrotaca-dotcom-buscadorvictimas",
+    "name": "BuscadorVictimas",
+    "summary": "Busca dentro de las paginas actuales victimas del terremoto en Venezuela",
+    "repo_url": "https://github.com/lbastidasdrotaca-dotcom/BuscadorVictimas",
+    "stack": [
+      "Python"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "lbastidasdrotaca-dotcom",
+    "source": "external"
+  },
+  {
+    "id": "gh-alejandroh-h-ayudemonos",
+    "slug": "gh-alejandroh-h-ayudemonos",
+    "name": "ayudemonos",
+    "summary": "Sistema dedicado al reportaje en tiempo real de victimas concurridas por el reciente terremoto que repercutó en Venezuela",
+    "repo_url": "https://github.com/AlejandroH-H/ayudemonos",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "AlejandroH-H",
+    "source": "external"
+  },
+  {
+    "id": "gh-jicandina-terremoto-venezuela-hoy",
+    "slug": "gh-jicandina-terremoto-venezuela-hoy",
+    "name": "Terremoto-Venezuela-Hoy",
+    "summary": "Terremoto-Venezuela-Hoy — Venezuela relief open-source project.",
+    "repo_url": "https://github.com/Jicandina/Terremoto-Venezuela-Hoy",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Jicandina",
+    "source": "external"
+  },
+  {
+    "id": "gh-caracasnoesloca-debug-caracas-ayuda",
+    "slug": "gh-caracasnoesloca-debug-caracas-ayuda",
+    "name": "caracas-ayuda",
+    "summary": "Mapa de recursos de ayuda tras el terremoto en Venezuela",
+    "repo_url": "https://github.com/caracasnoesloca-debug/caracas-ayuda",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "caracasnoesloca-debug",
+    "source": "external"
+  },
+  {
+    "id": "gh-juanjalvarezz27-ayuda-venezuela",
+    "slug": "gh-juanjalvarezz27-ayuda-venezuela",
+    "name": "Ayuda-Venezuela",
+    "summary": "Plataforma de soporte a centros de acopio y emergencias por terremoto",
+    "repo_url": "https://github.com/Juanjalvarezz27/Ayuda-Venezuela",
+    "demo_url": "https://ayuda-venezuela-sooty.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Juanjalvarezz27",
+    "source": "external"
+  },
+  {
+    "id": "gh-guillermoscript-emergenciavzla",
+    "slug": "gh-guillermoscript-emergenciavzla",
+    "name": "emergenciavzla",
+    "summary": "Plataforma de respuesta al terremoto en Venezuela: reportes de desaparecidos, centros de acopio con inventario en tiempo real, y dedup cruzado. Privacidad primero, cero dinero.",
+    "repo_url": "https://github.com/guillermoscript/emergenciavzla",
+    "stack": [
+      "PLpgSQL"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "guillermoscript",
+    "source": "external"
+  },
+  {
+    "id": "gh-orianaparisi22-svg-levantando-a-venezuela",
+    "slug": "gh-orianaparisi22-svg-levantando-a-venezuela",
+    "name": "levantando-a-venezuela",
+    "summary": "Plataforma de ayuda para las víctimas del terremoto en Venezuela",
+    "repo_url": "https://github.com/orianaparisi22-svg/levantando-a-venezuela",
+    "demo_url": "https://levantando-a-venezuela.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "orianaparisi22-svg",
+    "source": "external"
+  },
+  {
+    "id": "gh-haigalves-terremotovenezuela2026",
+    "slug": "gh-haigalves-terremotovenezuela2026",
+    "name": "terremotovenezuela2026",
+    "summary": "Community map for Venezuela earthquake relief - search requests and verified videos",
+    "repo_url": "https://github.com/haigalves/terremotovenezuela2026",
+    "demo_url": "https://terremotovenezuela2026.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "haigalves",
+    "source": "external"
+  },
+  {
+    "id": "gh-jonasgraterol-venezuela-rescate",
+    "slug": "gh-jonasgraterol-venezuela-rescate",
+    "name": "venezuela-rescate",
+    "summary": "Plataforma de reporte de personas atrapadas - Terremoto Venezuela Jun 2026",
+    "repo_url": "https://github.com/jonasgraterol/venezuela-rescate",
+    "demo_url": "https://venezuela-rescate.vercel.app",
+    "stack": [
+      "TypeScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "jonasgraterol",
+    "source": "external"
+  },
+  {
+    "id": "gh-lealjesusalberto-s-o-s-terremoto-venezuela",
+    "slug": "gh-lealjesusalberto-s-o-s-terremoto-venezuela",
+    "name": "S-O.S-terremoto-Venezuela",
+    "summary": "Sos terremoto venezuela",
+    "repo_url": "https://github.com/lealjesusalberto/S-O.S-terremoto-Venezuela",
+    "demo_url": "https://sosterremoto-venezuela.vercel.app",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "lealjesusalberto",
+    "source": "external"
+  },
+  {
+    "id": "gh-sabrinagar-red-hospitales-venezuela",
+    "slug": "gh-sabrinagar-red-hospitales-venezuela",
+    "name": "red-hospitales-venezuela",
+    "summary": "La finalidad de este proyeco es intentar centralizar los datos de los distintos hospitales de Venezuela para mejorar el rastreo de victimas del terremoto de junio 2026",
+    "repo_url": "https://github.com/SabrinaGar/red-hospitales-venezuela",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "SabrinaGar",
+    "source": "external"
+  },
+  {
+    "id": "gh-nelsonr27-refugiovenezuela",
+    "slug": "gh-nelsonr27-refugiovenezuela",
+    "name": "RefugioVenezuela",
+    "summary": "pagina humanitaria para ofrecer refugios y ayuda tras el terremoto en venezuela",
+    "repo_url": "https://github.com/nelsonr27/RefugioVenezuela",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "nelsonr27",
+    "source": "external"
+  },
+  {
+    "id": "gh-andygnzlz26-buscavenezuela",
+    "slug": "gh-andygnzlz26-buscavenezuela",
+    "name": "buscavenezuela",
+    "summary": "Plataforma de registro de personas afectadas por el terremoto en Venezuela — reporta desaparecidos o confirma que estás bien",
+    "repo_url": "https://github.com/Andygnzlz26/buscavenezuela",
+    "demo_url": "https://buscavenezuela.com",
+    "stack": [
+      "JavaScript"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Andygnzlz26",
+    "source": "external"
+  },
+  {
+    "id": "gh-impowder-ayudave",
+    "slug": "gh-impowder-ayudave",
+    "name": "ayudave",
+    "summary": "Esta web ha sido creada para colaborar junto a las todas las entidades desplegadas y el pueblo de Venezuela tras el terremoto ocurrido el 24/06/2026.",
+    "repo_url": "https://github.com/ImPowder/ayudave",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "ImPowder",
+    "source": "external"
+  },
+  {
+    "id": "gh-estebanparedes4-venezuela-sismos-2026",
+    "slug": "gh-estebanparedes4-venezuela-sismos-2026",
+    "name": "venezuela-sismos-2026",
+    "summary": "Mapa interactivo terremotos Venezuela Mw7.5 + Mw7.2 - 24 Jun 2026 - Emergencia activa",
+    "repo_url": "https://github.com/estebanparedes4/venezuela-sismos-2026",
+    "stack": [
+      "HTML"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "estebanparedes4",
+    "source": "external"
+  }
+]

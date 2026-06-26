@@ -1,0 +1,193 @@
+[
+  {
+    "id": "ifoundyou",
+    "slug": "ifoundyou",
+    "name": "iFoundYou",
+    "summary": "Open-source missing-persons reporting and matching tool for the Venezuela earthquake response. Report a missing person or a found person and get candidate matches.",
+    "repo_url": "https://github.com/uset82/iFoundYou",
+    "stack": [
+      "Next.js",
+      "TypeScript",
+      "Postgres"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "categories": [
+      "missing-persons",
+      "tracking"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [
+        "React devs",
+        "ES/EN translators"
+      ],
+      "api_credits": [
+        "Embeddings credits"
+      ],
+      "sponsors": [
+        "Hosting"
+      ]
+    },
+    "owner": "uset82",
+    "source": "internal"
+  },
+  {
+    "id": "venezuela-te-necesita",
+    "slug": "venezuela-te-necesita",
+    "name": "Venezuela Te Necesita",
+    "summary": "Existing initiative aggregating where help is needed by area (shelters, aid, supplies) after the earthquake. Listed so builders coordinate instead of duplicating.",
+    "demo_url": "https://venezuelatenecesita.site",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "needs-map",
+      "aid-center"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "external-initiative",
+    "source": "initiative"
+  },
+  {
+    "id": "desaparecidos-terremoto",
+    "slug": "desaparecidos-terremoto-venezuela",
+    "name": "Desaparecidos Terremoto Venezuela",
+    "summary": "External missing-persons registry. PII-sensitive — link-out only, integration gated on owner consent and human review. Do not scrape or auto-merge.",
+    "demo_url": "https://desaparecidosterremotovenezuela.com",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "missing-persons"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "external-initiative",
+    "source": "initiative"
+  },
+  {
+    "id": "venezuela-te-busca",
+    "slug": "venezuela-te-busca",
+    "name": "Venezuela Te Busca",
+    "summary": "External missing-persons registry. PII-sensitive — link-out only, integration gated on owner consent and human review. Do not scrape or auto-merge.",
+    "demo_url": "https://venezuelatebusca.com",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "missing-persons"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "external-initiative",
+    "source": "initiative"
+  },
+  {
+    "id": "sos-yummy-rides",
+    "slug": "sos-yummy-rides",
+    "name": "SOS Yummy Rides",
+    "summary": "Transport/SOS coordination from Yummy Rides — request and offer rides for evacuation and supply movement.",
+    "demo_url": "https://sos.yummyrides.com",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "transport",
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "external-initiative",
+    "source": "initiative"
+  },
+  {
+    "id": "shelter-directory",
+    "slug": "shelter-directory",
+    "name": "Shelter & Aid Directory",
+    "summary": "A unified, searchable directory of shelters, aid centers, and medical points by zone. Seeking builders to merge the scattered lists into one data contract.",
+    "stack": [
+      "Next.js",
+      "Supabase"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "categories": [
+      "shelter",
+      "aid-center",
+      "needs-map"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [
+        "Frontend dev",
+        "Data wrangler"
+      ],
+      "api_credits": [
+        "Maps API"
+      ],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal"
+  },
+  {
+    "id": "whatsapp-relief-bot",
+    "slug": "whatsapp-relief-bot",
+    "name": "Relief Info Bot",
+    "summary": "A chatbot that answers 'where do I get help / report someone' in EN/ES, fights rumors, and routes people to verified resources.",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Discord"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "categories": [
+      "coordination",
+      "translation"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [
+        "Python dev",
+        "Content/ES copy"
+      ],
+      "api_credits": [
+        "LLM credits"
+      ],
+      "sponsors": [
+        "SMS/WhatsApp gateway"
+      ]
+    },
+    "owner": "open",
+    "source": "internal"
+  }
+]

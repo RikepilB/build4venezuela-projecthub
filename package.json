@@ -6,16 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "data:builders": "node scripts/import-builders.mjs",
+    "data:ideas": "node scripts/import-ideas.mjs",
+    "data:github": "node scripts/discover-github-repos.mjs"
   },
   "dependencies": {
+    "fuse.js": "^7.4.2",
     "next": "16.2.9",
+    "papaparse": "^5.5.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/papaparse": "^5.5.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",

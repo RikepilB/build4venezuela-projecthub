@@ -1,0 +1,31 @@
+/* ── Design tokens — the ONLY re-skin layer ─────────────────────────────────
+   Branding (Moraleja) re-themes the app by changing these CSS variable values.
+   No component hardcodes a color/radius; they all map through @theme in
+   globals.css → Tailwind utilities (bg-surface, text-muted, rounded-token, …).
+   Keep this file token-only: variables, no component rules. */
+
+:root {
+  /* surfaces */
+  --b4v-bg: #f6f8fc;
+  --b4v-surface: #ffffff;
+  --b4v-surface-2: #eef2f9;
+
+  /* text */
+  --b4v-text: #131820;
+  --b4v-muted: #54607a;
+
+  /* lines */
+  --b4v-border: #d6deec;
+
+  /* brand (AA contrast on white) */
+  --b4v-primary: #1f4fd6; /* blue */
+  --b4v-primary-ink: #ffffff;
+  --b4v-accent: #9a6b00; /* goldenrod, AA on white */
+
+  /* status */
+  --b4v-danger: #b3261e;
+  --b4v-success: #15784f;
+
+  /* shape */
+  --b4v-radius: 0.75rem;
+}

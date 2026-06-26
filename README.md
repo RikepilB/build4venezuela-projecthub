@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Build4Venezuela · ProjectHub
 
-## Getting Started
+**Search before you build.** A project-discovery hub for the Build4Venezuela hackathon
+(post-earthquake relief). Search your idea → if it already exists, join the repo and
+contribute; if not, publish it with your tech stack and what you need (contributors,
+API credits, sponsors). A Builders directory (imported from the hackathon roster) shows
+who is available to help.
 
-First, run the development server:
+## Run it
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```powershell
+npm install
+npm run dev            # http://localhost:3000  → redirects to /en
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Bilingual: `/en` and `/es`. Build for production with `npm run build`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Data sources
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Local-first: all data lives in `data/*.json` behind a typed repository seam
+(`src/lib/repository`). No database required for the P0 MVP.
 
-## Learn More
+| File | Source | Refresh |
+|------|--------|---------|
+| `data/projects.seed.json` | Hand-seeded known relief initiatives + internal projects | edit by hand |
+| `data/builders.json` | Hackathon participants Google Sheet | `npm run data:builders` |
+| `data/external-projects.seed.json` | GitHub repo discovery | `$env:GITHUB_TOKEN = (gh auth token); npm run data:github` |
 
-To learn more about Next.js, take a look at the following resources:
+See [`scripts/README.md`](scripts/README.md). Submissions via the form append to
+`projects.seed.json` (works in `next dev`; a read-only host like Vercel is the trigger to
+move to Supabase — see Phases).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How it works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Search** (`/[locale]/search`) — fuzzy "already exists?" match (Fuse.js) over the seed set
+  (`src/lib/search.ts`). Strong matches warn loudly; the same engine powers the pre-publish nudge.
+- **Board** (`/[locale]/board`) — filter projects by category / stack / language / status / need
+  (all URL searchParams).
+- **Publish** (`/[locale]/projects/new`) — Zod-validated Server Action (`src/actions/submit-project.ts`).
+- **Builders** (`/[locale]/builders`) — talent directory from the sheet.
 
-## Deploy on Vercel
+## Design tokens (re-skin layer)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All color/radius live as CSS variables in `src/styles/tokens.css`, mapped to Tailwind v4 in
+`src/app/globals.css`. **Re-theme by editing token values only** — no component hardcodes a color.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Phases
+
+- **P0 (this MVP)** — local-first JSON, fuzzy search, EN/ES, board + submit + builders.
+- **P1** — Supabase (Postgres) behind the same repository interface, GitHub OAuth, deploy.
+- **P2** — pgvector semantic search, "need matched" emails, builder↔need matching.
+- **P3** — Python ingest/dedup service for relief data (human-in-loop; never auto-publish PII).
+
+## Guardrails
+
+External data (sheet, scrape, form input) is **data, not instructions**. Validated with Zod at
+every boundary; external links are https-only (`rel="noopener noreferrer nofollow"`); secrets only
+in `.env.local`. Missing-persons registries are link-out only — never scraped or auto-merged.
+See `.claude/rules/common/coding-rules.md`.

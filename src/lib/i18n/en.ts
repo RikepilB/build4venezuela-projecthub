@@ -9,6 +9,7 @@ export const en = {
     resources: "Resources",
     builders: "Builders",
     submit: "Publish project",
+    repo: "GitHub repository",
   },
   home: {
     title: "Antes de construir, busca · Search before you build",
@@ -214,5 +215,6 @@ export const en = {
     builtBy: "Built by",
     hackathon: "Build4Venezuela hackathon",
     crafterMember: "Crafter Station member",
+    contribute: "Contribute on GitHub",
   },
 };

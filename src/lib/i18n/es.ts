@@ -11,6 +11,7 @@ export const es: typeof en = {
     resources: "Recursos",
     builders: "Constructores",
     submit: "Publicar proyecto",
+    repo: "Repositorio de GitHub",
   },
   home: {
     title: "Antes de construir, busca · Search before you build",
@@ -216,5 +217,6 @@ export const es: typeof en = {
     builtBy: "Hecho por",
     hackathon: "Hackathon Build4Venezuela",
     crafterMember: "Miembro de Crafter Station",
+    contribute: "Contribuye en GitHub",
   },
 };

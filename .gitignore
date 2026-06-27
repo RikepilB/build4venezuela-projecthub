@@ -63,7 +63,8 @@ next-env.d.ts
 
 # machine-local agent / dev config — keep out of the public repo
 /CLAUDE.local.md
-/.claude/settings.local.json
+# Entire .claude dir is local-only (agents, rules, skills, settings) — never committed.
+/.claude/
 /.mcp.json
 /opencode.json
 

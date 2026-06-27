@@ -7,6 +7,14 @@ import { landingStats, featuredProjects } from "@/lib/landing/stats";
 import { SearchBox } from "@/components/search/SearchBox";
 import { ProjectCard } from "@/components/board/ProjectCard";
 
+// Render live per request, not prerendered at build. The headline stats (builders,
+// projects, live, needs) come from runtime data — the roster grows via self-adds
+// (Redis on Vercel) and the board accepts new projects — so a static snapshot would
+// freeze the counts at build time and drift from the dynamic /builders and /board
+// pages (e.g. landing shows 49 builders while the roster already has 57). Keep this
+// in sync with those pages; the repository reads are cheap (~100-250ms).
+export const dynamic = "force-dynamic";
+
 export default async function HomePage({
   params,
 }: {

@@ -66,3 +66,16 @@ next-env.d.ts
 
 # machine-local GSD planning state — never commit to the public repo
 .planning/
+
+# Windows shell-redirect artifacts — a `2>nul` parsed by a POSIX shell (not cmd.exe)
+# drops a literal file named `nul`/`,` in the repo root. Turbopack then panics trying
+# to read the reserved device name. Ignore them so they can never be committed.
+/nul
+/,
+
+# Ephemeral handoff bookkeeping written by the compact/stop hooks — auto-snapshots,
+# session-id markers, and full /export transcripts. The curated per-session HANDOFF.md
+# digests ARE tracked; this noise is not (it regenerates every compaction).
+docs/handoff/**/snapshot-*.md
+docs/handoff/**/.sid
+docs/handoff/**/transcript.md

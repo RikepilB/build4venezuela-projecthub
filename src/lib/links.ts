@@ -6,3 +6,7 @@ export const BUILD4VENEZUELA_URL = "https://build4venezuela.com";
 // Crafter Station — dev collective behind several relief projects in this hub
 // (e.g. mission-ve, github.com/crafter-station/*). Footer credit links here.
 export const CRAFTER_STATION_URL = "https://github.com/crafter-station";
+
+// This hub's own source repo — public (MIT). The header GitHub icon + the footer
+// "contribute" link point here so visitors can star, fork, and open PRs.
+export const PROJECTHUB_REPO_URL = "https://github.com/RikepilB/build4venezuela-projecthub";

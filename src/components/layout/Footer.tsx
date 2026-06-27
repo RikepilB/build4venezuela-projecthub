@@ -1,6 +1,6 @@
 import type { Dictionary } from "@/lib/i18n/config";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { BUILD4VENEZUELA_URL, CRAFTER_STATION_URL } from "@/lib/links";
+import { BUILD4VENEZUELA_URL, CRAFTER_STATION_URL, PROJECTHUB_REPO_URL } from "@/lib/links";
 
 // Site footer: brand line + a credit line (author · hackathon · collective).
 export function Footer({ dict }: { dict: Dictionary }) {
@@ -19,6 +19,8 @@ export function Footer({ dict }: { dict: Dictionary }) {
           <ExternalLink href={BUILD4VENEZUELA_URL}>{dict.footer.hackathon}</ExternalLink>
           <span aria-hidden>·</span>
           <ExternalLink href={CRAFTER_STATION_URL}>{dict.footer.crafterMember}</ExternalLink>
+          <span aria-hidden>·</span>
+          <ExternalLink href={PROJECTHUB_REPO_URL}>{dict.footer.contribute}</ExternalLink>
         </p>
       </div>
     </footer>

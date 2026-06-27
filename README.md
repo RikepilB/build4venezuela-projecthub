@@ -39,6 +39,22 @@ move to Supabase — see Phases).
 - **Publish** (`/[locale]/projects/new`) — Zod-validated Server Action (`src/actions/submit-project.ts`).
 - **Builders** (`/[locale]/builders`) — talent directory from the sheet.
 
+## Public API
+
+A versioned, **read-only** REST API exposes the whole catalog as JSON for other relief
+tools, dashboards, and bots — under `/api/v1`, GET only (every write stays a server
+action). One envelope (`{ success, data, error, meta }`), open CORS, CDN-cached catalog
+(`s-maxage`), live `/stats` + `/votes` (`no-store`, the latter per-IP capped).
+
+```bash
+curl https://elumbralvzla.org/api/v1/projects?status=live
+curl https://elumbralvzla.org/api/v1/stats
+```
+
+Endpoints: `/projects`, `/projects/{slug}`, `/search?q=`, `/builders`, `/resources`,
+`/communities`, `/reference`, `/taxonomy`, `/stats`, `/votes`. Full reference (query
+params, caching, rate limits) in [`docs/api.md`](docs/api.md).
+
 ## Design tokens (re-skin layer)
 
 All color/radius live as CSS variables in `src/styles/tokens.css`, mapped to Tailwind v4 in

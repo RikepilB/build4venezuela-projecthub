@@ -72,7 +72,7 @@ npm run data:platforms-raw
   flagging "API / datos abiertos" and "código abierto" in the summary when the sheet says so.
 - **PII: the `Contacto (X / email)` column is dropped** and summaries are scrubbed of any
   email/phone pattern — personal contacts are never published. Missing-persons / patient
-  platforms are listed as plain **link-out** cards, never scraped or merged (see `CLAUDE.md`).
+  platforms are listed as plain **link-out** cards, never scraped or merged (see `README.md` → Guardrails).
 - **Net-new only:** rows whose host already appears in `resources.seed.json` /
   `resources.extra.json` are skipped, so curated entries are never double-listed.
 - `loadResources` merges seed → extra → raw with first-wins dedup by `id`, so a curated entry

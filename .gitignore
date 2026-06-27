@@ -12,6 +12,11 @@
 
 # testing
 /coverage
+# Playwright E2E artifacts — generated per run, never committed.
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
 
 # next.js
 /.next/
@@ -73,9 +78,7 @@ next-env.d.ts
 /nul
 /,
 
-# Ephemeral handoff bookkeeping written by the compact/stop hooks — auto-snapshots,
-# session-id markers, and full /export transcripts. The curated per-session HANDOFF.md
-# digests ARE tracked; this noise is not (it regenerates every compaction).
-docs/handoff/**/snapshot-*.md
-docs/handoff/**/.sid
-docs/handoff/**/transcript.md
+# Session handoff notes are internal working state — not needed to fork or run the
+# app. Kept local but untracked from the public repo (curated digests, hook-written
+# snapshots, session markers and transcripts alike).
+docs/handoff/

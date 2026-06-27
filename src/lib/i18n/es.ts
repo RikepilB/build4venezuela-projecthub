@@ -102,7 +102,9 @@ export const es: typeof en = {
     viewPriority: "Solo prioridad alta",
     calloutTitle: "Tablero abierto — cualquiera puede sumarse",
     calloutBody: "Únete a un proyecto, usa uno que ya existe, o publica el tuyo en Build4Venezuela. Tú decides qué hacer.",
-    calloutLink: "Proyectos de Build4Venezuela",
+    calloutLink: "Publica tu proyecto en el hackathon",
+    countdownTitle: "El hackathon cierra en",
+    countdownEnded: "Hackathon cerrado",
   },
   ecosystem: {
     title: "Lanzados y en vivo",

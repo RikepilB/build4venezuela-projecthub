@@ -10,6 +10,7 @@ import { ProjectCard } from "@/components/board/ProjectCard";
 import { RadarStats } from "@/components/board/RadarStats";
 import { LiveVotesProvider } from "@/components/votes/LiveVotes";
 import { BoardCallout } from "@/components/board/BoardCallout";
+import { HackathonCountdown } from "@/components/board/HackathonCountdown";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { z } from "zod";
 import {
@@ -90,6 +91,8 @@ export default async function BoardPage({
       </header>
 
       <BoardCallout dict={dict} />
+
+      <HackathonCountdown dict={dict} />
 
       <RadarStats projects={all} dict={dict} />
 

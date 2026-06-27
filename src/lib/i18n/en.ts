@@ -100,7 +100,9 @@ export const en = {
     viewPriority: "High priority only",
     calloutTitle: "Open board — anyone can jump in",
     calloutBody: "Join a project, use one that already exists, or publish your own on Build4Venezuela. You decide what to do.",
-    calloutLink: "Build4Venezuela projects",
+    calloutLink: "Ship your project in the hackathon",
+    countdownTitle: "Hackathon ends in",
+    countdownEnded: "Hackathon closed",
   },
   ecosystem: {
     title: "Shipped & live",

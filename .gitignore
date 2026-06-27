@@ -72,3 +72,10 @@ next-env.d.ts
 # to read the reserved device name. Ignore them so they can never be committed.
 /nul
 /,
+
+# Ephemeral handoff bookkeeping written by the compact/stop hooks — auto-snapshots,
+# session-id markers, and full /export transcripts. The curated per-session HANDOFF.md
+# digests ARE tracked; this noise is not (it regenerates every compaction).
+docs/handoff/**/snapshot-*.md
+docs/handoff/**/.sid
+docs/handoff/**/transcript.md

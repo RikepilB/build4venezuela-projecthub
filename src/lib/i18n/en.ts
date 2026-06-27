@@ -1,5 +1,5 @@
 export const en = {
-  appName: "Build4Venezuela · ProjectHub",
+  appName: "El Umbral · Build4Venezuela",
   tagline: "Search before you build",
   skipToContent: "Skip to content",
   nav: {
@@ -12,6 +12,8 @@ export const en = {
     builders: "Builders",
     submit: "Publish project",
     repo: "GitHub repository",
+    menu: "Menu",
+    close: "Close menu",
   },
   home: {
     title: "Antes de construir, busca · Search before you build",
@@ -20,7 +22,7 @@ export const en = {
     placeholder: "e.g. missing persons map, shelter directory…",
     searchButton: "Search",
     browseButton: "Browse the board",
-    whatTitle: "What is ProjectHub?",
+    whatTitle: "What is El Umbral?",
     whatBody:
       "A shared radar of every Build4Venezuela relief project — so we move fast without duplicating effort. Discover what already exists, see what each project needs, form a team, and submit finished projects to Build4Venezuela.",
     howTitle: "How it works",

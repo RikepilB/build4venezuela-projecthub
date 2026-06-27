@@ -12,6 +12,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Committed agent tooling — vendored skill scripts (minified bundles, .cjs
+    // helpers) that aren't app source. Linting them only spams the gate with
+    // require()/no-unused-expressions noise; app code lives under src/.
+    ".claude/**",
+    // Playwright's own output (reports, traces) — generated, never linted.
+    "playwright-report/**",
+    "test-results/**",
   ]),
 ]);
 

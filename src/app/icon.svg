@@ -1,0 +1,7 @@
+<!-- El Umbral mark: a lit threshold. Hex mirrors src/styles/tokens.css
+     (dusk-950 / ivory / amber-500); favicons can't read CSS variables. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#17161d" />
+  <path d="M6 27V10.8L16 4.5 26 10.8V27" fill="none" stroke="#f4f0e9" stroke-width="2" stroke-linejoin="round" />
+  <rect x="12.8" y="17" width="6.4" height="10" rx="0.5" fill="#e3a23c" />
+</svg>

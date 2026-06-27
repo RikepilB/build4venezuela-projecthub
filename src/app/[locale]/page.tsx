@@ -59,7 +59,7 @@ export default async function HomePage({
       {/* Hero — search-first, true to "search before you build". */}
       <section className="flex flex-col gap-7">
         <p className="eyebrow">{dict.appName}</p>
-        <h1 className="max-w-3xl text-4xl font-extrabold uppercase leading-none tracking-tight text-text sm:text-6xl">
+        <h1 className="max-w-3xl text-balance font-display text-4xl font-semibold leading-[1.05] tracking-tight text-text sm:text-6xl">
           {dict.home.title}
         </h1>
         <p className="max-w-xl text-muted">{dict.home.subtitle}</p>
@@ -98,7 +98,7 @@ export default async function HomePage({
         ))}
       </section>
 
-      {/* What is ProjectHub */}
+      {/* What is El Umbral */}
       <section className="flex flex-col gap-4">
         <p className="eyebrow">{dict.home.whatTitle}</p>
         <p className="max-w-2xl text-muted">{dict.home.whatBody}</p>

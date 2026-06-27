@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { Martian_Mono, Fraunces } from "next/font/google";
 import "../globals.css";
 import type { Locale } from "@/lib/types";
-import { isLocale, locales, getDictionary } from "@/lib/i18n/config";
+import { isLocale, locales, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import { SITE_URL } from "@/lib/links";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -27,10 +28,38 @@ const display = Fraunces({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "El Umbral · Build4Venezuela",
-  description: "Search before you build — discover relief projects, join or publish.",
-};
+// metadataBase makes every relative metadata URL (canonical, OG, sitemap) resolve
+// against the live domain. title.template gives child pages a "Page · El Umbral"
+// suffix; the default is the localized app name. Per-page canonical/hreflang live
+// on each page (Next merges metadata shallowly, so openGraph set here is inherited
+// by pages that don't override it — keep it free of a per-page `url`).
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: dict.appName, template: "%s · El Umbral" },
+    description: dict.home.subtitle,
+    applicationName: "El Umbral",
+    openGraph: {
+      type: "website",
+      siteName: "El Umbral",
+      title: dict.appName,
+      description: dict.home.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.appName,
+      description: dict.home.subtitle,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

@@ -1,3 +1,8 @@
+// This hub's own canonical origin (the custom domain). Single source of truth for
+// metadataBase, canonical/OG URLs, the sitemap and robots. Apex is canonical; the
+// www host redirects to it at the edge (Vercel). https-only, no trailing slash.
+export const SITE_URL = "https://elumbralvzla.org";
+
 // Outbound links to the official Build4Venezuela site. The hub is a discovery
 // layer; finished/MVP-ready projects get submitted to the official projects page.
 export const BUILD4VENEZUELA_PROJECTS_URL = "https://build4venezuela.com/projects";

@@ -1474,7 +1474,7 @@
     "name": "build4venezuela-projecthub",
     "summary": "Search-before-you-build project hub for the Build4Venezuela hackathon (post-earthquake relief). Next.js 16, EN/ES.",
     "repo_url": "https://github.com/RikepilB/build4venezuela-projecthub",
-    "demo_url": "https://projecthub-beta-blond.vercel.app",
+    "demo_url": "https://elumbralvzla.org",
     "stack": [
       "TypeScript"
     ],

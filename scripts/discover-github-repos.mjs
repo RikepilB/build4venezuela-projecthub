@@ -4,7 +4,7 @@
 // Safe-scrape path only: public OSS repos. Does NOT touch missing-persons
 // registries (PII — link-out cards are hand-seeded in projects.seed.json).
 import { z } from "zod";
-import { writeFile, rename } from "node:fs/promises";
+import { readFile, writeFile, rename } from "node:fs/promises";
 import path from "node:path";
 
 // OSS / relief queries only. Public open-source repos — NEVER missing-persons
@@ -22,6 +22,9 @@ const QUERIES = [
   "earthquake relief coordination",
 ];
 const OUT = path.join(process.cwd(), "data", "external-projects.seed.json");
+// Curated exclusions from catalog cleanup. This script rewrites OUT wholesale, so
+// without a denylist a re-run resurrects every pruned repo. Keyed by computed slug.
+const DENYLIST = path.join(process.cwd(), "data", "external-denylist.json");
 const TOKEN = process.env.GITHUB_TOKEN;
 const MAX = 100;
 
@@ -152,6 +155,18 @@ function toProject(repo) {
   };
 }
 
+// Slugs to exclude (array of "gh-<owner>-<repo>"). Missing file → no exclusions.
+async function loadDenylist() {
+  try {
+    const raw = await readFile(DENYLIST, "utf8");
+    const arr = JSON.parse(raw);
+    return new Set(Array.isArray(arr) ? arr : []);
+  } catch (err) {
+    if (err.code !== "ENOENT") console.warn(`[discover] denylist unreadable: ${err.message}`);
+    return new Set();
+  }
+}
+
 async function main() {
   if (!TOKEN) {
     console.warn("[discover] no GITHUB_TOKEN set — low rate limit (10 req/min). Set $env:GITHUB_TOKEN = (gh auth token).");
@@ -165,17 +180,24 @@ async function main() {
     await sleep(2000); // stay well under the per-minute search cap
   }
 
+  const denylist = await loadDenylist();
   const projects = [];
+  let skipped = 0;
   for (const repo of byName.values()) {
     const parsed = ProjectSchema.safeParse(toProject(repo));
-    if (parsed.success) projects.push(parsed.data);
+    if (!parsed.success) continue;
+    if (denylist.has(parsed.data.slug)) {
+      skipped++; // pruned in catalog cleanup — never re-seed
+      continue;
+    }
+    projects.push(parsed.data);
     if (projects.length >= MAX) break;
   }
 
   const tmp = `${OUT}.tmp`;
   await writeFile(tmp, `${JSON.stringify(projects, null, 2)}\n`, "utf8");
   await rename(tmp, OUT);
-  console.log(`[discover] wrote ${projects.length} external repos → ${OUT}`);
+  console.log(`[discover] wrote ${projects.length} external repos (${skipped} skipped via denylist) → ${OUT}`);
 }
 
 main().catch((err) => {

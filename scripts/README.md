@@ -58,3 +58,22 @@ npm run data:platforms
   splits the URL column into a real link vs. a phone/account `contact`, parses `Idioma`.
 - Hand-curated extras that aren't in the sheet go in `data/resources.extra.json` (never
   overwritten by this importer, so manual adds survive a re-sync).
+
+## `import-platforms-raw.mjs` → `data/resources.raw.json`
+Imports the **"Plataformas Raw"** tab — the team's full crisis-platform DB (~90 rows: missing
+persons, hospitals, damage, acopios, donations, pets, bots, aggregators, satellite internet) —
+as the long-tail layer behind `/resources`. Same `SHEET_ID`, fetched by sheet **name**.
+
+```powershell
+npm run data:platforms-raw
+```
+
+- Maps the raw `Categoria` labels to a resource type; writes `name + url + functional blurb`,
+  flagging "API / datos abiertos" and "código abierto" in the summary when the sheet says so.
+- **PII: the `Contacto (X / email)` column is dropped** and summaries are scrubbed of any
+  email/phone pattern — personal contacts are never published. Missing-persons / patient
+  platforms are listed as plain **link-out** cards, never scraped or merged (see `CLAUDE.md`).
+- **Net-new only:** rows whose host already appears in `resources.seed.json` /
+  `resources.extra.json` are skipped, so curated entries are never double-listed.
+- `loadResources` merges seed → extra → raw with first-wins dedup by `id`, so a curated entry
+  always beats its raw-dump twin.

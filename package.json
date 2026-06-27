@@ -14,7 +14,8 @@
     "data:builders": "node scripts/import-builders.mjs",
     "data:ideas": "node scripts/import-ideas.mjs",
     "data:github": "node scripts/discover-github-repos.mjs",
-    "data:platforms": "node scripts/import-platforms.mjs"
+    "data:platforms": "node scripts/import-platforms.mjs",
+    "data:platforms-raw": "node scripts/import-platforms-raw.mjs"
   },
   "dependencies": {
     "fuse.js": "^7.4.2",

@@ -74,15 +74,19 @@ export const loadBuilders = cache(async (): Promise<Builder[]> => {
   return keepValid<Builder>(rows, BuilderSchema);
 });
 
-// Verified relief resources: the sheet-synced directory (resources.seed.json, written
-// by scripts/import-platforms.mjs) PLUS hand-curated extras (resources.extra.json,
-// never touched by the importer so manual adds survive a re-sync). Deduped by id.
+// Verified relief resources, in priority order:
+//   1. resources.seed.json  — curated "Plataformas activas" tab (scripts/import-platforms.mjs)
+//   2. resources.extra.json — hand-curated extras (never touched by importers)
+//   3. resources.raw.json   — bulk "Plataformas Raw" tab (scripts/import-platforms-raw.mjs),
+//      the long tail; PII contacts stripped, net-new hosts only.
+// First-wins dedup by id, so a curated entry always beats its raw-dump twin.
 export const loadResources = cache(async (): Promise<Resource[]> => {
-  const [synced, extra] = await Promise.all([
+  const [synced, extra, raw] = await Promise.all([
     readArray("resources.seed.json"),
     readArray("resources.extra.json"),
+    readArray("resources.raw.json"),
   ]);
-  const all = keepValid<Resource>([...synced, ...extra], ResourceSchema);
+  const all = keepValid<Resource>([...synced, ...extra, ...raw], ResourceSchema);
   const byId = new Map<string, Resource>();
   for (const r of all) if (!byId.has(r.id)) byId.set(r.id, r);
   return [...byId.values()];

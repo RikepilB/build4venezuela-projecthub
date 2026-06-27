@@ -24,6 +24,18 @@
     "active": true
   },
   {
+    "id": "res-encuentrame-vzla",
+    "name": "Encuentrame VZLA",
+    "type": "search",
+    "url": "https://encuentramevzla.com",
+    "summary": "Busca personas encontradas y llevadas a hospitales",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Encuentrame VZLA",
+    "active": true
+  },
+  {
     "id": "res-venezuela-earthquake-map-github",
     "name": "venezuela-earthquake-map (GitHub)",
     "type": "dev",
@@ -191,6 +203,31 @@
       "es"
     ],
     "verified_source": "CriptoNoticias",
+    "active": true
+  },
+  {
+    "id": "res-terremotovenezuela-com",
+    "name": "TerremotoVenezuela.com",
+    "type": "other",
+    "contact": "www.terremotovenezuela.com",
+    "summary": "Heatmap en tiempo real. Agrega reportes de YouTube, X/Twitter e Instagram cada 10 min. Centros de acopio verificados. Directorio 30+ hospitales. Licencia MIT.",
+    "languages": [
+      "es",
+      "en"
+    ],
+    "verified_source": "",
+    "active": true
+  },
+  {
+    "id": "res-red-venezuela-activa",
+    "name": "Red Venezuela Activa",
+    "type": "other",
+    "url": "https://ayudavenezuela2026.com",
+    "summary": "Conecta a quién necesita ayuda con quién puede darla tras el terremoto de Venezuela (junio 2026): registro de voluntarios y profesionales, reporte de casos urgentes, albergues y sus necesidades, mapa en vivo y movilización por WhatsApp. Enlaza a las plataformas nacionales de personas no localizadas.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Red Venezuela Activa abre registro de voluntarios y reporte de casos urgentes tras terremotos y réplicas https://buff.ly",
     "active": true
   }
 ]

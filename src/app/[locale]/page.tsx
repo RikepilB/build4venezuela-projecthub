@@ -6,6 +6,8 @@ import { projectRepository, builderRepository, membershipRepository } from "@/li
 import { landingStats, featuredProjects } from "@/lib/landing/stats";
 import { SearchBox } from "@/components/search/SearchBox";
 import { ProjectCard } from "@/components/board/ProjectCard";
+import { ExternalLink } from "@/components/ui/ExternalLink";
+import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 
 // Render live per request, not prerendered at build. The headline stats (builders,
 // projects, live, needs) come from runtime data — the roster grows via self-adds
@@ -100,6 +102,39 @@ export default async function HomePage({
       <section className="flex flex-col gap-4">
         <p className="eyebrow">{dict.home.whatTitle}</p>
         <p className="max-w-2xl text-muted">{dict.home.whatBody}</p>
+      </section>
+
+      {/* Crisis response hubs — umbrella hubs beyond this board (the hackathon itself and
+          a citizen-built emergency hub). External, https-only via ExternalLink (safe rel). */}
+      <section className="flex flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <p className="eyebrow">{dict.landing.hubsEyebrow}</p>
+          <h2 className="text-2xl font-extrabold uppercase tracking-tight text-text">
+            {dict.landing.hubsTitle}
+          </h2>
+          <p className="max-w-2xl text-muted">{dict.landing.hubsBody}</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6">
+            <p className="text-2xl font-extrabold text-text">{dict.landing.hackathonName}</p>
+            <p className="text-sm text-muted">{dict.landing.hackathonBody}</p>
+            <div className="mt-auto pt-1">
+              <ExternalLink href={BUILD4VENEZUELA_URL} className="text-sm font-medium">
+                {dict.landing.hackathonCta}
+              </ExternalLink>
+            </div>
+          </div>
+          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6">
+            <p className="text-2xl font-extrabold text-text">{dict.landing.responseHubName}</p>
+            <p className="text-sm text-muted">{dict.landing.responseHubBody}</p>
+            <p className="text-xs uppercase tracking-wide text-muted">{dict.landing.responseHubOffers}</p>
+            <div className="mt-auto pt-1">
+              <ExternalLink href={VZLA_RESPONSE_HUB_URL} className="text-sm font-medium">
+                {dict.landing.responseHubCta}
+              </ExternalLink>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Featured — top-ranked buildable projects, reusing the board card. */}

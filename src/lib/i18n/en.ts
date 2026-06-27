@@ -7,6 +7,8 @@ export const en = {
     board: "Board",
     ecosystem: "Ecosystem",
     resources: "Resources",
+    communities: "Communities",
+    reference: "Reference",
     builders: "Builders",
     submit: "Publish project",
     repo: "GitHub repository",
@@ -46,6 +48,17 @@ export const en = {
     // ecosystem teaser
     ecosystemBody: "Relief tools you can use right now — no need to rebuild them.",
     ecosystemCta: "Explore the ecosystem",
+    // crisis response hubs
+    hubsEyebrow: "Crisis response hubs",
+    hubsTitle: "Start from a hub",
+    hubsBody: "Beyond this board, these umbrella hubs aggregate the wider response — the hackathon itself and a citizen-built emergency hub.",
+    hackathonName: "Build4Venezuela",
+    hackathonBody: "The hackathon home: official projects, Discord, and how to submit your MVP.",
+    hackathonCta: "Open the hackathon",
+    responseHubName: "VZLA Response Hub",
+    responseHubBody: "Citizen-built emergency hub: find people, damage maps, shelters, verified donations and official hotlines.",
+    responseHubOffers: "Find people · Damage map · Shelters · Verified donations · Hotlines",
+    responseHubCta: "Open the response hub",
     // final CTA band
     ctaTitle: "Have an idea? Search first, then publish.",
     ctaBody: "Thirty seconds of searching saves weeks of duplicated effort. If it doesn't exist yet, publish it and find your team.",
@@ -109,6 +122,38 @@ export const en = {
       psychosocial: "Psychosocial support",
       telecom: "Telecom",
       other: "Other",
+    },
+  },
+  communities: {
+    title: "Communities",
+    subtitle:
+      "Public, durable places to join the effort and coordinate — Discord servers, the hackathon hub and Telegram directories. Link-out only; we don't list private one-off invites.",
+    visit: "Open",
+    count: "communities",
+    empty: "No communities listed yet.",
+    types: {
+      discord: "Discord",
+      whatsapp: "WhatsApp",
+      telegram: "Telegram",
+      web: "Web",
+      other: "Other",
+    },
+  },
+  reference: {
+    title: "Reference projects",
+    subtitle:
+      "Existing open-source disaster-relief tools worth studying or reusing before you build from scratch — global prior art, not hackathon projects. Look here first.",
+    visit: "View repository",
+    count: "tools",
+    license: "License",
+    empty: "No reference projects listed yet.",
+    categories: {
+      comms: "Off-grid communications",
+      ingestion: "Ingestion & mapping",
+      coordination: "Coordination & logistics",
+      clinical: "Clinical & telehealth",
+      modeling: "Modeling & UAV",
+      geolocation: "Geolocation & missing persons",
     },
   },
   radar: {

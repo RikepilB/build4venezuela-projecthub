@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import { isLocale, getDictionary } from "@/lib/i18n/config";
 import { projectRepository } from "@/lib/repository";
-import { isEcosystemProject } from "@/lib/ecosystem";
+import { ecosystemListing } from "@/lib/ecosystem";
 import { EcosystemCard } from "@/components/ecosystem/EcosystemCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 
-// Existing relief projects (live sites, no open repo). The board stays focused on
+// Existing relief projects (live sites, no open repo) PLUS launched buildable projects
+// (repo + live demo, >50% built — e.g. Mission VE). The board stays focused on
 // hackathon collaborate-on-code projects; these live here so people can find and use
 // what already exists. Ranked the same way (votes → priority → stars → status).
 export default async function EcosystemPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,7 +15,7 @@ export default async function EcosystemPage({ params }: { params: Promise<{ loca
   const dict = getDictionary(locale);
 
   const all = await projectRepository.list();
-  const projects = all.filter(isEcosystemProject);
+  const projects = ecosystemListing(all);
 
   return (
     <section className="flex flex-col gap-6">

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "com-b4v-discord",
+    "name": "Build4Venezuela · Discord",
+    "type": "discord",
+    "url": "https://build4venezuela.com/discord",
+    "summary": "Servidor principal del hackathon: canales por proyecto, anuncios y coordinación general.",
+    "languages": ["es", "en"]
+  },
+  {
+    "id": "com-b4v-web",
+    "name": "Build4Venezuela",
+    "type": "web",
+    "url": "https://build4venezuela.com",
+    "summary": "Sitio principal del hackathon: proyectos oficiales, registro y cómo participar.",
+    "languages": ["es", "en"]
+  },
+  {
+    "id": "com-buscachat-discord",
+    "name": "BuscaChat · Discord",
+    "type": "discord",
+    "url": "https://discord.gg/SAKnrgxUG",
+    "summary": "Comunidad del bot de WhatsApp para buscar personas desaparecidas (BuscaChat).",
+    "languages": ["es"]
+  },
+  {
+    "id": "com-vzla-response-hub",
+    "name": "VZLA Response Hub",
+    "type": "web",
+    "url": "https://www.vzlaresponsehub.org",
+    "summary": "Hub ciudadano de respuesta a la emergencia: búsqueda de personas, mapas de daños, refugios y donaciones verificadas.",
+    "languages": ["es", "en"]
+  },
+  {
+    "id": "com-telegram-directory-ve",
+    "name": "Directorio de grupos de Telegram (Venezuela)",
+    "type": "telegram",
+    "url": "https://www.telegram-groups.com/venezuela-telegram-groups/",
+    "summary": "Índice de grupos públicos de Telegram de Venezuela para coordinación e información.",
+    "languages": ["es"]
+  },
+  {
+    "id": "com-devs-discord",
+    "name": "Comunidad de desarrolladores · Discord",
+    "type": "discord",
+    "url": "https://discord.gg/qbjWNwtaR",
+    "summary": "Canal de coordinación entre desarrolladores que construyen herramientas de ayuda.",
+    "languages": ["es"]
+  }
+]

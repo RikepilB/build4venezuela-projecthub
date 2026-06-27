@@ -115,7 +115,45 @@ export const ResourceSchema = z.object({
   active: z.boolean().default(true),
 });
 
+// A community / coordination space: a public, durable place to join the effort
+// (Discord, WhatsApp, Telegram, or a web hub). Curated + link-out only — we never list
+// private one-off invite links scraped from chat dumps, just the standing entry points.
+export const CommunityType = z.enum(["discord", "whatsapp", "telegram", "web", "other"]);
+
+export const CommunitySchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(2).max(160),
+  type: CommunityType,
+  url: httpsUrl,
+  summary: z.string().max(400).default(""),
+  languages: z.array(Locale).default([]),
+});
+
+// A reference project: an existing open-source disaster-relief tool worth studying or
+// reusing BEFORE building from scratch — global prior art, not a Venezuela hackathon
+// project. Sourced from the crisis-tech directory; link-out only, grouped by capability.
+export const ReferenceCategory = z.enum([
+  "comms", // off-grid / mesh / ad-hoc communications
+  "ingestion", // scraping, NLP triage, real-time mapping
+  "coordination", // task workflows, geospatial digitization, field logistics
+  "clinical", // telehealth, EMR, hospital capacity
+  "modeling", // catastrophe modeling, predictive simulation, UAV
+  "geolocation", // logistics, missing persons, data standards
+]);
+
+export const ReferenceProjectSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1).max(160),
+  category: ReferenceCategory,
+  repo_url: httpsUrl,
+  summary: z.string().min(1).max(600),
+  stack: z.array(z.string().min(1).max(60)).max(20).default([]),
+  license: z.string().max(40).default(""),
+});
+
 export const ProjectsFileSchema = z.array(ProjectSchema);
 export const ResourcesFileSchema = z.array(ResourceSchema);
 export const BuildersFileSchema = z.array(BuilderSchema);
 export const MembershipsFileSchema = z.array(MembershipSchema);
+export const CommunitiesFileSchema = z.array(CommunitySchema);
+export const ReferenceFileSchema = z.array(ReferenceProjectSchema);

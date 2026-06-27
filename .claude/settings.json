@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c pnpm lint --silent 2>nul || echo [hook] lint skipped",
+            "command": "cmd /c \"pnpm lint --silent 2>nul || echo [hook] lint skipped\"",
             "async": true
           }
         ]

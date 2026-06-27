@@ -1,9 +1,9 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { isLocale, getDictionary } from "@/lib/i18n/config";
 import { builderRepository, membershipRepository, projectRepository } from "@/lib/repository";
 import { BuilderGrid } from "@/components/builders/BuilderGrid";
+import { FilterForm } from "@/components/ui/FilterForm";
 import { localePath } from "@/lib/i18n/href";
 import { normalize } from "@/lib/text";
 import { builderFilterOptions, applyBuilderFilter } from "@/lib/builders/filter";
@@ -17,7 +17,6 @@ const AddBuilderForm = dynamic(
 
 type SP = Record<string, string | string[] | undefined>;
 const one = (v: SP[string]) => (typeof v === "string" && v ? v : undefined);
-const SELECT = "rounded-token border border-border bg-surface px-3 py-2 text-sm text-text";
 
 export default async function BuildersPage({
   params,
@@ -75,62 +74,18 @@ export default async function BuildersPage({
 
       <AddBuilderForm locale={locale} dict={dict} />
 
-      <form
-        method="get"
-        action={localePath(locale, "/builders")}
-        className="flex flex-wrap items-end gap-3 rounded-token border border-border bg-surface p-4"
-      >
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
-          {dict.builders.availability}
-          <select name="availability" defaultValue={availability ?? ""} className={SELECT}>
-            <option value="">{dict.builders.all}</option>
-            {availabilityOptions.map((a) => (
-              <option key={a} value={a}>
-                {a}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
-          {dict.builders.timezone}
-          <select name="timezone" defaultValue={timezone ?? ""} className={SELECT}>
-            <option value="">{dict.builders.all}</option>
-            {timezoneOptions.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
-          {dict.builders.stack}
-          <select name="stack" defaultValue={stack ?? ""} className={SELECT}>
-            <option value="">{dict.builders.all}</option>
-            {stackOptions.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="submit"
-            className="rounded-token bg-primary px-4 py-2 text-sm font-medium text-primary-ink hover:opacity-90"
-          >
-            {dict.board.filters}
-          </button>
-          <Link
-            href={localePath(locale, "/builders")}
-            className="rounded-token border border-border px-3 py-2 text-sm text-muted hover:text-text"
-          >
-            {dict.board.clear}
-          </Link>
-        </div>
-      </form>
+      <FilterForm
+        base={localePath(locale, "/builders")}
+        current={{ availability, timezone, stack }}
+        groups={[
+          { name: "availability", label: dict.builders.availability, options: availabilityOptions.map((a) => ({ value: a, label: a })) },
+          { name: "timezone", label: dict.builders.timezone, options: timezoneOptions.map((t) => ({ value: t, label: t })) },
+          { name: "stack", label: dict.builders.stack, options: stackOptions.map((s) => ({ value: s, label: s })) },
+        ].filter((g) => g.options.length > 0)}
+        allLabel={dict.builders.all}
+        applyLabel={dict.board.filters}
+        clearLabel={dict.board.clear}
+      />
 
       <p className="text-sm text-muted">
         {builders.length} {dict.builders.count}

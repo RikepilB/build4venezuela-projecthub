@@ -66,3 +66,9 @@ next-env.d.ts
 
 # machine-local GSD planning state — never commit to the public repo
 .planning/
+
+# Windows shell-redirect artifacts — a `2>nul` parsed by a POSIX shell (not cmd.exe)
+# drops a literal file named `nul`/`,` in the repo root. Turbopack then panics trying
+# to read the reserved device name. Ignore them so they can never be committed.
+/nul
+/,

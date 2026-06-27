@@ -8,6 +8,8 @@ import { isEcosystemProject } from "@/lib/ecosystem";
 import { FilterBar } from "@/components/board/FilterBar";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { RadarStats } from "@/components/board/RadarStats";
+import { LiveVotesProvider } from "@/components/votes/LiveVotes";
+import { BoardCallout } from "@/components/board/BoardCallout";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { z } from "zod";
 import {
@@ -87,6 +89,8 @@ export default async function BoardPage({
         <p className="mt-2 text-muted">{dict.board.subtitle}</p>
       </header>
 
+      <BoardCallout dict={dict} />
+
       <RadarStats projects={all} dict={dict} />
 
       <FilterBar locale={locale} dict={dict} current={filter} projects={all} showAll={showAll} />
@@ -123,17 +127,22 @@ export default async function BoardPage({
       </div>
 
       {projects.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <ProjectCard
-              key={p.id}
-              project={p}
-              locale={locale}
-              dict={dict}
-              teamCount={teamCounts.get(p.slug) ?? 0}
-            />
-          ))}
-        </div>
+        // Live vote overlay: the board HTML can be CDN-cached, so cards fetch the
+        // current { slug: count } map client-side and overlay it (server-authoritative,
+        // never an optimistic +1).
+        <LiveVotesProvider>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((p) => (
+              <ProjectCard
+                key={p.id}
+                project={p}
+                locale={locale}
+                dict={dict}
+                teamCount={teamCounts.get(p.slug) ?? 0}
+              />
+            ))}
+          </div>
+        </LiveVotesProvider>
       ) : (
         <EmptyState title={dict.board.empty} />
       )}

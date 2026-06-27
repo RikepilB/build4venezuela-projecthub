@@ -1,19 +1,17 @@
 "use client";
 
-import { useActionState, useEffect, useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
 import { upvoteProject } from "@/actions/vote-project";
 
 // Per-slug "already voted" flag from localStorage, read hydration-safely. The server
 // snapshot is always false (no storage server-side); the client reads the real value
-// without a setState-in-effect, and re-reads on the re-render that the post-vote
-// revalidatePath triggers. See react-hooks/set-state-in-effect.
+// without a setState-in-effect. Re-reads on the re-render the post-vote setState and
+// the action's revalidatePath trigger, and on the `storage` event from other tabs.
 function useHasVoted(slug: string): boolean {
   const key = `vote:${slug}`;
   return useSyncExternalStore(
     (onChange) => {
-      // Fires for changes made in OTHER tabs; same-tab updates are picked up on the
-      // re-render the server action's revalidatePath causes.
       window.addEventListener("storage", onChange);
       return () => window.removeEventListener("storage", onChange);
     },
@@ -46,7 +44,7 @@ function Inner({ votes, voted, label }: { votes: number; voted: boolean; label: 
       {/* `votes` is server-authoritative and already includes this browser's vote once
           persisted — never add an optimistic +1 here or it double-counts after
           revalidation and on later visits. */}
-      <span className="text-sm font-bold tabular-nums">{votes}</span>
+      <span className="text-sm font-bold tabular-nums" data-testid="vote-count">{votes}</span>
     </button>
   );
 }
@@ -55,22 +53,29 @@ function Inner({ votes, voted, label }: { votes: number; voted: boolean; label: 
 // The server is the source of truth; this just stops obvious double-clicks.
 export function VoteButton({ slug, votes, label }: { slug: string; votes: number; label: string }) {
   const stored = useHasVoted(slug);
-  const [state, formAction] = useActionState(upvoteProject, null);
+  const [justVoted, setJustVoted] = useState(false);
+  const voted = stored || justVoted;
 
-  // Mark "voted" locally only AFTER the server confirms the write. A failed persist
-  // (read-only FS, no Redis) returns ok:false → the button stays usable instead of
-  // locking with an unchanged count. Side effect (not setState) → effect is fine here.
-  useEffect(() => {
-    if (state?.ok) {
+  // Runs as a form-action transition (useFormStatus reports `pending` for the whole
+  // server round-trip + revalidation). We await the server action and act on its
+  // RETURN value directly — reliable, unlike reading useActionState's state through
+  // the action's own revalidatePath, where the result can be dropped on reconciliation
+  // and leave the guard unset (a reload would then re-enable the button → double vote).
+  async function formAction(formData: FormData) {
+    const result = await upvoteProject(null, formData);
+    if (result?.ok) {
+      // Persist the per-browser guard only on a CONFIRMED write — a failed persist
+      // (read-only FS, no Redis) leaves the control usable instead of locking with an
+      // unchanged count.
       try {
         window.localStorage.setItem(`vote:${slug}`, "1");
       } catch {
         // storage unavailable — the server still recorded the vote
       }
+      setJustVoted(true);
     }
-  }, [state, slug]);
+  }
 
-  const voted = stored || state?.ok === true;
   return (
     <form action={formAction}>
       <input type="hidden" name="slug" value={slug} />

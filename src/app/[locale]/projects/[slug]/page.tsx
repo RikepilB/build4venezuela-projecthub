@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { isLocale, getDictionary } from "@/lib/i18n/config";
 import { projectRepository } from "@/lib/repository";
 import { ProjectDetail } from "@/components/project/ProjectDetail";
+import { RecruitPanel } from "@/components/project/RecruitPanel";
 
 export default async function ProjectPage({
   params,
@@ -15,5 +16,10 @@ export default async function ProjectPage({
   const project = await projectRepository.getBySlug(slug);
   if (!project) notFound();
 
-  return <ProjectDetail project={project} locale={locale} dict={dict} />;
+  return (
+    <div className="flex flex-col gap-6">
+      <ProjectDetail project={project} locale={locale} dict={dict} />
+      <RecruitPanel project={project} locale={locale} dict={dict} />
+    </div>
+  );
 }

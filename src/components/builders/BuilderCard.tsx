@@ -16,6 +16,15 @@ export function BuilderCard({
   projects: { slug: string; name: string }[];
   locale: Locale;
 }) {
+  // Deep link into Match prefilled with this builder's skills — turns the static
+  // roster into "see the projects that fit me". Multiple stack tags ride as repeated
+  // ?stack= params (the Match page reads them as an array).
+  const matchParams = new URLSearchParams();
+  for (const s of builder.stack) matchParams.append("stack", s);
+  if (builder.timezone) matchParams.set("timezone", builder.timezone);
+  if (builder.availability) matchParams.set("availability", builder.availability);
+  const matchHref = `${localePath(locale, "/match")}?${matchParams.toString()}`;
+
   return (
     <article className="flex h-full flex-col gap-2 rounded-token border border-border bg-surface p-4">
       <div className="flex items-center justify-between gap-2">
@@ -55,11 +64,21 @@ export function BuilderCard({
           <dd className="inline">{builder.timezone || "—"}</dd>
         </div>
       </dl>
-      {builder.linkedin_url ? (
-        <ExternalLink href={builder.linkedin_url} className="text-sm font-medium">
-          {dict.builders.profile}
-        </ExternalLink>
-      ) : null}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+        {builder.linkedin_url ? (
+          <ExternalLink href={builder.linkedin_url} className="text-sm font-medium">
+            {dict.builders.profile}
+          </ExternalLink>
+        ) : null}
+        {builder.stack.length > 0 ? (
+          <Link
+            href={matchHref}
+            className="text-sm font-medium text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+          >
+            {dict.builders.matchCta} →
+          </Link>
+        ) : null}
+      </div>
     </article>
   );
 }

@@ -18,6 +18,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
     { href: localePath(locale, "/communities"), label: dict.nav.communities },
     { href: localePath(locale, "/reference"), label: dict.nav.reference },
     { href: localePath(locale, "/builders"), label: dict.nav.builders },
+    { href: localePath(locale, "/match"), label: dict.nav.match },
   ];
 
   return (
@@ -42,7 +43,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </span>
         </Link>
 
-        {/* Desktop nav — full strip on lg+ (6 links + submit + 2 icons need the width).
+        {/* Desktop nav — full strip on lg+ (7 links + submit + 2 icons need the width).
             Below lg it collapses into MobileNav. */}
         <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
           {navItems.map((item) => (

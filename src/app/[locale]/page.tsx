@@ -94,6 +94,12 @@ export default async function HomePage({
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <Link
+            href={localePath(locale, "/match")}
+            className="rounded-token border border-accent bg-accent/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-accent hover:bg-accent/20"
+          >
+            {dict.home.matchButton} →
+          </Link>
+          <Link
             href={localePath(locale, "/board")}
             className="rounded-token border border-border px-4 py-2 text-sm font-bold uppercase tracking-widest text-text hover:border-primary hover:text-primary"
           >

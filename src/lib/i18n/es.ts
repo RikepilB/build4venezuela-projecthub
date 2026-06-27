@@ -12,6 +12,7 @@ export const es: typeof en = {
     communities: "Comunidades",
     reference: "Referencia",
     builders: "Constructores",
+    match: "Encuentra tu lugar",
     submit: "Publicar proyecto",
     repo: "Repositorio de GitHub",
     menu: "Menú",
@@ -24,6 +25,7 @@ export const es: typeof en = {
     placeholder: "ej. mapa de desaparecidos, directorio de refugios…",
     searchButton: "Buscar",
     browseButton: "Ver el tablero",
+    matchButton: "Encuentra tu lugar",
     whatTitle: "¿Qué es El Umbral?",
     whatBody:
       "Un radar compartido de todos los proyectos de ayuda de Build4Venezuela — para movernos rápido sin duplicar esfuerzos. Descubre qué ya existe, mira qué necesita cada proyecto, forma un equipo y publica los proyectos terminados en Build4Venezuela.",
@@ -214,6 +216,7 @@ export const es: typeof en = {
     empty: "Ningún constructor coincide. Ejecuta el importador para cargar el registro.",
     profile: "Perfil",
     workingOn: "Trabajando en",
+    matchCta: "Proyectos que encajan",
     count: "constructores",
     addCta: "+ Agrégate",
     addTitle: "Agrégate al registro",
@@ -259,6 +262,36 @@ export const es: typeof en = {
     addRepoSuccess: "Repo adjuntado 🎉",
     addRepoInvalid: "Ingresa una URL válida de repo en github.com (https).",
     addRepoError: "No se pudo guardar ahora — intenta de nuevo.",
+  },
+  match: {
+    title: "Encuentra tu lugar",
+    subtitle:
+      "Dinos tus skills y te mostramos los proyectos de ayuda que los necesitan. Patrocinadores: vean dónde aterriza su aporte.",
+    asBuilder: "Quiero construir",
+    asSponsor: "Puedo patrocinar",
+    // builder side
+    yourFit: "Proyectos que encajan contigo",
+    builderPrompt: "Elige tu stack arriba para ver los proyectos que lo necesitan.",
+    builderEmpty: "Ningún proyecto abierto coincide con esos skills aún — amplía los filtros, o publica el tuyo.",
+    publishCta: "Publicar proyecto",
+    count: "coincidencias",
+    // sponsor side
+    sponsorTitle: "Dónde aterriza tu aporte",
+    sponsorLabel: "¿Qué puedes ofrecer?",
+    sponsorPlaceholder: "ej. créditos SMS, hosting, créditos OpenAI",
+    sponsorButton: "Buscar proyectos",
+    sponsorPrompt: "Dinos qué puedes aportar para ver los proyectos que lo necesitan.",
+    sponsorEmpty: "Ningún proyecto lista una necesidad que coincida ahora.",
+    sponsorMatched: "Necesidades que puedes cubrir",
+    // recruit panel (project detail)
+    recruitTitle: "Constructores que encajan con este proyecto",
+    recruitBody: "Talento del roster cuyas skills coinciden con las necesidades abiertas del proyecto.",
+    recruitEmpty: "Ningún constructor del roster coincide con estas necesidades aún.",
+    // reason chips
+    reasonNeed: "Necesita",
+    reasonPriority: "Prioridad alta",
+    reasonSpots: "lugares abiertos",
+    reasonNeedsCovered: "necesidades cubiertas",
   },
   footer: {
     builtBy: "Hecho por",

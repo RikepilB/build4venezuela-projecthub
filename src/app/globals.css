@@ -18,6 +18,7 @@
   --radius-token: var(--b4v-radius);
   --font-sans: var(--font-mono);
   --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 }
 
 /* Cyan eyebrow micro-label — recurring "PROJECT LIST" / "LIVE FEED" tag.

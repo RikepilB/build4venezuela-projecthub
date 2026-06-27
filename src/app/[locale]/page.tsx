@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { projectRepository, builderRepository, membershipRepository } from "@/lib/repository";
 import { landingStats, featuredProjects } from "@/lib/landing/stats";
@@ -16,6 +18,25 @@ import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 // pages (e.g. landing shows 49 builders while the roster already has 57). Keep this
 // in sync with those pages; the repository reads are cheap (~100-250ms).
 export const dynamic = "force-dynamic";
+
+// Home is the canonical entry point and the most-shared URL, so it carries an
+// explicit self-canonical plus en/es hreflang (x-default → en). Other pages
+// inherit metadataBase + OG from the root layout and self-canonicalize; their
+// hreflang pairing is supplied by the sitemap.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  return {
+    alternates: {
+      canonical: `/${typed}`,
+      languages: { en: "/en", es: "/es", "x-default": "/en" },
+    },
+  };
+}
 
 export default async function HomePage({
   params,
@@ -59,7 +80,7 @@ export default async function HomePage({
       {/* Hero — search-first, true to "search before you build". */}
       <section className="flex flex-col gap-7">
         <p className="eyebrow">{dict.appName}</p>
-        <h1 className="max-w-3xl text-4xl font-extrabold uppercase leading-none tracking-tight text-text sm:text-6xl">
+        <h1 className="max-w-3xl text-balance font-display text-4xl font-semibold leading-[1.05] tracking-tight text-text sm:text-6xl">
           {dict.home.title}
         </h1>
         <p className="max-w-xl text-muted">{dict.home.subtitle}</p>
@@ -98,7 +119,7 @@ export default async function HomePage({
         ))}
       </section>
 
-      {/* What is ProjectHub */}
+      {/* What is El Umbral */}
       <section className="flex flex-col gap-4">
         <p className="eyebrow">{dict.home.whatTitle}</p>
         <p className="max-w-2xl text-muted">{dict.home.whatBody}</p>

@@ -1,7 +1,7 @@
 import type { en } from "./en";
 
 export const es: typeof en = {
-  appName: "Build4Venezuela · ProjectHub",
+  appName: "El Umbral · Build4Venezuela",
   tagline: "Busca antes de construir",
   skipToContent: "Saltar al contenido",
   nav: {
@@ -14,6 +14,8 @@ export const es: typeof en = {
     builders: "Constructores",
     submit: "Publicar proyecto",
     repo: "Repositorio de GitHub",
+    menu: "Menú",
+    close: "Cerrar menú",
   },
   home: {
     title: "Antes de construir, busca · Search before you build",
@@ -22,7 +24,7 @@ export const es: typeof en = {
     placeholder: "ej. mapa de desaparecidos, directorio de refugios…",
     searchButton: "Buscar",
     browseButton: "Ver el tablero",
-    whatTitle: "¿Qué es ProjectHub?",
+    whatTitle: "¿Qué es El Umbral?",
     whatBody:
       "Un radar compartido de todos los proyectos de ayuda de Build4Venezuela — para movernos rápido sin duplicar esfuerzos. Descubre qué ya existe, mira qué necesita cada proyecto, forma un equipo y publica los proyectos terminados en Build4Venezuela.",
     howTitle: "Cómo funciona",

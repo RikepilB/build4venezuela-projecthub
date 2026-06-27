@@ -3,60 +3,57 @@ import type { Locale } from "@/lib/types";
 import type { Dictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { PROJECTHUB_REPO_URL } from "@/lib/links";
+import { MobileNav } from "./MobileNav";
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const other: Locale = locale === "en" ? "es" : "en";
+  const langAria = `Switch language to ${other === "en" ? "English" : "Español"}`;
+
+  // One source of truth for the primary routes — the desktop strip (lg+) and the
+  // mobile disclosure both render from this list.
+  const navItems = [
+    { href: localePath(locale, "/board"), label: dict.nav.board },
+    { href: localePath(locale, "/ecosystem"), label: dict.nav.ecosystem },
+    { href: localePath(locale, "/resources"), label: dict.nav.resources },
+    { href: localePath(locale, "/communities"), label: dict.nav.communities },
+    { href: localePath(locale, "/reference"), label: dict.nav.reference },
+    { href: localePath(locale, "/builders"), label: dict.nav.builders },
+  ];
+
   return (
-    <header className="border-b border-border bg-bg">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4">
-        <Link href={localePath(locale)} className="flex items-center gap-2.5">
-          <span aria-hidden className="text-xs leading-none tracking-[0.3em]">
-            <span className="text-primary">★</span>
-            <span className="text-danger">★</span>
-            <span className="text-accent">★</span>
+    <header className="relative border-b border-border bg-bg">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4">
+        <Link href={localePath(locale)} className="group flex items-center gap-2.5">
+          {/* Doorway mark — a lit threshold: peaked frame in ivory, the panel
+              glowing amber. The one memorable element of the El Umbral mark. */}
+          <span aria-hidden className="text-text">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" className="block">
+              <path
+                d="M4 22V8.2L12 3l8 5.2V22"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+              <rect x="9.6" y="13" width="4.8" height="9" rx="0.5" className="fill-primary" />
+            </svg>
           </span>
-          <span className="font-extrabold uppercase tracking-tight text-text">
-            Build4Venezuela <span className="text-muted">/ Hub</span>
+          <span className="font-display text-xl font-semibold leading-none tracking-tight text-text">
+            El Umbral
           </span>
         </Link>
 
-        <nav className="flex items-center gap-1 text-xs sm:gap-2" aria-label="Primary">
-          <Link
-            href={localePath(locale, "/board")}
-            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-          >
-            {dict.nav.board}
-          </Link>
-          <Link
-            href={localePath(locale, "/ecosystem")}
-            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-          >
-            {dict.nav.ecosystem}
-          </Link>
-          <Link
-            href={localePath(locale, "/resources")}
-            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-          >
-            {dict.nav.resources}
-          </Link>
-          <Link
-            href={localePath(locale, "/communities")}
-            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-          >
-            {dict.nav.communities}
-          </Link>
-          <Link
-            href={localePath(locale, "/reference")}
-            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-          >
-            {dict.nav.reference}
-          </Link>
-          <Link
-            href={localePath(locale, "/builders")}
-            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-          >
-            {dict.nav.builders}
-          </Link>
+        {/* Desktop nav — full strip on lg+ (6 links + submit + 2 icons need the width).
+            Below lg it collapses into MobileNav. */}
+        <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
+            >
+              {item.label}
+            </Link>
+          ))}
           <Link
             href={localePath(locale, "/projects/new")}
             className="rounded-token bg-primary px-3 py-2 font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
@@ -80,11 +77,21 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <Link
             href={localePath(other)}
             className="rounded-token border border-border px-2 py-2 font-bold uppercase tracking-widest text-muted hover:text-text"
-            aria-label={`Switch language to ${other === "en" ? "English" : "Español"}`}
+            aria-label={langAria}
           >
             {other}
           </Link>
         </nav>
+
+        {/* Phone disclosure — same routes, collapsed behind a hamburger. */}
+        <MobileNav
+          items={navItems}
+          submit={{ href: localePath(locale, "/projects/new"), label: dict.nav.submit }}
+          repo={{ href: PROJECTHUB_REPO_URL, label: dict.nav.repo }}
+          lang={{ href: localePath(other), label: other, aria: langAria }}
+          menuLabel={dict.nav.menu}
+          closeLabel={dict.nav.close}
+        />
       </div>
     </header>
   );

@@ -9,6 +9,8 @@ export const es: typeof en = {
     board: "Tablero",
     ecosystem: "Ecosistema",
     resources: "Recursos",
+    communities: "Comunidades",
+    reference: "Referencia",
     builders: "Constructores",
     submit: "Publicar proyecto",
     repo: "Repositorio de GitHub",
@@ -48,6 +50,17 @@ export const es: typeof en = {
     // ecosystem teaser
     ecosystemBody: "Herramientas de ayuda que puedes usar ahora mismo — no hace falta reconstruirlas.",
     ecosystemCta: "Explorar el ecosistema",
+    // crisis response hubs
+    hubsEyebrow: "Hubs de respuesta",
+    hubsTitle: "Empieza desde un hub",
+    hubsBody: "Más allá de este tablero, estos hubs agregan la respuesta más amplia — el hackathon mismo y un hub de emergencia construido por la ciudadanía.",
+    hackathonName: "Build4Venezuela",
+    hackathonBody: "La casa del hackathon: proyectos oficiales, Discord y cómo enviar tu MVP.",
+    hackathonCta: "Abrir el hackathon",
+    responseHubName: "VZLA Response Hub",
+    responseHubBody: "Hub ciudadano de emergencia: busca personas, mapas de daños, refugios, donaciones verificadas y líneas oficiales.",
+    responseHubOffers: "Buscar personas · Mapa de daños · Refugios · Donaciones verificadas · Líneas",
+    responseHubCta: "Abrir el hub de respuesta",
     // final CTA band
     ctaTitle: "¿Tienes una idea? Busca primero, luego publica.",
     ctaBody: "Treinta segundos de búsqueda ahorran semanas de trabajo duplicado. Si aún no existe, publícala y forma tu equipo.",
@@ -111,6 +124,38 @@ export const es: typeof en = {
       psychosocial: "Apoyo psicosocial",
       telecom: "Telecomunicaciones",
       other: "Otros",
+    },
+  },
+  communities: {
+    title: "Comunidades",
+    subtitle:
+      "Espacios públicos y duraderos para sumarte y coordinar — servidores de Discord, el hub del hackathon y directorios de Telegram. Solo enlace; no listamos invitaciones privadas de un solo uso.",
+    visit: "Abrir",
+    count: "comunidades",
+    empty: "Aún no hay comunidades listadas.",
+    types: {
+      discord: "Discord",
+      whatsapp: "WhatsApp",
+      telegram: "Telegram",
+      web: "Web",
+      other: "Otros",
+    },
+  },
+  reference: {
+    title: "Proyectos de referencia",
+    subtitle:
+      "Herramientas de código abierto de respuesta a desastres que vale la pena estudiar o reutilizar antes de construir desde cero — referentes globales, no proyectos del hackathon. Mira aquí primero.",
+    visit: "Ver repositorio",
+    count: "herramientas",
+    license: "Licencia",
+    empty: "Aún no hay proyectos de referencia listados.",
+    categories: {
+      comms: "Comunicaciones off-grid",
+      ingestion: "Ingesta y mapeo",
+      coordination: "Coordinación y logística",
+      clinical: "Clínico y telesalud",
+      modeling: "Modelado y drones",
+      geolocation: "Geolocalización y desaparecidos",
     },
   },
   radar: {

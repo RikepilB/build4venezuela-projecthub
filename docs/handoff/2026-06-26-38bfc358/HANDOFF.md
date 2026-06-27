@@ -27,3 +27,33 @@ work to the GitHub repo. (Continuation of the optimization + Ecosystem-split ses
 ## Files in this folder
 - `HANDOFF.md` — this digest
 - `snapshot-201348.md` — PreCompact auto-snapshot
+
+---
+
+## Continuation — 2026-06-27 — repo-link feature + API/perf design
+
+(Same session folder `38bfc358`, continued across compactions well past the PR #8 work above.)
+
+### What was done
+- **PR #14 (`88e5a49`)** merged + live: shared client `FilterForm`, landing `force-dynamic` stats sync,
+  `nul`/Turbopack lint-hook guard. (Co-authored with a parallel session; reviewed + shipped here.)
+- **PR #15 (`d5d7361`)** merged + live: header GitHub icon + footer "Contribute" link → public repo.
+  `PROJECTHUB_REPO_URL` in `src/lib/links.ts`; tokens-only inline Octocat SVG matching the lang-switcher
+  button; EN `nav.repo`/`footer.contribute` + ES parity (compiler-enforced). tsc/eslint clean, vitest **84/84**,
+  `next build` 17 routes clean; CodeRabbit pass; verified live EN+ES.
+- **API + perf brainstorm (design only, no code):** mapped current architecture — no API routes; Server
+  Component → repository → `data/*.json` (~114KB); only `/[locale]` is `force-dynamic`; board/builders render
+  dynamic per-request with 2 Redis round-trips each. User decided: read-only public API + instant-static + live
+  overlay. Recommended **Approach A** — votes/stats → `/api/v1` client overlay makes pages static + Redis-free,
+  same endpoints serve as the public contract. Pending user approval before design doc → spec → writing-plans.
+
+### Files changed (this continuation)
+- PR #15: `src/lib/links.ts`, `src/components/layout/{Header,Footer}.tsx`, `src/lib/i18n/{en,es}.ts`.
+- PR #14: `.claude/settings.json`, `.gitignore`, new `src/components/ui/FilterForm.tsx`,
+  `src/components/board/FilterBar.tsx`, `src/app/[locale]/page.tsx`, `src/app/[locale]/builders/page.tsx`.
+- API/perf work: none yet (brainstorm stage).
+
+### Next steps
+- Await Approach-A approval → write `docs/superpowers/specs/2026-06-27-public-api-and-instant-pages-design.md`
+  → spec self-review → writing-plans skill.
+- Still open (user): provision `UPSTASH_REDIS_REST_URL` + `_TOKEN` in Vercel for durable votes/memberships/self-adds.

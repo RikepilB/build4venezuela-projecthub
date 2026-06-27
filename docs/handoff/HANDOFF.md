@@ -21,7 +21,43 @@ session. Solved tasks → one concrete one-liner (file / PR / command).
 
 ---
 
-## Current state — filter reliability + perceived-perf + landing-stats sync (2026-06-26, shipping to main+Vercel)
+## Current state — communities + reference + sheet data refresh (shipping) · PR #14/#15 done (2026-06-27)
+
+**Live (public, EN+ES):** https://projecthub-beta-blond.vercel.app — both locales 200.
+
+**Shipping now (this turn):** the parallel **data-update** session's completed, verified feature set —
+new `/communities` + `/reference` surfaces, +13 Sheet projects, −11 junk external repos, +9 resources,
+the ecosystem `isLaunchedProject` rule (Mission VE on board+ecosystem; the ~74 auto-imported "live" repos
+stay out), and a landing "Crisis response hubs" section (Build4Venezuela + VZLA Response Hub). Re-verified
+HERE before ship: tsc clean · eslint clean · **vitest 92/92** · `next build` clean (21 routes,
+`/communities` + `/reference` SSG ×2 locales). To `main` + Vercel via PR (branch
+`feat/communities-reference-data`). Full digest: `docs/handoff/2026-06-27-data-update/HANDOFF.md`.
+
+**Two PRs already shipped earlier this session:**
+- **PR #14 (`88e5a49`)** — shared client `FilterForm` + landing `force-dynamic` stats sync + `nul`/Turbopack
+  lint-hook guard. (Full detail in the demoted *Prior* section directly below.)
+- **PR #15 (`d5d7361`)** — header GitHub icon + footer "contribute" link to the public repo
+  (`PROJECTHUB_REPO_URL` in `src/lib/links.ts`; tokens-only inline Octocat SVG matching the lang-switcher;
+  EN `nav.repo`/`footer.contribute` + ES parity). All checks green incl CodeRabbit; verified live both locales.
+
+**In flight — design/brainstorm only, NO code yet:** "APIs + make it fast/light/instant". Decided with the user:
+read-only **public `/api/v1`** + **instant-static pages with a client vote/stats overlay**. The convergence: move
+votes+stats to `GET /api/v1/{votes,stats}` (client-fetched) → project/builder renders become pure-static,
+CDN-cacheable, Redis-free; the same volatile endpoints are the public contract's live tier. Recommended
+**Approach A ("Overlay")**. Two cheap wins folded in: (1) stop loading the 64KB `external-projects.seed.json` on
+board/landing (read+Zod'd only to filter out via `isEcosystemProject`); (2) `"use cache"` the seed load+validation
+(bust on deploy). Memberships stay OUT of the public API; writes stay internal Server Actions. **Awaiting user
+approval of Approach A** before writing the design doc (`docs/superpowers/specs/…`) → spec → writing-plans.
+
+**Architecture facts (verified this session):** no API routes exist yet; all data flows Server Component →
+`src/lib/repository` → `data/*.json` (~114KB total; `external-projects` 64KB is the whale). Only `/[locale]` is
+`force-dynamic`; board/builders render dynamic per-request (no `revalidate`), re-reading + re-Zod-validating JSON +
+2 Redis round-trips (`readVotes` + `readRepoOverrides`) each load. `next.config.ts` already has `reactCompiler: true`
++ baseline security headers (CSP `connect-src 'self'` — same-origin overlay fetch is fine).
+
+---
+
+### Prior — filter reliability + perceived-perf + landing-stats sync (2026-06-26, shipped `88e5a49` / PR #14)
 
 **Live (public, EN+ES):** https://projecthub-beta-blond.vercel.app — both locales return 200.
 Committed `86564af` on `fix/filter-reliability` (6 source/config files); shipping to `main` + Vercel
@@ -191,13 +227,14 @@ provision Upstash for durable votes; repo hygiene (untrack harness files) → si
 
 ## Session index (append-only, newest first)
 
+- 2026-06-27 — [38bfc358 (cont.)](2026-06-26-38bfc358/HANDOFF.md) — cont. past PR #8: PR #14 (`88e5a49`) FilterForm/force-dynamic/nul-guard + PR #15 (`d5d7361`) header+footer repo link, both merged+live; then API+perf design brainstorm (read-only `/api/v1` + static+vote-overlay, Approach A pending approval).
 - 2026-06-26 — [190568c7](2026-06-26-190568c7/HANDOFF.md) — filter reliability (`nul`/Turbopack hook fix) + client `FilterForm` auto-submit + landing `force-dynamic` stats sync; 84 tests, shipped `86564af` → PR.
 - 2026-06-26 — [38bfc358](2026-06-26-38bfc358/HANDOFF.md) — test · deploy · post: tsc/57 tests/build green, prod redeploy (`dpl_GLbg…`), PR #8 squash-merged to main, CI green.
 - 2026-06-26 — [projecthub-p0-mvp](2026-06-26-projecthub-p0-mvp/HANDOFF.md) — scaffold + P0 MVP + 3 data importers + ScoutLane security pass; build green, E2E verified.
 
 <!-- compact-handoff:auto-snapshot -->
-<!-- Latest auto-snapshot: docs/handoff/2026-06-26-190568c7/snapshot-235517.md -->
-## Latest auto snapshot — 2026-06-26T23:55:17.194Z
+<!-- Latest auto-snapshot: docs/handoff/2026-06-26-190568c7/snapshot-052712.md -->
+## Latest auto snapshot — 2026-06-27T05:27:12.140Z
 - Session folder: `docs/handoff/2026-06-26-190568c7/`
-- Snapshot file: `docs/handoff/2026-06-26-190568c7/snapshot-235517.md`
+- Snapshot file: `docs/handoff/2026-06-26-190568c7/snapshot-052712.md`
 - Branch: main

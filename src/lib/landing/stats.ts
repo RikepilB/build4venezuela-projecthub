@@ -1,5 +1,5 @@
 import type { Project, Builder } from "../types";
-import { isEcosystemProject } from "../ecosystem";
+import { isEcosystemProject, ecosystemListing } from "../ecosystem";
 
 // Headline numbers for the landing page. Computed from the live repository reads so
 // the page shows real counts, not fixtures. Ecosystem (live, no-repo) sites are
@@ -24,7 +24,11 @@ export function landingStats(projects: Project[], builders: Builder[]): LandingS
   return {
     projects: board.length,
     builders: builders.length,
-    live: projects.length - board.length,
+    // Match what /ecosystem actually renders (repo-less sites + launched projects) so
+    // the headline "live" count never drifts from the page it links to. A launched
+    // project (e.g. Mission VE) is counted both as a board project and as live — it
+    // genuinely appears on both surfaces.
+    live: ecosystemListing(projects).length,
     needs: board.filter(hasOpenNeed).length,
   };
 }

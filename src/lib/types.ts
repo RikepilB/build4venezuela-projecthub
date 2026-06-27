@@ -15,6 +15,10 @@ import type {
   Priority,
   ResourceType,
   ResourceSchema,
+  CommunityType,
+  CommunitySchema,
+  ReferenceCategory,
+  ReferenceProjectSchema,
 } from "./schemas";
 
 export type Locale = z.infer<typeof Locale>;
@@ -32,6 +36,10 @@ export type Membership = z.infer<typeof MembershipSchema>;
 export type MembershipInput = z.infer<typeof MembershipInputSchema>;
 export type ResourceType = z.infer<typeof ResourceType>;
 export type Resource = z.infer<typeof ResourceSchema>;
+export type CommunityType = z.infer<typeof CommunityType>;
+export type Community = z.infer<typeof CommunitySchema>;
+export type ReferenceCategory = z.infer<typeof ReferenceCategory>;
+export type ReferenceProject = z.infer<typeof ReferenceProjectSchema>;
 
 export type ProjectFilter = {
   category?: string;

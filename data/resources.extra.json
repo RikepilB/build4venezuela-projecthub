@@ -8,5 +8,95 @@
     "languages": ["es"],
     "verified_source": "Comunidad",
     "active": true
+  },
+  {
+    "id": "res-vzla-response-hub",
+    "name": "VZLA Response Hub",
+    "type": "resources",
+    "url": "https://www.vzlaresponsehub.org",
+    "summary": "Hub integral de respuesta: buscador de personas, mapa de daños estructurales, refugios, donaciones verificadas, líneas de emergencia oficiales y guías de qué hacer. ES/EN.",
+    "languages": ["es", "en"],
+    "verified_source": "Young AI Leaders Hub",
+    "active": true
+  },
+  {
+    "id": "res-terremoto-venezuela-com",
+    "name": "Terremoto Venezuela",
+    "type": "other",
+    "url": "https://terremotovenezuela.com",
+    "summary": "Reporte ciudadano de daños materiales y estructurales tras el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-pacientes-terremoto-vzla",
+    "name": "Pacientes Terremoto VZLA",
+    "type": "search",
+    "url": "https://pacientesterremotovzla.lovable.app",
+    "summary": "Búsqueda de personas ingresadas en hospitales tras el terremoto. Solo enlace, sin scraping ni copia de datos.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-hospitales-en-venezuela",
+    "name": "Hospitales en Venezuela",
+    "type": "search",
+    "url": "https://hospitalesenvenezuela.com",
+    "summary": "Listas de admisión hospitalaria digitalizadas, buscables por nombre/cédula. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-familias-hospital",
+    "name": "Familias Hospital",
+    "type": "search",
+    "url": "https://familias-hospital.vercel.app",
+    "summary": "Conecta a familias con personas ingresadas en hospitales tras el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-tilores-venezuela-te-busca",
+    "name": "Tilores · Venezuela Te Busca",
+    "type": "dev",
+    "url": "https://tilores.io/venezuela-te-busca",
+    "summary": "Resolución de identidad / deduplicación de registros sobre la base de Venezuela Te Busca, para reducir duplicados en las búsquedas.",
+    "languages": ["es", "en"],
+    "verified_source": "Tilores",
+    "active": true
+  },
+  {
+    "id": "res-terremoto-hazlohoy",
+    "name": "Terremoto · Hazlo Hoy",
+    "type": "resources",
+    "url": "https://terremoto.hazlohoy.org",
+    "summary": "Iniciativa ciudadana de coordinación de ayuda para la respuesta al terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Hazlo Hoy",
+    "active": true
+  },
+  {
+    "id": "res-ayuda-en-camino",
+    "name": "Ayuda en Camino",
+    "type": "resources",
+    "url": "https://ayudaencamino.com",
+    "summary": "Plataforma de coordinación de ayuda humanitaria para personas afectadas por el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-fondo-emergencia-academiasucab",
+    "name": "Fondo Emergencia Sismo VZLA 2026 (Academia SUCAB)",
+    "type": "donation",
+    "url": "https://btc.academiasucab.com/fondo-emergencia-sismo-vzla-2026",
+    "summary": "Fondo de emergencia para canalizar donaciones hacia la respuesta al sismo de 2026.",
+    "languages": ["es"],
+    "verified_source": "Academia SUCAB",
+    "active": true
   }
 ]

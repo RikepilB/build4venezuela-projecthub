@@ -40,6 +40,18 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             {dict.nav.resources}
           </Link>
           <Link
+            href={localePath(locale, "/communities")}
+            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
+          >
+            {dict.nav.communities}
+          </Link>
+          <Link
+            href={localePath(locale, "/reference")}
+            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
+          >
+            {dict.nav.reference}
+          </Link>
+          <Link
             href={localePath(locale, "/builders")}
             className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
           >

@@ -3,6 +3,11 @@
 export const BUILD4VENEZUELA_PROJECTS_URL = "https://build4venezuela.com/projects";
 export const BUILD4VENEZUELA_URL = "https://build4venezuela.com";
 
+// VZLA Response Hub — a citizen-built umbrella emergency hub (find people, damage maps,
+// shelters, verified donations, official hotlines). Referenced from the landing + listed
+// in /resources and /communities. Link-out only.
+export const VZLA_RESPONSE_HUB_URL = "https://www.vzlaresponsehub.org";
+
 // Crafter Station — dev collective behind several relief projects in this hub
 // (e.g. mission-ve, github.com/crafter-station/*). Footer credit links here.
 export const CRAFTER_STATION_URL = "https://github.com/crafter-station";

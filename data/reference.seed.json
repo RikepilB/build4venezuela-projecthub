@@ -1,0 +1,218 @@
+[
+  {
+    "id": "ref-clusterduck-protocol",
+    "name": "ClusterDuck Protocol",
+    "category": "comms",
+    "repo_url": "https://github.com/Project-Owl/ClusterDuck-Protocol",
+    "summary": "Firmware de red mesh móvil ad-hoc sobre LoRa de baja potencia para telemetría off-grid en microcontroladores baratos (ESP32, Heltec, TTGO).",
+    "stack": ["C++", "Arduino", "PlatformIO", "LoRa", "ESP32"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-disaster-radio",
+    "name": "disaster.radio",
+    "category": "comms",
+    "repo_url": "https://github.com/sudomesh/disaster-radio",
+    "summary": "Nodos de comunicación off-grid alimentados por energía solar que hospedan un hotspot Wi-Fi local y un chat web sin necesidad de internet ni app.",
+    "stack": ["C++", "ESP32", "WebSockets", "LoRa"],
+    "license": "GPL-3.0"
+  },
+  {
+    "id": "ref-duckapp",
+    "name": "DuckApp",
+    "category": "comms",
+    "repo_url": "https://github.com/Project-Owl/DuckApp",
+    "summary": "App Android que se conecta por Bluetooth LE a los nodos Duck para enviar formularios y mensajes off-grid a través de la mesh.",
+    "stack": ["Kotlin", "Android", "Bluetooth LE"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-deprem-yardim-backend",
+    "name": "deprem-yardim-backend",
+    "category": "ingestion",
+    "repo_url": "https://github.com/acikyazilimagi/deprem-yardim-backend",
+    "summary": "Backend de alto throughput (terremoto Turquía 2023) que gestiona reportes geoetiquetados y convierte gritos de auxilio en imágenes a texto estructurado.",
+    "stack": ["Python", "Django", "PostgreSQL", "Redis"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-deprem-yardim-frontend",
+    "name": "deprem-yardim-frontend",
+    "category": "ingestion",
+    "repo_url": "https://github.com/acikyazilimagi/deprem-yardim-frontend",
+    "summary": "Mapa interactivo que renderiza en tiempo real los pedidos de ayuda ciudadanos y los puntos de distribución.",
+    "stack": ["Next.js", "React", "Leaflet"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-afet-org",
+    "name": "afet-org",
+    "category": "ingestion",
+    "repo_url": "https://github.com/acikyazilimagi/afet-org",
+    "summary": "Pipeline de datos y cola de mensajes que ingiere y normaliza flujos crudos de bots sociales (Telegram, WhatsApp, X) a gran escala.",
+    "stack": ["Go", "Fiber", "Kafka", "Postgres"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-rescuekerala",
+    "name": "rescuekerala",
+    "category": "ingestion",
+    "repo_url": "https://github.com/raksha-life/rescuekerala",
+    "summary": "Portal masivo de rastreo de pedidos de rescate (inundaciones de Kerala) con replicación de base de datos para evitar caídas bajo carga.",
+    "stack": ["Python", "Django", "PostGIS", "Redis"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-crisis-cleanup",
+    "name": "Crisis Cleanup",
+    "category": "coordination",
+    "repo_url": "https://github.com/CrisisCleanup",
+    "summary": "Plataforma colaborativa multi-organización para registrar, reclamar y coordinar órdenes de trabajo de limpieza y recuperación, evitando esfuerzos duplicados.",
+    "stack": ["Vue 3", "TypeScript", "NestJS", "Postgres"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-hotosm-tasking-manager",
+    "name": "HOT Tasking Manager",
+    "category": "coordination",
+    "repo_url": "https://github.com/hotosm/tasking-manager",
+    "summary": "Sistema de coordinación en grilla que divide una zona de desastre en sectores para que mappers globales mapeen sin solaparse (Humanitarian OpenStreetMap).",
+    "stack": ["Python", "React", "PostgreSQL", "Docker"],
+    "license": "AGPL-3.0"
+  },
+  {
+    "id": "ref-kobotoolbox",
+    "name": "KoBoToolbox",
+    "category": "coordination",
+    "repo_url": "https://github.com/kobotoolbox/kpi",
+    "summary": "Sistema integral de recolección de datos de campo con formularios totalmente offline para encuestas en zonas remotas.",
+    "stack": ["Python", "Django", "React", "PostgreSQL"],
+    "license": "AGPL-3.0"
+  },
+  {
+    "id": "ref-odk-build",
+    "name": "ODK Build",
+    "category": "coordination",
+    "repo_url": "https://github.com/getodk/build",
+    "summary": "Diseñador de formularios drag-and-drop que crea XForms estructurados compatibles con herramientas robustas de recolección de datos.",
+    "stack": ["JavaScript", "Node.js"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-ushahidi-platform",
+    "name": "Ushahidi Platform",
+    "category": "coordination",
+    "repo_url": "https://github.com/ushahidi/platform",
+    "summary": "Plataforma de mapeo colaborativo de datos de crisis: mapea reportes ciudadanos en tiempo real vía SMS, web y correo.",
+    "stack": ["PHP", "Leaflet", "MySQL"],
+    "license": "AGPL-3.0"
+  },
+  {
+    "id": "ref-sahana-eden",
+    "name": "Sahana Eden",
+    "category": "coordination",
+    "repo_url": "https://github.com/sahana/eden",
+    "summary": "Framework de desarrollo rápido para diseñar y desplegar registros de voluntarios y bases de datos de campamentos de crisis.",
+    "stack": ["Python", "Web2py", "Leaflet"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-primero",
+    "name": "Primero",
+    "category": "coordination",
+    "repo_url": "https://github.com/primeroIMS/primero",
+    "summary": "Plataforma de gestión de casos para rastrear menores no acompañados y sobrevivientes vulnerables, con control de acceso estricto por roles (usada por la ONU).",
+    "stack": ["Ruby on Rails", "PostgreSQL"],
+    "license": "AGPL-3.0"
+  },
+  {
+    "id": "ref-openaerialmap",
+    "name": "OpenAerialMap",
+    "category": "coordination",
+    "repo_url": "https://github.com/hotosm/OpenAerialMap",
+    "summary": "Repositorio abierto para compartir imágenes de drones y satélite post-desastre directamente con plataformas de mapeo.",
+    "stack": ["Node.js", "Leaflet", "AWS"],
+    "license": "BSD-2-Clause"
+  },
+  {
+    "id": "ref-fair",
+    "name": "fAIr",
+    "category": "coordination",
+    "repo_url": "https://github.com/hotosm/fAIr",
+    "summary": "Mapeo asistido por IA que genera huellas de edificios pre-desastre a partir de imágenes satelitales crudas.",
+    "stack": ["Python", "PyTorch", "GDAL"],
+    "license": "GPL-3.0"
+  },
+  {
+    "id": "ref-care",
+    "name": "Care (Open Healthcare Network)",
+    "category": "clinical",
+    "repo_url": "https://github.com/ohcnetwork/care",
+    "summary": "Sistema de capacidad hospitalaria multi-centro: coordina turnos de pacientes, camas UCI, monitores de oxígeno y soporte de Tele-UCI.",
+    "stack": ["Python", "Django", "PostgreSQL", "Redis"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-care-fe",
+    "name": "care_fe",
+    "category": "clinical",
+    "repo_url": "https://github.com/ohcnetwork/care_fe",
+    "summary": "Frontend web responsivo para Care con render de video Tele-UCI y monitoreo en vivo de signos vitales en hospitales rurales.",
+    "stack": ["TypeScript", "React", "TailwindCSS"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-hospitalrun-frontend",
+    "name": "HospitalRun",
+    "category": "clinical",
+    "repo_url": "https://github.com/HospitalRun/hospitalrun-frontend",
+    "summary": "Interfaz clínica offline-first sobre CouchDB para ingreso de pacientes y registros médicos sin conexión a internet.",
+    "stack": ["TypeScript", "React", "CouchDB"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-inasafe",
+    "name": "InaSAFE",
+    "category": "modeling",
+    "repo_url": "https://github.com/inasafe/inasafe",
+    "summary": "Plugin de QGIS que calcula escenarios de impacto de desastres naturales sobre poblaciones y estructuras críticas para planificación pre-desastre.",
+    "stack": ["Python", "QGIS"],
+    "license": "GPL-3.0"
+  },
+  {
+    "id": "ref-orcus",
+    "name": "ORCUS",
+    "category": "modeling",
+    "repo_url": "https://github.com/koesan/ORCUS",
+    "summary": "Sistema de enjambre autónomo de drones para vigilancia de área: detección de objetivos por IA, localización píxel-a-GPS y coordinación de tareas.",
+    "stack": ["C++", "Python", "ROS", "DBSCAN"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-personfinder",
+    "name": "Google Person Finder",
+    "category": "geolocation",
+    "repo_url": "https://github.com/google/personfinder",
+    "summary": "Registro relacional de personas desaparecidas que permite consultar, registrar y actualizar reportes con federación multi-portal vía esquemas estándar (PFIF).",
+    "stack": ["Python", "App Engine"],
+    "license": "Apache-2.0"
+  },
+  {
+    "id": "ref-build4venezuela",
+    "name": "build4venezuela",
+    "category": "geolocation",
+    "repo_url": "https://github.com/crafter-station/build4venezuela",
+    "summary": "Portal de coordinación del hackathon: gestiona envíos de desarrolladores, agenda de voluntarios y traducciones de la respuesta al terremoto.",
+    "stack": ["Next.js 16", "React 19", "Supabase", "Clerk"],
+    "license": "MIT"
+  },
+  {
+    "id": "ref-mission-ve",
+    "name": "mission-ve",
+    "category": "geolocation",
+    "repo_url": "https://github.com/crafter-station/mission-ve",
+    "summary": "Herramienta de Crafter Station para rastrear daños de infraestructura física, grupos de voluntarios locales y disponibilidad de equipos.",
+    "stack": ["TypeScript", "React", "Node.js"],
+    "license": "MIT"
+  }
+]

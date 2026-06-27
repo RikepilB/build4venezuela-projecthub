@@ -42,15 +42,15 @@ export const en = {
     statBuilders: "builders",
     statLive: "live tools",
     statNeeds: "open needs",
-    // featured projects
-    featuredTitle: "Live on the board",
-    featuredBody: "The team's top-voted relief projects right now. Jump into one — or search for yours first.",
+    // featured projects (most-voted live feed)
+    featuredTitle: "Live feed · most voted",
+    featuredBody: "The three most-voted relief projects right now. Jump into one — or search for yours first.",
     featuredCta: "See all projects",
     // builders teaser
     buildersBody: "Designers, devs and translators from the hackathon roster — filter by stack, availability and timezone.",
     buildersCta: "Browse builders",
     // ecosystem teaser
-    ecosystemBody: "Relief tools you can use right now — no need to rebuild them.",
+    ecosystemBody: "Shipped, live tools you can use right now — no need to rebuild them.",
     ecosystemCta: "Explore the ecosystem",
     // crisis response hubs
     hubsEyebrow: "Crisis response hubs",
@@ -103,11 +103,12 @@ export const en = {
     calloutLink: "Build4Venezuela projects",
   },
   ecosystem: {
-    title: "Ecosystem",
+    title: "Shipped & live",
     subtitle:
-      "Existing relief projects and tools you can use or reference right now — live sites without an open repo to join. For hackathon projects to build on, see the board.",
-    visit: "Visit site",
-    empty: "No existing projects listed yet.",
+      "Relief projects that shipped — live and usable right now. Real tools built for the earthquake response that you can open and use; no need to rebuild them. To build on a project instead, see the board.",
+    visit: "Visit live site",
+    live: "Live",
+    empty: "No shipped projects listed yet.",
   },
   resources: {
     title: "Verified resources",

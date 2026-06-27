@@ -44,15 +44,15 @@ export const es: typeof en = {
     statBuilders: "constructores",
     statLive: "herramientas activas",
     statNeeds: "necesidades abiertas",
-    // featured projects
-    featuredTitle: "Activos en el tablero",
-    featuredBody: "Los proyectos de ayuda más votados por el equipo ahora mismo. Únete a uno — o busca el tuyo primero.",
+    // featured projects (feed en vivo, más votados)
+    featuredTitle: "Feed en vivo · más votados",
+    featuredBody: "Los tres proyectos de ayuda más votados ahora mismo. Únete a uno — o busca el tuyo primero.",
     featuredCta: "Ver todos los proyectos",
     // builders teaser
     buildersBody: "Diseñadores, devs y traductores del roster del hackathon — filtra por stack, disponibilidad y zona horaria.",
     buildersCta: "Ver constructores",
     // ecosystem teaser
-    ecosystemBody: "Herramientas de ayuda que puedes usar ahora mismo — no hace falta reconstruirlas.",
+    ecosystemBody: "Herramientas lanzadas y en vivo que puedes usar ahora mismo — no hace falta reconstruirlas.",
     ecosystemCta: "Explorar el ecosistema",
     // crisis response hubs
     hubsEyebrow: "Hubs de respuesta",
@@ -105,11 +105,12 @@ export const es: typeof en = {
     calloutLink: "Proyectos de Build4Venezuela",
   },
   ecosystem: {
-    title: "Ecosistema",
+    title: "Lanzados y en vivo",
     subtitle:
-      "Proyectos y herramientas de ayuda que ya existen y puedes usar o consultar ahora — sitios en vivo sin un repo abierto para unirse. Para proyectos del hackathon en los que construir, ve al tablero.",
-    visit: "Visitar sitio",
-    empty: "Aún no hay proyectos existentes listados.",
+      "Proyectos de ayuda que ya se lanzaron — en vivo y listos para usar ahora mismo. Herramientas reales construidas para la respuesta al terremoto que puedes abrir y usar; no hace falta reconstruirlas. Para construir sobre un proyecto, ve al tablero.",
+    visit: "Visitar sitio en vivo",
+    live: "En vivo",
+    empty: "Aún no hay proyectos lanzados listados.",
   },
   resources: {
     title: "Recursos verificados",

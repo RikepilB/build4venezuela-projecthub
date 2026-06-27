@@ -4,7 +4,7 @@ import { isLocale, getDictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { projectRepository, membershipRepository } from "@/lib/repository";
 import { applyFilter } from "@/lib/repository/projects.repo";
-import { isEcosystemProject } from "@/lib/ecosystem";
+import { boardListing } from "@/lib/ecosystem";
 import { FilterBar } from "@/components/board/FilterBar";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { RadarStats } from "@/components/board/RadarStats";
@@ -64,14 +64,14 @@ export default async function BoardPage({
   const showAll = one(sp.view) === "all" || hasFilter;
 
   // One ranked read; derive the filtered view in-memory (applyFilter is pure and
-  // order-preserving) so RadarStats and the grid share a single dataset. Existing
-  // live sites (no repo) live on /ecosystem — the board is for hackathon repos.
-  // Memberships load in parallel → "people assigned" count per card.
+  // order-preserving) so RadarStats and the grid share a single dataset. Repo-less
+  // initiative sites live on /ecosystem; the board carries buildable repos PLUS
+  // shipped/live projects (boardListing). Memberships → "people assigned" per card.
   const [ranked, memberships] = await Promise.all([
     projectRepository.list(),
     membershipRepository.list(),
   ]);
-  const all = ranked.filter((p) => !isEcosystemProject(p));
+  const all = boardListing(ranked);
   const filtered = applyFilter(all, filter);
   const projects = showAll ? filtered : filtered.filter((p) => p.priority === "high");
   const highCount = all.filter((p) => p.priority === "high").length;

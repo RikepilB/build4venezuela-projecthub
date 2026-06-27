@@ -1,5 +1,5 @@
 import type { Project, Builder } from "../types";
-import { isEcosystemProject, ecosystemListing } from "../ecosystem";
+import { isEcosystemProject, ecosystemListing, boardListing } from "../ecosystem";
 
 // Headline numbers for the landing page. Computed from the live repository reads so
 // the page shows real counts, not fixtures. Ecosystem (live, no-repo) sites are
@@ -20,7 +20,7 @@ function hasOpenNeed(p: Project): boolean {
 }
 
 export function landingStats(projects: Project[], builders: Builder[]): LandingStats {
-  const board = projects.filter((p) => !isEcosystemProject(p));
+  const board = boardListing(projects);
   return {
     projects: board.length,
     builders: builders.length,

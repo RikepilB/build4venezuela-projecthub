@@ -9,7 +9,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const other: Locale = locale === "en" ? "es" : "en";
   const langAria = `Switch language to ${other === "en" ? "English" : "Español"}`;
 
-  // One source of truth for the primary routes — the desktop strip (md+) and the
+  // One source of truth for the primary routes — the desktop strip (lg+) and the
   // mobile disclosure both render from this list.
   const navItems = [
     { href: localePath(locale, "/board"), label: dict.nav.board },
@@ -42,8 +42,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </span>
         </Link>
 
-        {/* Desktop nav — full strip on md+. Below md it collapses into MobileNav. */}
-        <nav className="hidden items-center gap-1 text-xs md:flex lg:gap-2" aria-label="Primary">
+        {/* Desktop nav — full strip on lg+ (6 links + submit + 2 icons need the width).
+            Below lg it collapses into MobileNav. */}
+        <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
           {navItems.map((item) => (
             <Link
               key={item.href}

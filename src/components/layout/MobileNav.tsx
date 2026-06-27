@@ -8,8 +8,8 @@ export interface MobileNavItem {
   label: string;
 }
 
-// Collapsible primary nav for < md. The Header renders the same links inline on
-// md+ (hidden md:flex) and hands the small {href,label} list here for the phone
+// Collapsible primary nav for < lg. The Header renders the same links inline on
+// lg+ (hidden lg:flex) and hands the small {href,label} list here for the phone
 // disclosure — so there's one source of truth for the routes. Client-only because
 // it owns the open/closed toggle; the panel is keyboard-dismissible (Escape) and
 // closes on any navigation so the next page never opens with a stale menu.
@@ -43,7 +43,7 @@ export function MobileNav({
   const close = () => setOpen(false);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

@@ -42,7 +42,13 @@ export const es: typeof en = {
   },
   guide: {
     open: "Guía rápida",
-    intro: "Busca antes de construir — la versión de 30 segundos.",
+    intro: "Un mapa rápido de El Umbral — salta directo a cualquier parte:",
+    board: "Explora y filtra cada proyecto de ayuda. Únete a uno, o publica el tuyo.",
+    ecosystem: "Herramientas lanzadas y en vivo que puedes usar ya — sin reconstruir.",
+    builders: "El roster de talento — personas disponibles para ayudar, por stack y zona.",
+    resources: "Plataformas de ayuda, canales de donación y líneas oficiales verificadas.",
+    reference: "Herramientas open-source de respuesta a desastres para estudiar o reutilizar.",
+    communities: "Discord, Telegram y hubs para sumarte al esfuerzo y coordinar.",
   },
   landing: {
     publishCta: "Publicar proyecto",
@@ -72,11 +78,6 @@ export const es: typeof en = {
     responseHubBody: "Hub ciudadano de emergencia: busca personas, mapas de daños, refugios, donaciones verificadas y líneas oficiales.",
     responseHubOffers: "Buscar personas · Mapa de daños · Refugios · Donaciones verificadas · Líneas",
     responseHubCta: "Abrir el hub de respuesta",
-    // final CTA band
-    ctaTitle: "¿Tienes una idea? Busca primero, luego publica.",
-    ctaBody: "Treinta segundos de búsqueda ahorran semanas de trabajo duplicado. Si aún no existe, publícala y forma tu equipo.",
-    ctaPublish: "Publicar proyecto",
-    ctaBrowse: "Ver el tablero",
   },
   search: {
     resultsFor: "Resultados para",

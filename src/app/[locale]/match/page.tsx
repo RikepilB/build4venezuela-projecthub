@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { z } from "zod";
 import { isLocale, getDictionary, type Dictionary } from "@/lib/i18n/config";
-import type { Locale } from "@/lib/types";
+import type { Locale, Project } from "@/lib/types";
 import { builderRepository, membershipRepository, projectRepository } from "@/lib/repository";
+import { rankProjects } from "@/lib/repository/projects.repo";
 import { FilterForm } from "@/components/ui/FilterForm";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { localePath } from "@/lib/i18n/href";
@@ -11,7 +12,7 @@ import { builderFilterOptions } from "@/lib/builders/filter";
 import { matchProjectsForBuilder, matchProjectsForOffer } from "@/lib/match/score";
 import { ProjectMatchList } from "@/components/match/ProjectMatchList";
 import { OfferMatchList } from "@/components/match/OfferMatchList";
-import type { MatchProfile } from "@/lib/match/types";
+import type { MatchProfile, ProjectMatch, OfferMatch } from "@/lib/match/types";
 
 // Live data (votes/needs/roster change at runtime), same as /board and /builders.
 export const dynamic = "force-dynamic";
@@ -73,6 +74,15 @@ export default async function MatchPage({
   );
 }
 
+// Eligible projects for each mode: non-live, with matching need slots.
+function builderEligible(projects: Project[]): Project[] {
+  return projects.filter((p) => p.status !== "live" && p.needs.contributors.length > 0);
+}
+
+function sponsorEligible(projects: Project[]): Project[] {
+  return projects.filter((p) => p.status !== "live" && (p.needs.api_credits.length > 0 || p.needs.sponsors.length > 0));
+}
+
 async function BuilderMode({
   base,
   sp,
@@ -101,7 +111,9 @@ async function BuilderMode({
   for (const m of memberships) teamCount.set(m.project_slug, (teamCount.get(m.project_slug) ?? 0) + 1);
 
   const hasProfile = profile.stack.length > 0 || !!profile.timezone || !!profile.availability;
-  const matches = hasProfile ? matchProjectsForBuilder(profile, projects, teamCount) : [];
+  const matches: ProjectMatch[] = hasProfile
+    ? matchProjectsForBuilder(profile, projects, teamCount)
+    : rankProjects(builderEligible(projects)).map((p) => ({ project: p, score: 0, reasons: [] }));
 
   return (
     <>
@@ -118,16 +130,16 @@ async function BuilderMode({
         clearLabel={dict.board.clear}
       />
 
-      {!hasProfile ? (
-        <EmptyState title={dict.match.yourFit} body={dict.match.builderPrompt} />
-      ) : matches.length === 0 ? (
-        <EmptyState title={dict.match.yourFit} body={dict.match.builderEmpty}>
-          <Link
-            href={localePath(locale, "/projects/new")}
-            className="rounded-token bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
-          >
-            {dict.match.publishCta}
-          </Link>
+      {matches.length === 0 ? (
+        <EmptyState title={dict.match.yourFit} body={hasProfile ? dict.match.builderEmpty : dict.match.builderPrompt}>
+          {!hasProfile ? null : (
+            <Link
+              href={localePath(locale, "/projects/new")}
+              className="rounded-token bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
+            >
+              {dict.match.publishCta}
+            </Link>
+          )}
         </EmptyState>
       ) : (
         <div className="flex flex-col gap-4">
@@ -154,7 +166,9 @@ async function SponsorMode({
 }) {
   const offer = OfferInput.parse(one(sp.offer) ?? "");
   const projects = await projectRepository.list();
-  const matches = offer ? matchProjectsForOffer(offer, projects) : [];
+  const matches: OfferMatch[] = offer
+    ? matchProjectsForOffer(offer, projects)
+    : rankProjects(sponsorEligible(projects)).map((p) => ({ project: p, score: 0, matched: [] }));
 
   return (
     <>
@@ -183,10 +197,8 @@ async function SponsorMode({
         </button>
       </form>
 
-      {!offer ? (
-        <EmptyState title={dict.match.sponsorTitle} body={dict.match.sponsorPrompt} />
-      ) : matches.length === 0 ? (
-        <EmptyState title={dict.match.sponsorTitle} body={dict.match.sponsorEmpty} />
+      {matches.length === 0 ? (
+        <EmptyState title={dict.match.sponsorTitle} body={offer ? dict.match.sponsorEmpty : dict.match.sponsorPrompt} />
       ) : (
         <div className="flex flex-col gap-4">
           <p className="text-sm text-muted">

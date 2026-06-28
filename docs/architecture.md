@@ -49,6 +49,7 @@ src/
     {votes,builders,memberships,repos}/  Runtime stores: Redis-or-JSON fallback.
     redis/client.ts     Upstash REST client (no-op when env unset → JSON fallback).
     i18n/               Dictionaries, locale config, locale-aware href helpers.
+    match/              Pure scoring + token matching for builder/sponsor fit (P0 deterministic, P2 AI swap seam).
     search.ts           Fuzzy search (fuse.js) over projects.
     github/, sheet/     External fetchers (repo stats; Google-Sheet roster CSV).
   styles/tokens.css     The only re-skin layer.

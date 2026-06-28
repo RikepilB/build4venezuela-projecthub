@@ -247,6 +247,8 @@ export const en = {
     stackLabel: "Stack / skills (comma-separated)",
     linkedin: "LinkedIn URL (https)",
     statusLabel: "Status",
+    roleFilterLabel: "Role",
+    seniorityLabel: "Seniority",
     statusNone: "—",
     statusConfirmed: "✅ Confirmed",
     statusLooking: "🔍 Looking for a team",

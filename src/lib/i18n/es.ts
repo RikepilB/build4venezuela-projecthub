@@ -249,6 +249,8 @@ export const es: typeof en = {
     stackLabel: "Stack / skills (separado por comas)",
     linkedin: "URL de LinkedIn (https)",
     statusLabel: "Estado",
+    roleFilterLabel: "Rol",
+    seniorityLabel: "Seniority",
     statusNone: "—",
     statusConfirmed: "✅ Confirmado",
     statusLooking: "🔍 Buscando equipo",

@@ -135,6 +135,19 @@ const STAGE_OPTIONS = [
   { value: "mvp", labelKey: "stageMvp" as const },
 ];
 
+// Derive which filter options actually produce results from the current project set,
+// so a dropdown never offers an option that matches no one (see presentSets in board).
+function presentMatchOptions(projects: Project[]) {
+  return {
+    roles: ROLE_OPTIONS.filter((r) => roleFilter(projects, r).length > 0),
+    stacks: STACK_OPTIONS.filter((s) => stackFilter(projects, s).length > 0),
+    stages: STAGE_OPTIONS.filter((s) => {
+      const filtered = stageFilter(projects, s.value);
+      return filtered.length > 0;
+    }),
+  };
+}
+
 function stageFilter(projects: Project[], stage: string | undefined): Project[] {
   if (!stage || stage === "any") return projects;
   switch (stage) {
@@ -251,8 +264,14 @@ async function BuilderMode({
   const teamCount = new Map<string, number>();
   for (const m of memberships) teamCount.set(m.project_slug, (teamCount.get(m.project_slug) ?? 0) + 1);
 
-  const eligible = stageFilter(builderEligible(projects), profile.availability);
-  const byRole = roleFilter(eligible, role);
+  // Derive which filter options have results across all projects (not filtered).
+  const present = presentMatchOptions(projects);
+
+  // When no filter or profile is active, show all projects instead of applying eligibility.
+  const hasFilters = !!(role || profile.stack[0] || profile.timezone || profile.availability);
+  const candidatePool = hasFilters ? builderEligible(projects) : projects;
+  const byStage = stageFilter(candidatePool, profile.availability);
+  const byRole = roleFilter(byStage, role);
   const byStack = stackFilter(byRole, profile.stack[0]);
   const hasProfile = profile.stack.length > 0 || !!profile.timezone || !!profile.availability;
   let matches: ProjectMatch[] = hasProfile
@@ -275,10 +294,10 @@ async function BuilderMode({
         base={base}
         current={{ role, stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability, q }}
         groups={[
-          { name: "role", label: dict.match.roleLabel, options: ROLE_OPTIONS.map((r) => ({ value: r, label: r })) },
-          { name: "stack", label: dict.match.stackLabel, options: STACK_OPTIONS.map((s) => ({ value: s, label: s })) },
+          { name: "role", label: dict.match.roleLabel, options: present.roles.map((r) => ({ value: r, label: r })) },
+          { name: "stack", label: dict.match.stackLabel, options: present.stacks.map((s) => ({ value: s, label: s })) },
           { name: "timezone", label: dict.match.tzLabel, options: TIMEZONE_OPTIONS.map((t) => ({ value: t.replace(/ \(.*\)$/, ""), label: t })) },
-          { name: "availability", label: dict.match.stageLabel, options: STAGE_OPTIONS.map((s) => ({ value: s.value, label: dict.match[s.labelKey] })) },
+          { name: "availability", label: dict.match.stageLabel, options: present.stages.map((s) => ({ value: s.value, label: dict.match[s.labelKey] })) },
         ]}
         allLabel={dict.builders.all}
         applyLabel={dict.board.filters}

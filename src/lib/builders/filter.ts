@@ -4,10 +4,14 @@ import type { Builder } from "../types";
 // the repository (see builders/normalize), so they match exactly; stack stays as the
 // person typed it (it's shown on the card) and is compared/deduped by a canonical key
 // instead — so "Next.js", "Next js" and "NEXTJS" are one option that matches all three.
+// Role, status and seniority also arrive canonicalized from the repository.
 export interface BuilderFilter {
   availability?: string;
   timezone?: string;
   stack?: string;
+  role?: string;
+  status?: string;
+  seniority?: string;
 }
 
 // Fold a stack tag to a match key: accent-strip, lowercase, drop every non-alphanumeric.
@@ -34,27 +38,37 @@ function dedupeStack(tags: string[]): string[] {
   return [...byKey.values()].sort((a, b) => a.localeCompare(b));
 }
 
-// The three dropdowns' options, derived from the (already-normalized) roster so the bar
+// The six dropdowns' options, derived from the (already-normalized) roster so the bar
 // never offers a typo-variant that matches no one.
 export function builderFilterOptions(builders: Builder[]): {
   availability: string[];
   timezone: string[];
   stack: string[];
+  role: string[];
+  status: string[];
+  seniority: string[];
 } {
   return {
     availability: uniqueSorted(builders.map((b) => b.availability)),
     timezone: uniqueSorted(builders.map((b) => b.timezone)),
     stack: dedupeStack(builders.flatMap((b) => b.stack)),
+    role: uniqueSorted(builders.map((b) => b.role)),
+    status: uniqueSorted(builders.map((b) => b.status)),
+    seniority: uniqueSorted(builders.map((b) => b.seniority)),
   };
 }
 
 // Pure, order-preserving. Empty/absent fields don't constrain; stack matches by key.
+// role / status / seniority match exactly (already canonicalized by the repository).
 export function applyBuilderFilter(builders: Builder[], f: BuilderFilter): Builder[] {
   const wantStack = f.stack ? stackKey(f.stack) : "";
   return builders.filter((b) => {
     if (f.availability && b.availability !== f.availability) return false;
     if (f.timezone && b.timezone !== f.timezone) return false;
     if (wantStack && !b.stack.some((s) => stackKey(s) === wantStack)) return false;
+    if (f.role && b.role !== f.role) return false;
+    if (f.status && b.status !== f.status) return false;
+    if (f.seniority && b.seniority !== f.seniority) return false;
     return true;
   });
 }

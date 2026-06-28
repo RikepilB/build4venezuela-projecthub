@@ -31,3 +31,22 @@ export function normalizeTimezone(raw: string): string {
   }
   return raw.trim(); // no recognizable offset → keep as typed
 }
+
+// Status → "confirmed" | "looking" | "".
+export function normalizeBuilderStatus(raw: string): string {
+  const s = raw.toLowerCase().trim();
+  if (!s) return "";
+  if (/confirmado|confirmed/.test(s)) return "confirmed";
+  if (/(?:buscando|looking|reclutando)/.test(s)) return "looking";
+  return "";
+}
+
+// Seniority inferred from the free-text role field.
+export function normalizeSeniority(role: string): string {
+  const s = role.toLowerCase();
+  if (/semi\s*(senior|sr|ssr)/.test(s)) return "semi-senior";
+  if (/senior/.test(s)) return "senior";
+  if (/junior|jr\b|trainee/.test(s)) return "junior";
+  if (/\blead\b|architect/.test(s)) return "lead";
+  return "";
+}

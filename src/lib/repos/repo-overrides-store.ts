@@ -27,9 +27,7 @@ async function readFile(): Promise<Record<string, RepoOverride>> {
 }
 
 async function writeFile(map: Record<string, RepoOverride>): Promise<void> {
-  const tmp = `${FILE}.tmp`;
-  await fs.writeFile(tmp, `${JSON.stringify(map, null, 2)}\n`, "utf8");
-  await fs.rename(tmp, FILE);
+  await fs.writeFile(FILE, `${JSON.stringify(map, null, 2)}\n`, "utf8");
 }
 
 function coerce(value: unknown): RepoOverride | null {

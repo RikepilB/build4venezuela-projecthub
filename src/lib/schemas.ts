@@ -83,6 +83,7 @@ export const BuilderSchema = z.object({
   availability: z.string().max(120).default(""),
   timezone: z.string().max(60).default(""),
   status: z.string().max(60).default(""),
+  seniority: z.string().default(""),
 });
 
 // What the "add yourself" form posts; server fills the id.

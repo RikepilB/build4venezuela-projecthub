@@ -60,7 +60,7 @@ export function NavMenu({ label, items }: { label: string; items: MobileNavItem[
         <div
           id={menuId}
           role="menu"
-          className="absolute right-0 top-full z-50 mt-1 flex min-w-44 flex-col rounded-token border border-border bg-surface p-1 shadow-lg"
+          className="absolute left-0 top-full z-50 mt-1 flex min-w-44 flex-col rounded-token border border-border bg-surface p-1 shadow-lg"
         >
           {items.map((item) => (
             <Link

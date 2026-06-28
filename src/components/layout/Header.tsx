@@ -10,21 +10,35 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const other: Locale = locale === "en" ? "es" : "en";
   const langAria = `Switch language to ${other === "en" ? "English" : "Español"}`;
 
-  // Four concrete primary tabs carry the lg+ strip; the rest collapse into the
-  // "More" dropdown so the bar stays legible. The phone disclosure (MobileNav)
-  // gets every route flat (primary + more) — one source of truth, no dropdown there.
-  const primaryItems = [
-    { href: localePath(locale, "/board"), label: dict.nav.board },
-    { href: localePath(locale, "/builders"), label: dict.nav.builders },
-    { href: localePath(locale, "/communities"), label: dict.nav.communities },
-    { href: localePath(locale, "/resources"), label: dict.nav.resources },
+  // Four concrete top-level tabs, three of them grouping a pair of related routes
+  // behind a dropdown so the bar stays legible. The phone disclosure (MobileNav)
+  // gets the same routes flattened into one labelled list — no dropdowns there.
+  const navGroups = [
+    {
+      label: dict.nav.board,
+      items: [
+        { href: localePath(locale, "/board"), label: dict.nav.projects },
+        { href: localePath(locale, "/ecosystem"), label: dict.nav.shipped },
+      ],
+    },
+    {
+      label: dict.nav.builders,
+      items: [
+        { href: localePath(locale, "/builders"), label: dict.nav.builders },
+        { href: localePath(locale, "/match"), label: dict.nav.match },
+      ],
+    },
+    {
+      label: dict.nav.resources,
+      items: [
+        { href: localePath(locale, "/resources"), label: dict.nav.resources },
+        { href: localePath(locale, "/reference"), label: dict.nav.reference },
+      ],
+    },
   ];
-  const moreItems = [
-    { href: localePath(locale, "/ecosystem"), label: dict.nav.ecosystem },
-    { href: localePath(locale, "/reference"), label: dict.nav.reference },
-    { href: localePath(locale, "/match"), label: dict.nav.match },
-  ];
-  const navItems = [...primaryItems, ...moreItems];
+  // Communities stands alone (single route) — a plain link, not a dropdown.
+  const communities = { href: localePath(locale, "/communities"), label: dict.nav.communities };
+  const mobileItems = [...navGroups.flatMap((g) => g.items), communities];
 
   return (
     <header className="relative border-b border-border bg-bg">
@@ -48,19 +62,18 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </span>
         </Link>
 
-        {/* Desktop nav — lg+ strip: four primary tabs + a "More" dropdown for the
-            secondary routes, then submit + 2 icons. Below lg it collapses into MobileNav. */}
+        {/* Desktop nav — lg+ strip: three grouped dropdowns + the standalone
+            Communities link, then submit + 2 icons. Below lg it collapses into MobileNav. */}
         <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
-          {primaryItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
-            >
-              {item.label}
-            </Link>
+          {navGroups.map((group) => (
+            <NavMenu key={group.label} label={group.label} items={group.items} />
           ))}
-          <NavMenu label={dict.nav.more} items={moreItems} />
+          <Link
+            href={communities.href}
+            className="px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
+          >
+            {communities.label}
+          </Link>
           <Link
             href={localePath(locale, "/projects/new")}
             className="rounded-token bg-primary px-3 py-2 font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
@@ -92,7 +105,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
         {/* Phone disclosure — same routes, collapsed behind a hamburger. */}
         <MobileNav
-          items={navItems}
+          items={mobileItems}
           submit={{ href: localePath(locale, "/projects/new"), label: dict.nav.submit }}
           repo={{ href: PROJECTHUB_REPO_URL, label: dict.nav.repo }}
           lang={{ href: localePath(other), label: other, aria: langAria }}

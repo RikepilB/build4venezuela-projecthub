@@ -41,8 +41,18 @@ export function ecosystemListing(projects: Project[]): Project[] {
 // Repo-less *initiative* sites stay off the board (they live only on /ecosystem); a
 // shipped project (progress 100) is the deliberate exception so "done" work is visible
 // on the board. Centralized here so the board page and the landing "projects" stat agree.
+// Also excludes projects with no repo, no demo, and no open needs — nothing to help with.
 export function boardListing(projects: Project[]): Project[] {
-  return projects.filter((p) => !isEcosystemProject(p) || isShippedLive(p));
+  return projects.filter((p) => {
+    if (!isEcosystemProject(p) || isShippedLive(p)) {
+      const hasRepo = !!p.repo_url;
+      const hasDemo = !!p.demo_url;
+      const hasNeeds = p.needs.contributors.length > 0 || p.needs.api_credits.length > 0 || p.needs.sponsors.length > 0;
+      if (!hasRepo && !hasDemo && !hasNeeds) return false;
+      return true;
+    }
+    return false;
+  });
 }
 
 // Split a ranked project list into the two surfaces, preserving order. Note: this is a

@@ -5,7 +5,7 @@ import { makeBuilder } from "../fixtures/builders";
 
 // Ecosystem = live site, no repo (isEcosystemProject = !repo_url && demo_url).
 const board = makeProject({ id: "b", slug: "b", repo_url: "https://github.com/x/b" });
-const idea = makeProject({ id: "i", slug: "i" }); // no repo, no demo → still board (buildable)
+const idea = makeProject({ id: "i", slug: "i", needs: { contributors: ["Builder"], api_credits: [], sponsors: [] } }); // no repo, no demo, but has a need → stays board
 const live = makeProject({ id: "l", slug: "l", demo_url: "https://live.example" }); // ecosystem
 const needy = makeProject({
   id: "n",
@@ -20,7 +20,7 @@ describe("landingStats", () => {
     expect(stats.projects).toBe(3); // board + idea + needy (live excluded)
     expect(stats.live).toBe(1); // only the ecosystem site
     expect(stats.builders).toBe(2);
-    expect(stats.needs).toBe(1); // only `needy` has an open ask
+    expect(stats.needs).toBe(2); // `idea` + `needy` each have an open ask
   });
 
   it("is all zeros on empty input", () => {

@@ -9,6 +9,7 @@ import { rankProjects } from "@/lib/repository/projects.repo";
 import { FilterForm } from "@/components/ui/FilterForm";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { localePath } from "@/lib/i18n/href";
+import { stackKey } from "@/lib/builders/filter";
 
 import { matchProjectsForBuilder, matchProjectsForOffer } from "@/lib/match/score";
 import { ProjectMatchList } from "@/components/match/ProjectMatchList";
@@ -35,21 +36,16 @@ const tab = (active: boolean) =>
 // ── Curated filter options ─────────────────────────────────────────────────────
 
 const ROLE_KEYWORDS: Record<string, string[]> = {
-  Frontend: ["frontend", "front-end", "react", "next.js", "vue", "angular", "css", "html", "ui"],
-  Backend: ["backend", "back-end", "api", "server", "python", "node.js", "java", "go", "rust", "php", "fastapi", "golang"],
+  Frontend: ["frontend", "front-end", "react", "next.js", "vue", "angular", "css", "html", "ui", "canvas"],
+  Backend: ["backend", "back-end", "api", "server", "python", "node.js", "java", "go", "rust", "php", "fastapi", "golang", "rest"],
   "Full Stack": ["fullstack", "full-stack", "full stack"],
-  "UI/UX": ["ui", "ux", "design", "figma", "user interface", "user experience", "diseño"],
-  "AI / ML": ["ai", "ml", "machine learning", "llm", "rag", "embedding", "openai", "gpt", "neural", "inteligencia artificial"],
+  "UI/UX": ["ui", "ux", "design", "figma", "user interface", "user experience", "diseño", "ux/ui"],
+  "AI / ML": ["ai", "ml", "machine learning", "llm", "rag", "embedding", "openai", "gpt", "neural", "computer vision", "inteligencia artificial"],
   "Cloud / DevOps": ["devops", "deploy", "ci/cd", "docker", "kubernetes", "infra", "hosting", "cloud", "aws", "gcp"],
-  Mobile: ["mobile", "react native", "flutter", "android", "ios", "kotlin", "swift", "ionic"],
-  "Data Science": ["data science", "data", "analytics", "dashboard", "tableau"],
-  "Data Engineer": ["data engineer", "etl", "pipeline", "scraper", "database", "pgvector"],
+  Mobile: ["mobile", "react native", "flutter", "android", "ios", "kotlin", "swift", "ionic", "bluetooth"],
+  "Data / Analytics": ["data", "analytics", "dashboard", "tableau", "pgvector", "etl", "pipeline", "scraper", "database"],
   "QA / Testing": ["qa", "test", "tester", "testing"],
-  "Product / PM": ["product", "pm", "product manager", "project manager"],
-  Security: ["security", "auth", "authentication", "cybersecurity"],
-  Senior: ["senior", "sr", "lead", "architect"],
-  Junior: ["junior", "jr", "trainee"],
-  Mid: ["mid", "mid-level", "semi senior"],
+  Security: ["security", "auth", "authentication", "cybersecurity", "protección"],
 };
 
 const ROLE_OPTIONS = Object.keys(ROLE_KEYWORDS);
@@ -69,12 +65,61 @@ function roleFilter(projects: Project[], role: string | undefined): Project[] {
   });
 }
 
+function stackFilter(projects: Project[], stack: string | undefined): Project[] {
+  if (!stack || stack === "any") return projects;
+  const key = stackKey(stack);
+  return projects.filter((p) => p.stack.some((s) => stackKey(s) === key));
+}
+
 const STACK_OPTIONS = [
-  "AI / ML", "Cloud / Hosting", "Computer Vision", "Data Science", "DevOps",
-  "Discord / Bots", "Docker", "FastAPI", "Flutter", "Go", "Java", "JavaScript",
-  "LLM", "Maps (Mapbox / Leaflet)", "Mobile (React Native)", "N8N / Automation",
-  "Next.js", "Node.js", "PHP", "PostgreSQL", "PWA", "Python", "RAG",
-  "React", "REST API", "SQLite", "Supabase", "TypeScript", "UI/UX Design", "Vue",
+  // AI & Data
+  "AI",
+  "AI / ML",
+  "Computer Vision",
+  "Embeddings",
+  "LLM",
+  "RAG",
+  // Web Frontend
+  "Canvas API",
+  "Next.js",
+  "React",
+  "TypeScript",
+  "UI/UX Design",
+  // Web Backend
+  "FastAPI",
+  "Go",
+  "Node.js",
+  "Python",
+  "REST API",
+  // Database
+  "Pgvector",
+  "Postgres",
+  "SQLite",
+  "Supabase",
+  // Mobile & Desktop
+  "Flutter",
+  "Kotlin",
+  "Mobile (React Native)",
+  // Infrastructure
+  "Cloud",
+  // PWA & Offline
+  "Dexie.js",
+  "Offline-first",
+  "PWA",
+  // Maps
+  "Leaflet",
+  "Mapbox",
+  "MapLibre",
+  // Automation & Bots
+  "Discord",
+  "N8N",
+  "Twilio API",
+  // Networking & Media
+  "Bluetooth LE",
+  "P2P",
+  "Video",
+  // General
+  "Web",
 ];
 
 const TIMEZONE_OPTIONS = [
@@ -208,10 +253,11 @@ async function BuilderMode({
 
   const eligible = stageFilter(builderEligible(projects), profile.availability);
   const byRole = roleFilter(eligible, role);
+  const byStack = stackFilter(byRole, profile.stack[0]);
   const hasProfile = profile.stack.length > 0 || !!profile.timezone || !!profile.availability;
   let matches: ProjectMatch[] = hasProfile
-    ? matchProjectsForBuilder(profile, byRole, teamCount)
-    : rankProjects(byRole).map((p) => ({ project: p, score: 0, reasons: [] }));
+    ? matchProjectsForBuilder(profile, byStack, teamCount)
+    : rankProjects(byStack).map((p) => ({ project: p, score: 0, reasons: [] }));
 
   if (q) {
     const lower = q.toLowerCase();
@@ -227,10 +273,10 @@ async function BuilderMode({
     <>
       <FilterForm
         base={base}
-        current={{ stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability, role, q }}
+        current={{ role, stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability, q }}
         groups={[
-          { name: "stack", label: dict.match.stackLabel, options: STACK_OPTIONS.map((s) => ({ value: s, label: s })) },
           { name: "role", label: dict.match.roleLabel, options: ROLE_OPTIONS.map((r) => ({ value: r, label: r })) },
+          { name: "stack", label: dict.match.stackLabel, options: STACK_OPTIONS.map((s) => ({ value: s, label: s })) },
           { name: "timezone", label: dict.match.tzLabel, options: TIMEZONE_OPTIONS.map((t) => ({ value: t.replace(/ \(.*\)$/, ""), label: t })) },
           { name: "availability", label: dict.match.stageLabel, options: STAGE_OPTIONS.map((s) => ({ value: s.value, label: dict.match[s.labelKey] })) },
         ]}
@@ -241,7 +287,7 @@ async function BuilderMode({
 
       <form method="get" action={base} role="search" className="flex gap-2 rounded-token border border-border bg-surface p-3">
         <input type="hidden" name="as" value="builder" />
-        {[{ n: "stack", v: profile.stack[0] }, { n: "role", v: role }, { n: "timezone", v: profile.timezone }, { n: "availability", v: profile.availability }].filter((x) => x.v).map((x) => (
+        {[{ n: "role", v: role }, { n: "stack", v: profile.stack[0] }, { n: "timezone", v: profile.timezone }, { n: "availability", v: profile.availability }].filter((x) => x.v).map((x) => (
           <input key={x.n} type="hidden" name={x.n} value={x.v} />
         ))}
         <input type="search" name="q" defaultValue={q} placeholder="Search projects by name or stack…" className="flex-1 rounded-token border border-border bg-surface px-3 py-2 text-sm text-text" aria-label="Search projects" />

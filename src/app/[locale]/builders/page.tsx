@@ -14,11 +14,54 @@ import type { Builder } from "@/lib/types";
 // ── Curated filter options (shared vocabulary with /match) ──────────────────────
 
 const STACK_OPTIONS = [
-  "AI / ML", "Cloud / Hosting", "Computer Vision", "Data Science", "DevOps",
-  "Discord / Bots", "Docker", "FastAPI", "Flutter", "Go", "Java", "JavaScript",
-  "LLM", "Maps (Mapbox / Leaflet)", "Mobile (React Native)", "N8N / Automation",
-  "Next.js", "Node.js", "PHP", "PostgreSQL", "PWA", "Python", "RAG",
-  "React", "REST API", "SQLite", "Supabase", "TypeScript", "UI/UX Design", "Vue",
+  // AI & Data
+  "AI",
+  "AI / ML",
+  "Computer Vision",
+  "Embeddings",
+  "LLM",
+  "RAG",
+  // Web Frontend
+  "Canvas API",
+  "Next.js",
+  "React",
+  "TypeScript",
+  "UI/UX Design",
+  // Web Backend
+  "FastAPI",
+  "Go",
+  "Node.js",
+  "Python",
+  "REST API",
+  // Database
+  "Pgvector",
+  "Postgres",
+  "SQLite",
+  "Supabase",
+  // Mobile & Desktop
+  "Flutter",
+  "Kotlin",
+  "Mobile (React Native)",
+  // Infrastructure
+  "Cloud",
+  // PWA & Offline
+  "Dexie.js",
+  "Offline-first",
+  "PWA",
+  // Maps
+  "Leaflet",
+  "Mapbox",
+  "MapLibre",
+  // Automation & Bots
+  "Discord",
+  "N8N",
+  "Twilio API",
+  // Networking & Media
+  "Bluetooth LE",
+  "P2P",
+  "Video",
+  // General
+  "Web",
 ];
 
 // Collapsible secondary form — code-split so its client JS defers until the roster

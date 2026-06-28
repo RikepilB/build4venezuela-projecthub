@@ -13,6 +13,7 @@ export const es: typeof en = {
     reference: "Referencia",
     builders: "Constructores",
     match: "Encuentra tu lugar",
+    more: "Más",
     submit: "Publicar proyecto",
     repo: "Repositorio de GitHub",
     menu: "Menú",
@@ -37,6 +38,13 @@ export const es: typeof en = {
     step3Title: "3 · Construye y publica",
     step3Body: "Encuentra compañeros, sigue el progreso y, cuando tu MVP esté listo, publícalo en Build4Venezuela.",
     scrollCue: "Entrar",
+  },
+  guide: {
+    open: "Guía rápida",
+    title: "Cómo funciona El Umbral",
+    intro: "Busca antes de construir — la versión de 30 segundos.",
+    close: "Cerrar",
+    cta: "Entendido — buscar",
   },
   landing: {
     publishCta: "Publicar proyecto",

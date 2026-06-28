@@ -9,6 +9,7 @@ import { landingStats, featuredProjects } from "@/lib/landing/stats";
 import { SearchBox } from "@/components/search/SearchBox";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { UserGuide } from "@/components/home/UserGuide";
 import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 
 // Render live per request, not prerendered at build. The headline stats (builders,
@@ -123,6 +124,20 @@ export default async function HomePage({
             >
               {dict.home.browseButton} →
             </Link>
+          </div>
+          {/* First-visit onboarding: a quick-guide modal explaining the search-first
+              flow. Auto-opens once (localStorage guard), re-openable from here after. */}
+          <div className="rise" style={{ animationDelay: "380ms" }}>
+            <UserGuide
+              open={dict.guide.open}
+              title={dict.guide.title}
+              intro={dict.guide.intro}
+              steps={steps}
+              closeLabel={dict.guide.close}
+              cta={dict.guide.cta}
+              browseLabel={dict.home.browseButton}
+              browseHref={localePath(locale, "/board")}
+            />
           </div>
           <p
             className="rise mt-4 flex items-center gap-2 text-xs uppercase tracking-widest text-muted"

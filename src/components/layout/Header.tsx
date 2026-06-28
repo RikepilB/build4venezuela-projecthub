@@ -4,22 +4,27 @@ import type { Dictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { PROJECTHUB_REPO_URL } from "@/lib/links";
 import { MobileNav } from "./MobileNav";
+import { NavMenu } from "./NavMenu";
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const other: Locale = locale === "en" ? "es" : "en";
   const langAria = `Switch language to ${other === "en" ? "English" : "Español"}`;
 
-  // One source of truth for the primary routes — the desktop strip (lg+) and the
-  // mobile disclosure both render from this list.
-  const navItems = [
+  // Four concrete primary tabs carry the lg+ strip; the rest collapse into the
+  // "More" dropdown so the bar stays legible. The phone disclosure (MobileNav)
+  // gets every route flat (primary + more) — one source of truth, no dropdown there.
+  const primaryItems = [
     { href: localePath(locale, "/board"), label: dict.nav.board },
-    { href: localePath(locale, "/ecosystem"), label: dict.nav.ecosystem },
-    { href: localePath(locale, "/resources"), label: dict.nav.resources },
-    { href: localePath(locale, "/communities"), label: dict.nav.communities },
-    { href: localePath(locale, "/reference"), label: dict.nav.reference },
     { href: localePath(locale, "/builders"), label: dict.nav.builders },
+    { href: localePath(locale, "/communities"), label: dict.nav.communities },
+    { href: localePath(locale, "/resources"), label: dict.nav.resources },
+  ];
+  const moreItems = [
+    { href: localePath(locale, "/ecosystem"), label: dict.nav.ecosystem },
+    { href: localePath(locale, "/reference"), label: dict.nav.reference },
     { href: localePath(locale, "/match"), label: dict.nav.match },
   ];
+  const navItems = [...primaryItems, ...moreItems];
 
   return (
     <header className="relative border-b border-border bg-bg">
@@ -43,10 +48,10 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </span>
         </Link>
 
-        {/* Desktop nav — full strip on lg+ (7 links + submit + 2 icons need the width).
-            Below lg it collapses into MobileNav. */}
+        {/* Desktop nav — lg+ strip: four primary tabs + a "More" dropdown for the
+            secondary routes, then submit + 2 icons. Below lg it collapses into MobileNav. */}
         <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
-          {navItems.map((item) => (
+          {primaryItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -55,6 +60,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {item.label}
             </Link>
           ))}
+          <NavMenu label={dict.nav.more} items={moreItems} />
           <Link
             href={localePath(locale, "/projects/new")}
             className="rounded-token bg-primary px-3 py-2 font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"

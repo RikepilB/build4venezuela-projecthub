@@ -59,4 +59,11 @@ export const redis = {
     const r = await call(`set/${encodeURIComponent(key)}/${encodeURIComponent(value)}`);
     return r === "OK";
   },
+
+  // EXPIRE key seconds → true if the TTL was set, false otherwise / on failure. Used
+  // by the rate limiter so fixed-window counter keys self-clean instead of accumulating.
+  async expire(key: string, seconds: number): Promise<boolean> {
+    const r = await call(`expire/${encodeURIComponent(key)}/${Math.max(1, Math.floor(seconds))}`);
+    return r === 1;
+  },
 };

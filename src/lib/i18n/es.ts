@@ -12,6 +12,7 @@ export const es: typeof en = {
     communities: "Comunidades",
     reference: "Referencia",
     builders: "Constructores",
+    match: "Encuentra tu lugar",
     submit: "Publicar proyecto",
     repo: "Repositorio de GitHub",
     menu: "Menú",
@@ -24,6 +25,7 @@ export const es: typeof en = {
     placeholder: "ej. mapa de desaparecidos, directorio de refugios…",
     searchButton: "Buscar",
     browseButton: "Ver el tablero",
+    matchButton: "Encuentra tu lugar",
     whatTitle: "¿Qué es El Umbral?",
     whatBody:
       "Un radar compartido de todos los proyectos de ayuda de Build4Venezuela — para movernos rápido sin duplicar esfuerzos. Descubre qué ya existe, mira qué necesita cada proyecto, forma un equipo y publica los proyectos terminados en Build4Venezuela.",
@@ -42,15 +44,15 @@ export const es: typeof en = {
     statBuilders: "constructores",
     statLive: "herramientas activas",
     statNeeds: "necesidades abiertas",
-    // featured projects
-    featuredTitle: "Activos en el tablero",
-    featuredBody: "Los proyectos de ayuda más votados por el equipo ahora mismo. Únete a uno — o busca el tuyo primero.",
+    // featured projects (feed en vivo, más votados)
+    featuredTitle: "Feed en vivo · más votados",
+    featuredBody: "Los tres proyectos de ayuda más votados ahora mismo. Únete a uno — o busca el tuyo primero.",
     featuredCta: "Ver todos los proyectos",
     // builders teaser
     buildersBody: "Diseñadores, devs y traductores del roster del hackathon — filtra por stack, disponibilidad y zona horaria.",
     buildersCta: "Ver constructores",
     // ecosystem teaser
-    ecosystemBody: "Herramientas de ayuda que puedes usar ahora mismo — no hace falta reconstruirlas.",
+    ecosystemBody: "Herramientas lanzadas y en vivo que puedes usar ahora mismo — no hace falta reconstruirlas.",
     ecosystemCta: "Explorar el ecosistema",
     // crisis response hubs
     hubsEyebrow: "Hubs de respuesta",
@@ -100,14 +102,17 @@ export const es: typeof en = {
     viewPriority: "Solo prioridad alta",
     calloutTitle: "Tablero abierto — cualquiera puede sumarse",
     calloutBody: "Únete a un proyecto, usa uno que ya existe, o publica el tuyo en Build4Venezuela. Tú decides qué hacer.",
-    calloutLink: "Proyectos de Build4Venezuela",
+    calloutLink: "Publica tu proyecto en el hackathon",
+    countdownTitle: "El hackathon cierra en",
+    countdownEnded: "Hackathon cerrado",
   },
   ecosystem: {
-    title: "Ecosistema",
+    title: "Lanzados y en vivo",
     subtitle:
-      "Proyectos y herramientas de ayuda que ya existen y puedes usar o consultar ahora — sitios en vivo sin un repo abierto para unirse. Para proyectos del hackathon en los que construir, ve al tablero.",
-    visit: "Visitar sitio",
-    empty: "Aún no hay proyectos existentes listados.",
+      "Proyectos de ayuda que ya se lanzaron — en vivo y listos para usar ahora mismo. Herramientas reales construidas para la respuesta al terremoto que puedes abrir y usar; no hace falta reconstruirlas. Para construir sobre un proyecto, ve al tablero.",
+    visit: "Visitar sitio en vivo",
+    live: "En vivo",
+    empty: "Aún no hay proyectos lanzados listados.",
   },
   resources: {
     title: "Recursos verificados",
@@ -214,6 +219,7 @@ export const es: typeof en = {
     empty: "Ningún constructor coincide. Ejecuta el importador para cargar el registro.",
     profile: "Perfil",
     workingOn: "Trabajando en",
+    matchCta: "Proyectos que encajan",
     count: "constructores",
     addCta: "+ Agrégate",
     addTitle: "Agrégate al registro",
@@ -259,6 +265,36 @@ export const es: typeof en = {
     addRepoSuccess: "Repo adjuntado 🎉",
     addRepoInvalid: "Ingresa una URL válida de repo en github.com (https).",
     addRepoError: "No se pudo guardar ahora — intenta de nuevo.",
+  },
+  match: {
+    title: "Encuentra tu lugar",
+    subtitle:
+      "Dinos tus skills y te mostramos los proyectos de ayuda que los necesitan. Patrocinadores: vean dónde aterriza su aporte.",
+    asBuilder: "Quiero construir",
+    asSponsor: "Puedo patrocinar",
+    // builder side
+    yourFit: "Proyectos que encajan contigo",
+    builderPrompt: "Elige tu stack arriba para ver los proyectos que lo necesitan.",
+    builderEmpty: "Ningún proyecto abierto coincide con esos skills aún — amplía los filtros, o publica el tuyo.",
+    publishCta: "Publicar proyecto",
+    count: "coincidencias",
+    // sponsor side
+    sponsorTitle: "Dónde aterriza tu aporte",
+    sponsorLabel: "¿Qué puedes ofrecer?",
+    sponsorPlaceholder: "ej. créditos SMS, hosting, créditos OpenAI",
+    sponsorButton: "Buscar proyectos",
+    sponsorPrompt: "Dinos qué puedes aportar para ver los proyectos que lo necesitan.",
+    sponsorEmpty: "Ningún proyecto lista una necesidad que coincida ahora.",
+    sponsorMatched: "Necesidades que puedes cubrir",
+    // recruit panel (project detail)
+    recruitTitle: "Constructores que encajan con este proyecto",
+    recruitBody: "Talento del roster cuyas skills coinciden con las necesidades abiertas del proyecto.",
+    recruitEmpty: "Ningún constructor del roster coincide con estas necesidades aún.",
+    // reason chips
+    reasonNeed: "Necesita",
+    reasonPriority: "Prioridad alta",
+    reasonSpots: "lugares abiertos",
+    reasonNeedsCovered: "necesidades cubiertas",
   },
   footer: {
     builtBy: "Hecho por",

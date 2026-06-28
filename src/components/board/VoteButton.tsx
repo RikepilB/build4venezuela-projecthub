@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
 import { upvoteProject } from "@/actions/vote-project";
+import { useLiveVote, useRefreshVotes } from "@/components/votes/LiveVotes";
 
 // Per-slug "already voted" flag from localStorage, read hydration-safely. The server
 // snapshot is always false (no storage server-side); the client reads the real value
@@ -56,6 +57,14 @@ export function VoteButton({ slug, votes, label }: { slug: string; votes: number
   const [justVoted, setJustVoted] = useState(false);
   const voted = stored || justVoted;
 
+  // Live overlay (when a LiveVotesProvider is mounted above): prefer the freshly fetched
+  // server count over the possibly-CDN-cached prop. `live` is server-authoritative, so
+  // this is a stale→current replacement, never an optimistic +1. Falls back to `votes`
+  // when there is no provider or the overlay hasn't loaded yet.
+  const live = useLiveVote(slug);
+  const refreshVotes = useRefreshVotes();
+  const displayVotes = live ?? votes;
+
   // Runs as a form-action transition (useFormStatus reports `pending` for the whole
   // server round-trip + revalidation). We await the server action and act on its
   // RETURN value directly — reliable, unlike reading useActionState's state through
@@ -73,13 +82,14 @@ export function VoteButton({ slug, votes, label }: { slug: string; votes: number
         // storage unavailable — the server still recorded the vote
       }
       setJustVoted(true);
+      refreshVotes(true); // force-pull the new server-authoritative count (bypass coalescing)
     }
   }
 
   return (
     <form action={formAction}>
       <input type="hidden" name="slug" value={slug} />
-      <Inner votes={votes} voted={voted} label={label} />
+      <Inner votes={displayVotes} voted={voted} label={label} />
     </form>
   );
 }

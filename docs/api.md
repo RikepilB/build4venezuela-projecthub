@@ -1,9 +1,67 @@
 # API reference
 
-> There is no REST/GraphQL layer. The "API" of this app is **Server Components reading
-> the repository** (the read side) and **server actions** (the write side). This file
-> documents both surfaces plus routes, data sources, and env vars. See `architecture.md`
-> for how they fit together.
+> Three surfaces: a **public read-only REST API** (`/api/v1`) for external consumers,
+> **Server Components reading the repository** (the in-app read path), and **server
+> actions** (the write side). All three go through the same repository seam. This file
+> documents each plus routes, data sources, and env vars. See `architecture.md` for how
+> they fit together.
+
+## Public REST API (`/api/v1`)
+
+A versioned, read-only HTTP face over the repository seam, for dashboards, bots, and
+other relief tools that want the catalog as data. **GET only** — every mutation stays a
+server action (vote/submit/join/attach), so there is no public write surface to abuse.
+
+**Envelope.** Every response is the same shape (`src/lib/api/response.ts`, matching
+`ApiResponse<T>` in `.claude/rules/typescript/patterns.md`):
+
+```jsonc
+{ "success": true,  "data": <payload>, "error": null,        "meta": { "count": 42 } }
+{ "success": false, "data": null,      "error": "not_found"  }
+```
+
+**CORS.** `Access-Control-Allow-Origin: *` on every response (no cookies/credentials, so
+a wildcard is safe — there is no per-user state to leak). `OPTIONS` preflight → `204`.
+
+**Caching.** Catalog endpoints send `Cache-Control: public, s-maxage=300,
+stale-while-revalidate=600` — the CDN edge cache absorbs the load and shields the origin.
+Live endpoints (`/stats`, `/votes`) send `no-store`.
+
+**Rate limiting.** Only `/votes` is un-cached and origin-hitting, so it carries a
+per-IP fixed-window cap (60 req/min) via the Redis seam (`src/lib/ratelimit/limiter.ts`).
+It **fails open** when Redis is unconfigured (dev/offline) — the limiter being down never
+blocks a read. Over the cap → `429` with `Retry-After`. Catalog routes need no cap (the
+edge cache shields them).
+
+| Method | Path | Query | Cache | Returns |
+|--------|------|-------|-------|---------|
+| GET | `/api/v1` | — | catalog | Discovery index (endpoint list) |
+| GET | `/api/v1/projects` | `category`, `stack`, `language`, `status`, `need`, `priority`, `complexity` | catalog | Ranked `Project[]` (votes→priority→stars→lifecycle) |
+| GET | `/api/v1/projects/{slug}` | — | catalog | One `Project`, or `404` `not_found` |
+| GET | `/api/v1/search` | `q` | catalog | `SearchHit[]` (fuse.js; `<2` chars → `[]`) |
+| GET | `/api/v1/builders` | — | catalog | `Builder[]` (roster + self-adds) |
+| GET | `/api/v1/resources` | — | catalog | `Resource[]` (verified, link-out) |
+| GET | `/api/v1/communities` | — | catalog | `Community[]` (link-out) |
+| GET | `/api/v1/reference` | — | catalog | `ReferenceProject[]` (prior art) |
+| GET | `/api/v1/taxonomy` | — | catalog | `{categories, statuses, needTypes, complexities, priorities, stacks}` |
+| GET | `/api/v1/stats` | — | no-store | Aggregate counts (`projects`, `live`, `totalVotes`, `byStatus`, …) |
+| GET | `/api/v1/votes` | — | no-store | Live `{ slug: count }` map (per-IP capped) |
+
+Query params are **validated at the boundary** (`src/lib/api/query.ts`): a bogus enum
+(`?status=nope`) is *dropped*, never cast, so it can't throw — exactly the guard the board
+page uses, so the API and the UI filter identically. `category`/`stack` are free text (a
+non-matching value just yields no results). Error strings: `not_found` (404),
+`rate_limited` (429), `internal_error` (500).
+
+**Live vote overlay.** Because catalog HTML can be CDN-cached, the board's cards fetch
+`/api/v1/votes` client-side (`src/components/votes/LiveVotes.tsx`) and overlay the current
+counts. This is **not optimistic** — the number comes from the server (the same store the
+page reads), so it can only replace a stale count with the current one, never double-count.
+
+```bash
+curl https://elumbralvzla.org/api/v1/projects?status=live
+curl https://elumbralvzla.org/api/v1/stats
+```
 
 ## Routes (`src/app/[locale]/`)
 

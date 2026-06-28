@@ -30,13 +30,19 @@ src/
   proxy.ts              Locale redirect (Next 16 "proxy", formerly middleware). NOT a
                         security boundary — auth/ownership must live in the data layer.
   app/[locale]/         Routes. Server Components read repositories and render.
-  components/           Presentational + small client islands, grouped by feature.
+  app/api/v1/           Public read-only REST API. Route handlers call the SAME
+                        repository seam and wrap results in the shared envelope. GET only.
+  components/           Presentational + small client islands, grouped by feature
+                        (incl. votes/LiveVotes.tsx — the client live-vote overlay).
   actions/              "use server" mutations (the write side). Zod-validate input,
                         call a repository/store, revalidatePath.
   lib/
     repository/         THE SEAM. Interface + JSON impl per entity. The one place P1
                         swaps to Supabase (drop in *.repo.ts with the same interface,
                         switch in index.ts via DATA_BACKEND).
+    api/                Public-API plumbing: envelope + CORS/cache headers (response.ts),
+                        boundary query validation (query.ts). Pages/actions don't use it.
+    ratelimit/          Per-IP fixed-window limiter over the Redis seam; FAILS OPEN.
     data-files.ts       Server-only JSON read/write (seed files), behind the repository.
     schemas.ts          Zod schemas — single source of truth for every shape.
     types.ts            z.infer'd types.
@@ -50,9 +56,10 @@ data/                   Committed seed (*.seed.json, taxonomy.json) + gitignored
 scripts/                Node importers (sheet → seed JSON). Run manually / in CI.
 ```
 
-**Dependency rule:** routes and actions depend on the **repository interface**, never on
-`data-files.ts` or a store directly for reads. The repository is the only seam that
-knows whether data comes from JSON or (P1) Supabase.
+**Dependency rule:** routes, actions, **and the `/api/v1` route handlers** depend on the
+**repository interface**, never on `data-files.ts` or a store directly for reads. The
+repository is the only seam that knows whether data comes from JSON or (P1) Supabase — so
+the public API gets the P1 Supabase swap for free, with no handler changes.
 
 ## Data flow
 
@@ -81,8 +88,24 @@ knows whether data comes from JSON or (P1) Supabase.
    read-only FS (deployed serverless without Redis) throws and the action returns a
    typed `{ ok: false, error }` the UI surfaces — it never crashes the request.
 
+**Public API (`/api/v1`, read):**
+
+1. A `GET` hits a route handler in `app/api/v1/`. Query params are validated at the
+   boundary (`lib/api/query.ts`) — unknown enum values are dropped, never cast.
+2. The handler awaits the **same repository method** a page would (`projectRepository.list`,
+   etc.), then wraps the result in the shared envelope (`lib/api/response.ts`) with CORS
+   and a `Cache-Control` header — `s-maxage` for the catalog, `no-store` for `/stats`+`/votes`.
+3. The CDN edge cache serves the catalog from the header, shielding the origin. Only the
+   un-cached `/votes` carries a per-IP cap (`lib/ratelimit/limiter.ts`, fail-open).
+4. **Live vote overlay:** because catalog HTML is cacheable, the board's cards fetch the
+   `/votes` map client-side and overlay it (server-authoritative, never an optimistic `+1`).
+
 ## Trade-offs & constraints
 
+- **Public API is read-only.** `/api/v1` is GET-only; every mutation stays a server action,
+  so there is no public write surface. Open CORS (`*`) is safe because no response carries
+  per-user state or credentials. The CDN edge cache (not a per-request rate limit) is the
+  primary shield; only the un-cached `/votes` is per-IP capped, and that limiter fails open.
 - **JSON now, Supabase in P1.** The repository interface is the contract; `DATA_BACKEND`
   selects the impl (`json` default). Keeping reads behind the seam is why no component
   imports `data-files.ts`.

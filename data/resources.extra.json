@@ -98,5 +98,115 @@
     "languages": ["es"],
     "verified_source": "Academia SUCAB",
     "active": true
+  },
+  {
+    "id": "res-venezuela-reporta",
+    "name": "Venezuela Reporta",
+    "type": "search",
+    "url": "https://venezuelareporta.org",
+    "summary": "Reporte y búsqueda de personas desaparecidas tras el terremoto. Solo enlace, sin scraping ni copia de datos.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-tilin-app",
+    "name": "Tilin App",
+    "type": "other",
+    "url": "https://tilinapp.com",
+    "summary": "Reporte ciudadano de daños estructurales en edificaciones tras el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-app-centinela",
+    "name": "App Centinela",
+    "type": "other",
+    "url": "https://app.appcentinela.com/instalar",
+    "summary": "Reporte de daños estructurales e inspección de habitabilidad por ingenieros. App instalable. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-rescate-ve",
+    "name": "Rescate VE",
+    "type": "other",
+    "url": "https://rescate-ve.vercel.app",
+    "summary": "Coordinación de rescate, logística y transporte de ayuda hacia las zonas afectadas por el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-habitable",
+    "name": "Habitable",
+    "type": "other",
+    "url": "https://habitable.lovable.app",
+    "summary": "Inspección de habitabilidad de viviendas por ingenieros tras el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-ayuda-para-venezuela",
+    "name": "Ayuda Para Venezuela",
+    "type": "resources",
+    "url": "https://ayudaparavenezuela.com",
+    "summary": "Directorio de centros de acopio e insumos para la respuesta al terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-veneconnect",
+    "name": "Veneconnect",
+    "type": "resources",
+    "url": "https://www.veneconnect.com/apoyo-terremoto",
+    "summary": "Coordinación de apoyo, centros de acopio e insumos para los afectados por el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-tu-gruero",
+    "name": "Tu Gruero",
+    "type": "other",
+    "url": "https://tugruero.com",
+    "summary": "Red de grúas y transporte para apoyar la logística de rescate y traslado tras el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-zona-segura",
+    "name": "Zona Segura",
+    "type": "resources",
+    "url": "https://zonasegura.up.railway.app",
+    "summary": "Centros de acopio, insumos, alojamiento y refugios para personas afectadas por el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-refugios-venezuela",
+    "name": "Refugios Venezuela",
+    "type": "resources",
+    "url": "https://refugiosvenezuela.com",
+    "summary": "Directorio de refugios, alojamiento y alimentos para personas desplazadas por el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-huellas-can",
+    "name": "Huellas Can",
+    "type": "other",
+    "url": "https://www.huellascan.com/terremoto",
+    "summary": "Información y reporte de mascotas perdidas o rescatadas tras el terremoto. Solo enlace.",
+    "languages": ["es"],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
   }
 ]

@@ -4,10 +4,13 @@ import { isLocale, getDictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { projectRepository, membershipRepository } from "@/lib/repository";
 import { applyFilter } from "@/lib/repository/projects.repo";
-import { isEcosystemProject } from "@/lib/ecosystem";
+import { boardListing } from "@/lib/ecosystem";
 import { FilterBar } from "@/components/board/FilterBar";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { RadarStats } from "@/components/board/RadarStats";
+import { LiveVotesProvider } from "@/components/votes/LiveVotes";
+import { BoardCallout } from "@/components/board/BoardCallout";
+import { HackathonCountdown } from "@/components/board/HackathonCountdown";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { z } from "zod";
 import {
@@ -62,14 +65,14 @@ export default async function BoardPage({
   const showAll = one(sp.view) === "all" || hasFilter;
 
   // One ranked read; derive the filtered view in-memory (applyFilter is pure and
-  // order-preserving) so RadarStats and the grid share a single dataset. Existing
-  // live sites (no repo) live on /ecosystem — the board is for hackathon repos.
-  // Memberships load in parallel → "people assigned" count per card.
+  // order-preserving) so RadarStats and the grid share a single dataset. Repo-less
+  // initiative sites live on /ecosystem; the board carries buildable repos PLUS
+  // shipped/live projects (boardListing). Memberships → "people assigned" per card.
   const [ranked, memberships] = await Promise.all([
     projectRepository.list(),
     membershipRepository.list(),
   ]);
-  const all = ranked.filter((p) => !isEcosystemProject(p));
+  const all = boardListing(ranked);
   const filtered = applyFilter(all, filter);
   const projects = showAll ? filtered : filtered.filter((p) => p.priority === "high");
   const highCount = all.filter((p) => p.priority === "high").length;
@@ -86,6 +89,10 @@ export default async function BoardPage({
         </h1>
         <p className="mt-2 text-muted">{dict.board.subtitle}</p>
       </header>
+
+      <BoardCallout dict={dict} />
+
+      <HackathonCountdown dict={dict} />
 
       <RadarStats projects={all} dict={dict} />
 
@@ -123,17 +130,22 @@ export default async function BoardPage({
       </div>
 
       {projects.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <ProjectCard
-              key={p.id}
-              project={p}
-              locale={locale}
-              dict={dict}
-              teamCount={teamCounts.get(p.slug) ?? 0}
-            />
-          ))}
-        </div>
+        // Live vote overlay: the board HTML can be CDN-cached, so cards fetch the
+        // current { slug: count } map client-side and overlay it (server-authoritative,
+        // never an optimistic +1).
+        <LiveVotesProvider>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((p) => (
+              <ProjectCard
+                key={p.id}
+                project={p}
+                locale={locale}
+                dict={dict}
+                teamCount={teamCounts.get(p.slug) ?? 0}
+              />
+            ))}
+          </div>
+        </LiveVotesProvider>
       ) : (
         <EmptyState title={dict.board.empty} />
       )}

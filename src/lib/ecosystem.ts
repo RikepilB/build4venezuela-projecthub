@@ -20,11 +20,29 @@ export function isLaunchedProject(p: Project): boolean {
   return !!p.demo_url && (p.progress ?? 0) > 50;
 }
 
+// "Shipped" = a tracked project that is finished and live: status "live" AND progress
+// at 100%. These are the build4venezuela.com/projects entries we surface as done. Unlike
+// the repo-less *initiatives* (status "live", no progress), shipped projects ARE shown on
+// the board too (clearly badged), so builders see what's already complete — the whole
+// "search before you build" point. Gating on progress===100 keeps the existing initiative
+// sites (no progress) off the board, exactly as before.
+export function isShippedLive(p: Project): boolean {
+  return p.status === "live" && p.progress === 100;
+}
+
 // The /ecosystem display set: the repo-less relief sites PLUS the launched buildable
 // projects, preserving the input's ranked order. A project may appear here and on the
 // board simultaneously (that's the point — "show the launched ones in the ecosystem too").
 export function ecosystemListing(projects: Project[]): Project[] {
   return projects.filter((p) => isEcosystemProject(p) || isLaunchedProject(p));
+}
+
+// The board display set: buildable projects (have/seek a repo) PLUS shipped/live ones.
+// Repo-less *initiative* sites stay off the board (they live only on /ecosystem); a
+// shipped project (progress 100) is the deliberate exception so "done" work is visible
+// on the board. Centralized here so the board page and the landing "projects" stat agree.
+export function boardListing(projects: Project[]): Project[] {
+  return projects.filter((p) => !isEcosystemProject(p) || isShippedLive(p));
 }
 
 // Split a ranked project list into the two surfaces, preserving order. Note: this is a

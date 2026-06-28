@@ -1,0 +1,794 @@
+[
+  {
+    "id": "res-sos-venezuela-2026",
+    "name": "SOS Venezuela 2026",
+    "type": "search",
+    "url": "https://sosvenezuela2026.com",
+    "summary": "Agregador personas+reportes+danos+noticias; API canonica · API / datos abiertos · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-desaparecidos-venezuela",
+    "name": "Desaparecidos Venezuela",
+    "type": "search",
+    "url": "https://desaparecidosvenezuela.com",
+    "summary": "Reporte/busqueda; paginable via ?skip= · API / datos abiertos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-localizados-venezuela",
+    "name": "Localizados Venezuela",
+    "type": "search",
+    "url": "https://localizadosvenezuela.com",
+    "summary": "Personas en listas de hospitales; codigo abierto · API / datos abiertos · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-reporte-venezuela",
+    "name": "Reporte Venezuela",
+    "type": "search",
+    "url": "https://reportevenezuela.com",
+    "summary": "Heridos en hospitales/refugios (filtro duplicados) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-mbuscan",
+    "name": "mBuscan",
+    "type": "search",
+    "url": "https://mbuscan.com",
+    "summary": "Plataforma ciudadana sin login · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-encuentralos-vzla",
+    "name": "Encuentralos VZLA",
+    "type": "search",
+    "url": "https://encuentralosvzla.com",
+    "summary": "Reporte de menores · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-encuentralos-tecnosoft",
+    "name": "Encuentralos (tecnosoft)",
+    "type": "search",
+    "url": "https://encuentralos.tecnosoft.dev",
+    "summary": "Buscador · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-red-sonadoras",
+    "name": "Red Sonadoras",
+    "type": "search",
+    "url": "https://redsonadoras.com",
+    "summary": "Hasta Encontrarles' buscador · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-vea-2026",
+    "name": "VEA 2026",
+    "type": "search",
+    "url": "https://vea2026.com",
+    "summary": "Listado (marcado para unificar) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-busqueda-vzla",
+    "name": "Busqueda VZLA",
+    "type": "search",
+    "url": "https://busquedavzla.netlify.app",
+    "summary": "Buscador · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-venapp",
+    "name": "VenApp",
+    "type": "search",
+    "url": "https://venapp.com",
+    "summary": "Buscador · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-aid-venezuela",
+    "name": "Aid Venezuela",
+    "type": "search",
+    "url": "https://aidvenezuela.net",
+    "summary": "Reporte/agregador · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-sos-venezuela-net",
+    "name": "SOS Venezuela (net)",
+    "type": "search",
+    "url": "https://sosvenezuela.net",
+    "summary": "Reporte · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-unidos-venezuela",
+    "name": "Unidos Venezuela",
+    "type": "search",
+    "url": "https://unidosvenezuela.vercel.app",
+    "summary": "Reporte · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-terremoto-en-venezuela",
+    "name": "Terremoto en Venezuela",
+    "type": "search",
+    "url": "https://terremotoenvenezuela.com",
+    "summary": "Reporte · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-info-salud-sismo-vzla",
+    "name": "Info Salud Sismo VZLA",
+    "type": "search",
+    "url": "https://infosaludsismovzla2026.com",
+    "summary": "Info de salud · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-apoyo-salud",
+    "name": "Apoyo Salud",
+    "type": "search",
+    "url": "https://apoyo.salu.pro",
+    "summary": "Apoyo salud · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-auxilio-ven",
+    "name": "Auxilio Ven",
+    "type": "search",
+    "url": "https://auxilioven.org",
+    "summary": "Cruza hospitales vs desaparecidos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-sismo-venezuela",
+    "name": "Sismo Venezuela",
+    "type": "other",
+    "url": "https://sismovenezuela.org",
+    "summary": "Mapa colaborativo de edificios · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-terremoto-venezuela-app",
+    "name": "Terremoto Venezuela (app)",
+    "type": "other",
+    "url": "https://terremotovenezuela.app",
+    "summary": "Mapa de danos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-terremoto-ve-netlify",
+    "name": "Terremoto VE (netlify)",
+    "type": "other",
+    "url": "https://terremotove.netlify.app",
+    "summary": "Mapa (colapsos+desap.+acopios) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-24junve",
+    "name": "24JunVE",
+    "type": "other",
+    "url": "https://24junve.statuslocal.net",
+    "summary": "Mapa de eventos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-sismoayuda-ve",
+    "name": "SismoAyuda VE",
+    "type": "other",
+    "url": "https://sismoayudave.com",
+    "summary": "Ingenieros voluntarios evaluan dano por foto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-riave",
+    "name": "RIAVE",
+    "type": "other",
+    "url": "https://riave-deploy.vercel.app",
+    "summary": "Reporte · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-reporta-venezuela-org",
+    "name": "Reporta Venezuela (org)",
+    "type": "other",
+    "url": "https://reportavenezuela.org",
+    "summary": "Reporte de danos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-microsoft-ai-for-good-hdx",
+    "name": "Microsoft AI for Good (HDX)",
+    "type": "other",
+    "url": "https://data.humdata.org",
+    "summary": "Dataset danos edificios Catia La Mar · API / datos abiertos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-reporta-venezuela-zonas-afectadas",
+    "name": "Reporta Venezuela (Zonas Afectadas)",
+    "type": "other",
+    "url": "https://zonasafectadasvenezuela.app",
+    "summary": "Mapa en vivo; consume API de 7uanF · API / datos abiertos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-earthquake-map",
+    "name": "Venezuela Earthquake Map",
+    "type": "other",
+    "url": "https://venezuela-earthquake-map.vercel.app",
+    "summary": "Heatmap auto-agrega YouTube/X/IG c/10min · API / datos abiertos · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-sheet-centros-de-acopio-m-lozada",
+    "name": "Sheet Centros de Acopio (M. Lozada)",
+    "type": "resources",
+    "url": "https://docs.google.com/spreadsheets/d/1OTNQGMsK3nU2wqy00rtPPcwsSzAlorWeP-uIotWpkxM",
+    "summary": "~100 centros con dir/coords/contacto · API / datos abiertos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-acopio-ve",
+    "name": "Acopio VE",
+    "type": "resources",
+    "url": "https://acopiove.org",
+    "summary": "Directorio de acopios · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-acopio-vzla",
+    "name": "Acopio VZLA",
+    "type": "resources",
+    "url": "https://acopiovzla.com",
+    "summary": "Directorio de acopios · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-acopios-refugios",
+    "name": "Acopios-Refugios",
+    "type": "resources",
+    "url": "https://acopios-refugios.vercel.app",
+    "summary": "Acopios+refugios+interpretes · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-hazlo-hoy-terremoto",
+    "name": "Hazlo Hoy - Terremoto",
+    "type": "resources",
+    "url": "https://hazlohoy.org/terremoto-caracas",
+    "summary": "Acopios + como ayudar · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-aid-finder",
+    "name": "Venezuela Aid Finder",
+    "type": "resources",
+    "url": "https://venezuela-aid-finder.lovable.app",
+    "summary": "Acopios (sobre data de M. Lozada) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-info-ayuda-venezuela",
+    "name": "Info Ayuda Venezuela",
+    "type": "resources",
+    "url": "https://infoayudavenezuela.site",
+    "summary": "Info de acopios · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-donar-seguro",
+    "name": "Donar Seguro",
+    "type": "donation",
+    "url": "https://donarseguro.com",
+    "summary": "Fondos verificados · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-yummy-dona",
+    "name": "Yummy (dona)",
+    "type": "donation",
+    "url": "https://dona.yummyrides.com",
+    "summary": "Donacion (Yummy iguala 25%) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-caritas-venezuela",
+    "name": "Caritas Venezuela",
+    "type": "donation",
+    "url": "https://caritasvenezuela.org/donaciones",
+    "summary": "Donaciones ONG · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-dividendo-voluntario",
+    "name": "Dividendo Voluntario",
+    "type": "donation",
+    "url": "https://dividendovoluntario.org",
+    "summary": "Donaciones · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-ve-earthquake-relief",
+    "name": "VE Earthquake Relief",
+    "type": "donation",
+    "url": "https://venezuela-earthquake-relief.netlify.app",
+    "summary": "Agregador de donaciones · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-patas-a-casa",
+    "name": "Patas a Casa",
+    "type": "other",
+    "url": "https://patasacasa.com",
+    "summary": "Mascotas perdidas · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-mascotas-por-venezuela",
+    "name": "Mascotas por Venezuela",
+    "type": "other",
+    "url": "https://mascotasporvenezuela.com",
+    "summary": "Mascotas perdidas · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-aparecio-mi-gente-telegram",
+    "name": "Aparecio Mi Gente (Telegram)",
+    "type": "dev",
+    "url": "https://t.me/aparecio_en_venezuela_bot",
+    "summary": "Alerta cuando un nombre aparece en listas · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-help-acopios",
+    "name": "Venezuela Help (acopios)",
+    "type": "dev",
+    "url": "https://venezuelahelp.click",
+    "summary": "Bot de acopios · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-build4venezuela-crafter-station",
+    "name": "Build4Venezuela (Crafter Station)",
+    "type": "resources",
+    "url": "https://build4venezuela.com/projects",
+    "summary": "Portal hackathon ~30 proyectos; GET /api/projects · API / datos abiertos · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-lista-maestra-amintore",
+    "name": "Lista maestra Amintore",
+    "type": "resources",
+    "url": "https://x.com/AmintoreOficial/status/2070486864067473476",
+    "summary": "Catalogo por categorias mas autoritativo · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-redquipu",
+    "name": "RedQuipu",
+    "type": "resources",
+    "url": "https://redquipu.com",
+    "summary": "Plataforma central' (consolida iniciativas) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-centraliza-ayuda-venezuela",
+    "name": "Centraliza Ayuda Venezuela",
+    "type": "resources",
+    "url": "https://kevinesaa.github.io/centraliza-ayuda-venezuela",
+    "summary": "Portal; codigo abierto · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-solidaria",
+    "name": "Venezuela Solidaria",
+    "type": "resources",
+    "url": "https://venezuelasolidaria.com",
+    "summary": "Directorio de paginas validadas · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-senal-de-ayuda",
+    "name": "Senal de Ayuda",
+    "type": "resources",
+    "url": "https://senaldeayuda.org",
+    "summary": "Mapa en vivo multi-proposito · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-ayuda-ve-dross",
+    "name": "Ayuda VE (DROSS)",
+    "type": "resources",
+    "url": "https://ayudave.com",
+    "summary": "Mapa reportar/insumos/ayuda · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-red-ayuda-venezuela",
+    "name": "Red Ayuda Venezuela",
+    "type": "resources",
+    "url": "https://redayudavenezuela.com",
+    "summary": "Hub multi-proposito · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-vzl-ayuda",
+    "name": "VZL Ayuda",
+    "type": "resources",
+    "url": "https://vzlayuda.com/ayudar",
+    "summary": "Hub multi-proposito · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-sos-ven-site",
+    "name": "SOS Ven (site)",
+    "type": "resources",
+    "url": "https://sosven.site",
+    "summary": "Hub (personas+mascotas) · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-recursos-terremoto-venezuela",
+    "name": "Recursos Terremoto Venezuela",
+    "type": "resources",
+    "url": "https://recursos-terremoto-venezuela.netlify.app",
+    "summary": "Portal de recursos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-info-central-terremoto-ve",
+    "name": "Info Central Terremoto VE",
+    "type": "resources",
+    "url": "https://info-central-terremoto-venezuela.com",
+    "summary": "Portal central · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-terremoto-2026",
+    "name": "Venezuela Terremoto 2026",
+    "type": "resources",
+    "url": "https://venezuelaterremoto2026.com",
+    "summary": "Portal · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-vzla-response-hub",
+    "name": "VZLA Response Hub",
+    "type": "resources",
+    "url": "https://vzla-response-hub.vercel.app",
+    "summary": "Hub de respuesta · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-pawboard-build4venezuela",
+    "name": "Pawboard - Build4Venezuela",
+    "type": "resources",
+    "url": "https://pawboard.dev/build4venezuela",
+    "summary": "Tablero del hackathon · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-punto-de-apoyo-venezuela",
+    "name": "Punto de Apoyo Venezuela",
+    "type": "resources",
+    "url": "https://www.puntodeapoyovenezuela.com/",
+    "summary": "Mapa colaborativo para marcar puntos de apoyo (suministros, centros de acopio, hospitales, WiFi Libre, energía, etc), pueden marcar tanto para solicitar como para ofrecer. · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-avapre-venezuela",
+    "name": "Avapre Venezuela",
+    "type": "resources",
+    "url": "https://redh.avapre.com/",
+    "summary": "Hub de ayuda rapida y requests de centros medicos · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-reconectavenezuela",
+    "name": "ReconectaVenezuela",
+    "type": "telecom",
+    "url": "https://reconectavenezuela.com",
+    "summary": "Internet satelital gratis · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-infancia-protegida-vzla",
+    "name": "Infancia Protegida Vzla",
+    "type": "search",
+    "url": "https://infanciaprotegidavzla.netlify.app/",
+    "summary": "Llevar registro y seguirle el rastro a los niños no acompañandos · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-heroes-venezuela",
+    "name": "Heroes Venezuela",
+    "type": "resources",
+    "url": "https://heroesvenezuela.com",
+    "summary": "A traves de geolocalización, conecta ayudantes con personas que requieren ayuda en logistica, insumos, etc. · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-de-mano-en-mano",
+    "name": "De Mano En Mano",
+    "type": "resources",
+    "url": "https://demanoenmano.vercel.app/",
+    "summary": "Qué ayuda se necesita en tiempo real: hospitales y refugios verificados · código abierto · Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  },
+  {
+    "id": "res-api-para-desarrolladores-y-agentes",
+    "name": "API para desarrolladores y agentes",
+    "type": "other",
+    "url": "https://respuestave.org/desarrolladores",
+    "summary": "Solo enlace",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Ecosistema Startups Venezuela",
+    "active": true
+  }
+]

@@ -1,5 +1,27 @@
 [
   {
+    "id": "idea-crear-un-directorio-de-donaciones-marcelo-y-ender",
+    "slug": "idea-crear-un-directorio-de-donaciones-marcelo-y-ender",
+    "name": "Crear un directorio de donaciones - Marcelo y ender",
+    "summary": "Crear un directorio de donaciones - Marcelo y ender — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
     "id": "idea-generador-de-fichas-de-desaparecido",
     "slug": "idea-generador-de-fichas-de-desaparecido",
     "name": "Generador de fichas de desaparecido",
@@ -251,11 +273,7 @@
     "slug": "idea-sincronizacion-mesh-entre-dispositivos",
     "name": "Sincronización mesh entre dispositivos",
     "summary": "En zonas sin torres, los teléfonos cercanos podrían retransmitir datos entre sí.",
-    "stack": [
-      "Go",
-      "Bluetooth",
-      "WiFi Direct"
-    ],
+    "stack": [],
     "languages": [
       "es"
     ],
@@ -325,30 +343,6 @@
     "priority": "medium"
   },
   {
-    "id": "idea-voces-unidas",
-    "slug": "idea-voces-unidas",
-    "name": "Voces Unidas",
-    "summary": "Silencio Tecnológico: Pérdida total de comunicación en zonas críticas, impidiendo el reporte de heridos, fallecidos y daños estructurales. Asimetría de Datos: Existencia de puntos ciegos para autoridades y ONGs; falta de evidencia técnica para justificar y canalizar ayuda internacional. Respuesta Ineficiente: El despliegue de recursos se basa en la intuición y no en un mapeo real de la vulnerabilidad en terreno. Dependencia Extrema: Ausencia de mecanismos de auto-gestión local (trueque) que permitan a la comunidad sostenerse mientras llega la ayuda externa. Falta de Validación: Imposibilidad d",
-    "stack": [
-      "LoRa"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "ERICK AVILA",
-    "source": "internal",
-    "priority": "medium"
-  },
-  {
     "id": "idea-consulta-offline-si-un-familiar-ha-sido-localizado-sin-datos",
     "slug": "idea-consulta-offline-si-un-familiar-ha-sido-localizado-sin-datos",
     "name": "Consulta offline si un familiar ha sido localizado, sin datos.",
@@ -373,35 +367,10 @@
     "priority": "medium"
   },
   {
-    "id": "idea-vzla-dedup-limpiar-registros-de-personas-desaparecidas",
-    "slug": "idea-vzla-dedup-limpiar-registros-de-personas-desaparecidas",
-    "name": "VZLA_DEDUP, limpiar registros de personas desaparecidas.",
-    "summary": "Esto es un problema conocido como Entity Resolution, la idea general es: 1. Normalización 2. Blocking: Agrupar candidatos por fonética, primeras letras, estado/ciudad. Algoritmos como Soundex o Metaphone en español. 3. Similarity scoring: para cada par candidato, calcular similitud: nombres, Coincidencia de cédula si está disponible, Edad aproximada, estado donde fue visto. 4. Clustering: Registros que superan un umbral de similitud, se marcan como probable duplicado para revisión humana. 5. Revisión humana: El algoritmo no decide solo, propone.",
-    "stack": [
-      "Python",
-      "RestAPI"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "missing-persons"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Mathias Aivasovsky",
-    "source": "internal",
-    "priority": "medium"
-  },
-  {
-    "id": "idea-plataforma-osint-de-conciencia-situacional-osint-venezuela",
-    "slug": "idea-plataforma-osint-de-conciencia-situacional-osint-venezuela",
-    "name": "Plataforma OSINT de Conciencia Situacional OSINT Venezuela",
-    "summary": "Coordinación / Inteligencia Humanitaria",
+    "id": "idea-plataforma-osint-de-conciencia-situacional",
+    "slug": "idea-plataforma-osint-de-conciencia-situacional",
+    "name": "Plataforma OSINT de Conciencia Situacional",
+    "summary": "Organizaciones y voluntarios no tienen una visión común de incidentes, necesidades, rutas bloqueadas y recursos disponibles.",
     "stack": [],
     "languages": [
       "es"
@@ -420,10 +389,304 @@
     "priority": "medium"
   },
   {
-    "id": "idea-buscachat",
-    "slug": "idea-buscachat",
-    "name": "BuscaChat",
-    "summary": "BuscaChat — idea para el hackathon solidario.",
+    "id": "idea-mapa-global-de-puntos-de-colecta",
+    "slug": "idea-mapa-global-de-puntos-de-colecta",
+    "name": "Mapa global de puntos de colecta",
+    "summary": "Las personas quieren ayudar pero desconocen dónde donar según su ubicación. Tampoco existe una fuente única con horarios, necesidades y estado de cada punto de colecta.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "needs-map"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-marketplace-de-profesionales-voluntarios",
+    "slug": "idea-marketplace-de-profesionales-voluntarios",
+    "name": "Marketplace de profesionales voluntarios",
+    "summary": "Las organizaciones gastan parte de sus donaciones en servicios profesionales (diseño, desarrollo, traducción, comunicación, asesoría legal, etc.). Conectar voluntarios con estas necesidades permite destinar más dinero directamente a la ayuda humanitaria.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-guia-rapida-para-ciudadanos",
+    "slug": "idea-guia-rapida-para-ciudadanos",
+    "name": "Guía rápida para ciudadanos",
+    "summary": "Muchas personas quieren ayudar pero no saben cómo hacerlo de forma segura y efectiva. La desinformación genera errores, riesgos y desperdicio de recursos.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-reporte-minuto-a-minuto-de-recursos",
+    "slug": "idea-reporte-minuto-a-minuto-de-recursos",
+    "name": "Reporte minuto a minuto de recursos",
+    "summary": "La información crítica está dispersa entre redes sociales, WhatsApp y medios. Esto provoca duplicación de esfuerzos, desperdicio de recursos y demoras para conectar necesidades con la ayuda disponible.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "needs-map"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-asistente-sos-con-ia-para-preguntas-sobre-el-terremoto",
+    "slug": "idea-asistente-sos-con-ia-para-preguntas-sobre-el-terremoto",
+    "name": "Asistente SOS con IA para preguntas sobre el terremoto.",
+    "summary": "La información está dispersa entre reportes, noticias, mapas, centros de acopio, redes sociales y documentos. La gente necesita poder preguntar en lenguaje natural y recibir respuestas claras, actualizadas, con fuentes y nivel de confianza.",
+    "stack": [
+      "Next.js",
+      "Pgvector",
+      "API"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Alvaro Avila",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-mvp-de-seguridad-antidisturbios-para-evitar-robos-o-maleantes",
+    "slug": "idea-mvp-de-seguridad-antidisturbios-para-evitar-robos-o-maleantes",
+    "name": "MVP de seguridad antidisturbios para evitar robos o maleantes",
+    "summary": "MVP de seguridad antidisturbios para evitar robos o maleantes — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-plataforma-de-ayuda-psicologica-para-los-afectados-en-el-terremoto-psi",
+    "slug": "idea-plataforma-de-ayuda-psicologica-para-los-afectados-en-el-terremoto-psi",
+    "name": "Plataforma de ayuda psicologica para los afectados en el terremoto - psicologos y curas",
+    "summary": "Salud mental es indispensable para poder sobrellevar el impacto de lo sucedido de mejor manera, se propone construir una platafroma que ayude a acercar a profesionales voluntarios para agendar de manera remota sessiones terapeuticas con los principales afectados.",
+    "stack": [
+      "WhatsApp",
+      "API",
+      "Lovable"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-plataforma-para-conectar-refugiados-con-alojamientos-temporales",
+    "slug": "idea-plataforma-para-conectar-refugiados-con-alojamientos-temporales",
+    "name": "Plataforma para conectar refugiados con alojamientos temporales",
+    "summary": "Durante una emergencia, muchas personas necesitan un lugar seguro donde quedarse, asearse, mientras que otras están dispuestas a ofrecer alojamiento. La falta de una plataforma centralizada y con mecanismos básicos de verificación dificulta conectar ambas partes de forma rápida, segura y organizada.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "needs-map"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-donacion-de-sangre-estamos-evaluando-crear-un-proyecto-para-coordinar-",
+    "slug": "idea-donacion-de-sangre-estamos-evaluando-crear-un-proyecto-para-coordinar-",
+    "name": "Donación de sangre Estamos evaluando crear un proyecto para coordinar y facilitar la donación de sangre para las persona",
+    "summary": "Donación de sangre Estamos evaluando crear un proyecto para coordinar y facilitar la donación de sangre para las persona — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-fact-checking-de-noticias-nos-estan-comentando-que-hay-mucha-desinform",
+    "slug": "idea-fact-checking-de-noticias-nos-estan-comentando-que-hay-mucha-desinform",
+    "name": "Fact-checking de noticias Nos están comentando que hay mucha desinformación circulando y eso está generando bastante his",
+    "summary": "Fact-checking de noticias Nos están comentando que hay mucha desinformación circulando y eso está generando bastante his — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-seguridad-se-esta-hablando-de-robos-y-de-grupos-delictivos-aprovechand",
+    "slug": "idea-seguridad-se-esta-hablando-de-robos-y-de-grupos-delictivos-aprovechand",
+    "name": "Seguridad Se está hablando de robos y de grupos delictivos aprovechando la situación. La propuesta es desarrollar un MVP",
+    "summary": "Seguridad Se está hablando de robos y de grupos delictivos aprovechando la situación. La propuesta es desarrollar un MVP — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-logistica-y-transporte-crear-un-mvp-para-coordinar-transporte-comparti",
+    "slug": "idea-logistica-y-transporte-crear-un-mvp-para-coordinar-transporte-comparti",
+    "name": "Logística y transporte Crear un MVP para coordinar transporte compartido. Por ejemplo, que médicos, voluntarios o rescat",
+    "summary": "Logística y transporte Crear un MVP para coordinar transporte compartido. Por ejemplo, que médicos, voluntarios o rescat — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-te-ayudo-como-el-rappi-solidario",
+    "slug": "idea-te-ayudo-como-el-rappi-solidario",
+    "name": "Te ayudo: como el Rappi solidario",
+    "summary": "Te ayudo: como el Rappi solidario — idea para el hackathon solidario.",
+    "stack": [],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "open",
+    "source": "internal",
+    "priority": "medium"
+  },
+  {
+    "id": "idea-seguimiento-de-insumos-y-donaciones-a-traves-de-un-qr",
+    "slug": "idea-seguimiento-de-insumos-y-donaciones-a-traves-de-un-qr",
+    "name": "Seguimiento de insumos y donaciones a traves de un qr",
+    "summary": "Seguimiento de insumos y donaciones a traves de un qr — idea para el hackathon solidario.",
     "stack": [],
     "languages": [
       "es"

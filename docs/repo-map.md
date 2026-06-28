@@ -29,7 +29,7 @@ needed for durable runtime state on a serverless deploy.
 | `docs/` | This index, `architecture.md`, `api.md`, `decisions.md` |
 | `public/` | Static assets served as-is |
 | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `LICENSE` | Project + OSS docs (MIT) |
-| `AGENTS.md` · `CLAUDE.md` · `.claude/` | Agent/contributor operating notes + shared agent config |
+| `AGENTS.md` | Agent/contributor operating notes (`.claude/` agent config is local-only, gitignored) |
 | `.env.example` | Documented env vars (copy to `.env.local`) |
 | `next.config.ts` · `tsconfig.json` · `postcss.config.mjs` · `eslint.config.mjs` · `vitest.config.ts` | Tooling config |
 
@@ -41,6 +41,7 @@ needed for durable runtime state on a serverless deploy.
 | `app/[locale]/` | All routes; `layout.tsx` is the root layout (renders `<html>`) |
 | `app/[locale]/{board,builders,communities,ecosystem,reference,resources,search}/` | Page per surface (`page.tsx`, some with `loading.tsx`) |
 | `app/[locale]/projects/[slug]/` · `projects/new/` | Project detail + publish form |
+| `app/api/v1/` | Public read-only REST API (route handlers per resource → repository, GET only) |
 | `app/globals.css` | Tailwind import + token→utility mapping |
 | `app/icon.svg` · `app/favicon.ico` | El Umbral doorway mark + fallback favicon |
 | `actions/` | `"use server"` mutations + their `*-types.ts` state types |
@@ -48,8 +49,11 @@ needed for durable runtime state on a serverless deploy.
 | `components/builders/` · `project/` · `communities/` · `ecosystem/` · `reference/` · `resources/` | Feature-grouped presentational + form components |
 | `components/layout/` | `Header`, `MobileNav`, `Footer`, `SkipLink` |
 | `components/search/` | `SearchBox`, `ExistingMatches` |
+| `components/votes/` | `LiveVotes` — client live-vote overlay (fetches `/api/v1/votes`) |
 | `components/ui/` | Shared primitives: badges, tags, progress bar, skeleton, external link, empty state |
 | `lib/repository/` | The data seam: interface + JSON impl per entity, `index.ts` selector |
+| `lib/api/` | Public-API envelope + CORS/cache headers (`response.ts`) + boundary query validation (`query.ts`) |
+| `lib/ratelimit/` | Per-IP fixed-window limiter over the Redis seam (fails open) |
 | `lib/data-files.ts` | Server-only JSON read/write behind the repository |
 | `lib/schemas.ts` | **Zod — single source of truth** for every shape |
 | `lib/types.ts` | `z.infer`'d types |

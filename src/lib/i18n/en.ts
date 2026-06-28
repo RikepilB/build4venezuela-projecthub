@@ -10,6 +10,7 @@ export const en = {
     communities: "Communities",
     reference: "Reference",
     builders: "Builders",
+    match: "Find your fit",
     submit: "Publish project",
     repo: "GitHub repository",
     menu: "Menu",
@@ -22,6 +23,7 @@ export const en = {
     placeholder: "e.g. missing persons map, shelter directory…",
     searchButton: "Search",
     browseButton: "Browse the board",
+    matchButton: "Find where you fit",
     whatTitle: "What is El Umbral?",
     whatBody:
       "A shared radar of every Build4Venezuela relief project — so we move fast without duplicating effort. Discover what already exists, see what each project needs, form a team, and submit finished projects to Build4Venezuela.",
@@ -40,15 +42,15 @@ export const en = {
     statBuilders: "builders",
     statLive: "live tools",
     statNeeds: "open needs",
-    // featured projects
-    featuredTitle: "Live on the board",
-    featuredBody: "The team's top-voted relief projects right now. Jump into one — or search for yours first.",
+    // featured projects (most-voted live feed)
+    featuredTitle: "Live feed · most voted",
+    featuredBody: "The three most-voted relief projects right now. Jump into one — or search for yours first.",
     featuredCta: "See all projects",
     // builders teaser
     buildersBody: "Designers, devs and translators from the hackathon roster — filter by stack, availability and timezone.",
     buildersCta: "Browse builders",
     // ecosystem teaser
-    ecosystemBody: "Relief tools you can use right now — no need to rebuild them.",
+    ecosystemBody: "Shipped, live tools you can use right now — no need to rebuild them.",
     ecosystemCta: "Explore the ecosystem",
     // crisis response hubs
     hubsEyebrow: "Crisis response hubs",
@@ -98,14 +100,17 @@ export const en = {
     viewPriority: "High priority only",
     calloutTitle: "Open board — anyone can jump in",
     calloutBody: "Join a project, use one that already exists, or publish your own on Build4Venezuela. You decide what to do.",
-    calloutLink: "Build4Venezuela projects",
+    calloutLink: "Ship your project in the hackathon",
+    countdownTitle: "Hackathon ends in",
+    countdownEnded: "Hackathon closed",
   },
   ecosystem: {
-    title: "Ecosystem",
+    title: "Shipped & live",
     subtitle:
-      "Existing relief projects and tools you can use or reference right now — live sites without an open repo to join. For hackathon projects to build on, see the board.",
-    visit: "Visit site",
-    empty: "No existing projects listed yet.",
+      "Relief projects that shipped — live and usable right now. Real tools built for the earthquake response that you can open and use; no need to rebuild them. To build on a project instead, see the board.",
+    visit: "Visit live site",
+    live: "Live",
+    empty: "No shipped projects listed yet.",
   },
   resources: {
     title: "Verified resources",
@@ -212,6 +217,7 @@ export const en = {
     empty: "No builders match these filters. Run the importer to load the roster.",
     profile: "Profile",
     workingOn: "Working on",
+    matchCta: "Matching projects",
     count: "builders",
     addCta: "+ Add yourself",
     addTitle: "Add yourself to the roster",
@@ -257,6 +263,36 @@ export const en = {
     addRepoSuccess: "Repo attached 🎉",
     addRepoInvalid: "Enter a valid https github.com repo URL.",
     addRepoError: "Couldn't save right now — try again.",
+  },
+  match: {
+    title: "Find where you fit",
+    subtitle:
+      "Tell us your skills and we'll surface the relief projects that need exactly them. Sponsors: see where your offer lands.",
+    asBuilder: "I want to build",
+    asSponsor: "I can sponsor",
+    // builder side
+    yourFit: "Projects that fit you",
+    builderPrompt: "Pick your stack above to see the projects that need it.",
+    builderEmpty: "No open projects match those skills yet — widen your filters, or publish your own.",
+    publishCta: "Publish a project",
+    count: "matches",
+    // sponsor side
+    sponsorTitle: "Where your offer lands",
+    sponsorLabel: "What can you offer?",
+    sponsorPlaceholder: "e.g. SMS credits, hosting, OpenAI credits",
+    sponsorButton: "Find projects",
+    sponsorPrompt: "Tell us what you can give to see the projects that need it.",
+    sponsorEmpty: "No project lists a matching need right now.",
+    sponsorMatched: "Needs you can cover",
+    // recruit panel (project detail)
+    recruitTitle: "Builders who fit this project",
+    recruitBody: "Roster talent whose skills match this project's open needs.",
+    recruitEmpty: "No roster builders match these needs yet.",
+    // reason chips
+    reasonNeed: "Needs",
+    reasonPriority: "High priority",
+    reasonSpots: "spots open",
+    reasonNeedsCovered: "needs matched",
   },
   footer: {
     builtBy: "Built by",

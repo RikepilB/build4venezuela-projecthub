@@ -33,7 +33,16 @@ export function ProjectCard({
           <Link href={detailHref} className="font-semibold text-text hover:text-primary">
             {project.name}
           </Link>
-          <StatusBadge status={project.status} locale={locale} />
+          <div className="flex shrink-0 items-center gap-1.5">
+            {/* Shipped marker: a finished, live project (100%). Distinguishes it from a
+                live-but-still-evolving one (status "live", progress < 100). */}
+            {project.progress === 100 && (
+              <span className="inline-flex items-center rounded-full border border-success/40 bg-success/10 px-2 py-0.5 text-xs font-semibold text-success">
+                100%
+              </span>
+            )}
+            <StatusBadge status={project.status} locale={locale} />
+          </div>
         </div>
 
         <p className="line-clamp-2 text-sm text-muted">{project.summary}</p>
@@ -60,6 +69,9 @@ export function ProjectCard({
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-sm">
           {project.repo_url ? (
             <ExternalLink href={project.repo_url}>{dict.card.repo}</ExternalLink>
+          ) : project.demo_url ? (
+            // Shipped/live with no repo: link straight to the live site, not "+ Add repo".
+            <ExternalLink href={project.demo_url}>{dict.card.page}</ExternalLink>
           ) : (
             <Link
               href={detailHref}

@@ -287,33 +287,6 @@
     "priority": "low"
   },
   {
-    "id": "gh-carlos29blanco-antes-y-despu-s-del-terremotos-de-venezuela-24-jun-2026",
-    "slug": "gh-carlos29blanco-antes-y-despu-s-del-terremotos-de-venezuela-24-jun-2026",
-    "name": "Antes-y-Despu-s-del-Terremotos-de-Venezuela-24-jun-2026",
-    "summary": "Antes-y-Despu-s-del-Terremotos-de-Venezuela-24-jun-2026 — Venezuela relief open-source project.",
-    "repo_url": "https://github.com/Carlos29Blanco/Antes-y-Despu-s-del-Terremotos-de-Venezuela-24-jun-2026",
-    "stack": [
-      "HTML"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Carlos29Blanco",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
     "id": "gh-manosporvenezuela-ayuda-venezuela",
     "slug": "gh-manosporvenezuela-ayuda-venezuela",
     "name": "ayuda-venezuela",
@@ -503,31 +476,6 @@
       "sponsors": []
     },
     "owner": "georiv",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-mohammodsaifazam-venezuelaearthquake2026",
-    "slug": "gh-mohammodsaifazam-venezuelaearthquake2026",
-    "name": "venezuelaearthquake2026",
-    "summary": "Our Prayers Are With Venezuela  The recent earthquake in Venezuela is a heartbreaking reminder of how fragile life can be and how important it is to stand together during difficult times.  My thoughts and prayers are with the people of Venezuela, the families affected, the injured, and everyone working on rescue and emergency support.",
-    "repo_url": "https://github.com/mohammodsaifazam/venezuelaearthquake2026",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "mohammodsaifazam",
     "source": "external",
     "stars": 0,
     "complexity": "low",
@@ -1003,122 +951,6 @@
       "sponsors": []
     },
     "owner": "aquiestoyvenezuela",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-ceylindilekkarabulut-emergencycoordination",
-    "slug": "gh-ceylindilekkarabulut-emergencycoordination",
-    "name": "emergencyCoordination",
-    "summary": "Earthquake disaster relief simulator in C++ with custom data structures",
-    "repo_url": "https://github.com/ceylindilekkarabulut/emergencyCoordination",
-    "stack": [
-      "C++"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "ceylindilekkarabulut",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-arpi-git29-realtime-earthquake-prediction-and-relief-coordination",
-    "slug": "gh-arpi-git29-realtime-earthquake-prediction-and-relief-coordination",
-    "name": "RealTime-Earthquake-Prediction-and-Relief-Coordination",
-    "summary": "RealTime-Earthquake-Prediction-and-Relief-Coordination — Venezuela relief open-source project.",
-    "repo_url": "https://github.com/Arpi-git29/RealTime-Earthquake-Prediction-and-Relief-Coordination",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Arpi-git29",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-akdoganhilal-ai-disaster-relief-system",
-    "slug": "gh-akdoganhilal-ai-disaster-relief-system",
-    "name": "ai-disaster-relief-system",
-    "summary": "Artificial Intelligence Supported Earthquake Relief and Coordination System - Project Presentation and Design Document",
-    "repo_url": "https://github.com/akdoganhilal/ai-disaster-relief-system",
-    "stack": [
-      "afad",
-      "artificial-intelligence",
-      "big-data",
-      "computer-vision",
-      "data-science",
-      "deep-learning",
-      "disaster-management",
-      "emergency-response"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "akdoganhilal",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-ozancandirek-aegisfrontend",
-    "slug": "gh-ozancandirek-aegisfrontend",
-    "name": "AegisFrontend",
-    "summary": "Aegis Disaster Management System – React frontend for earthquake relief coordination. Role-based dashboards, interactive Turkey map with Kandilli Observatory integration, aid requests, team & inventory management.",
-    "repo_url": "https://github.com/OzancanDirek/AegisFrontend",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "needs-map",
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "OzancanDirek",
     "source": "external",
     "stars": 0,
     "complexity": "low",

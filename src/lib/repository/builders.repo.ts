@@ -1,6 +1,6 @@
 import { loadBuilders } from "../data-files";
 import { readCustomBuilders, appendCustomBuilder } from "../builders/builders-store";
-import { normalizeAvailability, normalizeTimezone } from "../builders/normalize";
+import { normalizeAvailability, normalizeTimezone, normalizeBuilderStatus, normalizeSeniority } from "../builders/normalize";
 import { fetchRemoteBuilders } from "../sheet/builders-csv";
 import { BuilderSchema } from "../schemas";
 import { slugify } from "../slug";
@@ -37,6 +37,8 @@ function canonicalize(b: Builder): Builder {
     ...b,
     availability: normalizeAvailability(b.availability),
     timezone: normalizeTimezone(b.timezone),
+    status: normalizeBuilderStatus(b.status),
+    seniority: normalizeSeniority(b.role),
   };
 }
 

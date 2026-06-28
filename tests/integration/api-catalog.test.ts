@@ -123,7 +123,7 @@ describe("GET /api/v1/search", () => {
 describe("curated list endpoints", () => {
   it("GET /api/v1/builders", async () => {
     vi.mocked(builderRepository.list).mockResolvedValue([
-      { id: "b", alias: "A", role: "", stack: [], availability: "", timezone: "", status: "" },
+      { id: "b", alias: "A", role: "", stack: [], availability: "", timezone: "", status: "", seniority: "" },
     ]);
     const res = await buildersGET();
     expect(res.headers.get("Cache-Control")).toContain("s-maxage=300");

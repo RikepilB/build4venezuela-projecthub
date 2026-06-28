@@ -10,6 +10,7 @@ export function makeBuilder(o: Partial<Builder> = {}): Builder {
     availability: "",
     timezone: "",
     status: "",
+    seniority: "",
     ...o,
   };
 }

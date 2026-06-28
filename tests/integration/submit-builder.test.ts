@@ -8,7 +8,7 @@ import { builderRepository } from "@/lib/repository";
 import { revalidatePath } from "next/cache";
 import { initialBuilderSubmitState } from "@/actions/submit-builder-types";
 
-const ada = { id: "ada", alias: "Ada", role: "", stack: [], availability: "", timezone: "", status: "" };
+const ada = { id: "ada", alias: "Ada", role: "", stack: [], availability: "", timezone: "", status: "", seniority: "" };
 
 beforeEach(() => vi.clearAllMocks());
 

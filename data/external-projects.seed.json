@@ -63,33 +63,6 @@
     "priority": "low"
   },
   {
-    "id": "gh-kevinesaa-centraliza-ayuda-venezuela",
-    "slug": "gh-kevinesaa-centraliza-ayuda-venezuela",
-    "name": "centraliza-ayuda-venezuela",
-    "summary": "web para enlazar y centralizar iniciativas en pro a momentos post terremoto",
-    "repo_url": "https://github.com/kevinesaa/centraliza-ayuda-venezuela",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "kevinesaa",
-    "source": "external",
-    "stars": 3,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
     "id": "gh-renasarenas-vzla-sismo-feed",
     "slug": "gh-renasarenas-vzla-sismo-feed",
     "name": "vzla-sismo-feed",
@@ -259,33 +232,6 @@
     "priority": "low"
   },
   {
-    "id": "gh-alechuma64-terremoto-2026",
-    "slug": "gh-alechuma64-terremoto-2026",
-    "name": "Terremoto_2026",
-    "summary": "Censo y Registro La Guaira — PWA offline-first para respuesta al terremoto Venezuela 2026",
-    "repo_url": "https://github.com/alechuma64/Terremoto_2026",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "alechuma64",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
     "id": "gh-gfurion-buscachat-telegram",
     "slug": "gh-gfurion-buscachat-telegram",
     "name": "Buscachat-Telegram",
@@ -335,61 +281,6 @@
       "sponsors": []
     },
     "owner": "celestinosalim",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-figueroaj1981-encontrando-nuestra-familia",
-    "slug": "gh-figueroaj1981-encontrando-nuestra-familia",
-    "name": "encontrando-nuestra-familia",
-    "summary": "Plataforma humanitaria para localizar personas desaparecidas tras el terremoto en Venezuela",
-    "repo_url": "https://github.com/figueroaj1981/encontrando-nuestra-familia",
-    "stack": [
-      "TypeScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "missing-persons",
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "figueroaj1981",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-carlos29blanco-antes-y-despu-s-del-terremotos-de-venezuela-24-jun-2026",
-    "slug": "gh-carlos29blanco-antes-y-despu-s-del-terremotos-de-venezuela-24-jun-2026",
-    "name": "Antes-y-Despu-s-del-Terremotos-de-Venezuela-24-jun-2026",
-    "summary": "Antes-y-Despu-s-del-Terremotos-de-Venezuela-24-jun-2026 — Venezuela relief open-source project.",
-    "repo_url": "https://github.com/Carlos29Blanco/Antes-y-Despu-s-del-Terremotos-de-Venezuela-24-jun-2026",
-    "stack": [
-      "HTML"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Carlos29Blanco",
     "source": "external",
     "stars": 0,
     "complexity": "low",
@@ -479,31 +370,6 @@
     "priority": "low"
   },
   {
-    "id": "gh-abateg-venezuela-earthquake",
-    "slug": "gh-abateg-venezuela-earthquake",
-    "name": "venezuela-earthquake",
-    "summary": "A portal where I inform about our current situation and ask for help and for donation.",
-    "repo_url": "https://github.com/AbateG/venezuela-earthquake",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "AbateG",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
     "id": "gh-mbioimagen-monitornewsve",
     "slug": "gh-mbioimagen-monitornewsve",
     "name": "MonitornewsVE",
@@ -525,60 +391,6 @@
       "sponsors": []
     },
     "owner": "mbioimagen",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-wd7512-venezuela-earthquake-ml",
-    "slug": "gh-wd7512-venezuela-earthquake-ml",
-    "name": "venezuela-earthquake-ml",
-    "summary": "venezuela-earthquake-ml — Venezuela relief open-source project.",
-    "repo_url": "https://github.com/wd7512/venezuela-earthquake-ml",
-    "stack": [
-      "HTML"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "wd7512",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-parthsieee3-venezuela-earthquake-analytics",
-    "slug": "gh-parthsieee3-venezuela-earthquake-analytics",
-    "name": "venezuela-earthquake-analytics",
-    "summary": "An interactive data analytics dashboard analyzing 50 years (1975–2026) of seismic activity in Venezuela, built around the magnitude 7.2/7.5 earthquake doublet of June 24, 2026 — the strongest earthquake to strike the country in over a century.",
-    "repo_url": "https://github.com/Parthsieee3/venezuela-earthquake-analytics",
-    "stack": [
-      "Python"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "needs-map"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Parthsieee3",
     "source": "external",
     "stars": 0,
     "complexity": "low",
@@ -670,59 +482,6 @@
     "priority": "low"
   },
   {
-    "id": "gh-rikepilb-build4venezuela-projecthub",
-    "slug": "gh-rikepilb-build4venezuela-projecthub",
-    "name": "build4venezuela-projecthub",
-    "summary": "Search-before-you-build project hub for the Build4Venezuela hackathon (post-earthquake relief). Next.js 16, EN/ES.",
-    "repo_url": "https://github.com/RikepilB/build4venezuela-projecthub",
-    "demo_url": "https://projecthub-beta-blond.vercel.app",
-    "stack": [
-      "TypeScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "RikepilB",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-mohammodsaifazam-venezuelaearthquake2026",
-    "slug": "gh-mohammodsaifazam-venezuelaearthquake2026",
-    "name": "venezuelaearthquake2026",
-    "summary": "Our Prayers Are With Venezuela  The recent earthquake in Venezuela is a heartbreaking reminder of how fragile life can be and how important it is to stand together during difficult times.  My thoughts and prayers are with the people of Venezuela, the families affected, the injured, and everyone working on rescue and emergency support.",
-    "repo_url": "https://github.com/mohammodsaifazam/venezuelaearthquake2026",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "mohammodsaifazam",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
     "id": "gh-jenapidev-sismo-hospitales",
     "slug": "gh-jenapidev-sismo-hospitales",
     "name": "sismo-hospitales",
@@ -778,34 +537,6 @@
     "priority": "low"
   },
   {
-    "id": "gh-vibemill-apps-unsalvaged-preface-0955",
-    "slug": "gh-vibemill-apps-unsalvaged-preface-0955",
-    "name": "unsalvaged-preface-0955",
-    "summary": "What made the deadly Venezuelan earthquakes different (Vibe Mill 2026-06-25)",
-    "repo_url": "https://github.com/vibemill-apps/unsalvaged-preface-0955",
-    "demo_url": "https://unsalvaged-preface-0955.vercel.app",
-    "stack": [
-      "TypeScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "vibemill-apps",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
     "id": "gh-surge-information-management-support-2026-ven-earthquake",
     "slug": "gh-surge-information-management-support-2026-ven-earthquake",
     "name": "2026-ven-earthquake",
@@ -825,31 +556,6 @@
       "sponsors": []
     },
     "owner": "Surge-Information-Management-Support",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-yashildoll1-venezuela-earthquake-2026-devastating-tremors-leave-caracas-in-shock",
-    "slug": "gh-yashildoll1-venezuela-earthquake-2026-devastating-tremors-leave-caracas-in-shock",
-    "name": "Venezuela-Earthquake-2026-Devastating-Tremors-Leave-Caracas-in-Shock-as-Rescue-Operations-Continue",
-    "summary": "Venezuela Earthquake 2026: Devastating Tremors Leave Caracas in Shock as Rescue Operations Continue",
-    "repo_url": "https://github.com/yashildoll1/Venezuela-Earthquake-2026-Devastating-Tremors-Leave-Caracas-in-Shock-as-Rescue-Operations-Continue",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "yashildoll1",
     "source": "external",
     "stars": 0,
     "complexity": "low",
@@ -929,34 +635,6 @@
       "sponsors": []
     },
     "owner": "venezuela-war-room",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-muqeet-ahmed-smit-assignment-08-newspage",
-    "slug": "gh-muqeet-ahmed-smit-assignment-08-newspage",
-    "name": "SMIT-Assignment-08-Newspage",
-    "summary": "Includes a news article about Venezuela earthquakes with styling effects such as text shadows, marquee animations, and styled links.",
-    "repo_url": "https://github.com/Muqeet-Ahmed/SMIT-Assignment-08-Newspage",
-    "demo_url": "https://smit-css-assignment-08.netlify.app/",
-    "stack": [
-      "HTML"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Muqeet-Ahmed",
     "source": "external",
     "stars": 0,
     "complexity": "low",
@@ -1105,34 +783,6 @@
     "stars": 0,
     "complexity": "low",
     "priority": "low"
-  },
-  {
-    "id": "gh-crafter-station-build4venezuela",
-    "slug": "gh-crafter-station-build4venezuela",
-    "name": "build4venezuela",
-    "summary": "build4venezuela — Venezuela relief open-source project.",
-    "repo_url": "https://github.com/crafter-station/build4venezuela",
-    "demo_url": "https://build4venezuela.com",
-    "stack": [
-      "TypeScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "crafter-station",
-    "source": "external",
-    "stars": 30,
-    "complexity": "low",
-    "priority": "high"
   },
   {
     "id": "gh-gabadabaduu-build4venezuela-acompa-amientopsicologico",
@@ -1301,151 +951,6 @@
       "sponsors": []
     },
     "owner": "aquiestoyvenezuela",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-jaimeirazabal1-evalua-ve",
-    "slug": "gh-jaimeirazabal1-evalua-ve",
-    "name": "evalua-ve",
-    "summary": "Evaluación de daños estructurales post-terremoto en Venezuela. Plataforma web gratuita donde familias reportan el estado de sus viviendas con fotos y ubicación, y arquitectos voluntarios clasifican los daños (leve/moderado/grave/inhabitable) para priorizar ayuda humanitaria.",
-    "repo_url": "https://github.com/jaimeirazabal1/evalua-ve",
-    "demo_url": "https://evalua-ve.vercel.app",
-    "stack": [
-      "TypeScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "aid-center",
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "jaimeirazabal1",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-ceylindilekkarabulut-emergencycoordination",
-    "slug": "gh-ceylindilekkarabulut-emergencycoordination",
-    "name": "emergencyCoordination",
-    "summary": "Earthquake disaster relief simulator in C++ with custom data structures",
-    "repo_url": "https://github.com/ceylindilekkarabulut/emergencyCoordination",
-    "stack": [
-      "C++"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "ceylindilekkarabulut",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-arpi-git29-realtime-earthquake-prediction-and-relief-coordination",
-    "slug": "gh-arpi-git29-realtime-earthquake-prediction-and-relief-coordination",
-    "name": "RealTime-Earthquake-Prediction-and-Relief-Coordination",
-    "summary": "RealTime-Earthquake-Prediction-and-Relief-Coordination — Venezuela relief open-source project.",
-    "repo_url": "https://github.com/Arpi-git29/RealTime-Earthquake-Prediction-and-Relief-Coordination",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Arpi-git29",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-akdoganhilal-ai-disaster-relief-system",
-    "slug": "gh-akdoganhilal-ai-disaster-relief-system",
-    "name": "ai-disaster-relief-system",
-    "summary": "Artificial Intelligence Supported Earthquake Relief and Coordination System - Project Presentation and Design Document",
-    "repo_url": "https://github.com/akdoganhilal/ai-disaster-relief-system",
-    "stack": [
-      "afad",
-      "artificial-intelligence",
-      "big-data",
-      "computer-vision",
-      "data-science",
-      "deep-learning",
-      "disaster-management",
-      "emergency-response"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "akdoganhilal",
-    "source": "external",
-    "stars": 0,
-    "complexity": "low",
-    "priority": "low"
-  },
-  {
-    "id": "gh-ozancandirek-aegisfrontend",
-    "slug": "gh-ozancandirek-aegisfrontend",
-    "name": "AegisFrontend",
-    "summary": "Aegis Disaster Management System – React frontend for earthquake relief coordination. Role-based dashboards, interactive Turkey map with Kandilli Observatory integration, aid requests, team & inventory management.",
-    "repo_url": "https://github.com/OzancanDirek/AegisFrontend",
-    "stack": [
-      "JavaScript"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "needs-map",
-      "coordination"
-    ],
-    "status": "wip",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "OzancanDirek",
     "source": "external",
     "stars": 0,
     "complexity": "low",

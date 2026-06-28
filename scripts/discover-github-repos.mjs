@@ -19,7 +19,7 @@ const QUERIES = [
   "topic:venezuela topic:disaster-relief",
   "topic:humanitarian venezuela",
   "venezuela ayuda humanitaria",
-  "earthquake relief coordination",
+  "venezuela earthquake relief coordination",
 ];
 const OUT = path.join(process.cwd(), "data", "external-projects.seed.json");
 // Curated exclusions from catalog cleanup. This script rewrites OUT wholesale, so
@@ -65,6 +65,22 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // Accent-stripped, lowercased text (keeps spaces) for keyword matching.
 const normText = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+// GitHub search is keyword-fuzzy: a query like "earthquake relief coordination"
+// drags in global/foreign repos (a CSS homework, generic disaster-ML templates)
+// that mention neither Venezuela nor this event. Require an explicit Venezuela
+// signal in the repo's own text (name/description/topics/full_name) before seeding.
+// The rare genuinely-relevant repo with no VE token in its metadata can be hand-seeded.
+const VE_TOKENS = [
+  "venezuela", "venezolan", "venezuelan", "vzla", "vnzla", "b4venezuela",
+  "caracas", "maracaibo", "barquisimeto", "maracay", "yaracuy", "sismove", "vzlaxarg",
+];
+function isVenezuelaRelevant(repo) {
+  const t = normText(
+    `${repo.full_name ?? ""} ${repo.name ?? ""} ${repo.description ?? ""} ${(repo.topics ?? []).join(" ")}`,
+  );
+  return VE_TOKENS.some((tok) => t.includes(tok));
+}
 
 // Map a repo's name+description+topics onto the project taxonomy. Each entry is
 // [categoryId, fragments]; a fragment hit adds that category. Multi-category by
@@ -183,7 +199,12 @@ async function main() {
   const denylist = await loadDenylist();
   const projects = [];
   let skipped = 0;
+  let offTopic = 0;
   for (const repo of byName.values()) {
+    if (!isVenezuelaRelevant(repo)) {
+      offTopic++; // keyword false-positive (no Venezuela signal) — never seed
+      continue;
+    }
     const parsed = ProjectSchema.safeParse(toProject(repo));
     if (!parsed.success) continue;
     if (denylist.has(parsed.data.slug)) {
@@ -193,6 +214,7 @@ async function main() {
     projects.push(parsed.data);
     if (projects.length >= MAX) break;
   }
+  console.log(`[discover] dropped ${offTopic} off-topic repos (no Venezuela signal)`);
 
   const tmp = `${OUT}.tmp`;
   await writeFile(tmp, `${JSON.stringify(projects, null, 2)}\n`, "utf8");

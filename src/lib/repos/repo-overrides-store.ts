@@ -18,6 +18,11 @@ const key = (slug: string) => `repo:${slug}`;
 const FILE = path.join(process.cwd(), "data", "repo-overrides.json");
 const TMPFILE = path.join(os.tmpdir(), "repo-overrides.json");
 
+// In-memory cache so the same serverless instance always sees its own writes
+// (ISR revalidation, refresh, navigation).  Lost on cold start / different
+// instance — Redis is the only cross-instance durable backend.
+const memoryCache = new Map<string, RepoOverride>();
+
 async function readFile(): Promise<Record<string, RepoOverride>> {
   for (const p of [FILE, TMPFILE]) {
     try {
@@ -51,19 +56,34 @@ function coerce(value: unknown): RepoOverride | null {
     : null;
 }
 
-// Read overrides for the given slugs (the board/detail already loaded). Redis MGET =
-// one round trip; falls back to the JSON map on any miss.
+// Read overrides for the given slugs (the board/detail already loaded).  Checks
+// the in-memory cache first (same-instance writes are immediately visible), then
+// Redis MGET (one round trip), then the JSON map.
 export async function readRepoOverrides(slugs: string[]): Promise<Record<string, RepoOverride>> {
-  if (redis.enabled && slugs.length) {
-    const vals = await redis.mget(slugs.map(key));
+  const out: Record<string, RepoOverride> = {};
+  const uncached: string[] = [];
+
+  for (const slug of slugs) {
+    if (memoryCache.has(slug)) {
+      out[slug] = memoryCache.get(slug)!;
+    } else {
+      uncached.push(slug);
+    }
+  }
+  if (uncached.length === 0) return out;
+
+  if (redis.enabled && uncached.length) {
+    const vals = await redis.mget(uncached.map(key));
     if (vals) {
-      const out: Record<string, RepoOverride> = {};
-      slugs.forEach((slug, i) => {
+      uncached.forEach((slug, i) => {
         const raw = vals[i];
         if (typeof raw === "string" && raw) {
           try {
             const ov = coerce(JSON.parse(raw));
-            if (ov) out[slug] = ov;
+            if (ov) {
+              out[slug] = ov;
+              memoryCache.set(slug, ov);
+            }
           } catch {
             // skip a corrupt value rather than fail the whole board read
           }
@@ -72,10 +92,19 @@ export async function readRepoOverrides(slugs: string[]): Promise<Record<string,
       return out;
     }
   }
-  return readFile();
+
+  const fileMap = await readFile();
+  for (const slug of uncached) {
+    if (fileMap[slug]) {
+      out[slug] = fileMap[slug];
+      memoryCache.set(slug, fileMap[slug]);
+    }
+  }
+  return out;
 }
 
 export async function setRepoOverride(slug: string, override: RepoOverride): Promise<boolean> {
+  memoryCache.set(slug, override);
   if (redis.enabled) {
     const ok = await redis.set(key(slug), JSON.stringify(override));
     if (ok) return true;

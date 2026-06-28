@@ -40,7 +40,13 @@ export const en = {
   },
   guide: {
     open: "Quick guide",
-    intro: "Search before you build — the 30-second version.",
+    intro: "A quick map of El Umbral — jump straight to any part:",
+    board: "Browse & filter every relief project. Join one, or publish your own.",
+    ecosystem: "Shipped, live tools you can use right now — no need to rebuild them.",
+    builders: "The talent roster — people available to help, by stack and timezone.",
+    resources: "Vetted relief platforms, donation channels and official hotlines.",
+    reference: "Open-source disaster-relief tools to study or reuse before building.",
+    communities: "Discord, Telegram and hubs to join the effort and coordinate.",
   },
   landing: {
     publishCta: "Publish a project",
@@ -70,11 +76,6 @@ export const en = {
     responseHubBody: "Citizen-built emergency hub: find people, damage maps, shelters, verified donations and official hotlines.",
     responseHubOffers: "Find people · Damage map · Shelters · Verified donations · Hotlines",
     responseHubCta: "Open the response hub",
-    // final CTA band
-    ctaTitle: "Have an idea? Search first, then publish.",
-    ctaBody: "Thirty seconds of searching saves weeks of duplicated effort. If it doesn't exist yet, publish it and find your team.",
-    ctaPublish: "Publish a project",
-    ctaBrowse: "Browse the board",
   },
   search: {
     resultsFor: "Results for",

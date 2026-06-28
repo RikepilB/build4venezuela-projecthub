@@ -8,7 +8,6 @@ import { projectRepository, builderRepository, membershipRepository } from "@/li
 import { landingStats, featuredProjects } from "@/lib/landing/stats";
 import { SearchBox } from "@/components/search/SearchBox";
 import { ProjectCard } from "@/components/board/ProjectCard";
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { UserGuide } from "@/components/home/UserGuide";
 import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 
@@ -69,6 +68,16 @@ export default async function HomePage({
     { title: dict.home.step3Title, body: dict.home.step3Body },
   ];
 
+  // The Quick Guide is a map of the app — one row per section, each linking to it.
+  const guideSections = [
+    { href: localePath(locale, "/board"), label: dict.nav.board, body: dict.guide.board },
+    { href: localePath(locale, "/ecosystem"), label: dict.nav.shipped, body: dict.guide.ecosystem },
+    { href: localePath(locale, "/builders"), label: dict.nav.builders, body: dict.guide.builders },
+    { href: localePath(locale, "/resources"), label: dict.nav.resources, body: dict.guide.resources },
+    { href: localePath(locale, "/reference"), label: dict.nav.reference, body: dict.guide.reference },
+    { href: localePath(locale, "/communities"), label: dict.nav.communities, body: dict.guide.communities },
+  ];
+
   const statItems = [
     { value: stats.projects, label: dict.landing.statProjects },
     { value: stats.builders, label: dict.landing.statBuilders },
@@ -125,10 +134,10 @@ export default async function HomePage({
               {dict.home.browseButton} →
             </Link>
           </div>
-          {/* Quick guide — a one-line disclosure that expands the search-first flow
-              in place (no modal, no auto-open; better for the hero's read-down flow). */}
+          {/* Quick guide — a one-line disclosure that expands into a map of the app
+              (one row per section, each a link). No modal, no auto-open. */}
           <div className="rise" style={{ animationDelay: "380ms" }}>
-            <UserGuide label={dict.guide.open} intro={dict.guide.intro} steps={steps} />
+            <UserGuide label={dict.guide.open} intro={dict.guide.intro} sections={guideSections} />
           </div>
           <p
             className="rise mt-4 flex items-center gap-2 text-xs uppercase tracking-widest text-muted"
@@ -161,36 +170,64 @@ export default async function HomePage({
         </p>
       </section>
 
-      {/* Crisis response hubs — umbrella hubs beyond this board (the hackathon itself and
-          a citizen-built emergency hub). External, https-only via ExternalLink (safe rel). */}
-      <section className="flex flex-col gap-5">
+      {/* Crisis response hubs — the wider relief response beyond this board (the hackathon
+          itself + a citizen-built emergency hub). Given visual weight: amber-accented
+          feature cards, the whole card is the link. External, https-only + safe rel. */}
+      <section className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <p className="eyebrow">{dict.landing.hubsEyebrow}</p>
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-text">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl">
             {dict.landing.hubsTitle}
           </h2>
           <p className="max-w-2xl text-muted">{dict.landing.hubsBody}</p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6 transition-colors hover:border-primary/40">
-            <p className="font-display text-2xl font-semibold text-text">{dict.landing.hackathonName}</p>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <a
+            href={BUILD4VENEZUELA_URL}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="group relative flex flex-col gap-3 overflow-hidden rounded-token border border-border bg-surface p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-[0_0_44px_-12px_var(--b4v-glow-strong)]"
+          >
+            <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-primary" />
+            <div className="flex items-start justify-between gap-3">
+              <p className="font-display text-2xl font-semibold text-text">{dict.landing.hackathonName}</p>
+              <span aria-hidden className="text-lg text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                ↗
+              </span>
+            </div>
             <p className="text-sm text-muted">{dict.landing.hackathonBody}</p>
-            <div className="mt-auto pt-1">
-              <ExternalLink href={BUILD4VENEZUELA_URL} className="text-sm font-medium">
-                {dict.landing.hackathonCta}
-              </ExternalLink>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-bold uppercase tracking-widest text-primary">
+              {dict.landing.hackathonCta} →
+            </span>
+          </a>
+          <a
+            href={VZLA_RESPONSE_HUB_URL}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="group relative flex flex-col gap-3 overflow-hidden rounded-token border border-border bg-surface p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-[0_0_44px_-12px_var(--b4v-glow-strong)]"
+          >
+            <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-primary" />
+            <div className="flex items-start justify-between gap-3">
+              <p className="font-display text-2xl font-semibold text-text">{dict.landing.responseHubName}</p>
+              <span aria-hidden className="text-lg text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                ↗
+              </span>
             </div>
-          </div>
-          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6 transition-colors hover:border-primary/40">
-            <p className="font-display text-2xl font-semibold text-text">{dict.landing.responseHubName}</p>
             <p className="text-sm text-muted">{dict.landing.responseHubBody}</p>
-            <p className="text-xs uppercase tracking-wide text-muted">{dict.landing.responseHubOffers}</p>
-            <div className="mt-auto pt-1">
-              <ExternalLink href={VZLA_RESPONSE_HUB_URL} className="text-sm font-medium">
-                {dict.landing.responseHubCta}
-              </ExternalLink>
+            <div className="flex flex-wrap gap-1.5">
+              {dict.landing.responseHubOffers.split(" · ").map((offer) => (
+                <span
+                  key={offer}
+                  className="rounded-full border border-border bg-surface-2 px-2.5 py-1 text-xs text-muted"
+                >
+                  {offer}
+                </span>
+              ))}
             </div>
-          </div>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-bold uppercase tracking-widest text-primary">
+              {dict.landing.responseHubCta} →
+            </span>
+          </a>
         </div>
       </section>
 
@@ -263,30 +300,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Final CTA — cross into the light: a full-bleed amber band inverts the page. */}
-      <section className="bleed bg-primary text-primary-ink">
-        <div className="mx-auto max-w-6xl px-4 py-14">
-          <p className="text-xs font-bold uppercase tracking-widest">{dict.tagline}</p>
-          <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-            {dict.landing.ctaTitle}
-          </h2>
-          <p className="mt-3 max-w-xl text-sm font-medium">{dict.landing.ctaBody}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href={localePath(locale, "/projects/new")}
-              className="rounded-token bg-primary-ink px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-primary hover:opacity-90"
-            >
-              {dict.landing.ctaPublish}
-            </Link>
-            <Link
-              href={localePath(locale, "/board")}
-              className="rounded-token border border-primary-ink/30 px-5 py-2.5 text-sm font-bold uppercase tracking-widest hover:bg-primary-ink/10"
-            >
-              {dict.landing.ctaBrowse}
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

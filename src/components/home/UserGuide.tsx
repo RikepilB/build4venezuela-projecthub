@@ -1,14 +1,16 @@
-// Inline one-line disclosure for the search-first flow — a quiet "Quick guide"
-// trigger that expands in place (no modal, no auto-open). Native <details> so it's
-// accessible and needs no client JS; the panel reuses `rise` (replays on each open,
-// since <details> toggles the content between display:none and shown).
+import Link from "next/link";
+
+// Inline one-line disclosure that expands into a quick MAP of the app — one row per
+// section (Board, Shipped & live, Builders, Resources, Reference, Communities), each a
+// link straight to that page. Native <details> so it's accessible and needs no client
+// JS; the panel reuses `rise` (replays on each open, as <details> toggles display).
 export interface UserGuideProps {
   label: string;
   intro: string;
-  steps: { title: string; body: string }[];
+  sections: { href: string; label: string; body: string }[];
 }
 
-export function UserGuide({ label, intro, steps }: UserGuideProps) {
+export function UserGuide({ label, intro, sections }: UserGuideProps) {
   return (
     <details className="group max-w-xl">
       <summary className="inline-flex cursor-pointer select-none list-none items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-muted underline decoration-border underline-offset-4 transition hover:text-text hover:decoration-primary [&::-webkit-details-marker]:hidden">
@@ -35,22 +37,24 @@ export function UserGuide({ label, intro, steps }: UserGuideProps) {
 
       <div className="rise mt-4 rounded-token border border-border bg-surface p-5">
         <p className="text-sm text-muted">{intro}</p>
-        <ol className="mt-4 flex flex-col gap-4">
-          {steps.map((s, i) => (
-            <li key={s.title} className="flex gap-3">
-              <span
-                aria-hidden
-                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-ink"
+        <ul className="mt-3 flex flex-col">
+          {sections.map((s) => (
+            <li key={s.href}>
+              <Link
+                href={s.href}
+                className="group/row flex flex-col gap-0.5 rounded-token px-3 py-2.5 transition-colors hover:bg-surface-2"
               >
-                {i + 1}
-              </span>
-              <div className="flex flex-col gap-1">
-                <p className="font-display text-base font-semibold text-text">{s.title}</p>
-                <p className="text-sm leading-snug text-muted">{s.body}</p>
-              </div>
+                <span className="flex items-center gap-1.5 font-display text-base font-semibold text-text">
+                  {s.label}
+                  <span aria-hidden className="text-primary opacity-0 transition-opacity group-hover/row:opacity-100">
+                    →
+                  </span>
+                </span>
+                <span className="text-sm leading-snug text-muted">{s.body}</span>
+              </Link>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </details>
   );

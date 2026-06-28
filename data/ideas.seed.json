@@ -77,35 +77,6 @@
     "priority": "high"
   },
   {
-    "id": "idea-mapa-de-necesidades-vs-recursos-resqlink",
-    "slug": "idea-mapa-de-necesidades-vs-recursos-resqlink",
-    "name": "Mapa de necesidades vs. recursos ResQLink",
-    "summary": "Voluntarios no saben dónde hay déficit. Damnificados no saben dónde hay ayuda disponible.",
-    "repo_url": "https://github.com/otobonh/resqlink-ai",
-    "demo_url": "https://resqlink-ai.netlify.app",
-    "stack": [
-      "React",
-      "Mapbox",
-      "Leaflet"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "needs-map"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Omar Tobon",
-    "source": "internal",
-    "complexity": "medium",
-    "priority": "high"
-  },
-  {
     "id": "idea-agente-ai-de-triaje-de-necesidades",
     "slug": "idea-agente-ai-de-triaje-de-necesidades",
     "name": "Agente AI de triaje de necesidades",

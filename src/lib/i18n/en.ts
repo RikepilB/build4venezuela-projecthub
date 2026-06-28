@@ -34,6 +34,7 @@ export const en = {
     step2Body: "If it exists, join the repo and contribute. If not, publish it with your stack and needs.",
     step3Title: "3 · Build & ship",
     step3Body: "Find teammates, track progress, and when your MVP is ready, submit it to Build4Venezuela.",
+    scrollCue: "Enter",
   },
   landing: {
     publishCta: "Publish a project",

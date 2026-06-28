@@ -52,6 +52,11 @@
   --b4v-danger: var(--umbral-vermillion);
   --b4v-success: var(--umbral-green);
 
+  /* atmosphere — amber light bleed for the hero "threshold" only. Alpha variants
+     of the one accent (never a second hue); consumed by .threshold-glow / .doorway. */
+  --b4v-glow: oklch(80% 0.13 78 / 0.14);
+  --b4v-glow-strong: oklch(80% 0.13 78 / 0.22);
+
   /* shape — structural, like a doorframe; a touch softer than brutalist */
   --b4v-radius: 0.375rem;
 }

@@ -81,7 +81,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={typed} className={`${mono.variable} ${display.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-bg font-mono text-text">
+      <body className="flex min-h-full flex-col overflow-x-clip bg-bg font-mono text-text">
         <SkipLink label={dict.skipToContent} />
         <Header locale={typed} dict={dict} />
         <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">

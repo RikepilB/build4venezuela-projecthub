@@ -76,59 +76,83 @@ export default async function HomePage({
   ];
 
   return (
-    <div className="flex flex-col gap-20 py-12">
-      {/* Hero — search-first, true to "search before you build". */}
-      <section className="flex flex-col gap-7">
-        <p className="eyebrow">{dict.appName}</p>
-        <h1 className="max-w-3xl text-balance font-display text-4xl font-semibold leading-[1.05] tracking-tight text-text sm:text-6xl">
-          {dict.home.title}
-        </h1>
-        <p className="max-w-xl text-muted">{dict.home.subtitle}</p>
-        <div className="max-w-xl">
-          <SearchBox
-            locale={locale}
-            placeholder={dict.home.placeholder}
-            button={dict.home.searchButton}
-            autoFocus
-          />
-        </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <Link
-            href={localePath(locale, "/match")}
-            className="rounded-token border border-accent bg-accent/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-accent hover:bg-accent/20"
+    <div className="flex flex-col gap-20">
+      {/* ── HERO — the threshold. Full-bleed dusk, warm amber light spilling through
+          the doorway; search stays prominent. One orchestrated staggered reveal,
+          each child offset by inline animation-delay (reduced-motion → no movement). */}
+      <section className="bleed relative -mt-8 flex min-h-[82svh] items-center justify-center overflow-hidden border-b border-border">
+        <div aria-hidden className="threshold-glow pointer-events-none absolute inset-0" />
+        <div aria-hidden className="grain pointer-events-none absolute inset-0" />
+        <div className="relative mx-auto flex w-full max-w-3xl flex-col gap-7 px-4 py-24">
+          <p className="rise eyebrow" style={{ animationDelay: "0ms" }}>
+            {dict.appName}
+          </p>
+          <h1
+            className="rise max-w-3xl text-balance font-display text-5xl font-semibold leading-[1.03] tracking-tight text-text sm:text-7xl"
+            style={{ animationDelay: "80ms" }}
           >
-            {dict.home.matchButton} →
-          </Link>
-          <Link
-            href={localePath(locale, "/board")}
-            className="rounded-token border border-border px-4 py-2 text-sm font-bold uppercase tracking-widest text-text hover:border-primary hover:text-primary"
+            {dict.home.title}
+          </h1>
+          <p className="rise max-w-xl text-muted" style={{ animationDelay: "160ms" }}>
+            {dict.home.subtitle}
+          </p>
+          {/* the lit doorway: amber-ringed frame around the search */}
+          <div
+            className="doorway rise max-w-xl rounded-token bg-bg/40 p-1.5"
+            style={{ animationDelay: "240ms" }}
           >
-            {dict.home.browseButton} →
-          </Link>
-          <Link
-            href={localePath(locale, "/projects/new")}
-            className="rounded-token bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
+            <SearchBox
+              locale={locale}
+              placeholder={dict.home.placeholder}
+              button={dict.home.searchButton}
+            />
+          </div>
+          <div
+            className="rise flex flex-wrap items-center gap-3"
+            style={{ animationDelay: "320ms" }}
           >
-            {dict.landing.publishCta}
-          </Link>
+            <Link
+              href={localePath(locale, "/match")}
+              className="rounded-token bg-primary px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
+            >
+              {dict.home.matchButton} →
+            </Link>
+            <Link
+              href={localePath(locale, "/board")}
+              className="rounded-token border border-border px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-text hover:border-primary hover:text-primary"
+            >
+              {dict.home.browseButton} →
+            </Link>
+          </div>
+          <p
+            className="rise mt-4 flex items-center gap-2 text-xs uppercase tracking-widest text-muted"
+            style={{ animationDelay: "420ms" }}
+            aria-hidden
+          >
+            <span className="text-accent">↓</span> {dict.home.scrollCue}
+          </p>
         </div>
       </section>
 
-      {/* Live stats — real counts from the repositories (thin brutalist grid lines
-          come from gap-px over a bg-border parent). */}
+      {/* Live stats — real counts from the repositories (thin grid lines from gap-px
+          over a bg-border parent); numerals in the editorial serif, in amber. */}
       <section className="grid grid-cols-2 gap-px overflow-hidden rounded-token border border-border bg-border sm:grid-cols-4">
         {statItems.map((s) => (
           <div key={s.label} className="flex flex-col gap-1 bg-surface p-5">
-            <span className="text-3xl font-extrabold text-primary sm:text-4xl">{s.value}</span>
+            <span className="font-display text-4xl font-semibold text-primary sm:text-5xl">
+              {s.value}
+            </span>
             <span className="text-xs uppercase tracking-widest text-muted">{s.label}</span>
           </div>
         ))}
       </section>
 
-      {/* What is El Umbral */}
-      <section className="flex flex-col gap-4">
+      {/* What is El Umbral — one editorial breath in the serif. */}
+      <section className="flex flex-col gap-5">
         <p className="eyebrow">{dict.home.whatTitle}</p>
-        <p className="max-w-2xl text-muted">{dict.home.whatBody}</p>
+        <p className="max-w-3xl font-display text-xl leading-snug text-text sm:text-2xl">
+          {dict.home.whatBody}
+        </p>
       </section>
 
       {/* Crisis response hubs — umbrella hubs beyond this board (the hackathon itself and
@@ -136,14 +160,14 @@ export default async function HomePage({
       <section className="flex flex-col gap-5">
         <div className="flex flex-col gap-2">
           <p className="eyebrow">{dict.landing.hubsEyebrow}</p>
-          <h2 className="text-2xl font-extrabold uppercase tracking-tight text-text">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-text">
             {dict.landing.hubsTitle}
           </h2>
           <p className="max-w-2xl text-muted">{dict.landing.hubsBody}</p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6">
-            <p className="text-2xl font-extrabold text-text">{dict.landing.hackathonName}</p>
+          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6 transition-colors hover:border-primary/40">
+            <p className="font-display text-2xl font-semibold text-text">{dict.landing.hackathonName}</p>
             <p className="text-sm text-muted">{dict.landing.hackathonBody}</p>
             <div className="mt-auto pt-1">
               <ExternalLink href={BUILD4VENEZUELA_URL} className="text-sm font-medium">
@@ -151,8 +175,8 @@ export default async function HomePage({
               </ExternalLink>
             </div>
           </div>
-          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6">
-            <p className="text-2xl font-extrabold text-text">{dict.landing.responseHubName}</p>
+          <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6 transition-colors hover:border-primary/40">
+            <p className="font-display text-2xl font-semibold text-text">{dict.landing.responseHubName}</p>
             <p className="text-sm text-muted">{dict.landing.responseHubBody}</p>
             <p className="text-xs uppercase tracking-wide text-muted">{dict.landing.responseHubOffers}</p>
             <div className="mt-auto pt-1">
@@ -190,14 +214,14 @@ export default async function HomePage({
         </section>
       )}
 
-      {/* How it works */}
+      {/* How it works — three steps strung on a hairline, titles in the serif. */}
       <section className="flex flex-col gap-5">
         <p className="eyebrow">{dict.home.howTitle}</p>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-token border border-border bg-border sm:grid-cols-3">
           {steps.map((s) => (
-            <div key={s.title} className="rounded-token border border-border bg-surface p-4">
-              <p className="font-semibold uppercase tracking-wide text-text">{s.title}</p>
-              <p className="mt-2 text-sm text-muted">{s.body}</p>
+            <div key={s.title} className="flex flex-col gap-2 bg-surface p-6">
+              <p className="font-display text-xl font-semibold text-primary">{s.title}</p>
+              <p className="text-sm text-muted">{s.body}</p>
             </div>
           ))}
         </div>
@@ -205,9 +229,9 @@ export default async function HomePage({
 
       {/* Builders + ecosystem teasers */}
       <section className="grid gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6">
+        <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6 transition-colors hover:border-primary/40">
           <p className="eyebrow">{dict.nav.builders}</p>
-          <p className="text-2xl font-extrabold text-text">
+          <p className="font-display text-2xl font-semibold text-text">
             {stats.builders} {dict.landing.statBuilders}
           </p>
           <p className="text-sm text-muted">{dict.landing.buildersBody}</p>
@@ -218,9 +242,9 @@ export default async function HomePage({
             {dict.landing.buildersCta} →
           </Link>
         </div>
-        <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6">
+        <div className="flex flex-col gap-3 rounded-token border border-border bg-surface p-6 transition-colors hover:border-primary/40">
           <p className="eyebrow">{dict.nav.ecosystem}</p>
-          <p className="text-2xl font-extrabold text-text">
+          <p className="font-display text-2xl font-semibold text-text">
             {stats.live} {dict.landing.statLive}
           </p>
           <p className="text-sm text-muted">{dict.landing.ecosystemBody}</p>
@@ -233,26 +257,28 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Final CTA band */}
-      <section className="rounded-token bg-primary p-8 text-primary-ink">
-        <p className="text-xs font-bold uppercase tracking-widest">{dict.tagline}</p>
-        <h2 className="mt-2 max-w-2xl text-2xl font-extrabold uppercase leading-tight tracking-tight sm:text-3xl">
-          {dict.landing.ctaTitle}
-        </h2>
-        <p className="mt-3 max-w-xl text-sm font-medium">{dict.landing.ctaBody}</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link
-            href={localePath(locale, "/projects/new")}
-            className="rounded-token bg-primary-ink px-4 py-2 text-sm font-bold uppercase tracking-widest text-primary hover:opacity-90"
-          >
-            {dict.landing.ctaPublish}
-          </Link>
-          <Link
-            href={localePath(locale, "/board")}
-            className="rounded-token border border-primary-ink/30 px-4 py-2 text-sm font-bold uppercase tracking-widest hover:bg-primary-ink/10"
-          >
-            {dict.landing.ctaBrowse}
-          </Link>
+      {/* Final CTA — cross into the light: a full-bleed amber band inverts the page. */}
+      <section className="bleed bg-primary text-primary-ink">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <p className="text-xs font-bold uppercase tracking-widest">{dict.tagline}</p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+            {dict.landing.ctaTitle}
+          </h2>
+          <p className="mt-3 max-w-xl text-sm font-medium">{dict.landing.ctaBody}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={localePath(locale, "/projects/new")}
+              className="rounded-token bg-primary-ink px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-primary hover:opacity-90"
+            >
+              {dict.landing.ctaPublish}
+            </Link>
+            <Link
+              href={localePath(locale, "/board")}
+              className="rounded-token border border-primary-ink/30 px-5 py-2.5 text-sm font-bold uppercase tracking-widest hover:bg-primary-ink/10"
+            >
+              {dict.landing.ctaBrowse}
+            </Link>
+          </div>
         </div>
       </section>
     </div>

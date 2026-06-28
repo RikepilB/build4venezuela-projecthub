@@ -36,6 +36,7 @@ export const es: typeof en = {
     step2Body: "Si existe, únete al repo y contribuye. Si no, publícala con tu stack y necesidades.",
     step3Title: "3 · Construye y publica",
     step3Body: "Encuentra compañeros, sigue el progreso y, cuando tu MVP esté listo, publícalo en Build4Venezuela.",
+    scrollCue: "Entrar",
   },
   landing: {
     publishCta: "Publicar proyecto",

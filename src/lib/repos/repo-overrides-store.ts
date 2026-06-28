@@ -1,11 +1,13 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import { redis } from "../redis/client";
 
 // A user-attached repo for a project that shipped without one ("add the repo from
 // the board"). Stored OUT of the seed files so it persists on Vercel's read-only FS:
 // Upstash Redis (one key per slug) when configured, else data/repo-overrides.json in
-// dev. Overlaid onto projects in loadProjects. Mirrors votes-store.
+// dev (or /tmp/repo-overrides.json as a last resort on Vercel without Redis).
+// Overlaid onto projects in loadProjects. Mirrors votes-store.
 export interface RepoOverride {
   url: string;
   contributors?: number; // GitHub contributor count, cached at attach time
@@ -14,20 +16,31 @@ export interface RepoOverride {
 
 const key = (slug: string) => `repo:${slug}`;
 const FILE = path.join(process.cwd(), "data", "repo-overrides.json");
+const TMPFILE = path.join(os.tmpdir(), "repo-overrides.json");
 
 async function readFile(): Promise<Record<string, RepoOverride>> {
-  try {
-    const raw = await fs.readFile(FILE, "utf8");
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? (parsed as Record<string, RepoOverride>) : {};
-  } catch (err) {
-    if ((err as NodeJS.ErrnoException).code !== "ENOENT") console.error("[repo-overrides] read:", err);
-    return {};
+  for (const p of [FILE, TMPFILE]) {
+    try {
+      const raw = await fs.readFile(p, "utf8");
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === "object" ? (parsed as Record<string, RepoOverride>) : {};
+    } catch (err) {
+      if ((err as NodeJS.ErrnoException).code !== "ENOENT") console.error(`[repo-overrides] read ${p}:`, err);
+    }
   }
+  return {};
 }
 
-async function writeFile(map: Record<string, RepoOverride>): Promise<void> {
-  await fs.writeFile(FILE, `${JSON.stringify(map, null, 2)}\n`, "utf8");
+async function writeFile(map: Record<string, RepoOverride>): Promise<boolean> {
+  for (const p of [FILE, TMPFILE]) {
+    try {
+      await fs.writeFile(p, `${JSON.stringify(map, null, 2)}\n`, "utf8");
+      return true;
+    } catch {
+      // try next fallback
+    }
+  }
+  return false;
 }
 
 function coerce(value: unknown): RepoOverride | null {
@@ -62,11 +75,11 @@ export async function readRepoOverrides(slugs: string[]): Promise<Record<string,
   return readFile();
 }
 
-export async function setRepoOverride(slug: string, override: RepoOverride): Promise<void> {
+export async function setRepoOverride(slug: string, override: RepoOverride): Promise<boolean> {
   if (redis.enabled) {
     const ok = await redis.set(key(slug), JSON.stringify(override));
-    if (ok) return;
+    if (ok) return true;
   }
   const map = await readFile();
-  await writeFile({ ...map, [slug]: override });
+  return writeFile({ ...map, [slug]: override });
 }

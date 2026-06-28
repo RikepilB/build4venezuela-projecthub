@@ -38,14 +38,12 @@ export async function attachRepo(_prev: AttachRepoState, formData: FormData): Pr
   // Best-effort contributor count — a failure just leaves the count unknown, never blocks the attach.
   const contributors = await fetchRepoContributorCount(gh.owner, gh.repo);
 
-  try {
-    await setRepoOverride(slug, {
-      url: `https://github.com/${gh.owner}/${gh.repo}`,
-      contributors: contributors ?? undefined,
-      fetched_at: new Date().toISOString(),
-    });
-  } catch (err) {
-    console.error("[attach-repo] could not persist override:", err);
+  const saved = await setRepoOverride(slug, {
+    url: `https://github.com/${gh.owner}/${gh.repo}`,
+    contributors: contributors ?? undefined,
+    fetched_at: new Date().toISOString(),
+  });
+  if (!saved) {
     return { ok: false, error: "save_failed" };
   }
 

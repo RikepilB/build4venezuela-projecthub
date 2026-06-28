@@ -5,7 +5,9 @@
     "type": "resources",
     "url": "https://centrorecursosvenezuela.netlify.app",
     "summary": "Centro de recursos para la respuesta al terremoto de Venezuela — reúne plataformas de búsqueda, ayuda y donación en un solo lugar. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -15,7 +17,10 @@
     "type": "resources",
     "url": "https://www.vzlaresponsehub.org",
     "summary": "Hub integral de respuesta: buscador de personas, mapa de daños estructurales, refugios, donaciones verificadas, líneas de emergencia oficiales y guías de qué hacer. ES/EN.",
-    "languages": ["es", "en"],
+    "languages": [
+      "es",
+      "en"
+    ],
     "verified_source": "Young AI Leaders Hub",
     "active": true
   },
@@ -25,7 +30,9 @@
     "type": "other",
     "url": "https://terremotovenezuela.com",
     "summary": "Reporte ciudadano de daños materiales y estructurales tras el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -35,7 +42,9 @@
     "type": "search",
     "url": "https://pacientesterremotovzla.lovable.app",
     "summary": "Búsqueda de personas ingresadas en hospitales tras el terremoto. Solo enlace, sin scraping ni copia de datos.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -45,7 +54,9 @@
     "type": "search",
     "url": "https://hospitalesenvenezuela.com",
     "summary": "Listas de admisión hospitalaria digitalizadas, buscables por nombre/cédula. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -55,7 +66,9 @@
     "type": "search",
     "url": "https://familias-hospital.vercel.app",
     "summary": "Conecta a familias con personas ingresadas en hospitales tras el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -65,7 +78,10 @@
     "type": "dev",
     "url": "https://tilores.io/venezuela-te-busca",
     "summary": "Resolución de identidad / deduplicación de registros sobre la base de Venezuela Te Busca, para reducir duplicados en las búsquedas.",
-    "languages": ["es", "en"],
+    "languages": [
+      "es",
+      "en"
+    ],
     "verified_source": "Tilores",
     "active": true
   },
@@ -75,7 +91,9 @@
     "type": "resources",
     "url": "https://terremoto.hazlohoy.org",
     "summary": "Iniciativa ciudadana de coordinación de ayuda para la respuesta al terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Hazlo Hoy",
     "active": true
   },
@@ -85,7 +103,9 @@
     "type": "resources",
     "url": "https://ayudaencamino.com",
     "summary": "Plataforma de coordinación de ayuda humanitaria para personas afectadas por el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -95,7 +115,9 @@
     "type": "donation",
     "url": "https://btc.academiasucab.com/fondo-emergencia-sismo-vzla-2026",
     "summary": "Fondo de emergencia para canalizar donaciones hacia la respuesta al sismo de 2026.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Academia SUCAB",
     "active": true
   },
@@ -105,7 +127,9 @@
     "type": "search",
     "url": "https://venezuelareporta.org",
     "summary": "Reporte y búsqueda de personas desaparecidas tras el terremoto. Solo enlace, sin scraping ni copia de datos.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -115,7 +139,9 @@
     "type": "other",
     "url": "https://tilinapp.com",
     "summary": "Reporte ciudadano de daños estructurales en edificaciones tras el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -125,7 +151,9 @@
     "type": "other",
     "url": "https://app.appcentinela.com/instalar",
     "summary": "Reporte de daños estructurales e inspección de habitabilidad por ingenieros. App instalable. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -135,7 +163,9 @@
     "type": "other",
     "url": "https://rescate-ve.vercel.app",
     "summary": "Coordinación de rescate, logística y transporte de ayuda hacia las zonas afectadas por el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -145,7 +175,9 @@
     "type": "other",
     "url": "https://habitable.lovable.app",
     "summary": "Inspección de habitabilidad de viviendas por ingenieros tras el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -155,7 +187,9 @@
     "type": "resources",
     "url": "https://ayudaparavenezuela.com",
     "summary": "Directorio de centros de acopio e insumos para la respuesta al terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -165,7 +199,9 @@
     "type": "resources",
     "url": "https://www.veneconnect.com/apoyo-terremoto",
     "summary": "Coordinación de apoyo, centros de acopio e insumos para los afectados por el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -175,7 +211,9 @@
     "type": "other",
     "url": "https://tugruero.com",
     "summary": "Red de grúas y transporte para apoyar la logística de rescate y traslado tras el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -185,7 +223,9 @@
     "type": "resources",
     "url": "https://zonasegura.up.railway.app",
     "summary": "Centros de acopio, insumos, alojamiento y refugios para personas afectadas por el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -195,7 +235,9 @@
     "type": "resources",
     "url": "https://refugiosvenezuela.com",
     "summary": "Directorio de refugios, alojamiento y alimentos para personas desplazadas por el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -205,7 +247,9 @@
     "type": "other",
     "url": "https://www.huellascan.com/terremoto",
     "summary": "Información y reporte de mascotas perdidas o rescatadas tras el terremoto. Solo enlace.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
   },
@@ -215,7 +259,9 @@
     "type": "dev",
     "url": "https://t.me/AparecioMiGente_bot",
     "summary": "Bot automatizado de Telegram que alerta en el momento en que un nombre aparece en una lista de ingresos hospitalarios. Notificaciones en tiempo real para familias.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -225,7 +271,9 @@
     "type": "dev",
     "url": "https://t.me/VenezuelaAyuda_bot",
     "summary": "Bot especializado en encontrar centros de acopio verificados cercanos. Reporta qué insumos necesita cada centro y su estado actual.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
     "active": true
   },
@@ -235,8 +283,214 @@
     "type": "telecom",
     "url": "https://www.reconectavenezuela.org",
     "summary": "Portal que brinda acceso gratuito a internet satelital en zonas desconectadas tras el terremoto. Mapa de puntos de conexión disponibles y estaciones de carga.",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-te-necesita",
+    "name": "Venezuela Te Necesita",
+    "type": "resources",
+    "url": "https://venezuelatenecesita.site",
+    "summary": "Iniciativa que agrega dónde se necesita ayuda por zona (refugios, insumos, donaciones) tras el terremoto. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-donar-seguro",
+    "name": "Donar Seguro",
+    "type": "donation",
+    "url": "https://donarseguro.com",
+    "summary": "Canal de donación verificado y recomendado por la comunidad para la respuesta al terremoto de Venezuela. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-vzla-x-arg",
+    "name": "VZLA x ARG",
+    "type": "resources",
+    "url": "https://vzlaxarg.lovable.app",
+    "summary": "Sitio comunitario de ayuda para la respuesta al terremoto de Venezuela, construido por la comunidad argentina. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-buscofamiliar",
+    "name": "buscofamiliar.com",
+    "type": "search",
+    "url": "https://buscofamiliar.com",
+    "summary": "Plataforma humanitaria de localización en tiempo real; centraliza búsquedas por nombre o cédula con deduplicación. Solo enlace; sin scraping ni copia de datos.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "christian belo · agentizar.com",
+    "active": true
+  },
+  {
+    "id": "res-miranda-conecta",
+    "name": "Miranda Conecta",
+    "type": "other",
+    "url": "https://mirandaconecta.site",
+    "summary": "Plataforma con IA para reportería ciudadana anónima descentralizada y coordinación de emergencias en tiempo real. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Miranda Conecta",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-unida",
+    "name": "Venezuela_Unida",
+    "type": "other",
+    "url": "https://www.venezuelaunida.online",
+    "summary": "Plataforma web ciudadana de respuesta a la crisis sísmica en Venezuela. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Juan David Florian Amador",
+    "active": true
+  },
+  {
+    "id": "res-ayuda-venezuela-talos",
+    "name": "Ayuda Venezuela (Talos)",
+    "type": "resources",
+    "url": "https://ayuda-venezuela.talosware.com.ve",
+    "summary": "Plataforma de coordinación de ayuda para la respuesta al terremoto, por Talos Software. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Jesus Altuve · Talos Software",
+    "active": true
+  },
+  {
+    "id": "res-achylo-pay",
+    "name": "Achylo Pay",
+    "type": "finance",
+    "url": "https://achylo.com",
+    "summary": "Plataforma de pagos para canalizar ayuda económica a los afectados por el terremoto. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "AchyloLabs",
+    "active": true
+  },
+  {
+    "id": "res-reporta-venezuela",
+    "name": "Reporta Venezuela",
+    "type": "other",
+    "url": "https://reportavenezuela.org",
+    "summary": "Plataforma ciudadana para reportar incidencias y necesidades tras el terremoto. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Esteban Santiago",
+    "active": true
+  },
+  {
+    "id": "res-crafter-station",
+    "name": "Moraleja & Crafter Station",
+    "type": "other",
+    "url": "https://crafterstation.com",
+    "summary": "Colectivo de desarrollo detrás de varios proyectos de respuesta al terremoto en Venezuela. Sitio del equipo. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Crafter Station",
+    "active": true
+  },
+  {
+    "id": "res-red-apoyo-venezuela",
+    "name": "Red de Apoyo Venezuela",
+    "type": "search",
+    "url": "https://w.app/red-busqueda-venezuela",
+    "summary": "Red de búsqueda y apoyo coordinada por WhatsApp para la respuesta al terremoto. Solo enlace; sin scraping ni copia de datos.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Victor Naranjo",
+    "active": true
+  },
+  {
+    "id": "res-sos-patitas",
+    "name": "SOS Patitas",
+    "type": "other",
+    "url": "https://sospatitas.com",
+    "summary": "Plataforma de rescate y reunificación de mascotas perdidas tras el terremoto. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Alejandra Hernandez, Jhainey Perez",
+    "active": true
+  },
+  {
+    "id": "res-sosvenezuela",
+    "name": "SOSVenezuela",
+    "type": "resources",
+    "url": "https://sosvenezuela.net",
+    "summary": "Plataforma de coordinación de ayuda para la respuesta al terremoto en Venezuela. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "DIDI Services LLC",
+    "active": true
+  },
+  {
+    "id": "res-24junve-status",
+    "name": "24junve status",
+    "type": "other",
+    "url": "https://24junve.statuslocal.net",
+    "summary": "Mapa colaborativo para crowdsourcear eventos, con página de moderación para verificación. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Wilmer Gonzalez",
+    "active": true
+  },
+  {
+    "id": "res-grego-app",
+    "name": "Grego App",
+    "type": "other",
+    "url": "https://tinyurl.com/grego-app",
+    "summary": "Mapa vivo donde cada zona afectada tiene su espacio de coordinación, recursos, necesidades y canales en tiempo real. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Alejandro Martínez",
+    "active": true
+  },
+  {
+    "id": "res-te-encontramos",
+    "name": "Te Encontramos",
+    "type": "search",
+    "url": "https://haldir.co/te-encontramos",
+    "summary": "Plataforma de emergencia para reporte y geolocalización en tiempo real de personas y mascotas; conecta afectados con familiares. Solo enlace; sin scraping.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "ZynthAI",
+    "active": true
+  },
+  {
+    "id": "res-unidos-venezuela",
+    "name": "Unidos Venezuela",
+    "type": "other",
+    "url": "https://unidosvenezuela.vercel.app",
+    "summary": "App web para crear puntos de interés y necesidad urgente (médica, transporte, rescate); mapa interactivo. Solo enlace.",
+    "languages": [
+      "es"
+    ],
+    "verified_source": "Angel Antón · David Brito",
     "active": true
   }
 ]

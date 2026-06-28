@@ -34,6 +34,41 @@ const tab = (active: boolean) =>
 
 // ── Curated filter options ─────────────────────────────────────────────────────
 
+const ROLE_KEYWORDS: Record<string, string[]> = {
+  Frontend: ["frontend", "front-end", "react", "next.js", "vue", "angular", "css", "html", "ui"],
+  Backend: ["backend", "back-end", "api", "server", "python", "node.js", "java", "go", "rust", "php", "fastapi", "golang"],
+  "Full Stack": ["fullstack", "full-stack", "full stack"],
+  "UI/UX": ["ui", "ux", "design", "figma", "user interface", "user experience", "diseño"],
+  "AI / ML": ["ai", "ml", "machine learning", "llm", "rag", "embedding", "openai", "gpt", "neural", "inteligencia artificial"],
+  "Cloud / DevOps": ["devops", "deploy", "ci/cd", "docker", "kubernetes", "infra", "hosting", "cloud", "aws", "gcp"],
+  Mobile: ["mobile", "react native", "flutter", "android", "ios", "kotlin", "swift", "ionic"],
+  "Data Science": ["data science", "data", "analytics", "dashboard", "tableau"],
+  "Data Engineer": ["data engineer", "etl", "pipeline", "scraper", "database", "pgvector"],
+  "QA / Testing": ["qa", "test", "tester", "testing"],
+  "Product / PM": ["product", "pm", "product manager", "project manager"],
+  Security: ["security", "auth", "authentication", "cybersecurity"],
+  Senior: ["senior", "sr", "lead", "architect"],
+  Junior: ["junior", "jr", "trainee"],
+  Mid: ["mid", "mid-level", "semi senior"],
+};
+
+const ROLE_OPTIONS = Object.keys(ROLE_KEYWORDS);
+
+function roleFilter(projects: Project[], role: string | undefined): Project[] {
+  if (!role || role === "any") return projects;
+  const keywords = ROLE_KEYWORDS[role];
+  if (!keywords) return projects;
+  return projects.filter((p) => {
+    const all = [
+      ...p.stack,
+      ...p.needs.contributors,
+      ...p.needs.api_credits,
+      ...p.needs.sponsors,
+    ].map((s) => s.toLowerCase());
+    return keywords.some((kw) => all.some((s) => s.includes(kw)));
+  });
+}
+
 const STACK_OPTIONS = [
   "AI / ML", "Cloud / Hosting", "Computer Vision", "Data Science", "DevOps",
   "Discord / Bots", "Docker", "FastAPI", "Flutter", "Go", "Java", "JavaScript",
@@ -156,6 +191,7 @@ async function BuilderMode({
   dict: Dictionary;
 }) {
   const q = one(sp.q);
+  const role = one(sp.role);
   const profile: MatchProfile = {
     stack: StackInput.parse(many(sp.stack)),
     timezone: one(sp.timezone),
@@ -171,10 +207,11 @@ async function BuilderMode({
   for (const m of memberships) teamCount.set(m.project_slug, (teamCount.get(m.project_slug) ?? 0) + 1);
 
   const eligible = stageFilter(builderEligible(projects), profile.availability);
+  const byRole = roleFilter(eligible, role);
   const hasProfile = profile.stack.length > 0 || !!profile.timezone || !!profile.availability;
   let matches: ProjectMatch[] = hasProfile
-    ? matchProjectsForBuilder(profile, eligible, teamCount)
-    : rankProjects(eligible).map((p) => ({ project: p, score: 0, reasons: [] }));
+    ? matchProjectsForBuilder(profile, byRole, teamCount)
+    : rankProjects(byRole).map((p) => ({ project: p, score: 0, reasons: [] }));
 
   if (q) {
     const lower = q.toLowerCase();
@@ -190,9 +227,10 @@ async function BuilderMode({
     <>
       <FilterForm
         base={base}
-        current={{ stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability, q }}
+        current={{ stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability, role, q }}
         groups={[
           { name: "stack", label: dict.match.stackLabel, options: STACK_OPTIONS.map((s) => ({ value: s, label: s })) },
+          { name: "role", label: dict.match.roleLabel, options: ROLE_OPTIONS.map((r) => ({ value: r, label: r })) },
           { name: "timezone", label: dict.match.tzLabel, options: TIMEZONE_OPTIONS.map((t) => ({ value: t.replace(/ \(.*\)$/, ""), label: t })) },
           { name: "availability", label: dict.match.stageLabel, options: STAGE_OPTIONS.map((s) => ({ value: s.value, label: dict.match[s.labelKey] })) },
         ]}
@@ -203,7 +241,7 @@ async function BuilderMode({
 
       <form method="get" action={base} role="search" className="flex gap-2 rounded-token border border-border bg-surface p-3">
         <input type="hidden" name="as" value="builder" />
-        {[{ n: "stack", v: profile.stack[0] }, { n: "timezone", v: profile.timezone }, { n: "availability", v: profile.availability }].filter((x) => x.v).map((x) => (
+        {[{ n: "stack", v: profile.stack[0] }, { n: "role", v: role }, { n: "timezone", v: profile.timezone }, { n: "availability", v: profile.availability }].filter((x) => x.v).map((x) => (
           <input key={x.n} type="hidden" name={x.n} value={x.v} />
         ))}
         <input type="search" name="q" defaultValue={q} placeholder="Search projects by name or stack…" className="flex-1 rounded-token border border-border bg-surface px-3 py-2 text-sm text-text" aria-label="Search projects" />
@@ -211,15 +249,13 @@ async function BuilderMode({
       </form>
 
       {matches.length === 0 ? (
-        <EmptyState title={dict.match.yourFit} body={hasProfile ? dict.match.builderEmpty : dict.match.builderPrompt}>
-          {!hasProfile ? null : (
-            <Link
-              href={localePath(locale, "/projects/new")}
-              className="rounded-token bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
-            >
-              {dict.match.publishCta}
-            </Link>
-          )}
+        <EmptyState title={dict.match.yourFit} body={dict.match.builderEmpty}>
+          <Link
+            href={localePath(locale, "/projects/new")}
+            className="rounded-token bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-primary-ink hover:opacity-90"
+          >
+            {dict.match.publishCta}
+          </Link>
         </EmptyState>
       ) : (
         <div className="flex flex-col gap-4">

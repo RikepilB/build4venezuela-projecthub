@@ -289,7 +289,7 @@ export const es: typeof en = {
   match: {
     title: "Encuentra tu lugar",
     subtitle:
-      "Dinos tus skills y te mostramos los proyectos de ayuda que los necesitan. Patrocinadores: vean dónde aterriza su aporte.",
+      "Explora todos los proyectos y filtra por stack, rol, zona horaria o etapa. Dinos tus skills y rankeamos tu mejor opción. Patrocinadores: vean dónde aterriza su aporte.",
     asBuilder: "Quiero construir",
     asSponsor: "Puedo patrocinar",
     // builder side
@@ -297,6 +297,7 @@ export const es: typeof en = {
     builderPrompt: "Elige tu stack arriba para ver los proyectos que lo necesitan.",
     // filter labels
     stackLabel: "Stack",
+    roleLabel: "Rol",
     tzLabel: "Zona horaria",
     stageLabel: "Etapa",
     stageIdea: "Idea / Planificación",

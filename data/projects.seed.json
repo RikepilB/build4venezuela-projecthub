@@ -39,108 +39,6 @@
     "progress": 80
   },
   {
-    "id": "venezuela-te-necesita",
-    "slug": "venezuela-te-necesita",
-    "name": "Venezuela Te Necesita",
-    "summary": "Existing initiative aggregating where help is needed by area (shelters, aid, supplies) after the earthquake. Listed so builders coordinate instead of duplicating.",
-    "demo_url": "https://venezuelatenecesita.site",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "needs-map",
-      "aid-center"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "high",
-    "complexity": "medium",
-    "use_case": "See where help is needed by area: shelters, aid, supplies."
-  },
-  {
-    "id": "desaparecidos-terremoto",
-    "slug": "desaparecidos-terremoto-venezuela",
-    "name": "Desaparecidos Terremoto Venezuela",
-    "summary": "External missing-persons registry. PII-sensitive — link-out only, integration gated on owner consent and human review. Do not scrape or auto-merge.",
-    "demo_url": "https://desaparecidosterremotovenezuela.com",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "missing-persons"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "high",
-    "complexity": "medium",
-    "use_case": "Search the missing-persons registry by area (link-out)."
-  },
-  {
-    "id": "venezuela-te-busca",
-    "slug": "venezuela-te-busca",
-    "name": "Venezuela Te Busca",
-    "summary": "External missing-persons registry. PII-sensitive — link-out only, integration gated on owner consent and human review. Do not scrape or auto-merge.",
-    "demo_url": "https://venezuelatebusca.com",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "missing-persons"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "high",
-    "complexity": "medium",
-    "use_case": "Search the missing-persons registry (link-out)."
-  },
-  {
-    "id": "sos-yummy-rides",
-    "slug": "sos-yummy-rides",
-    "name": "SOS Yummy Rides",
-    "summary": "Transport/SOS coordination from Yummy Rides — request and offer rides for evacuation and supply movement.",
-    "demo_url": "https://sos.yummyrides.com",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "transport",
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "medium",
-    "complexity": "medium",
-    "use_case": "Request or offer rides for evacuation and supply movement."
-  },
-  {
     "id": "shelter-directory",
     "slug": "shelter-directory",
     "name": "Shelter & Aid Directory",
@@ -350,80 +248,6 @@
     "complexity": "medium",
     "use_case": "Report and contribute evidence about missing people collaboratively.",
     "progress": 20
-  },
-  {
-    "id": "welove-foundation",
-    "slug": "welove-foundation",
-    "name": "WeLove Foundation",
-    "summary": "Trusted relief foundation that channels donations directly to people affected — already operating across several countries (incl. Mexico). Listed so the diaspora can give through a vetted org instead of unverified links. Link-out only.",
-    "demo_url": "https://www.welove.foundation",
-    "stack": [],
-    "languages": [
-      "es",
-      "en"
-    ],
-    "categories": [
-      "aid-center",
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "high",
-    "use_case": "Donate to vetted earthquake relief that reaches people directly."
-  },
-  {
-    "id": "donar-seguro",
-    "slug": "donar-seguro",
-    "name": "Donar Seguro",
-    "summary": "Community-recommended, vetted donation channel for Venezuela earthquake relief — a safe way to give so funds reach people in need. Link-out only.",
-    "demo_url": "https://donarseguro.com",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "aid-center"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "medium",
-    "use_case": "Give to earthquake relief through a community-vetted channel."
-  },
-  {
-    "id": "vzla-x-arg",
-    "slug": "vzla-x-arg",
-    "name": "VZLA x ARG",
-    "summary": "Community-built relief site for the Venezuela earthquake response. Live and usable now — link-out only.",
-    "demo_url": "https://vzlaxarg.lovable.app",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "medium",
-    "use_case": "Venezuela earthquake relief — visit to use (link-out)."
   },
   {
     "id": "resqlink",
@@ -926,157 +750,6 @@
       "api_credits": [],
       "sponsors": []
     },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "buscofamiliar",
-    "slug": "buscofamiliar",
-    "name": "buscofamiliar.com",
-    "summary": "Plataforma humanitaria de localización en tiempo real; centraliza búsquedas por nombre o cédula con deduplicación. En producción. Solo enlace; sin scraping ni copia de datos.",
-    "demo_url": "https://buscofamiliar.com",
-    "categories": [
-      "missing-persons"
-    ],
-    "owner": "christian belo · agentizar.com",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "miranda-conecta",
-    "slug": "miranda-conecta",
-    "name": "Miranda Conecta",
-    "summary": "Plataforma con IA para reportería ciudadana anónima descentralizada y coordinación de emergencias en tiempo real. En producción.",
-    "demo_url": "https://mirandaconecta.site",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "Miranda Conecta",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "venezuela-unida",
-    "slug": "venezuela-unida",
-    "name": "Venezuela_Unida",
-    "summary": "Plataforma web ciudadana de respuesta a la crisis sísmica en Venezuela. En producción. Solo enlace.",
-    "demo_url": "https://www.venezuelaunida.online",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "Juan David Florian Amador",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "ayuda-venezuela-talos",
-    "slug": "ayuda-venezuela-talos",
-    "name": "Ayuda Venezuela (Talos)",
-    "summary": "Plataforma de coordinación de ayuda para la respuesta al terremoto, por Talos Software. En producción. Solo enlace.",
-    "demo_url": "https://ayuda-venezuela.talosware.com.ve",
-    "categories": [
-      "coordination",
-      "aid-center"
-    ],
-    "owner": "Jesus Altuve · Talos Software",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "achylo-pay",
-    "slug": "achylo-pay",
-    "name": "Achylo Pay",
-    "summary": "Plataforma de pagos para canalizar ayuda económica a los afectados por el terremoto. En producción. Solo enlace.",
-    "demo_url": "https://achylo.com",
-    "categories": [
-      "aid-center"
-    ],
-    "owner": "AchyloLabs",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "reporta-venezuela",
-    "slug": "reporta-venezuela",
-    "name": "Reporta Venezuela",
-    "summary": "Plataforma ciudadana para reportar incidencias y necesidades tras el terremoto. En producción. Solo enlace.",
-    "demo_url": "https://reportavenezuela.org",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "Esteban Santiago",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
     "source": "external",
     "priority": "low",
     "progress": 100,
@@ -1091,106 +764,6 @@
     ],
     "owner": "War Room Venezuela",
     "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "crafter-station",
-    "slug": "crafter-station",
-    "name": "Moraleja & Crafter Station",
-    "summary": "Colectivo de desarrollo detrás de varios proyectos de respuesta al terremoto en Venezuela. Sitio del equipo. Solo enlace.",
-    "demo_url": "https://crafterstation.com",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "Crafter Station",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "red-apoyo-venezuela",
-    "slug": "red-apoyo-venezuela",
-    "name": "Red de Apoyo Venezuela",
-    "summary": "Red de búsqueda y apoyo coordinada por WhatsApp para la respuesta al terremoto. Solo enlace; sin scraping ni copia de datos.",
-    "demo_url": "https://w.app/red-busqueda-venezuela",
-    "categories": [
-      "missing-persons",
-      "coordination"
-    ],
-    "owner": "Victor Naranjo",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "sos-patitas",
-    "slug": "sos-patitas",
-    "name": "SOS Patitas",
-    "summary": "Plataforma de rescate y reunificación de mascotas perdidas tras el terremoto. En producción. Solo enlace.",
-    "demo_url": "https://sospatitas.com",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "Alejandra Hernandez, Jhainey Perez",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "sosvenezuela",
-    "slug": "sosvenezuela",
-    "name": "SOSVenezuela",
-    "summary": "Plataforma de coordinación de ayuda para la respuesta al terremoto en Venezuela. En producción. Solo enlace.",
-    "demo_url": "https://sosvenezuela.net",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "DIDI Services LLC"
   },
   {
     "stack": [],
@@ -1245,56 +818,6 @@
     "owner": "Kevin Esaa"
   },
   {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "24junve-status",
-    "slug": "24junve-status",
-    "name": "24junve status",
-    "summary": "Mapa colaborativo para crowdsourcear eventos, con página de moderación para verificación. En producción. Solo enlace.",
-    "demo_url": "https://24junve.statuslocal.net",
-    "categories": [
-      "needs-map",
-      "coordination"
-    ],
-    "owner": "Wilmer Gonzalez"
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "grego-app",
-    "slug": "grego-app",
-    "name": "Grego App",
-    "summary": "Mapa vivo donde cada zona afectada tiene su espacio de coordinación, recursos, necesidades y canales en tiempo real. En producción. Solo enlace.",
-    "demo_url": "https://tinyurl.com/grego-app",
-    "categories": [
-      "needs-map",
-      "coordination"
-    ],
-    "owner": "Alejandro Martínez"
-  },
-  {
     "stack": [
       "Next.js",
       "Supabase",
@@ -1322,30 +845,6 @@
       "needs-map"
     ],
     "owner": "Jespar Develops"
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "te-encontramos",
-    "slug": "te-encontramos",
-    "name": "Te Encontramos",
-    "summary": "Plataforma de emergencia para reporte y geolocalización en tiempo real de personas y mascotas; conecta afectados locales con familiares en el exterior. En producción. Solo enlace; sin scraping.",
-    "demo_url": "https://haldir.co/te-encontramos",
-    "categories": [
-      "missing-persons"
-    ],
-    "owner": "ZynthAI"
   },
   {
     "stack": [],
@@ -1410,31 +909,6 @@
     "source": "initiative",
     "priority": "low",
     "progress": 100,
-    "id": "unidos-venezuela",
-    "slug": "unidos-venezuela",
-    "name": "Unidos Venezuela",
-    "summary": "App web para crear puntos de interés y necesidad urgente (médica, transporte, rescate); especifica heridos, niños y tercera edad. Mapa interactivo. En producción. Solo enlace.",
-    "demo_url": "https://unidosvenezuela.vercel.app",
-    "categories": [
-      "needs-map",
-      "coordination"
-    ],
-    "owner": "Angel Antón · David Brito"
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
     "id": "avapre-redh",
     "slug": "avapre-redh",
     "name": "Avapre REDH",
@@ -1445,5 +919,273 @@
       "shelter"
     ],
     "owner": "Hercules Development"
+  },
+  {
+    "id": "response-grid",
+    "slug": "response-grid",
+    "name": "Response Grid",
+    "summary": "Registro para la gestión de solicitud de ayuda a nivel de consumibles y fungibles tras el terremoto. MVP funcionando desde hace 6 meses. Open-source.",
+    "repo_url": "https://github.com/GlobalEmergency/ResponseGrid",
+    "demo_url": "https://responsegrid.app/e/terremoto-venezuela-2026",
+    "stack": [
+      "Web"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination",
+      "aid-center"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [
+        "Resolver issues y agregar datos"
+      ],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Víctor García",
+    "source": "external",
+    "priority": "high",
+    "complexity": "medium",
+    "use_case": "Gestiona solicitudes de ayuda y consumibles para la emergencia.",
+    "progress": 70
+  },
+  {
+    "id": "red-venezuela-activa",
+    "slug": "red-venezuela-activa",
+    "name": "Red Venezuela Activa",
+    "summary": "Plataforma ciudadana para coordinar ayuda humanitaria tras el terremoto. Registro de voluntarios y profesionales, reporte de casos urgentes, albergues con necesidades, mapa en vivo y movilización por WhatsApp. Lado público (sin login) e interno (coordinadores con dashboard, filtros, exportación).",
+    "demo_url": "https://ayudavenezuela2026.com",
+    "stack": [
+      "Web"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination",
+      "needs-map"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [
+        "Desarrolladores (especialmente Claude/IA)"
+      ],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Federico Morales",
+    "source": "external",
+    "priority": "high",
+    "complexity": "high",
+    "use_case": "Coordina voluntarios, reporta casos urgentes y mapea albergues en vivo.",
+    "progress": 50
+  },
+  {
+    "id": "guacamaya",
+    "slug": "guacamaya",
+    "name": "Guacamaya",
+    "summary": "Red Mesh entre dispositivos mediante Bluetooth LE y WiFi Direct para comunicación y localización en zonas sin luz, torres celulares o conexión a internet.",
+    "stack": [
+      "Mobile (React Native)",
+      "Kotlin",
+      "Bluetooth LE"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [
+        "Android/Kotlin devs",
+        "React Native/Expo devs",
+        "Diseñadores mobile"
+      ],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Rodrigo Rivas",
+    "source": "external",
+    "priority": "high",
+    "complexity": "high",
+    "use_case": "Comunicación y localización offline vía redes Mesh entre dispositivos cercanos.",
+    "progress": 40
+  },
+  {
+    "id": "zerena",
+    "slug": "zerena",
+    "name": "Zerena",
+    "summary": "Espacio de calma para quienes viven las secuelas del terremoto. Funciona sin registro y sin señal: respirar, volver al presente, triaje que escala a ayuda, secciones para dormir, duelo, réplicas y esperanza diaria. Entrenamiento en Primeros Auxilios Psicológicos para voluntarios. Directorio de líneas de ayuda reales. Basado en protocolos OMS/OPS, Cruz Roja, NCTSN. PWA offline-first.",
+    "demo_url": "https://zerena.help",
+    "stack": [
+      "PWA",
+      "UI/UX Design"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "medical",
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [
+        "Integración WhatsApp",
+        "ElevenLabs (en proceso)",
+        "Testers"
+      ],
+      "api_credits": [
+        "ElevenLabs credits"
+      ],
+      "sponsors": []
+    },
+    "owner": "Carol Monroe",
+    "source": "external",
+    "priority": "high",
+    "complexity": "medium",
+    "use_case": "Apoyo emocional y primeros auxilios psicológicos offline-first tras el terremoto.",
+    "progress": 85
+  },
+  {
+    "id": "mi-acopio",
+    "slug": "mi-acopio",
+    "name": "Mi Acopio",
+    "summary": "Plataforma web/mobile para registrar puntos de acopio, cargar inventario por categorías, publicar necesidades, coordinar traslados locales y compartir fichas públicas con horarios, ubicación y contacto.",
+    "demo_url": "https://www.miacopio.com.ar",
+    "stack": [
+      "Web",
+      "Mobile (React Native)"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "aid-center",
+      "coordination"
+    ],
+    "status": "live",
+    "needs": {
+      "contributors": [
+        "Validación con puntos de acopio reales",
+        "UX mobile",
+        "QA de formularios"
+      ],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Johaina Chavez",
+    "source": "external",
+    "priority": "high",
+    "complexity": "medium",
+    "use_case": "Registra y gestiona puntos de acopio con inventario y necesidades en tiempo real.",
+    "progress": 75
+  },
+  {
+    "id": "aparecio-mi-gente",
+    "slug": "aparecio-mi-gente",
+    "name": "Apareció Mi Gente",
+    "summary": "Bot que envía notificación push (Telegram) y SMS si una persona registrada pasó a estado 'Localizada' en las APIs de desaparecidos. Sistema de SMS que blinda la comunicación sin internet.",
+    "repo_url": "https://github.com/RomuloCordova/AparecioMiGente",
+    "stack": [
+      "Python",
+      "Twilio API"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "missing-persons"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [
+        "UX/mejoras",
+        "Backend/IA para procesar SMS entrantes"
+      ],
+      "api_credits": [
+        "Twilio credits"
+      ],
+      "sponsors": []
+    },
+    "owner": "Rómulo Córdova",
+    "source": "external",
+    "priority": "high",
+    "complexity": "medium",
+    "use_case": "Notifica por Telegram y SMS cuando una persona desaparecida aparece en los registros oficiales.",
+    "progress": 50
+  },
+  {
+    "id": "farove",
+    "slug": "farove",
+    "name": "FAROVE",
+    "summary": "Sistema offline de registro y seguimiento de niños/as rescatados en zonas sin luz ni internet tras el sismo. Rescatistas registran con foto e ID único para brazalete imprimible; familias buscan por ID o descripción desde cualquier teléfono sin internet. Detección de señales de tráfico infantil con aprobación multi-coordinador para traslados.",
+    "demo_url": "https://faro-ve.vercel.app",
+    "stack": [
+      "PWA",
+      "Offline-first"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "missing-persons",
+      "tracking"
+    ],
+    "status": "planning",
+    "needs": {
+      "contributors": [
+        "Feedback / ideas de mejora",
+        "Difusión"
+      ],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "Luana Cantuarias",
+    "source": "external",
+    "priority": "high",
+    "complexity": "high",
+    "use_case": "Registra y busca niños/as rescatados offline con brazalete ID y protección anti-tráfico.",
+    "progress": 15
+  },
+  {
+    "id": "venezuela-fakenews",
+    "slug": "venezuela-fakenews",
+    "name": "Venezuela FakeNews",
+    "summary": "Aplicación web con LLM y MCP para combatir desinformación sobre Venezuela (enfocado en el sismo de junio 2026). Contrasta hechos verificables con noticias falsas y sirve de apoyo a periodistas.",
+    "stack": [
+      "LLM",
+      "AI / ML",
+      "Web"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [
+        "Frontend devs",
+        "Backend devs",
+        "Fact-checkers"
+      ],
+      "api_credits": [
+        "LLM credits"
+      ],
+      "sponsors": []
+    },
+    "owner": "José Castro",
+    "source": "external",
+    "priority": "high",
+    "complexity": "medium",
+    "use_case": "Verifica noticias y combate desinformación sobre el terremoto usando IA.",
+    "progress": 30
   }
 ]

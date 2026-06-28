@@ -22,34 +22,6 @@
     "priority": "medium"
   },
   {
-    "id": "idea-generador-de-fichas-de-desaparecido",
-    "slug": "idea-generador-de-fichas-de-desaparecido",
-    "name": "Generador de fichas de desaparecido",
-    "summary": "Cada familia crea su ficha de búsqueda manualmente, con formatos distintos. Dificulta la difusión.",
-    "stack": [
-      "React",
-      "HTML",
-      "API",
-      "Canvas"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "missing-persons"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "open",
-    "source": "internal",
-    "complexity": "low",
-    "priority": "high"
-  },
-  {
     "id": "idea-dashboard-en-tiempo-real-del-terremoto",
     "slug": "idea-dashboard-en-tiempo-real-del-terremoto",
     "name": "Dashboard en tiempo real del terremoto",
@@ -103,35 +75,6 @@
     "priority": "high"
   },
   {
-    "id": "idea-bot-de-whatsapp-para-busqueda-de-personas",
-    "slug": "idea-bot-de-whatsapp-para-busqueda-de-personas",
-    "name": "Bot de WhatsApp para búsqueda de personas",
-    "summary": "Bot de whatsapp que permita a las personas buscar a sus desaparecidos con datos o una foto. Se usa WhatsApp ya que es el medio de comunicación mas conocido por las personas. Comunicarse por whatsapp para crear la solución: https://discord.gg/SAKnrgxUG",
-    "stack": [
-      "Go",
-      "Node",
-      "Twilio",
-      "WhatsApp",
-      "API"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "missing-persons"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "Diego Fabrizio Mucha Alvarez",
-    "source": "internal",
-    "complexity": "medium",
-    "priority": "high"
-  },
-  {
     "id": "idea-api-normalizada-open-source",
     "slug": "idea-api-normalizada-open-source",
     "name": "API normalizada open source",
@@ -157,33 +100,6 @@
     "source": "internal",
     "complexity": "high",
     "priority": "high"
-  },
-  {
-    "id": "idea-deduplicacion-automatica-de-reportes",
-    "slug": "idea-deduplicacion-automatica-de-reportes",
-    "name": "Deduplicación automática de reportes",
-    "summary": "Con 56k+ registros hay duplicados y datos incorrectos que dificultan la búsqueda.",
-    "stack": [
-      "Python",
-      "REST",
-      "API"
-    ],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "tracking"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "open",
-    "source": "internal",
-    "complexity": "medium",
-    "priority": "medium"
   },
   {
     "id": "idea-pwa-offline-first-para-reportes",
@@ -470,28 +386,6 @@
       "sponsors": []
     },
     "owner": "Alvaro Avila",
-    "source": "internal",
-    "priority": "medium"
-  },
-  {
-    "id": "idea-mvp-de-seguridad-antidisturbios-para-evitar-robos-o-maleantes",
-    "slug": "idea-mvp-de-seguridad-antidisturbios-para-evitar-robos-o-maleantes",
-    "name": "MVP de seguridad antidisturbios para evitar robos o maleantes",
-    "summary": "MVP de seguridad antidisturbios para evitar robos o maleantes — idea para el hackathon solidario.",
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "categories": [
-      "coordination"
-    ],
-    "status": "planning",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "open",
     "source": "internal",
     "priority": "medium"
   },

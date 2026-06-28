@@ -255,10 +255,10 @@
   {
     "id": "mission-ve",
     "slug": "mission-ve",
-    "name": "Mission VE",
+    "name": "Reporte VE",
     "summary": "Relief mission coordination platform by crafter-station. A team is already available to test it — feedback and PRs are welcome.",
     "repo_url": "https://github.com/crafter-station/mission-ve",
-    "demo_url": "https://mission-ve.vercel.app",
+    "demo_url": "https://ve.crafter.run",
     "stack": [
       "Next.js",
       "TypeScript"

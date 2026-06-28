@@ -39,10 +39,7 @@ export const en = {
   },
   guide: {
     open: "Quick guide",
-    title: "How El Umbral works",
     intro: "Search before you build — the 30-second version.",
-    close: "Close",
-    cta: "Got it — search",
   },
   landing: {
     publishCta: "Publish a project",

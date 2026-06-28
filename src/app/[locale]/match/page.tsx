@@ -3,12 +3,12 @@ import Link from "next/link";
 import { z } from "zod";
 import { isLocale, getDictionary, type Dictionary } from "@/lib/i18n/config";
 import type { Locale, Project } from "@/lib/types";
-import { builderRepository, membershipRepository, projectRepository } from "@/lib/repository";
+import { membershipRepository, projectRepository } from "@/lib/repository";
 import { rankProjects } from "@/lib/repository/projects.repo";
 import { FilterForm } from "@/components/ui/FilterForm";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { localePath } from "@/lib/i18n/href";
-import { builderFilterOptions } from "@/lib/builders/filter";
+
 import { matchProjectsForBuilder, matchProjectsForOffer } from "@/lib/match/score";
 import { ProjectMatchList } from "@/components/match/ProjectMatchList";
 import { OfferMatchList } from "@/components/match/OfferMatchList";
@@ -30,6 +30,43 @@ const tab = (active: boolean) =>
   `rounded-token border px-4 py-2 text-sm font-bold uppercase tracking-widest ${
     active ? "border-primary bg-primary text-primary-ink" : "border-border text-muted hover:text-text"
   }`;
+
+// ── Curated filter options ─────────────────────────────────────────────────────
+
+const STACK_OPTIONS = [
+  "AI / ML", "Cloud / Hosting", "Computer Vision", "Data Science", "DevOps",
+  "Discord / Bots", "Docker", "FastAPI", "Flutter", "Go", "Java", "JavaScript",
+  "LLM", "Maps (Mapbox / Leaflet)", "Mobile (React Native)", "N8N / Automation",
+  "Next.js", "Node.js", "PHP", "PostgreSQL", "PWA", "Python", "RAG",
+  "React", "REST API", "SQLite", "Supabase", "TypeScript", "UI/UX Design", "Vue",
+];
+
+const TIMEZONE_OPTIONS = [
+  "UTC-12", "UTC-11", "UTC-10", "UTC-9", "UTC-8", "UTC-7", "UTC-6",
+  "UTC-5 (Bogotá)", "UTC-4", "UTC-3", "UTC-2", "UTC-1",
+  "UTC", "UTC+1", "UTC+2", "UTC+3", "UTC+4", "UTC+5",
+  "UTC+6", "UTC+7", "UTC+8", "UTC+9", "UTC+10", "UTC+11", "UTC+12", "UTC+13", "UTC+14",
+];
+
+const STAGE_OPTIONS = [
+  { value: "idea", labelKey: "stageIdea" as const },
+  { value: "in-progress", labelKey: "stageProgress" as const },
+  { value: "mvp", labelKey: "stageMvp" as const },
+];
+
+function stageFilter(projects: Project[], stage: string | undefined): Project[] {
+  if (!stage || stage === "any") return projects;
+  switch (stage) {
+    case "idea":
+      return projects.filter((p) => p.status === "planning" || !p.status);
+    case "in-progress":
+      return projects.filter((p) => p.status === "wip");
+    case "mvp":
+      return projects.filter((p) => (p.progress ?? 0) >= 75);
+    default:
+      return projects;
+  }
+}
 
 export default async function MatchPage({
   params,
@@ -100,20 +137,19 @@ async function BuilderMode({
     availability: one(sp.availability),
   };
 
-  const [allBuilders, projects, memberships] = await Promise.all([
-    builderRepository.list(),
+  const [projects, memberships] = await Promise.all([
     projectRepository.list(),
     membershipRepository.list(),
   ]);
-  const options = builderFilterOptions(allBuilders);
 
   const teamCount = new Map<string, number>();
   for (const m of memberships) teamCount.set(m.project_slug, (teamCount.get(m.project_slug) ?? 0) + 1);
 
+  const eligible = stageFilter(builderEligible(projects), profile.availability);
   const hasProfile = profile.stack.length > 0 || !!profile.timezone || !!profile.availability;
   const matches: ProjectMatch[] = hasProfile
-    ? matchProjectsForBuilder(profile, projects, teamCount)
-    : rankProjects(builderEligible(projects)).map((p) => ({ project: p, score: 0, reasons: [] }));
+    ? matchProjectsForBuilder(profile, eligible, teamCount)
+    : rankProjects(eligible).map((p) => ({ project: p, score: 0, reasons: [] }));
 
   return (
     <>
@@ -121,10 +157,10 @@ async function BuilderMode({
         base={base}
         current={{ stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability }}
         groups={[
-          { name: "stack", label: dict.builders.stack, options: options.stack.map((s) => ({ value: s, label: s })) },
-          { name: "timezone", label: dict.builders.timezone, options: options.timezone.map((t) => ({ value: t, label: t })) },
-          { name: "availability", label: dict.builders.availability, options: options.availability.map((a) => ({ value: a, label: a })) },
-        ].filter((g) => g.options.length > 0)}
+          { name: "stack", label: dict.match.stackLabel, options: STACK_OPTIONS.map((s) => ({ value: s, label: s })) },
+          { name: "timezone", label: dict.match.tzLabel, options: TIMEZONE_OPTIONS.map((t) => ({ value: t.replace(/ \(.*\)$/, ""), label: t })) },
+          { name: "availability", label: dict.match.stageLabel, options: STAGE_OPTIONS.map((s) => ({ value: s.value, label: dict.match[s.labelKey] })) },
+        ]}
         allLabel={dict.builders.all}
         applyLabel={dict.board.filters}
         clearLabel={dict.board.clear}

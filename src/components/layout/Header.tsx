@@ -4,41 +4,32 @@ import type { Dictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
 import { PROJECTHUB_REPO_URL } from "@/lib/links";
 import { MobileNav } from "./MobileNav";
-import { NavMenu } from "./NavMenu";
+import { NavGroup } from "./NavGroup";
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const other: Locale = locale === "en" ? "es" : "en";
   const langAria = `Switch language to ${other === "en" ? "English" : "Español"}`;
 
-  // Four concrete top-level tabs, three of them grouping a pair of related routes
-  // behind a dropdown so the bar stays legible. The phone disclosure (MobileNav)
-  // gets the same routes flattened into one labelled list — no dropdowns there.
+  // Four concrete top-level tabs. Three are split: the label links straight to the
+  // section's main page, while a caret discloses its related route. The phone
+  // disclosure (MobileNav) gets every route flattened into one labelled list.
   const navGroups = [
     {
-      label: dict.nav.board,
-      items: [
-        { href: localePath(locale, "/board"), label: dict.nav.projects },
-        { href: localePath(locale, "/ecosystem"), label: dict.nav.shipped },
-      ],
+      primary: { href: localePath(locale, "/board"), label: dict.nav.board },
+      items: [{ href: localePath(locale, "/ecosystem"), label: dict.nav.shipped }],
     },
     {
-      label: dict.nav.builders,
-      items: [
-        { href: localePath(locale, "/builders"), label: dict.nav.builders },
-        { href: localePath(locale, "/match"), label: dict.nav.match },
-      ],
+      primary: { href: localePath(locale, "/builders"), label: dict.nav.builders },
+      items: [{ href: localePath(locale, "/match"), label: dict.nav.match }],
     },
     {
-      label: dict.nav.resources,
-      items: [
-        { href: localePath(locale, "/resources"), label: dict.nav.resources },
-        { href: localePath(locale, "/reference"), label: dict.nav.reference },
-      ],
+      primary: { href: localePath(locale, "/resources"), label: dict.nav.resources },
+      items: [{ href: localePath(locale, "/reference"), label: dict.nav.reference }],
     },
   ];
-  // Communities stands alone (single route) — a plain link, not a dropdown.
+  // Communities stands alone (single route) — a plain link, no caret.
   const communities = { href: localePath(locale, "/communities"), label: dict.nav.communities };
-  const mobileItems = [...navGroups.flatMap((g) => g.items), communities];
+  const mobileItems = [...navGroups.flatMap((g) => [g.primary, ...g.items]), communities];
 
   return (
     <header className="relative border-b border-border bg-bg">
@@ -62,11 +53,16 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </span>
         </Link>
 
-        {/* Desktop nav — lg+ strip: three grouped dropdowns + the standalone
+        {/* Desktop nav — lg+ strip: three split tabs (link + caret) + the standalone
             Communities link, then submit + 2 icons. Below lg it collapses into MobileNav. */}
         <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
           {navGroups.map((group) => (
-            <NavMenu key={group.label} label={group.label} items={group.items} />
+            <NavGroup
+              key={group.primary.href}
+              primary={group.primary}
+              items={group.items}
+              moreLabel={dict.nav.more}
+            />
           ))}
           <Link
             href={communities.href}

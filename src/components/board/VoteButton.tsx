@@ -82,7 +82,7 @@ export function VoteButton({ slug, votes, label }: { slug: string; votes: number
         // storage unavailable — the server still recorded the vote
       }
       setJustVoted(true);
-      refreshVotes(); // pull the new server-authoritative count into the live overlay
+      refreshVotes(true); // force-pull the new server-authoritative count (bypass coalescing)
     }
   }
 

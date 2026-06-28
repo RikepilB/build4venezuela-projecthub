@@ -14,9 +14,21 @@ import type { ApiResponse } from "@/lib/api/response";
 
 type VoteMap = Record<string, number>;
 
+// The /api/v1/votes contract is { slug: number }, but this is untrusted JSON at the
+// client boundary — coerce to finite numbers and drop anything else, so a malformed
+// payload can never surface NaN in a card (the `live ?? votes` fallback only catches
+// undefined, not NaN).
+function coerceVoteMap(raw: Record<string, unknown>): VoteMap {
+  const out: VoteMap = {};
+  for (const [slug, n] of Object.entries(raw)) {
+    if (typeof n === "number" && Number.isFinite(n)) out[slug] = n;
+  }
+  return out;
+}
+
 interface LiveVotesValue {
   votes: VoteMap;
-  refresh: () => void;
+  refresh: (force?: boolean) => void;
 }
 
 const LiveVotesContext = createContext<LiveVotesValue | null>(null);
@@ -25,14 +37,14 @@ export function LiveVotesProvider({ children }: { children: React.ReactNode }) {
   const [votes, setVotes] = useState<VoteMap>({});
   const inFlight = useRef(false);
 
-  const refresh = useCallback(async () => {
-    if (inFlight.current) return; // coalesce overlapping fetches (mount + focus)
+  const refresh = useCallback(async (force = false) => {
+    if (inFlight.current && !force) return; // coalesce overlapping fetches (mount + focus)
     inFlight.current = true;
     try {
       const res = await fetch("/api/v1/votes", { cache: "no-store" });
       if (!res.ok) return;
-      const json = (await res.json()) as ApiResponse<VoteMap>;
-      if (json.success && json.data) setVotes(json.data);
+      const json = (await res.json()) as ApiResponse<Record<string, unknown>>;
+      if (json.success && json.data) setVotes(coerceVoteMap(json.data));
     } catch {
       // Network / parse error → keep the server-rendered counts (graceful fallback).
     } finally {
@@ -60,7 +72,8 @@ export function useLiveVote(slug: string): number | undefined {
   return useContext(LiveVotesContext)?.votes[slug];
 }
 
-// Re-fetch the overlay (e.g. right after a confirmed vote). No-op outside a provider.
-export function useRefreshVotes(): () => void {
+// Re-fetch the overlay (e.g. right after a confirmed vote). Pass force=true to bypass the
+// in-flight coalescing so a post-vote refresh is never dropped. No-op outside a provider.
+export function useRefreshVotes(): (force?: boolean) => void {
   return useContext(LiveVotesContext)?.refresh ?? (() => {});
 }

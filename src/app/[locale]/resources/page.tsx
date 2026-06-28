@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { isLocale, getDictionary, type Dictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary, type Dictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { localePath } from "@/lib/i18n/href";
 import { resourceRepository } from "@/lib/repository";
 import { ResourceCard } from "@/components/resources/ResourceCard";
@@ -75,6 +77,29 @@ const tabClass = (active: boolean) =>
   `rounded-token border px-4 py-2 text-sm font-bold uppercase tracking-widest ${
     active ? "border-primary bg-primary text-primary-ink" : "border-border text-muted hover:text-text"
   }`;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.resources.title} · El Umbral`,
+    description: dict.resources.subtitle,
+    alternates: {
+      canonical: `/${typed}/resources`,
+      languages: { en: "/en/resources", es: "/es/resources", "x-default": "/en/resources" },
+    },
+    openGraph: {
+      title: `${dict.resources.title} · El Umbral`,
+      description: dict.resources.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
 
 export default async function ResourcesPage({
   params,

@@ -1,8 +1,33 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { projectRepository } from "@/lib/repository";
 import { SubmitProjectForm } from "@/components/project/SubmitProjectForm";
 import { ExistingMatches } from "@/components/search/ExistingMatches";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.submit.title} · El Umbral`,
+    description: dict.submit.subtitle,
+    alternates: {
+      canonical: `/${typed}/projects/new`,
+      languages: { en: "/en/projects/new", es: "/es/projects/new", "x-default": "/en/projects/new" },
+    },
+    openGraph: {
+      title: `${dict.submit.title} · El Umbral`,
+      description: dict.submit.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
 
 export default async function NewProjectPage({
   params,

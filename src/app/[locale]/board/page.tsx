@@ -1,6 +1,8 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { localePath } from "@/lib/i18n/href";
 import { projectRepository, membershipRepository } from "@/lib/repository";
 import { applyFilter } from "@/lib/repository/projects.repo";
@@ -34,6 +36,29 @@ function parseEnum<S extends z.ZodTypeAny>(schema: S, v: SP[string]): z.infer<S>
   if (!s) return undefined;
   const r = schema.safeParse(s);
   return r.success ? r.data : undefined;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.board.title} · El Umbral`,
+    description: dict.board.subtitle,
+    alternates: {
+      canonical: `/${typed}/board`,
+      languages: { en: "/en/board", es: "/es/board", "x-default": "/en/board" },
+    },
+    openGraph: {
+      title: `${dict.board.title} · El Umbral`,
+      description: dict.board.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
 }
 
 export default async function BoardPage({

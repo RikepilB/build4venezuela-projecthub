@@ -43,20 +43,15 @@ export async function generateMetadata({
   const dict = getDictionary(typed);
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: dict.appName, template: "%s · El Umbral" },
+    title: dict.appName,
     description: dict.home.subtitle,
     applicationName: "El Umbral",
     openGraph: {
       type: "website",
       siteName: "El Umbral",
-      title: dict.appName,
-      description: dict.home.subtitle,
-      locale: typed === "es" ? "es_VE" : "en_US",
     },
     twitter: {
       card: "summary_large_image",
-      title: dict.appName,
-      description: dict.home.subtitle,
     },
   };
 }

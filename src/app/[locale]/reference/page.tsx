@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { referenceRepository } from "@/lib/repository";
 import { ReferenceCard } from "@/components/reference/ReferenceCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -16,6 +18,29 @@ const CATEGORY_ORDER: ReferenceCategory[] = [
   "modeling",
   "geolocation",
 ];
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.reference.title} · El Umbral`,
+    description: dict.reference.subtitle,
+    alternates: {
+      canonical: `/${typed}/reference`,
+      languages: { en: "/en/reference", es: "/es/reference", "x-default": "/en/reference" },
+    },
+    openGraph: {
+      title: `${dict.reference.title} · El Umbral`,
+      description: dict.reference.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
 
 export default async function ReferencePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

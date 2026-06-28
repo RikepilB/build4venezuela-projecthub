@@ -1,11 +1,34 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { projectRepository } from "@/lib/repository";
 import { SearchBox } from "@/components/search/SearchBox";
 import { ExistingMatches } from "@/components/search/ExistingMatches";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { localePath } from "@/lib/i18n/href";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.nav.home} · El Umbral`,
+    alternates: {
+      canonical: `/${typed}/search`,
+      languages: { en: "/en/search", es: "/es/search", "x-default": "/en/search" },
+    },
+    openGraph: {
+      title: `${dict.nav.home} · El Umbral`,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
 
 export default async function SearchPage({
   params,

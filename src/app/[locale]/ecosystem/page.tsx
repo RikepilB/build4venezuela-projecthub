@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { projectRepository } from "@/lib/repository";
 import { ecosystemListing } from "@/lib/ecosystem";
 import { EcosystemCard } from "@/components/ecosystem/EcosystemCard";
@@ -9,6 +11,29 @@ import { EmptyState } from "@/components/ui/EmptyState";
 // (repo + live demo, >50% built — e.g. Mission VE). The board stays focused on
 // hackathon collaborate-on-code projects; these live here so people can find and use
 // what already exists. Ranked the same way (votes → priority → stars → status).
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.ecosystem.title} · El Umbral`,
+    description: dict.ecosystem.subtitle,
+    alternates: {
+      canonical: `/${typed}/ecosystem`,
+      languages: { en: "/en/ecosystem", es: "/es/ecosystem", "x-default": "/en/ecosystem" },
+    },
+    openGraph: {
+      title: `${dict.ecosystem.title} · El Umbral`,
+      description: dict.ecosystem.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
+
 export default async function EcosystemPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();

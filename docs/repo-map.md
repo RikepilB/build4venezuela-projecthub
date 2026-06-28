@@ -46,6 +46,7 @@ needed for durable runtime state on a serverless deploy.
 | `app/icon.svg` · `app/favicon.ico` | El Umbral doorway mark + fallback favicon |
 | `actions/` | `"use server"` mutations + their `*-types.ts` state types |
 | `components/board/` | Project card, filters, vote button, radar stats, need badges |
+| `components/match/` | Builder/sponsor match lists, match reasons chips |
 | `components/builders/` · `project/` · `communities/` · `ecosystem/` · `reference/` · `resources/` | Feature-grouped presentational + form components |
 | `components/layout/` | `Header`, `MobileNav`, `Footer`, `SkipLink` |
 | `components/search/` | `SearchBox`, `ExistingMatches` |
@@ -63,6 +64,7 @@ needed for durable runtime state on a serverless deploy.
 | `lib/i18n/` | `en.ts`/`es.ts` dictionaries, `config.ts`, `href.ts` |
 | `lib/search.ts` | fuse.js fuzzy search over projects |
 | `lib/github/` · `lib/sheet/` | External fetchers: repo stats; roster CSV (resilient fetch) |
+| `lib/match/` | Pure scoring + token-matching for builder/sponsor fit (`score.ts`, `tokens.ts`, `types.ts`) |
 | `lib/landing/stats.ts` · `lib/ecosystem.ts` · `lib/progress.ts` · `lib/slug.ts` · `lib/text.ts` · `lib/links.ts` | Derived stats, helpers, URL constants |
 | `styles/tokens.css` | **The only re-skin layer** (colors, radius) |
 

@@ -72,6 +72,7 @@ non-locale path to the default locale. `params`/`searchParams` are **async** (Ne
 |------|-----------|---------|
 | `/[locale]` | dynamic | Home: search-first hero, live stats, featured, hubs |
 | `/[locale]/search` | dynamic | Fuzzy search results ("this already exists — join it") |
+| `/[locale]/match` | dynamic | Builder/sponsor matching: find projects that need your skills or offer |
 | `/[locale]/board` | dynamic | Filterable project radar |
 | `/[locale]/projects/[slug]` | dynamic | Project detail: needs, team, repo/demo, join |
 | `/[locale]/projects/new` | dynamic | Publish-a-project form |

@@ -83,19 +83,3 @@
     animation: none;
   }
 }
-
-/* modal backdrop fade — pairs with `rise` on the dialog panel. Reduced-motion → instant. */
-@keyframes umbral-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@utility fade-in {
-  animation: umbral-fade 0.2s ease both;
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}

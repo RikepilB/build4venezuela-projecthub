@@ -125,19 +125,10 @@ export default async function HomePage({
               {dict.home.browseButton} →
             </Link>
           </div>
-          {/* First-visit onboarding: a quick-guide modal explaining the search-first
-              flow. Auto-opens once (localStorage guard), re-openable from here after. */}
+          {/* Quick guide — a one-line disclosure that expands the search-first flow
+              in place (no modal, no auto-open; better for the hero's read-down flow). */}
           <div className="rise" style={{ animationDelay: "380ms" }}>
-            <UserGuide
-              open={dict.guide.open}
-              title={dict.guide.title}
-              intro={dict.guide.intro}
-              steps={steps}
-              closeLabel={dict.guide.close}
-              cta={dict.guide.cta}
-              browseLabel={dict.home.browseButton}
-              browseHref={localePath(locale, "/board")}
-            />
+            <UserGuide label={dict.guide.open} intro={dict.guide.intro} steps={steps} />
           </div>
           <p
             className="rise mt-4 flex items-center gap-2 text-xs uppercase tracking-widest text-muted"

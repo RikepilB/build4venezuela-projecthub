@@ -41,10 +41,7 @@ export const es: typeof en = {
   },
   guide: {
     open: "Guía rápida",
-    title: "Cómo funciona El Umbral",
     intro: "Busca antes de construir — la versión de 30 segundos.",
-    close: "Cerrar",
-    cta: "Entendido — buscar",
   },
   landing: {
     publishCta: "Publicar proyecto",

@@ -11,6 +11,7 @@ export const en = {
     reference: "Reference",
     builders: "Builders",
     match: "Find your fit",
+    more: "More",
     submit: "Publish project",
     repo: "GitHub repository",
     menu: "Menu",
@@ -35,6 +36,13 @@ export const en = {
     step3Title: "3 · Build & ship",
     step3Body: "Find teammates, track progress, and when your MVP is ready, submit it to Build4Venezuela.",
     scrollCue: "Enter",
+  },
+  guide: {
+    open: "Quick guide",
+    title: "How El Umbral works",
+    intro: "Search before you build — the 30-second version.",
+    close: "Close",
+    cta: "Got it — search",
   },
   landing: {
     publishCta: "Publish a project",

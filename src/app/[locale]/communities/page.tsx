@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, getDictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/types";
 import { communityRepository } from "@/lib/repository";
 import { CommunityCard } from "@/components/communities/CommunityCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -7,6 +9,29 @@ import { EmptyState } from "@/components/ui/EmptyState";
 // Communities directory — public, durable coordination spaces (Discord, the hackathon
 // hub, Telegram directories). Distinct from the board (build), ecosystem (use) and
 // resources (verified link-outs): this is "where to join and talk to people".
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.communities.title} · El Umbral`,
+    description: dict.communities.subtitle,
+    alternates: {
+      canonical: `/${typed}/communities`,
+      languages: { en: "/en/communities", es: "/es/communities", "x-default": "/en/communities" },
+    },
+    openGraph: {
+      title: `${dict.communities.title} · El Umbral`,
+      description: dict.communities.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
+
 export default async function CommunitiesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();

@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { z } from "zod";
-import { isLocale, getDictionary, type Dictionary } from "@/lib/i18n/config";
+import { isLocale, defaultLocale, getDictionary, type Dictionary } from "@/lib/i18n/config";
 import type { Locale, Project } from "@/lib/types";
 import { membershipRepository, projectRepository } from "@/lib/repository";
 import { rankProjects } from "@/lib/repository/projects.repo";
@@ -68,6 +69,29 @@ function stageFilter(projects: Project[], stage: string | undefined): Project[] 
   }
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
+  return {
+    title: `${dict.match.title} · El Umbral`,
+    description: dict.match.subtitle,
+    alternates: {
+      canonical: `/${typed}/match`,
+      languages: { en: "/en/match", es: "/es/match", "x-default": "/en/match" },
+    },
+    openGraph: {
+      title: `${dict.match.title} · El Umbral`,
+      description: dict.match.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+  };
+}
+
 export default async function MatchPage({
   params,
   searchParams,
@@ -111,9 +135,9 @@ export default async function MatchPage({
   );
 }
 
-// Eligible projects for each mode: non-live, with matching need slots.
+// Eligible projects for each mode: non-live, with a repo, with matching need slots.
 function builderEligible(projects: Project[]): Project[] {
-  return projects.filter((p) => p.status !== "live" && p.needs.contributors.length > 0);
+  return projects.filter((p) => p.status !== "live" && p.repo_url && p.needs.contributors.length > 0);
 }
 
 function sponsorEligible(projects: Project[]): Project[] {
@@ -131,6 +155,7 @@ async function BuilderMode({
   locale: Locale;
   dict: Dictionary;
 }) {
+  const q = one(sp.q);
   const profile: MatchProfile = {
     stack: StackInput.parse(many(sp.stack)),
     timezone: one(sp.timezone),
@@ -147,15 +172,25 @@ async function BuilderMode({
 
   const eligible = stageFilter(builderEligible(projects), profile.availability);
   const hasProfile = profile.stack.length > 0 || !!profile.timezone || !!profile.availability;
-  const matches: ProjectMatch[] = hasProfile
+  let matches: ProjectMatch[] = hasProfile
     ? matchProjectsForBuilder(profile, eligible, teamCount)
     : rankProjects(eligible).map((p) => ({ project: p, score: 0, reasons: [] }));
+
+  if (q) {
+    const lower = q.toLowerCase();
+    matches = matches.filter(
+      (m) =>
+        m.project.name.toLowerCase().includes(lower) ||
+        m.project.summary.toLowerCase().includes(lower) ||
+        m.project.stack.some((s) => s.toLowerCase().includes(lower)),
+    );
+  }
 
   return (
     <>
       <FilterForm
         base={base}
-        current={{ stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability }}
+        current={{ stack: profile.stack[0], timezone: profile.timezone, availability: profile.availability, q }}
         groups={[
           { name: "stack", label: dict.match.stackLabel, options: STACK_OPTIONS.map((s) => ({ value: s, label: s })) },
           { name: "timezone", label: dict.match.tzLabel, options: TIMEZONE_OPTIONS.map((t) => ({ value: t.replace(/ \(.*\)$/, ""), label: t })) },
@@ -165,6 +200,15 @@ async function BuilderMode({
         applyLabel={dict.board.filters}
         clearLabel={dict.board.clear}
       />
+
+      <form method="get" action={base} role="search" className="flex gap-2 rounded-token border border-border bg-surface p-3">
+        <input type="hidden" name="as" value="builder" />
+        {[{ n: "stack", v: profile.stack[0] }, { n: "timezone", v: profile.timezone }, { n: "availability", v: profile.availability }].filter((x) => x.v).map((x) => (
+          <input key={x.n} type="hidden" name={x.n} value={x.v} />
+        ))}
+        <input type="search" name="q" defaultValue={q} placeholder="Search projects by name or stack…" className="flex-1 rounded-token border border-border bg-surface px-3 py-2 text-sm text-text" aria-label="Search projects" />
+        <button type="submit" className="rounded-token bg-primary px-4 py-2 text-sm font-medium text-primary-ink hover:opacity-90">{dict.board.filters}</button>
+      </form>
 
       {matches.length === 0 ? (
         <EmptyState title={dict.match.yourFit} body={hasProfile ? dict.match.builderEmpty : dict.match.builderPrompt}>

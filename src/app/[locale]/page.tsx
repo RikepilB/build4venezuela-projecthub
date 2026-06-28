@@ -30,7 +30,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const typed: Locale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(typed);
   return {
+    title: dict.appName,
+    description: dict.home.subtitle,
+    openGraph: {
+      title: dict.appName,
+      description: dict.home.subtitle,
+      locale: typed === "es" ? "es_VE" : "en_US",
+    },
+    twitter: {
+      title: dict.appName,
+      description: dict.home.subtitle,
+    },
     alternates: {
       canonical: `/${typed}`,
       languages: { en: "/en", es: "/es", "x-default": "/en" },

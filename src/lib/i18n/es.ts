@@ -294,6 +294,13 @@ export const es: typeof en = {
     // builder side
     yourFit: "Proyectos que encajan contigo",
     builderPrompt: "Elige tu stack arriba para ver los proyectos que lo necesitan.",
+    // filter labels
+    stackLabel: "Stack",
+    tzLabel: "Zona horaria",
+    stageLabel: "Etapa",
+    stageIdea: "Idea / Planificación",
+    stageProgress: "En Progreso",
+    stageMvp: "MVP / Beta",
     builderEmpty: "Ningún proyecto abierto coincide con esos skills aún — amplía los filtros, o publica el tuyo.",
     publishCta: "Publicar proyecto",
     count: "coincidencias",

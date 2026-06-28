@@ -292,6 +292,13 @@ export const en = {
     // builder side
     yourFit: "Projects that fit you",
     builderPrompt: "Pick your stack above to see the projects that need it.",
+    // filter labels
+    stackLabel: "Stack",
+    tzLabel: "Timezone",
+    stageLabel: "Stage",
+    stageIdea: "Idea / Planning",
+    stageProgress: "In Progress",
+    stageMvp: "MVP / Beta",
     builderEmpty: "No open projects match those skills yet — widen your filters, or publish your own.",
     publishCta: "Publish a project",
     count: "matches",

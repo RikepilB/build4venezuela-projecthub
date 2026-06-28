@@ -208,5 +208,35 @@
     "languages": ["es"],
     "verified_source": "Ecosistema Startups Venezuela",
     "active": true
+  },
+  {
+    "id": "res-aparecio-mi-gente",
+    "name": "Aparecio Mi Gente (Telegram)",
+    "type": "dev",
+    "url": "https://t.me/AparecioMiGente_bot",
+    "summary": "Bot automatizado de Telegram que alerta en el momento en que un nombre aparece en una lista de ingresos hospitalarios. Notificaciones en tiempo real para familias.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-venezuela-help-acopios",
+    "name": "Venezuela Help (acopios)",
+    "type": "dev",
+    "url": "https://t.me/VenezuelaAyuda_bot",
+    "summary": "Bot especializado en encontrar centros de acopio verificados cercanos. Reporta qué insumos necesita cada centro y su estado actual.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
+  },
+  {
+    "id": "res-reconecta-venezuela",
+    "name": "ReconectaVenezuela",
+    "type": "telecom",
+    "url": "https://www.reconectavenezuela.org",
+    "summary": "Portal que brinda acceso gratuito a internet satelital en zonas desconectadas tras el terremoto. Mapa de puntos de conexión disponibles y estaciones de carga.",
+    "languages": ["es"],
+    "verified_source": "Comunidad",
+    "active": true
   }
 ]

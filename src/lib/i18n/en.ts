@@ -287,7 +287,7 @@ export const en = {
   match: {
     title: "Find where you fit",
     subtitle:
-      "Tell us your skills and we'll surface the relief projects that need exactly them. Sponsors: see where your offer lands.",
+      "Browse every project and filter by stack, role, timezone or stage. Tell us your skills and we'll rank your best fit. Sponsors: see where your offer lands.",
     asBuilder: "I want to build",
     asSponsor: "I can sponsor",
     // builder side
@@ -295,6 +295,7 @@ export const en = {
     builderPrompt: "Pick your stack above to see the projects that need it.",
     // filter labels
     stackLabel: "Stack",
+    roleLabel: "Role",
     tzLabel: "Timezone",
     stageLabel: "Stage",
     stageIdea: "Idea / Planning",

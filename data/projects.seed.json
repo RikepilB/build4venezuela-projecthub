@@ -402,32 +402,6 @@
     "use_case": "Give to earthquake relief through a community-vetted channel."
   },
   {
-    "id": "vzla-help",
-    "slug": "vzla-help",
-    "name": "VZLA Help",
-    "summary": "Relief resource hub for the Venezuela earthquake response — a live site where people can find help and resources. Listed so people use what exists instead of duplicating. Link-out only.",
-    "demo_url": "https://www.vzla.help",
-    "stack": [],
-    "languages": [
-      "es",
-      "en"
-    ],
-    "categories": [
-      "coordination",
-      "aid-center"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "owner": "external-initiative",
-    "source": "initiative",
-    "priority": "medium",
-    "use_case": "Find Venezuela earthquake relief help and resources (link-out)."
-  },
-  {
     "id": "vzla-x-arg",
     "slug": "vzla-x-arg",
     "name": "VZLA x ARG",
@@ -1090,31 +1064,6 @@
       "coordination"
     ],
     "owner": "Esteban Santiago",
-    "votes": 1
-  },
-  {
-    "stack": [],
-    "languages": [
-      "es"
-    ],
-    "status": "live",
-    "needs": {
-      "contributors": [],
-      "api_credits": [],
-      "sponsors": []
-    },
-    "source": "initiative",
-    "priority": "low",
-    "progress": 100,
-    "id": "reporte-ve",
-    "slug": "reporte-ve",
-    "name": "Reporte VE",
-    "summary": "Plataforma de reportes de la respuesta al terremoto (Crafter Station). En producción. Solo enlace.",
-    "demo_url": "https://ve.crafter.run",
-    "categories": [
-      "coordination"
-    ],
-    "owner": "Reporte Ve",
     "votes": 1
   },
   {

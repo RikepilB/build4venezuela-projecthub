@@ -8,10 +8,11 @@ import {
   ResourceSchema,
   CommunitySchema,
   ReferenceProjectSchema,
+  SponsorSchema,
 } from "./schemas";
 import { readVotes } from "./votes/votes-store";
 import { readRepoOverrides } from "./repos/repo-overrides-store";
-import type { Project, Builder, Membership, Resource, Community, ReferenceProject } from "./types";
+import type { Project, Builder, Membership, Resource, Community, ReferenceProject, Sponsor } from "./types";
 
 // Server-only JSON data access. The repository layer (src/lib/repository) is the
 // public seam; this module just reads/writes the local files. P1 replaces the
@@ -104,6 +105,13 @@ export const loadCommunities = cache(async (): Promise<Community[]> => {
 export const loadReferenceProjects = cache(async (): Promise<ReferenceProject[]> => {
   const rows = await readArray("reference.seed.json");
   return keepValid<ReferenceProject>(rows, ReferenceProjectSchema);
+});
+
+// Sponsors / backers: orgs supporting the effort, shown in the landing marquee.
+// Committed seed, link-out only. Any entry here auto-appears. Read-only in the app.
+export const loadSponsors = cache(async (): Promise<Sponsor[]> => {
+  const rows = await readArray("sponsors.seed.json");
+  return keepValid<Sponsor>(rows, SponsorSchema);
 });
 
 // Self-registered builders ("add yourself") live in a SEPARATE file from the imported

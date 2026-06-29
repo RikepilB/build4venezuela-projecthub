@@ -4,11 +4,12 @@ import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
 import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/href";
-import { projectRepository, builderRepository, membershipRepository } from "@/lib/repository";
+import { projectRepository, builderRepository, membershipRepository, sponsorRepository } from "@/lib/repository";
 import { landingStats, featuredProjects } from "@/lib/landing/stats";
 import { SearchBox } from "@/components/search/SearchBox";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { UserGuide } from "@/components/home/UserGuide";
+import { SponsorMarquee } from "@/components/home/SponsorMarquee";
 import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 
 // Render live per request, not prerendered at build. The headline stats (builders,
@@ -61,10 +62,11 @@ export default async function HomePage({
 
   // Server component → read the repositories directly (one ranked read each) so the
   // landing page shows real counts and the actual top projects, not placeholders.
-  const [projects, builders, memberships] = await Promise.all([
+  const [projects, builders, memberships, sponsors] = await Promise.all([
     projectRepository.list(),
     builderRepository.list(),
     membershipRepository.list(),
+    sponsorRepository.list(),
   ]);
   const stats = landingStats(projects, builders);
   const featured = featuredProjects(projects, 3);
@@ -160,6 +162,10 @@ export default async function HomePage({
           </p>
         </div>
       </section>
+
+      {/* Sponsors — the backers strip. Auto-scrolling, data-driven (data/sponsors.seed.json):
+          any entry there appears here. Sits directly under the hero. */}
+      <SponsorMarquee sponsors={sponsors} label={dict.home.sponsorsLabel} />
 
       {/* Visitor doorway — for people NOT here to build. Sits right after the hero so a
           non-builder's first move is obvious: open a tool that already shipped, or find

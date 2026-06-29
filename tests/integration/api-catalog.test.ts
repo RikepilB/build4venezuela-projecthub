@@ -9,6 +9,7 @@ vi.mock("@/lib/repository", () => ({
   resourceRepository: { list: vi.fn() },
   communityRepository: { list: vi.fn() },
   referenceRepository: { list: vi.fn() },
+  sponsorRepository: { list: vi.fn() },
 }));
 vi.mock("@/lib/taxonomy", () => ({
   categories: [{ id: "shelter", en: "Shelter", es: "Refugios" }],
@@ -27,6 +28,7 @@ import { GET as buildersGET } from "@/app/api/v1/builders/route";
 import { GET as resourcesGET } from "@/app/api/v1/resources/route";
 import { GET as communitiesGET } from "@/app/api/v1/communities/route";
 import { GET as referenceGET } from "@/app/api/v1/reference/route";
+import { GET as sponsorsGET } from "@/app/api/v1/sponsors/route";
 import { GET as taxonomyGET } from "@/app/api/v1/taxonomy/route";
 import { GET as statsGET } from "@/app/api/v1/stats/route";
 import {
@@ -35,6 +37,7 @@ import {
   resourceRepository,
   communityRepository,
   referenceRepository,
+  sponsorRepository,
 } from "@/lib/repository";
 
 const req = (url: string) => new Request(`http://localhost${url}`);
@@ -143,6 +146,15 @@ describe("curated list endpoints", () => {
   it("GET /api/v1/reference", async () => {
     vi.mocked(referenceRepository.list).mockResolvedValue([]);
     await expect((await referenceGET()).json()).resolves.toMatchObject({ success: true });
+  });
+
+  it("GET /api/v1/sponsors", async () => {
+    vi.mocked(sponsorRepository.list).mockResolvedValue([
+      { id: "sponsor-zavu", name: "ZAVU", url: "https://www.zavu.dev/en", blurb: "" },
+    ]);
+    const res = await sponsorsGET();
+    expect(res.headers.get("Cache-Control")).toContain("s-maxage=300");
+    await expect(res.json()).resolves.toMatchObject({ success: true, meta: { count: 1 } });
   });
 
   it("surfaces a repo failure as a 500 envelope", async () => {

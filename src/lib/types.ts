@@ -19,6 +19,7 @@ import type {
   CommunitySchema,
   ReferenceCategory,
   ReferenceProjectSchema,
+  SponsorSchema,
 } from "./schemas";
 
 export type Locale = z.infer<typeof Locale>;
@@ -40,6 +41,7 @@ export type CommunityType = z.infer<typeof CommunityType>;
 export type Community = z.infer<typeof CommunitySchema>;
 export type ReferenceCategory = z.infer<typeof ReferenceCategory>;
 export type ReferenceProject = z.infer<typeof ReferenceProjectSchema>;
+export type Sponsor = z.infer<typeof SponsorSchema>;
 
 export type ProjectFilter = {
   category?: string;

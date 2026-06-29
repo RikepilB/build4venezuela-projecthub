@@ -4,6 +4,7 @@ import { jsonMembershipRepository, type MembershipRepository } from "./membershi
 import { jsonResourceRepository, type ResourceRepository } from "./resources.repo";
 import { jsonCommunityRepository, type CommunityRepository } from "./communities.repo";
 import { jsonReferenceRepository, type ReferenceRepository } from "./reference.repo";
+import { jsonSponsorRepository, type SponsorRepository } from "./sponsors.repo";
 
 // Backend selector — the single swap point for P1 (Supabase).
 // DATA_BACKEND=json (default) | supabase (not yet implemented).
@@ -15,4 +16,5 @@ export const membershipRepository: MembershipRepository = jsonMembershipReposito
 export const resourceRepository: ResourceRepository = jsonResourceRepository;
 export const communityRepository: CommunityRepository = jsonCommunityRepository;
 export const referenceRepository: ReferenceRepository = jsonReferenceRepository;
+export const sponsorRepository: SponsorRepository = jsonSponsorRepository;
 export const dataBackend = backend;

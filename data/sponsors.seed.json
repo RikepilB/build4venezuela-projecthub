@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sponsor-zavu",
+    "name": "ZAVU",
+    "url": "https://www.zavu.dev/en",
+    "blurb": ""
+  },
+  {
+    "id": "sponsor-dev3pack",
+    "name": "Dev3pack",
+    "url": "https://dev3pack.com",
+    "blurb": ""
+  },
+  {
+    "id": "sponsor-solana",
+    "name": "Solana",
+    "url": "https://solana.com",
+    "blurb": ""
+  }
+]

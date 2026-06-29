@@ -37,6 +37,7 @@ export const en = {
     step3Title: "3 · Build & ship",
     step3Body: "Find teammates, track progress, and when your MVP is ready, submit it to Build4Venezuela.",
     scrollCue: "Enter",
+    sponsorsLabel: "Backed by",
   },
   guide: {
     open: "Quick guide",

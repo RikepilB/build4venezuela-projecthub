@@ -39,6 +39,7 @@ export const es: typeof en = {
     step3Title: "3 · Construye y publica",
     step3Body: "Encuentra compañeros, sigue el progreso y, cuando tu MVP esté listo, publícalo en Build4Venezuela.",
     scrollCue: "Entrar",
+    sponsorsLabel: "Con el apoyo de",
   },
   guide: {
     open: "Guía rápida",

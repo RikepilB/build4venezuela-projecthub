@@ -1,8 +1,12 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import {
   ProjectSchema,
   ProjectInputSchema,
   BuilderSchema,
+  SponsorSchema,
+  SponsorsFileSchema,
 } from "@/lib/schemas";
 
 const baseProject = {
@@ -83,5 +87,32 @@ describe("BuilderSchema", () => {
     expect(
       BuilderSchema.safeParse({ id: "a", alias: "A", linkedin_url: "https://linkedin.com/in/ada" }).success,
     ).toBe(true);
+  });
+});
+
+describe("SponsorSchema", () => {
+  const base = { id: "sponsor-x", name: "Acme", url: "https://acme.example" };
+
+  it("accepts a valid sponsor and defaults blurb to an empty string", () => {
+    const s = SponsorSchema.parse(base);
+    expect(s.blurb).toBe("");
+    expect(s.logo).toBeUndefined();
+  });
+
+  it("rejects a non-https url (http:// and javascript:)", () => {
+    expect(SponsorSchema.safeParse({ ...base, url: "http://acme.example" }).success).toBe(false);
+    expect(SponsorSchema.safeParse({ ...base, url: "javascript:alert(1)" }).success).toBe(false);
+  });
+
+  it("requires id, name (≥2 chars) and url", () => {
+    expect(SponsorSchema.safeParse({ name: "Acme", url: "https://acme.example" }).success).toBe(false);
+    expect(SponsorSchema.safeParse({ ...base, name: "A" }).success).toBe(false);
+  });
+
+  it("keeps the committed seed valid (every entry parses)", () => {
+    const raw = readFileSync(path.join(process.cwd(), "data", "sponsors.seed.json"), "utf8");
+    const parsed = SponsorsFileSchema.safeParse(JSON.parse(raw));
+    expect(parsed.success).toBe(true);
+    if (parsed.success) expect(parsed.data.length).toBeGreaterThanOrEqual(3);
   });
 });

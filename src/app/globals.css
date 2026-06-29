@@ -83,3 +83,47 @@
     animation: none;
   }
 }
+
+/* ── Sponsor marquee — seamless infinite RIGHTWARD scroll ───────────────────────
+   Duplicate-track technique: the track holds the sponsor list twice. Animating the
+   track from translateX(-50%) → 0 slides it RIGHTWARD by exactly one list-width, and
+   because the second half is identical the loop is seamless (no visible jump).
+   Duration scales with roster size via the inline --sponsor-count var.
+   Pause on hover / focus-within so a logo can be clicked. prefers-reduced-motion →
+   no animation, the strip wraps into a static centered row (duplicates hidden via the
+   motion-reduce:hidden utility on the copied chips). */
+@keyframes sponsor-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@utility sponsor-marquee {
+  overflow: hidden;
+
+  & > * {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 2rem;
+    animation: sponsor-marquee-right linear infinite;
+    animation-duration: calc(var(--sponsor-count, 6) * 4s);
+  }
+
+  &:hover > *,
+  &:focus-within > * {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    & > * {
+      animation: none;
+      transform: none;
+      width: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}

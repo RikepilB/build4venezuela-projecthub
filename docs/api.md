@@ -43,6 +43,7 @@ edge cache shields them).
 | GET | `/api/v1/resources` | — | catalog | `Resource[]` (verified, link-out) |
 | GET | `/api/v1/communities` | — | catalog | `Community[]` (link-out) |
 | GET | `/api/v1/reference` | — | catalog | `ReferenceProject[]` (prior art) |
+| GET | `/api/v1/sponsors` | — | catalog | `Sponsor[]` (backers, link-out) |
 | GET | `/api/v1/taxonomy` | — | catalog | `{categories, statuses, needTypes, complexities, priorities, stacks}` |
 | GET | `/api/v1/stats` | — | no-store | Aggregate counts (`projects`, `live`, `totalVotes`, `byStatus`, …) |
 | GET | `/api/v1/votes` | — | no-store | Live `{ slug: count }` map (per-IP capped) |

@@ -152,9 +152,22 @@ export const ReferenceProjectSchema = z.object({
   license: z.string().max(40).default(""),
 });
 
+// A sponsor / backer: an organization supporting the relief effort, surfaced in the
+// landing marquee. Curated + committed seed, link-out only — every entry here
+// auto-appears in the strip. Logo is optional (filename under /public/sponsors); the
+// name renders as a wordmark when no logo is set.
+export const SponsorSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(2).max(160),
+  url: httpsUrl,
+  logo: z.string().max(200).optional(),
+  blurb: z.string().max(300).default(""),
+});
+
 export const ProjectsFileSchema = z.array(ProjectSchema);
 export const ResourcesFileSchema = z.array(ResourceSchema);
 export const BuildersFileSchema = z.array(BuilderSchema);
 export const MembershipsFileSchema = z.array(MembershipSchema);
 export const CommunitiesFileSchema = z.array(CommunitySchema);
 export const ReferenceFileSchema = z.array(ReferenceProjectSchema);
+export const SponsorsFileSchema = z.array(SponsorSchema);

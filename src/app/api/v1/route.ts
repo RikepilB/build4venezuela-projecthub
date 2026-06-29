@@ -16,6 +16,7 @@ export async function GET() {
       resources: "/api/v1/resources",
       communities: "/api/v1/communities",
       reference: "/api/v1/reference",
+      sponsors: "/api/v1/sponsors",
       taxonomy: "/api/v1/taxonomy",
       stats: "/api/v1/stats",
       votes: "/api/v1/votes",

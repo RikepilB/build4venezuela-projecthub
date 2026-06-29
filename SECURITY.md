@@ -24,6 +24,10 @@ gaps** — not a claim of being secure against all vulnerabilities.
 - **Rate limiting (outbound)** — GitHub discovery backs off on 403/429 honoring
   `Retry-After`/`X-RateLimit-Reset`; the sheet is cached to JSON, not fetched per request.
 - **PII** — missing-persons registries are **link-out only**; never scraped or auto-merged.
+- **Automated tests** — Vitest (unit + integration) + Playwright e2e cover the critical flows
+  (submit, search, votes, public API, navigation), gated in CI (`lint → tsc → test → build`).
+- **CI scanning** — Gitleaks scans full history for secrets and Semgrep runs SAST (findings →
+  the Security tab) on every push/PR; Dependabot opens weekly npm + GitHub-Actions update PRs.
 
 ## Remaining risk
 - **No inbound rate limit / auth** — there is no login and no per-IP throttle on the submit
@@ -32,10 +36,11 @@ gaps** — not a claim of being secure against all vulnerabilities.
   nonce). Weakens XSS defense-in-depth; a nonce-based CSP is the P1 fix.
 - **Dev write path** — submissions append to `data/projects.seed.json` on the local FS; no
   integrity controls. Fine for `next dev`; a read-only host (Vercel) rejects the write by design.
-- **No tests yet** — verification is manual (build + browser E2E + HTTP probes), not a suite.
+- **Coverage not exhaustive** — Vitest + Playwright cover the critical flows, but the
+  sheet/GitHub importers and some edge paths are still only manually checked.
 
 ## Verification gaps (next proof needed)
-- Automated tests for the submit action + search + importers (Vitest/Playwright).
-- Dependency + secret scan in CI (Dependabot, Gitleaks, Semgrep) — not yet wired.
+- Unit tests for the sheet/GitHub importers (the core flows are already covered by Vitest + Playwright).
+- Triage the first Semgrep findings in the Security tab; consider a coverage-threshold gate.
 - Nonce-based CSP and inbound rate limiting once a shared URL is deployed (P1).
 - LLM output validation + `<untrusted_data>` delimiting when P2 adds embeddings/RAG.

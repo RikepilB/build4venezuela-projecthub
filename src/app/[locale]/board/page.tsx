@@ -51,7 +51,7 @@ export async function generateMetadata({
     description: dict.board.subtitle,
     alternates: {
       canonical: `/${typed}/board`,
-      languages: { en: "/en/board", es: "/es/board", "x-default": "/en/board" },
+      languages: { en: "/en/board", es: "/es/board", "x-default": "/es/board" },
     },
     openGraph: {
       title: `${dict.board.title} · El Umbral`,

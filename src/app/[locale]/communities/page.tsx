@@ -22,7 +22,7 @@ export async function generateMetadata({
     description: dict.communities.subtitle,
     alternates: {
       canonical: `/${typed}/communities`,
-      languages: { en: "/en/communities", es: "/es/communities", "x-default": "/en/communities" },
+      languages: { en: "/en/communities", es: "/es/communities", "x-default": "/es/communities" },
     },
     openGraph: {
       title: `${dict.communities.title} · El Umbral`,

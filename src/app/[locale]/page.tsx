@@ -20,7 +20,7 @@ import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 export const dynamic = "force-dynamic";
 
 // Home is the canonical entry point and the most-shared URL, so it carries an
-// explicit self-canonical plus en/es hreflang (x-default → en). Other pages
+// explicit self-canonical plus en/es hreflang (x-default → es). Other pages
 // inherit metadataBase + OG from the root layout and self-canonicalize; their
 // hreflang pairing is supplied by the sitemap.
 export async function generateMetadata({
@@ -45,7 +45,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `/${typed}`,
-      languages: { en: "/en", es: "/es", "x-default": "/en" },
+      languages: { en: "/en", es: "/es", "x-default": "/es" },
     },
   };
 }
@@ -158,6 +158,64 @@ export default async function HomePage({
           >
             <span className="text-accent">↓</span> {dict.home.scrollCue}
           </p>
+        </div>
+      </section>
+
+      {/* Visitor doorway — for people NOT here to build. Sits right after the hero so a
+          non-builder's first move is obvious: open a tool that already shipped, or find
+          verified help. Internal links (→), distinct from the external hub cards (↗) below;
+          left accent bar instead of the hubs' top bar. Tokens only. */}
+      <section className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <p className="eyebrow">{dict.landing.visitorEyebrow}</p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl">
+            {dict.landing.visitorTitle}
+          </h2>
+          <p className="max-w-2xl text-muted">{dict.landing.visitorBody}</p>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Link
+            href={localePath(locale, "/ecosystem")}
+            className="group relative flex flex-col gap-3 overflow-hidden rounded-token border border-border bg-surface p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-[0_0_44px_-12px_var(--b4v-glow-strong)]"
+          >
+            <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-primary" />
+            <div className="flex items-start justify-between gap-3">
+              <p className="font-display text-2xl font-semibold text-text">
+                {dict.landing.visitorShippedTitle}
+              </p>
+              <span
+                aria-hidden
+                className="text-lg text-primary transition-transform group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </div>
+            <p className="text-sm text-muted">{dict.landing.visitorShippedBody}</p>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-bold uppercase tracking-widest text-primary">
+              {dict.landing.visitorShippedCta} →
+            </span>
+          </Link>
+          <Link
+            href={localePath(locale, "/resources")}
+            className="group relative flex flex-col gap-3 overflow-hidden rounded-token border border-border bg-surface p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-[0_0_44px_-12px_var(--b4v-glow-strong)]"
+          >
+            <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-primary" />
+            <div className="flex items-start justify-between gap-3">
+              <p className="font-display text-2xl font-semibold text-text">
+                {dict.landing.visitorResourcesTitle}
+              </p>
+              <span
+                aria-hidden
+                className="text-lg text-primary transition-transform group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </div>
+            <p className="text-sm text-muted">{dict.landing.visitorResourcesBody}</p>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-bold uppercase tracking-widest text-primary">
+              {dict.landing.visitorResourcesCta} →
+            </span>
+          </Link>
         </div>
       </section>
 

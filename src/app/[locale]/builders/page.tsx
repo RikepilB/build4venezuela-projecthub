@@ -67,7 +67,7 @@ export async function generateMetadata({
     description: dict.builders.subtitle,
     alternates: {
       canonical: `/${typed}/builders`,
-      languages: { en: "/en/builders", es: "/es/builders", "x-default": "/en/builders" },
+      languages: { en: "/en/builders", es: "/es/builders", "x-default": "/es/builders" },
     },
     openGraph: {
       title: `${dict.builders.title} · El Umbral`,

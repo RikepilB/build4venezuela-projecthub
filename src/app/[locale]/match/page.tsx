@@ -175,7 +175,7 @@ export async function generateMetadata({
     description: dict.match.subtitle,
     alternates: {
       canonical: `/${typed}/match`,
-      languages: { en: "/en/match", es: "/es/match", "x-default": "/en/match" },
+      languages: { en: "/en/match", es: "/es/match", "x-default": "/es/match" },
     },
     openGraph: {
       title: `${dict.match.title} · El Umbral`,

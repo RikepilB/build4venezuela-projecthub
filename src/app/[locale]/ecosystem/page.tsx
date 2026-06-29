@@ -24,7 +24,7 @@ export async function generateMetadata({
     description: dict.ecosystem.subtitle,
     alternates: {
       canonical: `/${typed}/ecosystem`,
-      languages: { en: "/en/ecosystem", es: "/es/ecosystem", "x-default": "/en/ecosystem" },
+      languages: { en: "/en/ecosystem", es: "/es/ecosystem", "x-default": "/es/ecosystem" },
     },
     openGraph: {
       title: `${dict.ecosystem.title} · El Umbral`,

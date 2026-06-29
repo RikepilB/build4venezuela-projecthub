@@ -91,7 +91,7 @@ export async function generateMetadata({
     description: dict.resources.subtitle,
     alternates: {
       canonical: `/${typed}/resources`,
-      languages: { en: "/en/resources", es: "/es/resources", "x-default": "/en/resources" },
+      languages: { en: "/en/resources", es: "/es/resources", "x-default": "/es/resources" },
     },
     openGraph: {
       title: `${dict.resources.title} · El Umbral`,

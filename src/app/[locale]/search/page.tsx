@@ -21,7 +21,7 @@ export async function generateMetadata({
     title: `${dict.nav.home} · El Umbral`,
     alternates: {
       canonical: `/${typed}/search`,
-      languages: { en: "/en/search", es: "/es/search", "x-default": "/en/search" },
+      languages: { en: "/en/search", es: "/es/search", "x-default": "/es/search" },
     },
     openGraph: {
       title: `${dict.nav.home} · El Umbral`,

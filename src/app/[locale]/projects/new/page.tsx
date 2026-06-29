@@ -19,7 +19,7 @@ export async function generateMetadata({
     description: dict.submit.subtitle,
     alternates: {
       canonical: `/${typed}/projects/new`,
-      languages: { en: "/en/projects/new", es: "/es/projects/new", "x-default": "/en/projects/new" },
+      languages: { en: "/en/projects/new", es: "/es/projects/new", "x-default": "/es/projects/new" },
     },
     openGraph: {
       title: `${dict.submit.title} · El Umbral`,

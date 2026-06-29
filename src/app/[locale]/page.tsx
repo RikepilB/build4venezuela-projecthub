@@ -20,7 +20,7 @@ import { BUILD4VENEZUELA_URL, VZLA_RESPONSE_HUB_URL } from "@/lib/links";
 export const dynamic = "force-dynamic";
 
 // Home is the canonical entry point and the most-shared URL, so it carries an
-// explicit self-canonical plus en/es hreflang (x-default → en). Other pages
+// explicit self-canonical plus en/es hreflang (x-default → es). Other pages
 // inherit metadataBase + OG from the root layout and self-canonicalize; their
 // hreflang pairing is supplied by the sitemap.
 export async function generateMetadata({
@@ -45,7 +45,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `/${typed}`,
-      languages: { en: "/en", es: "/es", "x-default": "/en" },
+      languages: { en: "/en", es: "/es", "x-default": "/es" },
     },
   };
 }

@@ -20,7 +20,7 @@ export async function generateMetadata({
       description: project.summary?.slice(0, 160),
     alternates: {
       canonical: `/${typed}/projects/${slug}`,
-      languages: { en: `/en/projects/${slug}`, es: `/es/projects/${slug}`, "x-default": `/en/projects/${slug}` },
+      languages: { en: `/en/projects/${slug}`, es: `/es/projects/${slug}`, "x-default": `/es/projects/${slug}` },
     },
     openGraph: {
       title: `${project.name} · El Umbral`,

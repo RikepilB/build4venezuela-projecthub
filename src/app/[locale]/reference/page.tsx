@@ -32,7 +32,7 @@ export async function generateMetadata({
     description: dict.reference.subtitle,
     alternates: {
       canonical: `/${typed}/reference`,
-      languages: { en: "/en/reference", es: "/es/reference", "x-default": "/en/reference" },
+      languages: { en: "/en/reference", es: "/es/reference", "x-default": "/es/reference" },
     },
     openGraph: {
       title: `${dict.reference.title} · El Umbral`,

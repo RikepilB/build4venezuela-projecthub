@@ -630,6 +630,7 @@
     "slug": "vzla-dedup",
     "name": "VZLA_DEDUP",
     "summary": "Deduplicación y limpieza de registros de personas desaparecidas (entity resolution): normalización, blocking fonético, scoring de similitud y clustering — el algoritmo propone y una persona revisa, nunca decide solo. PII-sensible: solo sobre datos con consentimiento, sin scraping ni auto-merge.",
+    "repo_url": "https://github.com/DataVenezuela/VZLA_DEDUP",
     "stack": [
       "Python",
       "REST API"
@@ -988,6 +989,7 @@
     "slug": "guacamaya",
     "name": "Guacamaya",
     "summary": "Red Mesh entre dispositivos mediante Bluetooth LE y WiFi Direct para comunicación y localización en zonas sin luz, torres celulares o conexión a internet.",
+    "repo_url": "https://github.com/vmlcode/guacamaya-net",
     "stack": [
       "Mobile (React Native)",
       "Kotlin",
@@ -997,6 +999,7 @@
       "es"
     ],
     "categories": [
+      "connectivity",
       "coordination"
     ],
     "status": "wip",

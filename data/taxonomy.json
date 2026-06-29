@@ -8,7 +8,8 @@
     { "id": "transport", "en": "Transport", "es": "Transporte" },
     { "id": "translation", "en": "Translation", "es": "Traducción" },
     { "id": "coordination", "en": "Coordination", "es": "Coordinación" },
-    { "id": "tracking", "en": "Case tracking", "es": "Seguimiento de casos" }
+    { "id": "tracking", "en": "Case tracking", "es": "Seguimiento de casos" },
+    { "id": "connectivity", "en": "Connectivity & infra", "es": "Conectividad e infraestructura" }
   ],
   "stacks": [
     "Next.js",

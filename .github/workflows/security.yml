@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0 # full history so a secret in any past commit is caught
       - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           # gitleaks-action is free for public repos under a personal account — no license key needed.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

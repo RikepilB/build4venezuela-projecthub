@@ -30,21 +30,22 @@ export function SponsorMarquee({ sponsors, label }: { sponsors: Sponsor[]; label
                 title={s.blurb || s.name}
                 aria-hidden={duplicate || undefined}
                 tabIndex={duplicate ? -1 : undefined}
-                className={`inline-flex shrink-0 items-center gap-2 rounded-token border border-border bg-surface px-4 py-2.5 text-sm font-semibold whitespace-nowrap text-text transition-colors hover:border-primary${
+                className={`inline-flex shrink-0 items-center overflow-hidden rounded-token border border-border transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-[0_0_28px_-10px_var(--b4v-glow-strong)]${
                   duplicate ? " motion-reduce:hidden" : ""
                 }`}
               >
                 {s.logo ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- small local sponsor logo; next/image would need per-asset config
-                  <img
-                    src={`/sponsors/${s.logo}`}
-                    alt={s.name}
-                    width={24}
-                    height={24}
-                    className="h-6 w-6 object-contain"
-                  />
-                ) : null}
-                <span>{s.name}</span>
+                  // Each sponsor's own logo carries its brand colors/design — this IS the
+                  // per-sponsor distinction. The logo (height-normalized to 96px) fills the
+                  // card; the rounded border clips it. eslint-disable: small local asset,
+                  // next/image would need per-asset config (matches SiteThumb).
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={`/sponsors/${s.logo}`} alt={s.name} className="block h-10 w-auto" />
+                ) : (
+                  <span className="whitespace-nowrap bg-surface px-4 py-2.5 text-sm font-semibold text-text">
+                    {s.name}
+                  </span>
+                )}
               </a>
             );
           })}

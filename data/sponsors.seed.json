@@ -3,18 +3,21 @@
     "id": "sponsor-zavu",
     "name": "ZAVU",
     "url": "https://www.zavu.dev/en",
+    "logo": "zavu.png",
     "blurb": ""
   },
   {
     "id": "sponsor-dev3pack",
     "name": "Dev3pack",
     "url": "https://dev3pack.com",
+    "logo": "dev3pack.png",
     "blurb": ""
   },
   {
     "id": "sponsor-solana",
     "name": "Solana",
     "url": "https://solana.com",
+    "logo": "solana.png",
     "blurb": ""
   }
 ]

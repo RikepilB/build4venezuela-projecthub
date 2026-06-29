@@ -83,3 +83,8 @@ next-env.d.ts
 # app. Kept local but untracked from the public repo (curated digests, hook-written
 # snapshots, session markers and transcripts alike).
 docs/handoff/
+
+# Board-audit raw debate transcripts — internal working artifact that names third-party
+# repos with frank curation language. The neutral public record is the committed
+# removed-from-board.md ledger; keep the raw transcript local-only.
+docs/audit/**/agent_tracking_log.txt

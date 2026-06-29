@@ -3,7 +3,9 @@ import { en } from "./en";
 import { es } from "./es";
 
 export const locales: Locale[] = ["en", "es"];
-export const defaultLocale: Locale = "en";
+// Venezuela-first relief app → Spanish is the default entry. The proxy redirects
+// "/" (and any unprefixed path) here; the header language toggle still reaches /en.
+export const defaultLocale: Locale = "es";
 
 export type Dictionary = typeof en;
 

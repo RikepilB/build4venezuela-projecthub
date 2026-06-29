@@ -78,6 +78,17 @@ export const es: typeof en = {
     responseHubBody: "Hub ciudadano de emergencia: busca personas, mapas de daños, refugios, donaciones verificadas y líneas oficiales.",
     responseHubOffers: "Buscar personas · Mapa de daños · Refugios · Donaciones verificadas · Líneas",
     responseHubCta: "Abrir el hub de respuesta",
+    // visitor doorway — para quienes NO vienen a construir (necesitan ayuda / usar herramientas)
+    visitorEyebrow: "¿No vienes a construir?",
+    visitorTitle: "Empieza con lo que ya funciona",
+    visitorBody:
+      "Sin cuenta, sin código. Mira las herramientas que ya lanzaron los voluntarios, más las plataformas, donaciones y líneas verificadas.",
+    visitorShippedTitle: "Herramientas lanzadas y en vivo",
+    visitorShippedBody: "Abre y usa lo que ya se construyó para la respuesta al terremoto.",
+    visitorShippedCta: "Ver lo que está activo",
+    visitorResourcesTitle: "Recursos y ayuda verificados",
+    visitorResourcesBody: "Plataformas, canales de donación y líneas oficiales verificadas.",
+    visitorResourcesCta: "Encontrar ayuda verificada",
   },
   search: {
     resultsFor: "Resultados para",

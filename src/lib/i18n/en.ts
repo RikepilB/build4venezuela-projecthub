@@ -76,6 +76,17 @@ export const en = {
     responseHubBody: "Citizen-built emergency hub: find people, damage maps, shelters, verified donations and official hotlines.",
     responseHubOffers: "Find people · Damage map · Shelters · Verified donations · Hotlines",
     responseHubCta: "Open the response hub",
+    // visitor doorway — for people NOT here to build (they need help / want to use tools)
+    visitorEyebrow: "Not here to build?",
+    visitorTitle: "Start with what already works",
+    visitorBody:
+      "No account, no code. See the tools volunteers already shipped, plus the verified platforms, donations and hotlines.",
+    visitorShippedTitle: "Shipped & live tools",
+    visitorShippedBody: "Open and use what's already built for the earthquake response.",
+    visitorShippedCta: "See what's live",
+    visitorResourcesTitle: "Verified resources & help",
+    visitorResourcesBody: "Vetted platforms, donation channels and official hotlines.",
+    visitorResourcesCta: "Find verified help",
   },
   search: {
     resultsFor: "Results for",

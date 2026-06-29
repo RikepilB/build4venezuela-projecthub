@@ -1,0 +1,36 @@
+name: "✨ Feature / enhancement"
+description: Suggest a new capability or an improvement.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What gap or pain does this address? Who benefits?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should happen? Sketch the UX or API if you can.
+    validations:
+      required: true
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Roadmap phase
+      description: See the roadmap in the README.
+      options:
+        - "P0 — current MVP"
+        - "P1 — Supabase + auth"
+        - "P2 — semantic search + matching"
+        - "P3 — ingest/dedup service"
+        - "Not sure"
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Optional.

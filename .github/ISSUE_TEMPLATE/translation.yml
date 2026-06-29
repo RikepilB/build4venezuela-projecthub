@@ -1,0 +1,32 @@
+name: "🌍 Translation / i18n"
+description: Report a missing, wrong, or untranslated EN/ES string.
+labels: ["documentation", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every UI string lives in **both** `src/lib/i18n/en.ts` and `src/lib/i18n/es.ts`.
+        A PR fixing parity is a great first contribution.
+  - type: input
+    id: key
+    attributes:
+      label: String / key
+      description: The visible text or the i18n key, and where it appears.
+      placeholder: landing.visitorTitle — on the home page
+    validations:
+      required: true
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Which locale is wrong or missing?
+      options:
+        - "Spanish (/es)"
+        - "English (/en)"
+        - "Both"
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording
+      description: Optional — your proposed translation.

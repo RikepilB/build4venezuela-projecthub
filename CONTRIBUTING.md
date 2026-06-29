@@ -4,6 +4,8 @@ Thanks for helping build the Build4Venezuela "search before you build" hub. This
 relief software — clarity and correctness beat cleverness. New contributors are welcome
 on any of the roadmap phases below.
 
+By participating, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Quick start
 
 ```bash

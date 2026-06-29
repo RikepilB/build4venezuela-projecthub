@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 🔐 Report a security vulnerability
+    url: https://github.com/RikepilB/build4venezuela-projecthub/security/advisories/new
+    about: Privately disclose a vulnerability — do not open a public issue.
+  - name: 🌐 Try the live app
+    url: https://elumbralvzla.org
+    about: See the deployed ProjectHub before filing.
+  - name: 📖 Contributing guide
+    url: https://github.com/RikepilB/build4venezuela-projecthub/blob/main/CONTRIBUTING.md
+    about: How to set up, branch, run the gates, and open a PR.

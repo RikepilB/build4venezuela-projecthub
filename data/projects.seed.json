@@ -1190,5 +1190,39 @@
     "complexity": "medium",
     "use_case": "Verifica noticias y combate desinformación sobre el terremoto usando IA.",
     "progress": 30
+  },
+  {
+    "id": "guacamalla",
+    "slug": "guacamalla",
+    "name": "GuacaMalla",
+    "summary": "Red de comunicación de emergencia descentralizada y offline-first para catástrofes (terremotos, cortes masivos, colapso de infraestructura) cuando internet y las torres celulares dejan de funcionar. Convierte teléfonos Android en balizas de radio que emiten frames firmados con Ed25519 vía BLE 5; los SOS y coordenadas GPS saltan de dispositivo en dispositivo formando una malla descentralizada sin servidores ni internet. Un backend opcional re-verifica las firmas. La confianza vive en el payload: cada frame va firmado y cualquier manipulación rompe la firma.",
+    "repo_url": "https://github.com/vmlcode/guacamaya-net",
+    "demo_url": "https://www.guacamalla.org",
+    "stack": [
+      "Android",
+      "Kotlin",
+      "Bluetooth LE",
+      "Wi-Fi Aware",
+      "Ed25519"
+    ],
+    "languages": [
+      "es"
+    ],
+    "categories": [
+      "connectivity",
+      "coordination"
+    ],
+    "status": "wip",
+    "needs": {
+      "contributors": [],
+      "api_credits": [],
+      "sponsors": []
+    },
+    "owner": "GuacaMalla Team",
+    "source": "internal",
+    "priority": "high",
+    "complexity": "high",
+    "use_case": "Enviar y retransmitir SOS + GPS de forma offline, salto a salto, en zonas sin red.",
+    "progress": 70
   }
 ]

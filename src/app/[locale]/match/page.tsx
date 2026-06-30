@@ -264,12 +264,16 @@ async function BuilderMode({
   const teamCount = new Map<string, number>();
   for (const m of memberships) teamCount.set(m.project_slug, (teamCount.get(m.project_slug) ?? 0) + 1);
 
-  // Derive which filter options have results across all projects (not filtered).
-  const present = presentMatchOptions(projects);
+  // Builders contribute ON code — only surface projects that have a repo to join.
+  const buildable = projects.filter((p) => p.repo_url);
 
-  // When no filter or profile is active, show all projects instead of applying eligibility.
+  // Derive which filter options have results across the buildable set (not filtered).
+  const present = presentMatchOptions(buildable);
+
+  // When no filter or profile is active, show all buildable projects instead of the
+  // stricter eligibility (which additionally requires open contributor slots).
   const hasFilters = !!(role || profile.stack[0] || profile.timezone || profile.availability);
-  const candidatePool = hasFilters ? builderEligible(projects) : projects;
+  const candidatePool = hasFilters ? builderEligible(buildable) : buildable;
   const byStage = stageFilter(candidatePool, profile.availability);
   const byRole = roleFilter(byStage, role);
   const byStack = stackFilter(byRole, profile.stack[0]);

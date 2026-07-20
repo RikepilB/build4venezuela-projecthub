@@ -18,8 +18,8 @@
     "data:platforms-raw": "node scripts/import-platforms-raw.mjs"
   },
   "dependencies": {
-    "fuse.js": "^7.4.2",
-    "next": "16.2.9",
+    "fuse.js": "^7.5.0",
+    "next": "16.2.10",
     "papaparse": "^5.5.4",
     "react": "19.2.7",
     "react-dom": "19.2.7",
@@ -34,10 +34,10 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.2.9",
+    "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   }
 }

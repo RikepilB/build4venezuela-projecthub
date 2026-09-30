@@ -11,8 +11,9 @@ import { FilterBar } from "@/components/board/FilterBar";
 import { ProjectCard } from "@/components/board/ProjectCard";
 import { RadarStats } from "@/components/board/RadarStats";
 import { LiveVotesProvider } from "@/components/votes/LiveVotes";
-import { BoardCallout } from "@/components/board/BoardCallout";
 import { HackathonCountdown } from "@/components/board/HackathonCountdown";
+import { currentHackathon } from "@/lib/hackathons/current";
+import { workspaceCopy } from "@/lib/workspace/copy";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { z } from "zod";
 import {
@@ -115,9 +116,12 @@ export default async function BoardPage({
         <p className="mt-2 text-muted">{dict.board.subtitle}</p>
       </header>
 
-      <BoardCallout dict={dict} />
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-token border border-primary/40 bg-surface p-5">
+        <div className="max-w-2xl"><h2 className="text-lg font-semibold">{workspaceCopy[locale].boardCta}</h2><p className="mt-1 text-sm leading-relaxed text-muted">{workspaceCopy[locale].boardBody}</p></div>
+        <Link href={localePath(locale, "/workspace")} className="inline-flex min-h-11 items-center rounded-token bg-primary px-4 py-2 text-sm font-semibold text-primary-ink hover:opacity-90">{workspaceCopy[locale].boardLink} →</Link>
+      </div>
 
-      <HackathonCountdown dict={dict} />
+      <HackathonCountdown dict={dict} deadline={currentHackathon.deadline} />
 
       <RadarStats projects={all} dict={dict} />
 

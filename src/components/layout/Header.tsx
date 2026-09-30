@@ -29,7 +29,8 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   ];
   // Communities stands alone (single route) — a plain link, no caret.
   const communities = { href: localePath(locale, "/communities"), label: dict.nav.communities };
-  const mobileItems = [...navGroups.flatMap((g) => [g.primary, ...g.items]), communities];
+  const workspace = { href: localePath(locale, "/workspace"), label: dict.nav.workspace };
+  const mobileItems = [workspace, ...navGroups.flatMap((g) => [g.primary, ...g.items]), communities];
 
   return (
     <header className="relative border-b border-border bg-bg">
@@ -56,6 +57,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         {/* Desktop nav — lg+ strip: three split tabs (link + caret) + the standalone
             Communities link, then submit + 2 icons. Below lg it collapses into MobileNav. */}
         <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
+          <Link href={workspace.href} className="px-2 py-2 font-semibold text-primary hover:underline">{workspace.label}</Link>
           {navGroups.map((group) => (
             <NavGroup
               key={group.primary.href}

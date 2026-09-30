@@ -147,9 +147,10 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
       <h2 className="break-words text-xl font-semibold">{imported.name}</h2><p className="text-sm text-muted">{imported.projects.length} {copy.projectCount} · {copy.modes[imported.mode]}</p><p className="text-sm">{copy.importPreview}</p>
       <div className="flex flex-wrap gap-2"><button disabled={busy} className={primaryClass} onClick={async () => {
         setBusy(true);
-        const duplicate = copyWorkspace(imported, () => crypto.randomUUID(), new Date().toISOString());
-        if (await saveEvent(duplicate)) { setImported(null); setProjectId(null); setProjectForm(null); }
-        setBusy(false);
+        try {
+          const duplicate = copyWorkspace(imported, () => crypto.randomUUID(), new Date().toISOString());
+          if (await saveEvent(duplicate)) { setImported(null); setProjectId(null); setProjectForm(null); }
+        } catch { setError(copy.importError); } finally { setBusy(false); }
       }}>{copy.importConfirm}</button><button className={buttonClass} onClick={() => setImported(null)}>{copy.cancel}</button></div>
     </section>}
 

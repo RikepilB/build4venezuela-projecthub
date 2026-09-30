@@ -93,15 +93,13 @@ memberships, atomic revisions, invitation/recovery links and a bounded activity 
 See [workspace operations](workspace-operations.md) for setup and production gates.
 Further service development can add:
 
-- Authenticated accounts and event memberships (organizer, editor, viewer).
-- A server repository scoped by event ID on **every** read and write, with membership
-  authorization, revision checks and audit history. Public discovery is opt-in.
-- Server-backed project/task mutations, invitations and cross-device synchronization.
-  Import the versioned local documents only after preview and explicit destination choice.
+- Verified email accounts and optional upgrades from existing guest memberships.
+- Optional public event discovery and richer organizer controls.
+- Realtime updates or offline synchronization beyond the current periodic refresh.
 - Event-specific branding, rules, submission URLs and dates as configuration; routes
   such as `/events/[eventSlug]`. El Umbral becomes one configured event surface.
-- Rate limits and storage quotas, integration tests proving isolation across events,
-  concurrent-edit tests and a migration/export path before hosted release.
+- Live provider validation of the implemented quotas, isolation, concurrent edits,
+  session renewal and recovery before activating hosted sharing.
 
 Do not reuse the current unauthenticated public submit/join actions as an authorization
 model for private workspaces. Local work does not modify the public catalog. Sharing is an explicit participant action.
@@ -127,7 +125,9 @@ Verified locally on 2026-09-29:
 The release continuation upgrades Next.js to 16.3.7 and resolves the runtime-only
 repository override file tracing warning. The latest production build has no tracing
 warning. `npm audit` reports no known vulnerabilities. The expanded suite passes
-188 unit/integration tests, including actual SQL authorization and API boundaries.
+214 unit/integration tests, including actual SQL authorization, nested document
+validation and API boundaries. Licensed font files are bundled locally so both builds
+and page rendering are independent of Google Fonts availability.
 Shared browser fixtures verify UI behavior; live provider verification is still a
 separate activation gate. The 38 desktop/mobile scenarios have passed across the final
 suite and focused startup rerun; hosted CI repeats the full suite before merge.
@@ -136,7 +136,7 @@ suite and focused startup rerun; hosted CI repeats the full suite before merge.
 
 - Local rendered review: pass. Geist body text, Fraunces display, amber action/progress
   hierarchy, touch-size controls and readable stacked mobile columns are retained.
-- Functional evidence: lint, types, build and 188 unit/integration tests pass. The
+- Functional evidence: lint, types, build and 214 unit/integration tests pass. The
   shared SQL tests prove permissions directly against PostgreSQL. Browser fixtures
   are not described as a live database smoke test.
 - Mechanical audit: workspace routes declare noindex; existing public canonical,

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "../globals.css";
 import type { Locale } from "@/lib/types";
 import { isLocale, locales, defaultLocale, getDictionary } from "@/lib/i18n/config";
@@ -8,28 +7,6 @@ import { SITE_URL } from "@/lib/links";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
-
-// A proportional face keeps project descriptions and dense controls easy to scan.
-const sans = Geist({
-  variable: "--font-body-face",
-  subsets: ["latin"],
-  display: "swap",
-});
-const mono = Geist_Mono({
-  variable: "--font-code-face",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Fraunces — editorial high-contrast serif for the wordmark and hero headings.
-// The "threshold" voice against the mono: considered, literary, human.
-const display = Fraunces({
-  variable: "--font-display-face",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 // metadataBase makes every relative metadata URL (canonical, OG, sitemap) resolve
 // against the live domain. title.template gives child pages a "Page · El Umbral"
@@ -78,7 +55,11 @@ export default async function LocaleLayout({
   const dict = getDictionary(typed);
 
   return (
-    <html lang={typed} className={`${sans.variable} ${mono.variable} ${display.variable} h-full antialiased`}>
+    <html lang={typed} className="h-full antialiased">
+      <head>
+        <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body className="flex min-h-full flex-col overflow-x-clip bg-bg font-sans text-text">
         <SkipLink label={dict.skipToContent} />
         <Header locale={typed} dict={dict} />

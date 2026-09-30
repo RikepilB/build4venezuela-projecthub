@@ -2,12 +2,20 @@ import { beforeAll, afterAll, describe, expect, it } from "vitest";
 import { PGlite } from "@electric-sql/pglite";
 import { readFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
+import { WorkspaceSchema } from "../../src/lib/workspace/schema";
 
 const db = new PGlite();
 const owner = randomUUID(), editor = randomUUID(), viewer = randomUUID(), outsider = randomUUID();
 const eventId = randomUUID(), otherId = randomUUID();
 const recoveryHash = "a".repeat(64), editorHash = "b".repeat(64), viewerHash = "c".repeat(64);
 const document = (id: string, name = "Test event") => ({ id, name, mode: "rapid", objective: "", deadline: "", projects: [], updatedAt: new Date().toISOString() });
+const completeDocument = (id: string) => ({ ...document(id), projects: [{
+  id: randomUUID(), name: "Entrega", goal: "Verificar fuentes", repoUrl: "https://github.com/example/project",
+  demoUrl: "https://example.org/demo?q=uno#resultado", submissionUrl: "", tasks: [{
+    id: randomUUID(), title: "Revisión", owner: "Coordinación", status: "doing", priority: "high",
+    dueAt: "2026-09-30T10:30:00-04:00", blocker: "",
+  }], deliverables: [{ id: randomUUID(), title: "Demo", done: false }],
+}] });
 
 async function asUser(user: string | null, action: string, id: string | null = eventId, payload: unknown = {}) {
   await db.exec("reset role");
@@ -82,5 +90,53 @@ describe.sequential("actual PostgreSQL workspace access contract", () => {
     await expect(asUser(editor, "join", eventId, { label: "Old recovery", tokenHash: recoveryHash })).rejects.toThrow("workspace_forbidden");
     await asUser(owner, "remove_member", eventId, { userId: outsider });
     await expect(asUser(outsider, "read")).rejects.toThrow("workspace_forbidden");
+  });
+  it("accepts complete nested documents and keeps them readable by the application", async () => {
+    const valid = completeDocument(otherId);
+    const saved = await asUser(owner, "save", otherId, { revision: 1, document: valid });
+    expect(WorkspaceSchema.parse(saved.workspace)).toEqual(valid);
+    expect(saved.revision).toBe(2);
+  });
+  const malformed = [
+    ["missing owner", (d) => { delete d.projects[0].tasks[0].owner; }],
+    ["invalid task status", (d) => { d.projects[0].tasks[0].status = "unknown"; }],
+    ["invalid priority", (d) => { d.projects[0].tasks[0].priority = "urgent"; }],
+    ["invalid ID", (d) => { d.projects[0].id = "not-a-uuid"; }],
+    ["duplicate ID", (d) => { d.projects[0].tasks[0].id = d.id; }],
+    ["missing goal", (d) => { delete d.projects[0].goal; }],
+    ["null tasks", (d) => { d.projects[0].tasks = null; }],
+    ["non-array projects", (d) => { d.projects = {}; }],
+    ["too many tasks", (d) => { d.projects[0].tasks = Array.from({ length: 201 }, () => ({ ...d.projects[0].tasks[0], id: randomUUID() })); }],
+    ["invalid checkbox", (d) => { d.projects[0].deliverables[0].done = "yes"; }],
+    ["missing checkbox title", (d) => { delete d.projects[0].deliverables[0].title; }],
+    ["empty title", (d) => { d.projects[0].tasks[0].title = ""; }],
+    ["whitespace title", (d) => { d.name = "\t\n\u00a0"; }],
+    ["too long title", (d) => { d.name = "a".repeat(121); }],
+    ["UTF-16 length", (d) => { d.name = "🚀".repeat(61); }],
+    ["invalid objective", (d) => { d.objective = 12; }],
+    ["too long blocker", (d) => { d.projects[0].tasks[0].blocker = "x".repeat(501); }],
+    ["invalid calendar date", (d) => { d.deadline = "2026-02-30T12:00:00Z"; }],
+    ["missing updatedAt", (d) => { delete d.updatedAt; }],
+    ["invalid offset", (d) => { d.projects[0].tasks[0].dueAt = "2026-09-30T10:30:00+25:00"; }],
+    ["unsafe link", (d) => { d.projects[0].demoUrl = "javascript:alert(1)"; }],
+    ["invalid URL port", (d) => { d.projects[0].demoUrl = "https://example.org:99999"; }],
+    ["invalid numeric host", (d) => { d.projects[0].demoUrl = "https://9999999999999"; }],
+    ["missing URL", (d) => { delete d.projects[0].repoUrl; }],
+  ] satisfies [string, (d: Record<string, any>) => void][]; // eslint-disable-line @typescript-eslint/no-explicit-any -- Deliberately mutate nested RPC JSON to invalid types.
+  it.each(malformed)("rejects %s without changing the document or revision", async (_name, corrupt) => {
+    const before = await asUser(owner, "read");
+    const invalid = completeDocument(eventId);
+    corrupt(invalid);
+    expect(WorkspaceSchema.safeParse(invalid).success).toBe(false);
+    await expect(asUser(owner, "save", eventId, { revision: before.revision, document: invalid })).rejects.toThrow();
+    const after = await asUser(owner, "read");
+    expect(after.workspace).toEqual(before.workspace);
+    expect(after.revision).toBe(before.revision);
+  });
+  it("also rejects malformed nested data on creation", async () => {
+    const id = randomUUID(), invalid = completeDocument(id);
+    invalid.projects[0].tasks[0].status = "unknown";
+    await expect(asUser(owner, "create", id, { document: invalid, recoveryHash, label: "Owner" })).rejects.toThrow();
+    await expect(asUser(owner, "read", id)).rejects.toThrow("workspace_forbidden");
   });
 });

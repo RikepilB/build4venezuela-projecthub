@@ -50,6 +50,9 @@ use no-store/noindex; workspace content is never in the public catalog or sitema
 - Foreground pages check for changes every 10 seconds. A revision mismatch rejects
   the save and leaves the form open. This is shared persistence with periodic refresh,
   not simultaneous character-level editing or an offline synchronization queue.
+- Database constraints validate nested projects, tasks, dates, delivery items and
+  unique IDs even for direct RPC calls. Shared links require canonical HTTP(S) URLs
+  with DNS, IPv4 or bracketed IPv6 hosts and no embedded credentials.
 
 ## Incident and rollback procedure
 

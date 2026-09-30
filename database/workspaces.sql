@@ -4,6 +4,106 @@ create schema if not exists projecthub_private;
 revoke all on schema projecthub_private from public, anon, authenticated;
 grant usage on schema projecthub_private to authenticated;
 
+-- Direct authenticated RPC calls bypass the HTTP validator. Reject malformed nested
+-- documents here too, before they can make subsequent WorkspaceSchema reads fail.
+create function projecthub_private.valid_text(value jsonb, minimum integer, maximum integer)
+returns boolean language sql immutable set search_path = '' as $$
+  select coalesce(jsonb_typeof(value) = 'string' and
+    (select coalesce(sum(case when ascii(c) > 65535 then 2 else 1 end), 0)
+      from regexp_split_to_table(btrim(value #>> '{}', E' \t\r\n\u000b\f\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff'), '') c where c <> '')
+      between minimum and maximum, false);
+$$;
+
+create function projecthub_private.valid_date(value jsonb, optional boolean)
+returns boolean language sql immutable set search_path = '' as $$
+  select coalesce(jsonb_typeof(value) = 'string' and ((optional and value = '""'::jsonb) or
+    value #>> '{}' ~ '^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|02-(?:0[1-9]|1\d|2[0-8])))T(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$'), false);
+$$;
+
+create function projecthub_private.valid_link(value jsonb)
+returns boolean language plpgsql immutable set search_path = '' as $$
+declare parts text[]; host text;
+begin
+  if not projecthub_private.valid_text(value, 0, 2048) then return false; end if;
+  if value = '""'::jsonb then return true; end if;
+  -- Canonical HTTP(S) URLs with DNS, IPv4 or bracketed IPv6 hosts; no credentials.
+  parts := regexp_match(value #>> '{}', '^https?://(\[[0-9a-fA-F:]+\]|[a-zA-Z0-9.-]+)(:([0-9]{1,5}))?([/?#][^[:space:]\\]*)?$');
+  if parts is null or coalesce(parts[3]::integer, 0) > 65535 then return false; end if;
+  host := parts[1];
+  if host like '[%]' then perform trim(both '[]' from host)::inet;
+  elsif host ~ '^[0-9.]+$' then perform host::inet;
+  elsif host !~ '^([a-zA-Z0-9-]+\.)*[a-zA-Z][a-zA-Z0-9-]*\.?$' then return false;
+  end if;
+  return true;
+exception when others then return false;
+end;
+$$;
+
+create function projecthub_private.valid_workspace_node(value jsonb, kind text)
+returns boolean language plpgsql immutable set search_path = '' as $$
+declare child jsonb;
+begin
+  if jsonb_typeof(value) is distinct from 'object' or
+    jsonb_typeof(value->'id') is distinct from 'string' or
+    coalesce(value->>'id','') !~ '^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$'
+    then return false; end if;
+  if kind in ('workspace','project') then
+    if not projecthub_private.valid_text(value->'name',1,120) then return false; end if;
+  elsif not projecthub_private.valid_text(value->'title',1,120) then return false;
+  end if;
+  if kind = 'workspace' then
+    if coalesce(value->>'mode','') not in ('planned','rapid','crisis') or
+      not projecthub_private.valid_text(value->'objective',0,2000) or
+      not projecthub_private.valid_date(value->'deadline',true) or
+      not projecthub_private.valid_date(value->'updatedAt',false) or
+      jsonb_typeof(value->'projects') is distinct from 'array' then return false; end if;
+    if jsonb_array_length(value->'projects') > 50 then return false; end if;
+    for child in select * from jsonb_array_elements(value->'projects') loop
+      if not projecthub_private.valid_workspace_node(child,'project') then return false; end if;
+    end loop;
+  elsif kind = 'project' then
+    if not projecthub_private.valid_text(value->'goal',0,2000) or
+      not projecthub_private.valid_link(value->'repoUrl') or
+      not projecthub_private.valid_link(value->'demoUrl') or
+      not projecthub_private.valid_link(value->'submissionUrl') or
+      jsonb_typeof(value->'tasks') is distinct from 'array' or
+      jsonb_typeof(value->'deliverables') is distinct from 'array' then return false; end if;
+    if jsonb_array_length(value->'tasks') > 200 or jsonb_array_length(value->'deliverables') > 30 then return false; end if;
+    for child in select * from jsonb_array_elements(value->'tasks') loop
+      if not projecthub_private.valid_workspace_node(child,'task') then return false; end if;
+    end loop;
+    for child in select * from jsonb_array_elements(value->'deliverables') loop
+      if not projecthub_private.valid_workspace_node(child,'deliverable') then return false; end if;
+    end loop;
+  elsif kind = 'task' then
+    if not projecthub_private.valid_text(value->'owner',0,80) or
+      not projecthub_private.valid_text(value->'blocker',0,500) or
+      not projecthub_private.valid_date(value->'dueAt',true) or
+      coalesce(value->>'status','') not in ('todo','doing','blocked','done') or
+      coalesce(value->>'priority','') not in ('high','normal','low') then return false; end if;
+  elsif kind = 'deliverable' then
+    if jsonb_typeof(value->'done') is distinct from 'boolean' then return false; end if;
+  else return false;
+  end if;
+  return true;
+end;
+$$;
+
+create function projecthub_private.valid_workspace(value jsonb)
+returns boolean language plpgsql immutable set search_path = '' as $$
+begin
+  if value is null or octet_length(value::text) > 1900000 or
+    not projecthub_private.valid_workspace_node(value,'workspace') then return false; end if;
+  return (with ids as (
+    select value->>'id' as id union all
+    select p->>'id' from jsonb_array_elements(value->'projects') p union all
+    select t->>'id' from jsonb_array_elements(value->'projects') p, jsonb_array_elements(p->'tasks') t union all
+    select d->>'id' from jsonb_array_elements(value->'projects') p, jsonb_array_elements(p->'deliverables') d
+  ) select count(*) = count(distinct id) from ids);
+end;
+$$;
+revoke all on all functions in schema projecthub_private from public, anon, authenticated;
+
 create table projecthub_private.workspaces (
   id uuid primary key,
   document jsonb not null,
@@ -13,6 +113,7 @@ create table projecthub_private.workspaces (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   check (octet_length(document::text) <= 1900000),
+  check (projecthub_private.valid_workspace(document)),
   check (document ?& array['id','name','mode','objective','deadline','projects','updatedAt']),
   check (jsonb_typeof(document->'id') = 'string' and jsonb_typeof(document->'name') = 'string'),
   check (document->>'id' = id::text),
@@ -126,8 +227,12 @@ begin
       values (p_id,actor,'joined',current_row.revision);
   end if;
 
-  -- Hold the event lock through authorization and mutations, including revocations.
-  select * into current_row from projecthub_private.workspaces where id = p_id for update;
+  -- Polling reads do not block saves. Mutations serialize through the event lock.
+  if p_action = 'read' then
+    select * into current_row from projecthub_private.workspaces where id = p_id;
+  else
+    select * into current_row from projecthub_private.workspaces where id = p_id for update;
+  end if;
   select role into access_role from projecthub_private.members where workspace_id = p_id and user_id = actor;
   if access_role is null or current_row.id is null then
     raise exception 'workspace_forbidden' using errcode = '42501';
@@ -172,8 +277,10 @@ begin
   end if;
 
   -- Keep only the latest 200 audit entries; no document content or invite tokens in logs.
-  delete from projecthub_private.audit where workspace_id = p_id and id in
-    (select id from projecthub_private.audit where workspace_id = p_id order by id desc offset 200);
+  if p_action <> 'read' then
+    delete from projecthub_private.audit where workspace_id = p_id and id in
+      (select id from projecthub_private.audit where workspace_id = p_id order by id desc offset 200);
+  end if;
   return jsonb_build_object('workspace',current_row.document,'revision',current_row.revision,
     'role',access_role,'userId',actor,'updatedAt',current_row.updated_at,
     'members', case when access_role = 'owner' then (select coalesce(jsonb_agg(jsonb_build_object(

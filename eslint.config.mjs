@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     // helpers) that aren't app source. Linting them only spams the gate with
     // require()/no-unused-expressions noise; app code lives under src/.
     ".claude/**",
+    ".agents/**",
+    ".codex/**",
     // Playwright's own output (reports, traces) — generated, never linted.
     "playwright-report/**",
     "test-results/**",

@@ -4,7 +4,7 @@ on:
     branches: [main, master]
   pull_request:
 
-# Least privilege — CI only needs to read the repo.
+# Least privilege â€” CI only needs to read the repo.
 permissions:
   contents: read
 
@@ -12,8 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
           cache: npm
@@ -22,3 +22,15 @@ jobs:
       - run: npx tsc --noEmit
       - run: npm test
       - run: npm run build
+
+  workspace-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test tests/e2e/workspace.spec.ts tests/e2e/shared-workspace.spec.ts tests/e2e/board.spec.ts tests/e2e/home.spec.ts tests/e2e/mobile-nav.spec.ts --workers=2

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialPreview } from "@/lib/social-preview";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, defaultLocale, getDictionary } from "@/lib/i18n/config";
@@ -24,6 +25,7 @@ export async function generateMetadata({
       languages: { en: "/en/search", es: "/es/search", "x-default": "/es/search" },
     },
     openGraph: {
+      images: [socialPreview(typed)],
       title: `${dict.nav.home} · El Umbral`,
       locale: typed === "es" ? "es_VE" : "en_US",
     },

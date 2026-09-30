@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialPreview } from "@/lib/social-preview";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import type { Locale } from "@/lib/types";
@@ -27,10 +28,12 @@ export async function generateMetadata({
     description: dict.home.subtitle,
     applicationName: "El Umbral",
     openGraph: {
+      images: [socialPreview(typed)],
       type: "website",
       siteName: "El Umbral",
     },
     twitter: {
+      images: [socialPreview(typed)],
       card: "summary_large_image",
     },
   };

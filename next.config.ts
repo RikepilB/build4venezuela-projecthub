@@ -36,6 +36,13 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  async redirects() {
+    return [{
+      source: "/:locale(en|es)/opengraph-image",
+      destination: "/:locale/opengraph-image/workspace-v2",
+      permanent: true,
+    }];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

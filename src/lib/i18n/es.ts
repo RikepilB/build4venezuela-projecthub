@@ -7,6 +7,7 @@ export const es: typeof en = {
   nav: {
     home: "Buscar",
     board: "Tablero",
+    workspace: "Mi espacio",
     ecosystem: "Ecosistema",
     shipped: "Lanzados y en vivo",
     resources: "Recursos",

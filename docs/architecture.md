@@ -25,6 +25,23 @@ interactive islands (search box, forms, vote button, mobile nav).
 
 ## Modules & boundaries
 
+### Reusable hackathon workspace
+
+`/[locale]/workspace` provides a separate, browser-persisted ProjectHub tracker for
+any hackathon. Its event → projects → tasks/checklist model lives in
+`src/lib/workspace/`, independent of the public Venezuela catalog. A validated,
+versioned JSON format supports backup and import as a new workspace. Public board
+cards can prefill a new local project; this does not mutate catalog records or team
+membership. The public deadline is configured in `src/lib/hackathons/current.ts`.
+
+Optional shared workspaces use Supabase guest authentication and private PostgreSQL
+tables. All shared reads and writes pass through an authenticated RPC with event
+membership checks and atomic revision comparisons. The API holds sessions in HttpOnly
+cookies, validates inputs and origins, and never caches private responses. Sharing is
+hidden until the server environment is configured; local work remains independent.
+See [hackathon workspace](hackathon-workspace.md) for the design and
+[workspace operations](workspace-operations.md) for setup, limits and release gates.
+
 ```
 src/
   proxy.ts              Locale redirect (Next 16 "proxy", formerly middleware). NOT a

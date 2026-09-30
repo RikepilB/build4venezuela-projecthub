@@ -16,9 +16,26 @@
   --color-danger: var(--b4v-danger);
   --color-success: var(--b4v-success);
   --radius-token: var(--b4v-radius);
-  --font-sans: var(--font-mono);
-  --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-body-face), sans-serif;
+  --font-mono: var(--font-code-face), monospace;
+  --font-display: var(--font-display-face), serif;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--b4v-primary);
+    outline-offset: 3px;
+  }
+  select { color-scheme: dark; }
+}
+
+@utility work-progress {
+  appearance: none;
+  border: 0;
+  background: var(--b4v-surface-2);
+  &::-webkit-progress-bar { background: var(--b4v-surface-2); }
+  &::-webkit-progress-value { background: var(--b4v-primary); }
+  &::-moz-progress-bar { background: var(--b4v-primary); }
 }
 
 /* Cyan eyebrow micro-label — recurring "PROJECT LIST" / "LIVE FEED" tag.

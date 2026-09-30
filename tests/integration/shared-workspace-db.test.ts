@@ -93,6 +93,10 @@ describe.sequential("actual PostgreSQL workspace access contract", () => {
   });
   it("accepts complete nested documents and keeps them readable by the application", async () => {
     const valid = completeDocument(otherId);
+    valid.name = "🚀".repeat(60);
+    valid.objective = "🚀".repeat(1000);
+    valid.projects[0].tasks[0].owner = "🚀".repeat(40);
+    valid.projects[0].tasks[0].blocker = "🚀".repeat(250);
     const saved = await asUser(owner, "save", otherId, { revision: 1, document: valid });
     expect(WorkspaceSchema.parse(saved.workspace)).toEqual(valid);
     expect(saved.revision).toBe(2);
@@ -113,6 +117,9 @@ describe.sequential("actual PostgreSQL workspace access contract", () => {
     ["whitespace title", (d) => { d.name = "\t\n\u00a0"; }],
     ["too long title", (d) => { d.name = "a".repeat(121); }],
     ["UTF-16 length", (d) => { d.name = "🚀".repeat(61); }],
+    ["UTF-16 note length", (d) => { d.objective = "🚀".repeat(1001); }],
+    ["UTF-16 owner length", (d) => { d.projects[0].tasks[0].owner = "🚀".repeat(41); }],
+    ["UTF-16 blocker length", (d) => { d.projects[0].tasks[0].blocker = "🚀".repeat(251); }],
     ["invalid objective", (d) => { d.objective = 12; }],
     ["too long blocker", (d) => { d.projects[0].tasks[0].blocker = "x".repeat(501); }],
     ["invalid calendar date", (d) => { d.deadline = "2026-02-30T12:00:00Z"; }],

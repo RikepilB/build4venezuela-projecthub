@@ -4,19 +4,23 @@ export const WorkspaceMode = z.enum(["planned", "rapid", "crisis"]);
 export const TaskStatus = z.enum(["todo", "doing", "blocked", "done"]);
 export const TaskPriority = z.enum(["high", "normal", "low"]);
 const Id = z.uuid();
-const Title = z.string().trim().min(1).max(120);
-const Note = z.string().trim().max(2000);
+// HTML maxLength and the persisted SQL contract count UTF-16 units. Zod 4.5+
+// counts code points, so keep this existing boundary explicit for imported/API data.
+const boundedText = (maximum: number, minimum = 0) => z.string().trim().min(minimum).max(maximum)
+  .refine((value) => value.length <= maximum, `Must contain at most ${maximum} UTF-16 units`);
+const Title = boundedText(120, 1);
+const Note = boundedText(2000);
 const Deadline = z.union([z.iso.datetime({ offset: true }), z.literal("")]);
-const Link = z.union([z.url({ protocol: /^https?$/ }).max(2048), z.literal("")]);
+const Link = z.union([z.url({ protocol: /^https?$/ }).max(2048).refine((value) => value.length <= 2048, "URL is too long"), z.literal("")]);
 
 export const TaskSchema = z.object({
   id: Id,
   title: Title,
-  owner: z.string().trim().max(80),
+  owner: boundedText(80),
   status: TaskStatus,
   priority: TaskPriority,
   dueAt: Deadline,
-  blocker: z.string().trim().max(500),
+  blocker: boundedText(500),
 });
 
 export const WorkProjectSchema = z.object({

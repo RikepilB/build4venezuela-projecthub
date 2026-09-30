@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialPreview } from "@/lib/social-preview";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
@@ -36,11 +37,14 @@ export async function generateMetadata({
     title: dict.appName,
     description: dict.home.subtitle,
     openGraph: {
+      images: [socialPreview(typed)],
       title: dict.appName,
       description: dict.home.subtitle,
       locale: typed === "es" ? "es_VE" : "en_US",
     },
     twitter: {
+      card: "summary_large_image",
+      images: [socialPreview(typed)],
       title: dict.appName,
       description: dict.home.subtitle,
     },

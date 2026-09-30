@@ -146,3 +146,30 @@ suite and focused startup rerun; hosted CI repeats the full suite before merge.
   CAPTCHA and a reviewed policy for hosted participant data are not configured. The
   factual transfer notice is not a legal policy. Operations/rollback guidance is in
   [workspace operations](workspace-operations.md).
+
+
+## Social preview refresh
+
+The share card introduces El Umbral's ProjectHub tracker to hackathon participants
+and organizers, while retaining Build4Venezuela as this site's event context.
+It uses the existing dusk/amber palette and wordmark, a clear headline, and an
+explicitly labeled example board showing tasks moving toward delivery. It contains
+no participant data, metrics, or claims that hosted sharing is active.
+
+Spanish and English use separate 1200 by 630 cards, generated with the bundled
+Next.js image font. The image URL includes a release identifier so crawlers receive
+a new asset identity. Every page that replaces the layout's Open Graph object must
+include the common image metadata; the crawler regression checks both languages,
+all public page templates, and the image's actual PNG dimensions.
+
+Rendered review: pass for both localized cards at 1200 by 630. The wordmark and
+headline lead, the example board explains the tracker, and labels stay within their
+panels. Keep the established palette and product illustration. Functional crawler
+and deployed-image verification are separate release checks.
+
+Local validation passes: lint, TypeScript, 217 unit/integration tests, production
+build, and crawler checks on 24 localized routes with both PNG responses. The old
+unversioned image URL redirects to the current card for cached metadata references.
+The image file relies on the locale layout's static params; declaring another
+`generateStaticParams` after `generateImageMetadata` triggers an inconsistent route
+lookup in Next.js 16.3.7. Independent code review found no remaining issues.

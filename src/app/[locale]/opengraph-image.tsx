@@ -1,30 +1,48 @@
 import { ImageResponse } from "next/og";
+import { SOCIAL_PREVIEW_ID, SOCIAL_PREVIEW_SIZE, socialPreview } from "@/lib/social-preview";
 
-// Brand-level share card — Open Graph + Twitter, auto-wired by the file convention
-// (Next adds both og:image and twitter:image with absolute URLs via metadataBase).
-// Lives at the app root (outside [locale]) so it applies to every route, and has no
-// dynamic params, so it's generated ONCE at build → zero per-request cost when shared.
-//
-// Colors are hex equivalents of the OKLCH design tokens in styles/tokens.css: Satori
-// (the next/og engine) does not render oklch(), so the tokens can't be reused directly.
-export const alt = "El Umbral · Build4Venezuela — Search before you build, then enter.";
-export const size = { width: 1200, height: 630 };
+export const size = SOCIAL_PREVIEW_SIZE;
 export const contentType = "image/png";
 
-// Prebuild one image per locale (the card itself is bilingual, so they're identical)
-// — keeps the route static under the dynamic [locale] segment: no per-request render.
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "es" }];
+export function generateImageMetadata({ params }: { params: { locale: string } }) {
+  const locale = params.locale === "es" ? "es" : "en";
+  return [{ id: SOCIAL_PREVIEW_ID, alt: socialPreview(locale).alt, size, contentType }];
 }
 
-const BG = "#15131b"; // --umbral-dusk-950
-const BG2 = "#1b1825"; // dusk, a touch lighter — diagonal depth
-const IVORY = "#f3f0e8"; // --umbral-ivory
-const AMBER = "#e9a64a"; // --umbral-amber-500 (the threshold light)
-const MUTED = "#a8a4b2"; // --umbral-dusk-400
-const BORDER = "#383540"; // --umbral-dusk-700
+const BG = "#15131b";
+const PANEL = "#1b1825";
+const IVORY = "#f3f0e8";
+const AMBER = "#e9a64a";
+const MUTED = "#a8a4b2";
+const BORDER = "#383540";
 
-export default function OpengraphImage() {
+const copy = {
+  es: {
+    headline: ["De la idea", "a la entrega."],
+    description: "Organiza proyectos, tareas y entregables para cualquier hackathon.",
+    example: "Proyecto de ejemplo",
+    columns: ["Por hacer", "En curso", "Listo"],
+    tasks: ["Preparar demo", "Crear prototipo", "Definir alcance"],
+    footer: "Descubre. Organiza. Construye.",
+  },
+  en: {
+    headline: ["From idea", "to delivery."],
+    description: "Track projects, tasks and deliverables for any hackathon.",
+    example: "Example project",
+    columns: ["To do", "In progress", "Done"],
+    tasks: ["Prepare demo", "Build prototype", "Define scope"],
+    footer: "Discover. Organize. Build.",
+  },
+};
+
+export default async function OpengraphImage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const text = copy[locale === "es" ? "es" : "en"];
+
   return new ImageResponse(
     (
       <div
@@ -34,34 +52,105 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: `linear-gradient(135deg, ${BG} 0%, ${BG2} 100%)`,
-          padding: "72px 80px",
-          position: "relative",
-          fontFamily: "sans-serif",
+          background: BG,
+          color: IVORY,
+          padding: "48px 60px 36px",
+          borderLeft: `8px solid ${AMBER}`,
         }}
       >
-        {/* the threshold light — warm amber spilling through the doorway, left edge */}
         <div
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: 16,
-            height: "100%",
-            background: `linear-gradient(180deg, ${AMBER} 0%, rgba(233,166,74,0.12) 100%)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
-        />
-
-        <div style={{ display: "flex", color: AMBER, fontSize: 26, letterSpacing: 8, fontWeight: 600 }}>
-          BUILD4VENEZUELA
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", color: IVORY, fontSize: 136, fontWeight: 700, lineHeight: 1 }}>
+        >
+          <div style={{ display: "flex", fontSize: 70, fontWeight: 700, letterSpacing: -3 }}>
             El Umbral
           </div>
-          <div style={{ display: "flex", color: MUTED, fontSize: 38, marginTop: 28 }}>
-            Search before you build · Busca antes de construir
+          <div style={{ display: "flex", color: MUTED, fontSize: 20, letterSpacing: 3 }}>
+            BUILD4VENEZUELA
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
+          <div style={{ display: "flex", flexDirection: "column", width: 508 }}>
+            <div style={{ display: "flex", color: AMBER, fontSize: 32, fontWeight: 600, marginBottom: 14 }}>
+              ProjectHub
+            </div>
+            {text.headline.map((line) => (
+              <div
+                key={line}
+                style={{ display: "flex", fontSize: 62, fontWeight: 700, lineHeight: 1.06, letterSpacing: -2 }}
+              >
+                {line}
+              </div>
+            ))}
+            <div style={{ display: "flex", color: MUTED, fontSize: 25, lineHeight: 1.35, marginTop: 20 }}>
+              {text.description}
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: 528,
+              background: PANEL,
+              border: `1px solid ${BORDER}`,
+              borderRadius: 16,
+              padding: 24,
+            }}
+          >
+            <div style={{ display: "flex", color: MUTED, fontSize: 18, marginBottom: 8 }}>
+              HACKATHON
+            </div>
+            <div style={{ display: "flex", fontSize: 25, fontWeight: 600, marginBottom: 24 }}>
+              {text.example}
+            </div>
+            <div style={{ display: "flex", gap: 12 }}>
+              {text.columns.map((column, index) => (
+                <div key={column} style={{ display: "flex", flexDirection: "column", width: 150 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      color: index === 1 ? AMBER : MUTED,
+                      fontSize: 17,
+                      fontWeight: 600,
+                      marginBottom: 12,
+                    }}
+                  >
+                    {column}
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      minHeight: 132,
+                      padding: 16,
+                      background: BG,
+                      border: `1px solid ${index === 1 ? AMBER : BORDER}`,
+                      borderRadius: 10,
+                    }}
+                  >
+                    <div style={{ display: "flex", fontSize: 22, fontWeight: 500, lineHeight: 1.2 }}>
+                      {text.tasks[index]}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        width: index === 2 ? 48 : 30,
+                        height: 4,
+                        marginTop: 20,
+                        borderRadius: 2,
+                        background: index === 1 ? AMBER : BORDER,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -71,15 +160,12 @@ export default function OpengraphImage() {
             alignItems: "center",
             justifyContent: "space-between",
             borderTop: `1px solid ${BORDER}`,
-            paddingTop: 28,
+            paddingTop: 20,
+            fontSize: 22,
           }}
         >
-          <div style={{ display: "flex", color: IVORY, fontSize: 28 }}>
-            A search-first hub for Venezuela relief projects
-          </div>
-          <div style={{ display: "flex", color: AMBER, fontSize: 28, fontWeight: 600 }}>
-            elumbralvzla.org
-          </div>
+          <div style={{ display: "flex", color: MUTED }}>{text.footer}</div>
+          <div style={{ display: "flex", color: AMBER }}>elumbralvzla.org</div>
         </div>
       </div>
     ),

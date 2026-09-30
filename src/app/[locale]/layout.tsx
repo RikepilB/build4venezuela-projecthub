@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Martian_Mono, Fraunces } from "next/font/google";
 import "../globals.css";
 import type { Locale } from "@/lib/types";
 import { isLocale, locales, defaultLocale, getDictionary } from "@/lib/i18n/config";
@@ -8,25 +7,6 @@ import { SITE_URL } from "@/lib/links";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
-
-// Narrow mono — body, UI and data. Closest free equivalent to the campaign's
-// paid Input Mono Narrow; the terminal half of the El Umbral type system.
-const mono = Martian_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-  display: "swap",
-});
-
-// Fraunces — editorial high-contrast serif for the wordmark and hero headings.
-// The "threshold" voice against the mono: considered, literary, human.
-const display = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 // metadataBase makes every relative metadata URL (canonical, OG, sitemap) resolve
 // against the live domain. title.template gives child pages a "Page · El Umbral"
@@ -75,8 +55,12 @@ export default async function LocaleLayout({
   const dict = getDictionary(typed);
 
   return (
-    <html lang={typed} className={`${mono.variable} ${display.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col overflow-x-clip bg-bg font-mono text-text">
+    <html lang={typed} className="h-full antialiased">
+      <head>
+        <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
+      <body className="flex min-h-full flex-col overflow-x-clip bg-bg font-sans text-text">
         <SkipLink label={dict.skipToContent} />
         <Header locale={typed} dict={dict} />
         <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">

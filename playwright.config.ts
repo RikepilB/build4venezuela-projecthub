@@ -10,8 +10,8 @@ import { defineConfig, devices } from "@playwright/test";
 // cold server and routes time out under the compile stampede. A prebuilt server serves
 // precompiled routes instantly, which is what makes the suite deterministic. Reused if
 // a server is already up locally; CI always builds fresh.
-const PORT = 3000;
-const baseURL = `http://localhost:${PORT}`;
+const PORT = Number(process.env.PLAYWRIGHT_PORT ?? 3000);
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://localhost:${PORT}`;
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -37,8 +37,8 @@ export default defineConfig({
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile-chrome", use: { ...devices["Pixel 5"] } },
   ],
-  webServer: {
-    command: "npm run build && npm run start",
+  webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
+    command: `npm run build && npm run start -- --port ${PORT}`,
     url: `${baseURL}/en`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,

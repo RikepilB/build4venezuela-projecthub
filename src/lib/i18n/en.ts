@@ -5,6 +5,7 @@ export const en = {
   nav: {
     home: "Search",
     board: "Board",
+    workspace: "Workspace",
     ecosystem: "Ecosystem",
     shipped: "Shipped & live",
     resources: "Resources",

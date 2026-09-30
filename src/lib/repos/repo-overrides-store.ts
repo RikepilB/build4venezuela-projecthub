@@ -21,7 +21,9 @@ const TMPFILE = path.join(os.tmpdir(), "repo-overrides.json");
 async function readFile(): Promise<Record<string, RepoOverride>> {
   for (const p of [FILE, TMPFILE]) {
     try {
-      const raw = await fs.readFile(p, "utf8");
+      // Both files are runtime state, not deployment inputs. In particular /tmp
+      // must not make Turbopack trace the complete project into every function.
+      const raw = await fs.readFile(/* turbopackIgnore: true */ p, "utf8");
       const parsed = JSON.parse(raw);
       return parsed && typeof parsed === "object" ? (parsed as Record<string, RepoOverride>) : {};
     } catch (err) {

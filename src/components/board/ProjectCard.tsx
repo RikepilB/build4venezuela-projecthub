@@ -8,6 +8,7 @@ import { ExternalLink } from "@/components/ui/ExternalLink";
 import { PeopleBadge, ContributorsBadge } from "@/components/ui/MetaBadge";
 import { NeedBadges } from "./NeedBadges";
 import { VoteButton } from "./VoteButton";
+import { workspaceCopy } from "@/lib/workspace/copy";
 
 // Deliberately sparse: only what a builder needs to pick a project and help —
 // name, stage, what it does, the stack to match skills, what it needs, and who is
@@ -85,6 +86,9 @@ export function ProjectCard({
             className="font-medium text-text underline decoration-border underline-offset-2 hover:decoration-primary hover:text-primary"
           >
             {dict.card.viewDetails} →
+          </Link>
+          <Link href={localePath(locale, `/workspace?project=${encodeURIComponent(project.slug)}`)} className="font-medium text-muted underline decoration-border underline-offset-2 hover:text-primary">
+            {workspaceCopy[locale].starter}
           </Link>
         </div>
       </div>

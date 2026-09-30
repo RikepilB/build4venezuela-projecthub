@@ -1,6 +1,29 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 
+/* Bundled, licensed variable fonts keep builds and runtime independent of Google. */
+@font-face {
+  font-family: "Geist"; src: url("/fonts/geist-latin.woff2") format("woff2");
+  font-style: normal; font-weight: 100 900; font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono"; src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  font-style: normal; font-weight: 100 900; font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces"; src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  font-style: normal; font-weight: 100 900; font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces"; src: url("/fonts/fraunces-latin-italic.woff2") format("woff2");
+  font-style: italic; font-weight: 100 900; font-display: swap;
+}
+:root {
+  --font-body-face: "Geist";
+  --font-code-face: "Geist Mono";
+  --font-display-face: "Fraunces";
+}
+
 /* Map design tokens → Tailwind theme so utilities (bg-surface, text-muted,
    border-border, rounded-token, font-mono, …) resolve to the re-skinnable vars. */
 @theme inline {
@@ -16,9 +39,26 @@
   --color-danger: var(--b4v-danger);
   --color-success: var(--b4v-success);
   --radius-token: var(--b4v-radius);
-  --font-sans: var(--font-mono);
-  --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-body-face), sans-serif;
+  --font-mono: var(--font-code-face), monospace;
+  --font-display: var(--font-display-face), serif;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--b4v-primary);
+    outline-offset: 3px;
+  }
+  select { color-scheme: dark; }
+}
+
+@utility work-progress {
+  appearance: none;
+  border: 0;
+  background: var(--b4v-surface-2);
+  &::-webkit-progress-bar { background: var(--b4v-surface-2); }
+  &::-webkit-progress-value { background: var(--b4v-primary); }
+  &::-moz-progress-bar { background: var(--b4v-primary); }
 }
 
 /* Cyan eyebrow micro-label — recurring "PROJECT LIST" / "LIVE FEED" tag.

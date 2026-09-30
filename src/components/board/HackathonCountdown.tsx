@@ -3,11 +3,6 @@
 import { useSyncExternalStore } from "react";
 import type { Dictionary } from "@/lib/i18n/config";
 
-// Hackathon submission deadline — single source of truth. Edit this one line to retarget
-// the countdown. Anchored to Venezuela time (VET, UTC-4) via an explicit offset, so every
-// viewer counts down to the SAME instant regardless of their own timezone.
-export const HACKATHON_DEADLINE = new Date("2026-06-29T00:59:00-04:00");
-
 // A 1-second ticking clock exposed as an external store, so the countdown is both
 // hydration-safe and React-Compiler-clean (no setState-in-effect — same rationale as the
 // vote guard in CLAUDE.md). getSnapshot buckets to whole seconds so it returns a stable
@@ -23,12 +18,12 @@ const getServerSnapshot = () => 0;
 
 const pad = (n: number) => n.toString().padStart(2, "0");
 
-export function HackathonCountdown({ dict }: { dict: Dictionary }) {
+export function HackathonCountdown({ dict, deadline }: { dict: Dictionary; deadline: string }) {
   const nowSec = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   // nowSec === 0 is the pre-hydration sentinel: render dashes so SSR === first client render.
   const mounted = nowSec !== 0;
-  const remainingMs = HACKATHON_DEADLINE.getTime() - nowSec * 1000;
+  const remainingMs = new Date(deadline).getTime() - nowSec * 1000;
   const ended = mounted && remainingMs <= 0;
 
   const total = Math.max(0, Math.floor(remainingMs / 1000));

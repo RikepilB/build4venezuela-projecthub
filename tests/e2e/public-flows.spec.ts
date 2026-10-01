@@ -2,7 +2,10 @@ import { test, expect, type Page } from "@playwright/test";
 
 async function openNavigation(page: Page, isMobile: boolean, locale: "en" | "es" = "en") {
   const name = isMobile ? (locale === "en" ? "Menu" : "Menú") : (locale === "en" ? "My workspace: More" : "Mi espacio: Más");
-  const trigger = page.getByRole("button", { name, exact: true });
+  // The phone trigger changes its accessible name when the disclosure opens.
+  const trigger = page.getByRole("button", { name: isMobile
+    ? (locale === "en" ? /^(Menu|Close menu)$/ : /^(Menú|Cerrar menú)$/)
+    : name, exact: true });
   await trigger.click();
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
   return trigger;

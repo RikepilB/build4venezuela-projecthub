@@ -101,6 +101,14 @@ describe.sequential("actual PostgreSQL workspace access contract", () => {
     expect(WorkspaceSchema.parse(saved.workspace)).toEqual(valid);
     expect(saved.revision).toBe(2);
   });
+  it.each(["", "🚀".repeat(1000)])("accepts optional project context at valid bounds", async (context) => {
+    const before = await asUser(owner, "read", otherId);
+    const base = completeDocument(otherId);
+    const valid = { ...base, projects: [{ ...base.projects[0], context }] };
+    const saved = await asUser(owner, "save", otherId, { revision: before.revision, document: valid });
+    expect(WorkspaceSchema.parse(saved.workspace)).toEqual(valid);
+    expect((saved.workspace as typeof valid).projects[0].context).toBe(context);
+  });
   const malformed = [
     ["missing owner", (d) => { delete d.projects[0].tasks[0].owner; }],
     ["invalid task status", (d) => { d.projects[0].tasks[0].status = "unknown"; }],
@@ -108,6 +116,10 @@ describe.sequential("actual PostgreSQL workspace access contract", () => {
     ["invalid ID", (d) => { d.projects[0].id = "not-a-uuid"; }],
     ["duplicate ID", (d) => { d.projects[0].tasks[0].id = d.id; }],
     ["missing goal", (d) => { delete d.projects[0].goal; }],
+    ["null context", (d) => { d.projects[0].context = null; }],
+    ["invalid context type", (d) => { d.projects[0].context = 42; }],
+    ["too long context", (d) => { d.projects[0].context = "x".repeat(2001); }],
+    ["UTF-16 context length", (d) => { d.projects[0].context = "🚀".repeat(1001); }],
     ["null tasks", (d) => { d.projects[0].tasks = null; }],
     ["non-array projects", (d) => { d.projects = {}; }],
     ["too many tasks", (d) => { d.projects[0].tasks = Array.from({ length: 201 }, () => ({ ...d.projects[0].tasks[0], id: randomUUID() })); }],

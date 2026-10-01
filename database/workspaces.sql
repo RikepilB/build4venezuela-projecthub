@@ -63,6 +63,7 @@ begin
     end loop;
   elsif kind = 'project' then
     if not projecthub_private.valid_text(value->'goal',0,2000) or
+      (value ? 'context' and not projecthub_private.valid_text(value->'context',0,2000)) or
       not projecthub_private.valid_link(value->'repoUrl') or
       not projecthub_private.valid_link(value->'demoUrl') or
       not projecthub_private.valid_link(value->'submissionUrl') or

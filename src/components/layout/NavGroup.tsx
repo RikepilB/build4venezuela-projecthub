@@ -11,19 +11,25 @@ export function NavGroup({
   primary,
   items,
   moreLabel,
+  highlighted = false,
 }: {
   primary: MobileNavItem;
   items: MobileNavItem[];
   moreLabel: string;
+  highlighted?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();
 
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
     }
     function onPointer(e: PointerEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
@@ -41,13 +47,13 @@ export function NavGroup({
   return (
     <div ref={ref} className="relative flex items-center">
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen((o) => !o)}
-        aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={`${primary.label}: ${moreLabel}`}
-        className="flex items-center gap-1 px-2 py-2 uppercase tracking-widest text-muted hover:text-text"
+        className={`flex items-center gap-1 px-2 py-2 ${highlighted ? "font-semibold text-primary hover:underline" : "uppercase tracking-widest text-muted hover:text-text"}`}
       >
         {primary.label}
         <svg
@@ -69,14 +75,12 @@ export function NavGroup({
       {open && (
         <div
           id={menuId}
-          role="menu"
           className="absolute left-0 top-full z-50 mt-1 flex min-w-44 flex-col rounded-token border border-border bg-surface p-1 shadow-lg"
         >
           {allItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              role="menuitem"
               onClick={() => setOpen(false)}
               className="rounded-token px-3 py-2 uppercase tracking-widest text-muted transition hover:bg-surface-2 hover:text-text"
             >

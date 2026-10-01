@@ -27,7 +27,7 @@ export function ProjectCard({
   const detailHref = localePath(locale, `/projects/${project.slug}`);
   return (
     <article className="flex h-full gap-3 rounded-token border border-border bg-surface p-4">
-      <VoteButton slug={project.slug} votes={project.votes} label={dict.card.vote} />
+      <VoteButton slug={project.slug} votes={project.votes} label={dict.card.vote} errorLabel={dict.card.voteError} />
 
       <div className="flex flex-1 flex-col gap-2.5">
         <div className="flex items-start justify-between gap-2">

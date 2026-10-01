@@ -49,20 +49,18 @@ export function FilterForm({
 }) {
   const router = useRouter();
 
-  function hrefFor(overrides: Record<string, string | undefined>): string {
-    const params = new URLSearchParams();
-    for (const [k, v] of Object.entries(hidden ?? {})) if (v) params.set(k, v);
-    const merged = { ...current, ...overrides };
-    for (const [k, v] of Object.entries(merged)) if (v) params.set(k, v);
-    const qs = params.toString();
-    return qs ? `${base}?${qs}` : base;
-  }
+  const groupNames = new Set(groups.map((group) => group.name));
+  const retained = { ...current, ...hidden };
 
-  // Plain push (no transition): the navigation suspends the dynamic route, so
-  // loading.tsx replaces the page at once — the strongest "it's working" signal,
-  // and it reuses the skeleton the route already ships.
-  function go(overrides: Record<string, string | undefined>) {
-    router.push(hrefFor(overrides));
+  function go(form: HTMLFormElement) {
+    // Read every live control: another change may arrive before the previous
+    // navigation has refreshed `current` with its new server props.
+    const params = new URLSearchParams();
+    for (const [name, value] of new FormData(form)) {
+      if (typeof value === "string" && value) params.set(name, value);
+    }
+    const query = params.toString();
+    router.push(query ? `${base}?${query}` : base);
   }
 
   return (
@@ -71,11 +69,11 @@ export function FilterForm({
       action={base}
       onSubmit={(e) => {
         e.preventDefault();
-        go({});
+        go(e.currentTarget);
       }}
       className="flex flex-wrap items-end gap-3 rounded-token border border-border bg-surface p-4"
     >
-      {Object.entries(hidden ?? {}).map(([name, value]) => (
+      {Object.entries(retained).filter(([name, value]) => !groupNames.has(name) && value).map(([name, value]) => (
         <input key={name} type="hidden" name={name} value={value} />
       ))}
 
@@ -90,7 +88,7 @@ export function FilterForm({
             key={current[g.name] ?? ""}
             name={g.name}
             defaultValue={current[g.name] ?? ""}
-            onChange={(e) => go({ [g.name]: e.target.value || undefined })}
+            onChange={(e) => { if (e.currentTarget.form) go(e.currentTarget.form); }}
             className={SELECT}
           >
             <option value="">{allLabel}</option>

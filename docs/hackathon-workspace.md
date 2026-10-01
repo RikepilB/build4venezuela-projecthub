@@ -173,3 +173,67 @@ unversioned image URL redirects to the current card for cached metadata referenc
 The image file relies on the locale layout's static params; declaring another
 `generateStaticParams` after `generateImageMetadata` triggers an inconsistent route
 lookup in Next.js 16.3.7. Independent code review found no remaining issues.
+
+
+## Quick-start iteration: design and implementation plan
+
+Audience: participants and small teams arriving with an idea and little planning.
+The public `/[locale]/start` entry introduces a generic ProjectHub workflow under the
+existing El Umbral identity. Its primary action creates one event, one project,
+three editable unfinished tasks and the mode-specific checklist in one atomic save.
+The optional event name, duration and owner avoid requiring organizer setup.
+
+Keep the approved imagery/fonts and dusk/amber palette. Use a compact editorial
+introduction, a dominant usable form, and a small explanation of storage/handoff.
+The page feeds the existing tracker; it does not maintain a second project store.
+Project context is one optional bounded text field for audience, constraints,
+decisions, sources and continuation instructions. Old v1 backups remain readable.
+A reviewed Markdown brief and a project-only JSON backup provide explicit snapshot
+handoffs. Neither creates a public hosted project link or synchronized editing.
+
+Implement in order: optional context and SQL parity; pure quick-start/handoff
+operations; one-step UI using existing conflict-safe persistence; selected-project
+URL continuity; homepage/nav entry points; locale/filter/focus/vote feedback fixes.
+Validate old backups, UTF-16 limits, SQL validation, same-tab save failures, fresh
+and returning users, selected project reload, clipboard denial, backup import,
+English/Spanish desktop/mobile use, and the existing social metadata. Hosted team
+sharing remains separately gated by provider confirmation and live validation.
+
+
+### Quick-start launch review
+
+Rendered review: pass on a 1265px desktop canvas and a 390px mobile viewport.
+The introduction explains the audience and action; the dominant form uses the
+existing type/palette, optional setup folds away, and mobile controls stack without
+horizontal overflow. The tracker keeps context beside progress and exposes a
+reviewable handoff separately from tasks. No social artwork changes are included.
+
+Mechanical audit: `/en/start` and `/es/start` have localized canonical/hreflang,
+description and the approved versioned social card; both enter the public sitemap.
+The tracker remains noindex. The primary flow saves locally, preserves old events,
+and navigates to a specific selected project. Missing device-local bookmarks offer
+explicit recovery; failed storage saves preserve input. Download and clipboard
+fallbacks are available. Public HTTPS and deployed route checks follow deployment.
+
+| Advisory item | Status | Evidence / decision |
+| --- | --- | --- |
+| Analytics | Not added | No new measurement or participant-data transfer in this flow. |
+| Bot protection | Not applicable to local setup | New setup writes only browser storage; public catalog controls retain existing server checks. |
+| Privacy | Local storage notice present | Copies are explicit snapshots; hosted participant-data policy remains an activation decision. |
+| Operations | Present | See workspace-operations.md for logs, incidents and Vercel rollback. |
+
+Hosted sharing activation and its policy/provider decisions remain outside this
+local quick-start release. No vendor, legal policy or analytics was added.
+
+Review identified and fixed duplicate submits during delayed navigation, explicit
+missing-selection fallback, and handoff preview label pollution. Verification
+results are recorded below. Browser Back now follows the live router URL while
+preserving in-progress forms.
+
+Local release gates: lint, TypeScript, production build and 239 unit/integration
+tests pass. All 37 desktop browser cases pass, including quick-start creation,
+relative deadlines, context edits, portable import with fresh IDs, clipboard/storage
+failure recovery, delayed navigation, missing bookmarks, browser Back and existing
+catalog/shared-viewer regressions. Windows browser process/recording stalls required
+native log capture and a local video-off configuration; assertions and CI settings
+remain unchanged. Hosted CI repeats both desktop and mobile before merge.

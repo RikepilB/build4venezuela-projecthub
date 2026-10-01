@@ -4,7 +4,7 @@ const SITE_ORIGIN = "https://elumbralvzla.org";
 const IMAGE_VERSION = "workspace-v2";
 const crawlerHeaders = { "User-Agent": "Twitterbot/1.0", Accept: "text/html" };
 const routes = [
-  "", "board", "workspace", "builders", "resources", "communities",
+  "", "board", "workspace", "start", "builders", "resources", "communities",
   "ecosystem", "reference", "search", "match", "projects/new",
 ];
 

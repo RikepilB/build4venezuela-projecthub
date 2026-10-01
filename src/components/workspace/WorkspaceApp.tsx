@@ -1,6 +1,11 @@
 "use client";
 
 import { useMemo, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { quickCopy } from "@/lib/workspace/quick-copy";
+import { QuickStartForm } from "./QuickStartForm";
+import { ProjectHandoff } from "./ProjectHandoff";
 import type { Locale } from "@/lib/types";
 import { workspaceCopy } from "@/lib/workspace/copy";
 import { copyWorkspace, exportWorkspace, MAX_IMPORT_BYTES, parseWorkspaceFile, projectProgress } from "@/lib/workspace/domain";
@@ -34,9 +39,11 @@ function clockSubscribe(listener: () => void) {
 const clockSnapshot = () => Math.floor(Date.now() / 60_000) * 60_000;
 const serverClockSnapshot = () => 0;
 
-export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; starter?: ProjectStarter; remote?: {
+export function WorkspaceApp({ locale, starter, remote, quickStart = false, selection }: { locale: Locale; starter?: ProjectStarter; quickStart?: boolean; selection?: { event?: string; focus?: string }; remote?: {
   state: SharedWorkspace; onSave: (workspace: Workspace, revision: number) => Promise<boolean>;
 } }) {
+  const router = useRouter();
+  const quick = quickCopy[locale];
   const shared = sharedCopy[locale];
   const copy = remote ? { ...workspaceCopy[locale], local: shared.shared, localNote: shared.note, saved: shared.saved, conflict: shared.conflict } : workspaceCopy[locale];
   const readOnly = remote?.state.role === "viewer";
@@ -47,8 +54,10 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
     if (remote) return { store: { version: 1 as const, workspaces: [remote.state.workspace] }, error: false };
     try { return { store: readWorkspaces(raw), error: false }; } catch { return { store: null, error: true }; }
   }, [raw, remote]);
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const [projectId, setProjectId] = useState<string | null>(null);
+  const [localActiveId, setActiveId] = useState<string | null>(null);
+  const activeId = selection ? selection.event ?? null : localActiveId;
+  const [localProjectId, setProjectId] = useState<string | null>(null);
+  const projectId = selection ? selection.focus ?? null : localProjectId;
   const [eventForm, setEventForm] = useState<"new" | "edit" | null>(null);
   const [projectForm, setProjectForm] = useState<"new" | "edit" | null>(null);
   const [imported, setImported] = useState<Workspace | null>(null);
@@ -58,6 +67,15 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
   const store = parsed.store;
   const active = store?.workspaces.find((event) => event.id === activeId) ?? store?.workspaces[0];
   const project = active?.projects.find((item) => item.id === projectId) ?? active?.projects[0];
+
+  function rememberSelection(eventId: string, focusId?: string) {
+    if (remote || quickStart) return;
+    const params = new URLSearchParams(window.location.search);
+    params.set("event", eventId);
+    if (focusId) params.set("focus", focusId); else params.delete("focus");
+    // Update only the local selection; no server fetch is needed for a tab switch.
+    window.history.replaceState(null, "", `/${locale}/workspace?${params}`);
+  }
 
   async function persist(next: WorkspaceStore) {
     setError("");
@@ -90,6 +108,8 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
     const updated = existing ? store.workspaces.map((item) => item.id === next.id ? next : item) : [...store.workspaces, next];
     if (!await persist({ version: 1, workspaces: updated })) return false;
     setActiveId(next.id);
+    if (!existing) setProjectId(next.projects[0]?.id ?? null);
+    rememberSelection(next.id, existing ? project?.id : next.projects[0]?.id);
     setEventForm(null);
     if (!existing && starter) setProjectForm("new");
     return true;
@@ -103,6 +123,7 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
     const updated = { ...active, projects, updatedAt: new Date().toISOString() };
     if (!await persist({ version: 1, workspaces: store.workspaces.map((item) => item.id === active.id ? updated : item) })) return false;
     setProjectId(next.id);
+    rememberSelection(active.id, next.id);
     return true;
   }
 
@@ -121,10 +142,36 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
     }} />
   </label>;
 
+  if (!ready && quickStart) return <p className="py-12 text-muted">{copy.loading}</p>;
   if (!ready) return <div className="space-y-4"><h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1><p className="py-12 text-muted">{copy.loading}</p></div>;
   if (parsed.error || !store) return <div role="alert" className="space-y-4 rounded-token border border-danger p-5">
     <p>{raw === UNAVAILABLE ? copy.unavailable : copy.corrupt}</p>
     {raw && raw !== UNAVAILABLE && <button onClick={() => downloadFile(raw, "projecthub-recovery.json")} className={buttonClass}>{copy.recovery}</button>}
+  </div>;
+
+  const selectionMissing = !remote && !quickStart && (
+    (activeId && !store.workspaces.some((event) => event.id === activeId)) ||
+    (projectId && !active?.projects.some((item) => item.id === projectId))
+  );
+  if (selectionMissing) return <section className="space-y-4 rounded-token border border-border p-6">
+    <h1 className="text-3xl font-semibold">{copy.title}</h1>
+    <p role="status" className="max-w-xl leading-relaxed text-muted">{quick.selectionMissing}</p>
+    <div className="flex flex-wrap gap-3"><button className={primaryClass} onClick={() => {
+      setActiveId(null); setProjectId(null);
+      const params = new URLSearchParams(window.location.search);
+      params.delete("event"); params.delete("focus");
+      window.history.replaceState(null, "", `/${locale}/workspace${params.size ? `?${params}` : ""}`);
+    }}>{quick.continue}</button><Link className={buttonClass} href={`/${locale}/start`}>{quick.homeAction}</Link></div>
+  </section>;
+
+  if (quickStart) return <div className="space-y-4">
+    {error && <p role="alert" className="rounded-token border border-danger/50 p-3 text-sm text-danger">{error}</p>}
+    <QuickStartForm locale={locale} onSave={async (workspace) => {
+      if (!await saveEvent(workspace)) return false;
+      router.push(`/${locale}/workspace?event=${workspace.id}&focus=${workspace.projects[0].id}`);
+      return true;
+    }} />
+    {store.workspaces.length > 0 && <p className="text-sm text-muted">{quick.savedWork} <Link href={`/${locale}/workspace`} className="text-primary underline underline-offset-4">{quick.continue} →</Link></p>}
   </div>;
 
   return <div className="space-y-6">
@@ -132,11 +179,12 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
     <header className="max-w-3xl">
       <p className="eyebrow">{copy.eyebrow}{active ? ` · ${copy.modes[active.mode]}` : ""}</p>
       <h1 className="mt-3 break-words text-3xl font-semibold tracking-tight sm:text-4xl">{active ? active.name : copy.title}</h1>
+      {!active && <Link href={`/${locale}/start`} className="mt-3 inline-flex min-h-11 items-center text-primary underline underline-offset-4">{quick.homeAction} →</Link>}
       {(!active || active.objective) && <p className="mt-3 whitespace-pre-wrap break-words text-base leading-relaxed text-muted">{active ? active.objective : copy.subtitle}</p>}
     </header>
     <div className="flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
       {active ? <label className="flex min-w-0 max-w-full items-center gap-3 text-sm text-muted">{copy.switchEvent}<select aria-label={copy.switchEvent} value={active.id} onChange={(event) => {
-        setActiveId(event.target.value); setProjectId(null); setEventForm(null); setProjectForm(null); setError(""); setNotice("");
+        setActiveId(event.target.value); setProjectId(null); rememberSelection(event.target.value, store.workspaces.find((item) => item.id === event.target.value)?.projects[0]?.id); setEventForm(null); setProjectForm(null); setError(""); setNotice("");
       }} className="min-h-11 min-w-0 max-w-64 rounded-token border border-border bg-surface px-3 text-text">{store.workspaces.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label> : <span className="text-sm text-muted">{copy.local}</span>}
       {!remote && <div className="flex flex-wrap gap-2">{importControl}{active && <button onClick={() => { setEventForm("new"); setProjectForm(null); }} className={buttonClass}>{copy.create} +</button>}</div>}
     </div>
@@ -168,7 +216,7 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
           <h2 className="text-xs font-semibold uppercase tracking-widest text-muted">{copy.projects} / {active.projects.length}</h2>
           <nav aria-label={copy.projects} className="flex flex-col gap-1">{active.projects.map((item) => {
             const progress = projectProgress(item, now);
-            return <button key={item.id} onClick={() => { setProjectId(item.id); setProjectForm(null); }} aria-current={project?.id === item.id ? "true" : undefined} className={`min-h-11 rounded-token border-l-2 px-3 py-3 text-left text-sm ${project?.id === item.id ? "border-primary bg-surface text-text" : "border-transparent text-muted hover:bg-surface"}`}><span className="block break-words font-medium">{item.name}</span><span className="mt-1 block text-xs text-muted">{progress.done}/{progress.total} {copy.completed}</span></button>;
+            return <button key={item.id} onClick={() => { setProjectId(item.id); setProjectForm(null); rememberSelection(active.id, item.id); }} aria-current={project?.id === item.id ? "true" : undefined} className={`min-h-11 rounded-token border-l-2 px-3 py-3 text-left text-sm ${project?.id === item.id ? "border-primary bg-surface text-text" : "border-transparent text-muted hover:bg-surface"}`}><span className="block break-words font-medium">{item.name}</span><span className="mt-1 block text-xs text-muted">{progress.done}/{progress.total} {copy.completed}</span></button>;
           })}</nav>
           {!readOnly && <button onClick={() => setProjectForm("new")} className={`${buttonClass} w-full`}>{copy.newProject} +</button>}
         </aside>
@@ -176,7 +224,10 @@ export function WorkspaceApp({ locale, starter, remote }: { locale: Locale; star
           const saved = await saveProject(next, original);
           if (saved) setProjectForm(null);
           return saved;
-        }} /> : project ? <ProjectWorkspace key={`${active.id}:${project.id}`} project={project} copy={copy} locale={locale} now={now} onChange={saveProject} onEdit={() => setProjectForm("edit")} readOnly={readOnly} /> : <div className="rounded-token border border-dashed border-border px-6 py-14 text-center"><h3 className="text-xl font-semibold">{copy.emptyProjects}</h3><p className="mx-auto mt-2 max-w-md text-muted">{copy.emptyProjectsBody}</p>{!readOnly && <button onClick={() => setProjectForm("new")} className={`${primaryClass} mt-5`}>{copy.newProject}</button>}</div>}
+        }} /> : project ? <div key={`${active.id}:${project.id}`} className="min-w-0 space-y-6">
+          <ProjectWorkspace project={project} copy={copy} locale={locale} now={now} onChange={saveProject} onEdit={() => setProjectForm("edit")} readOnly={readOnly} />
+          <ProjectHandoff workspace={active} project={project} locale={locale} />
+        </div> : <div className="rounded-token border border-dashed border-border px-6 py-14 text-center"><h3 className="text-xl font-semibold">{copy.emptyProjects}</h3><p className="mx-auto mt-2 max-w-md text-muted">{copy.emptyProjectsBody}</p>{!readOnly && <button onClick={() => setProjectForm("new")} className={`${primaryClass} mt-5`}>{copy.newProject}</button>}</div>}
       </div>
     </>}
     <p className="border-t border-border pt-4 text-xs leading-relaxed text-muted">{copy.localNote}</p>

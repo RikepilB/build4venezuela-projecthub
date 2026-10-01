@@ -5,14 +5,14 @@ import { localePath } from "@/lib/i18n/href";
 import { PROJECTHUB_REPO_URL } from "@/lib/links";
 import { MobileNav } from "./MobileNav";
 import { NavGroup } from "./NavGroup";
+import { LocaleSwitch } from "./LocaleSwitch";
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const other: Locale = locale === "en" ? "es" : "en";
   const langAria = `Switch language to ${other === "en" ? "English" : "Español"}`;
 
-  // Four concrete top-level tabs. Three are split: the label links straight to the
-  // section's main page, while a caret discloses its related route. The phone
-  // disclosure (MobileNav) gets every route flattened into one labelled list.
+  // Related routes share a disclosure; the phone navigation flattens the same
+  // route list so every destination remains directly accessible.
   const navGroups = [
     {
       primary: { href: localePath(locale, "/board"), label: dict.nav.board },
@@ -30,7 +30,8 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   // Communities stands alone (single route) — a plain link, no caret.
   const communities = { href: localePath(locale, "/communities"), label: dict.nav.communities };
   const workspace = { href: localePath(locale, "/workspace"), label: dict.nav.workspace };
-  const mobileItems = [workspace, ...navGroups.flatMap((g) => [g.primary, ...g.items]), communities];
+  const start = { href: localePath(locale, "/start"), label: dict.nav.start };
+  const mobileItems = [workspace, start, ...navGroups.flatMap((g) => [g.primary, ...g.items]), communities];
 
   return (
     <header className="relative border-b border-border bg-bg">
@@ -54,10 +55,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </span>
         </Link>
 
-        {/* Desktop nav — lg+ strip: three split tabs (link + caret) + the standalone
-            Communities link, then submit + 2 icons. Below lg it collapses into MobileNav. */}
+        {/* Desktop disclosures collapse into the flat MobileNav below lg. */}
         <nav className="hidden items-center gap-1 text-xs lg:flex lg:gap-2" aria-label="Primary">
-          <Link href={workspace.href} className="px-2 py-2 font-semibold text-primary hover:underline">{workspace.label}</Link>
+          <NavGroup primary={workspace} items={[start]} moreLabel={dict.nav.more} highlighted />
           {navGroups.map((group) => (
             <NavGroup
               key={group.primary.href}
@@ -92,13 +92,12 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.02-1.49-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" />
             </svg>
           </a>
-          <Link
-            href={localePath(other)}
+          <LocaleSwitch
+            locale={other}
+            label={other}
+            ariaLabel={langAria}
             className="rounded-token border border-border px-2 py-2 font-bold uppercase tracking-widest text-muted hover:text-text"
-            aria-label={langAria}
-          >
-            {other}
-          </Link>
+          />
         </nav>
 
         {/* Phone disclosure — same routes, collapsed behind a hamburger. */}
@@ -106,7 +105,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           items={mobileItems}
           submit={{ href: localePath(locale, "/projects/new"), label: dict.nav.submit }}
           repo={{ href: PROJECTHUB_REPO_URL, label: dict.nav.repo }}
-          lang={{ href: localePath(other), label: other, aria: langAria }}
+          lang={{ locale: other, label: other, aria: langAria }}
           menuLabel={dict.nav.menu}
           closeLabel={dict.nav.close}
         />

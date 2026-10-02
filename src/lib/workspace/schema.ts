@@ -27,6 +27,7 @@ export const WorkProjectSchema = z.object({
   id: Id,
   name: Title,
   goal: Note,
+  context: Note.optional(),
   repoUrl: Link,
   demoUrl: Link,
   submissionUrl: Link,

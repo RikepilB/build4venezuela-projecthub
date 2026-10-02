@@ -13,6 +13,7 @@ import { projectRepository } from "@/lib/repository";
 const STATIC_PATHS = [
   "", // home
   "/board",
+  "/start",
   "/builders",
   "/ecosystem",
   "/resources",

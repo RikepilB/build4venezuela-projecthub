@@ -51,7 +51,7 @@ export function ProjectDetail({
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <h1 className="text-2xl font-extrabold tracking-tight text-text">{project.name}</h1>
           <StatusBadge status={project.status} locale={locale} />
-          <VoteButton slug={project.slug} votes={project.votes} label={dict.card.vote} />
+          <VoteButton slug={project.slug} votes={project.votes} label={dict.card.vote} errorLabel={dict.card.voteError} />
         </div>
         <p className="mt-3 max-w-2xl text-muted">{project.summary}</p>
 

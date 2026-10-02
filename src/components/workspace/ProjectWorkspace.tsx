@@ -45,6 +45,7 @@ export function ProjectWorkspace({ project, copy, locale, now, onChange, onEdit,
         {!readOnly && <button onClick={onEdit} className={buttonClass}>{copy.editProject}</button>}
       </div>
       {project.goal && <p className="mt-3 whitespace-pre-wrap break-words text-muted">{project.goal}</p>}
+      {project.context && <details className="mt-4 border-l-2 border-primary/40 pl-4"><summary className="cursor-pointer py-1 text-sm font-medium">{copy.context}</summary><p className="mt-2 whitespace-pre-wrap break-words text-sm leading-relaxed text-muted">{project.context}</p></details>}
       <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         <span className="font-medium">{progress.done}/{progress.total} {copy.completed}</span>
         {progress.blocked > 0 && <span className="text-danger">{progress.blocked} · {copy.statuses.blocked}</span>}

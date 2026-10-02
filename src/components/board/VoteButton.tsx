@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useId, useState, useSyncExternalStore } from "react";
 import { useFormStatus } from "react-dom";
 import { upvoteProject } from "@/actions/vote-project";
 import { useLiveVote, useRefreshVotes } from "@/components/votes/LiveVotes";
@@ -27,7 +27,7 @@ function useHasVoted(slug: string): boolean {
   );
 }
 
-function Inner({ votes, voted, label }: { votes: number; voted: boolean; label: string }) {
+function Inner({ votes, voted, label, errorId }: { votes: number; voted: boolean; label: string; errorId?: string }) {
   const { pending } = useFormStatus();
   // Reddit-style vertical control: up-arrow over the count. Arrow lights up (primary)
   // once this browser has voted.
@@ -36,6 +36,7 @@ function Inner({ votes, voted, label }: { votes: number; voted: boolean; label: 
       type="submit"
       disabled={pending || voted}
       aria-label={label}
+      aria-describedby={errorId}
       title={label}
       className="flex w-10 shrink-0 flex-col items-center justify-center gap-0.5 rounded-token border border-border bg-surface-2 py-1.5 text-text transition hover:border-primary disabled:cursor-not-allowed"
     >
@@ -52,9 +53,11 @@ function Inner({ votes, voted, label }: { votes: number; voted: boolean; label: 
 
 // One vote per browser (localStorage guard) — best-effort, not a security control.
 // The server is the source of truth; this just stops obvious double-clicks.
-export function VoteButton({ slug, votes, label }: { slug: string; votes: number; label: string }) {
+export function VoteButton({ slug, votes, label, errorLabel }: { slug: string; votes: number; label: string; errorLabel: string }) {
   const stored = useHasVoted(slug);
   const [justVoted, setJustVoted] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const errorId = useId();
   const voted = stored || justVoted;
 
   // Live overlay (when a LiveVotesProvider is mounted above): prefer the freshly fetched
@@ -71,25 +74,35 @@ export function VoteButton({ slug, votes, label }: { slug: string; votes: number
   // the action's own revalidatePath, where the result can be dropped on reconciliation
   // and leave the guard unset (a reload would then re-enable the button → double vote).
   async function formAction(formData: FormData) {
-    const result = await upvoteProject(null, formData);
-    if (result?.ok) {
-      // Persist the per-browser guard only on a CONFIRMED write — a failed persist
-      // (read-only FS, no Redis) leaves the control usable instead of locking with an
-      // unchanged count.
-      try {
-        window.localStorage.setItem(`vote:${slug}`, "1");
-      } catch {
-        // storage unavailable — the server still recorded the vote
-      }
-      setJustVoted(true);
-      refreshVotes(true); // force-pull the new server-authoritative count (bypass coalescing)
+    setFailed(false);
+    let result;
+    try {
+      result = await upvoteProject(null, formData);
+    } catch {
+      setFailed(true);
+      return;
     }
+    if (!result?.ok) {
+      setFailed(true);
+      return;
+    }
+    // Persist the per-browser guard only on a confirmed write. Failed writes
+    // leave the control usable so the person can retry.
+    try {
+      window.localStorage.setItem(`vote:${slug}`, "1");
+    } catch {
+      // Storage unavailable — the server still recorded the vote.
+    }
+    setJustVoted(true);
+    refreshVotes(true); // pull the server-authoritative count, never an optimistic +1
+
   }
 
   return (
-    <form action={formAction}>
+    <form action={formAction} className="relative shrink-0 self-start">
       <input type="hidden" name="slug" value={slug} />
-      <Inner votes={displayVotes} voted={voted} label={label} />
+      <Inner votes={displayVotes} voted={voted} label={label} errorId={failed ? errorId : undefined} />
+      {failed && <p id={errorId} role="alert" className="absolute left-0 top-full z-10 mt-2 w-48 rounded-token border border-danger bg-surface p-2 text-xs text-danger shadow-lg">{errorLabel}</p>}
     </form>
   );
 }

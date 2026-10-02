@@ -8,8 +8,8 @@ export function Field({ title, children }: { title: string; children: ReactNode 
   return <label className="block min-w-0 text-sm font-medium text-muted">{title}{children}</label>;
 }
 
-export function downloadFile(contents: string, name: string) {
-  const url = URL.createObjectURL(new Blob([contents], { type: "application/json" }));
+export function downloadFile(contents: string, name: string, type = "application/json") {
+  const url = URL.createObjectURL(new Blob([contents], { type }));
   const link = document.createElement("a");
   link.href = url;
   link.download = name;

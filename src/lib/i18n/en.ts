@@ -5,7 +5,8 @@ export const en = {
   nav: {
     home: "Search",
     board: "Board",
-    workspace: "Workspace",
+    workspace: "My workspace",
+    start: "Quick start",
     ecosystem: "Ecosystem",
     shipped: "Shipped & live",
     resources: "Resources",
@@ -211,6 +212,7 @@ export const en = {
     viewDetails: "View details",
     submitToMain: "Submit to Build4Venezuela",
     vote: "Upvote — prioritize this",
+    voteError: "Your vote could not be saved. Please try again.",
     addRepo: "+ Add repo",
     assigned: "on the team",
     contributors: "contributors",

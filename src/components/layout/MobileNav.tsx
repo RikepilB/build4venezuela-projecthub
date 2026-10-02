@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import type { Locale } from "@/lib/types";
+import { LocaleSwitch } from "./LocaleSwitch";
 
 export interface MobileNavItem {
   href: string;
@@ -24,17 +26,21 @@ export function MobileNav({
   items: MobileNavItem[];
   submit: { href: string; label: string };
   repo: { href: string; label: string };
-  lang: { href: string; label: string; aria: string };
+  lang: { locale: Locale; label: string; aria: string };
   menuLabel: string;
   closeLabel: string;
 }) {
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   // Escape closes the panel — expected for any disclosure/menu.
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -45,6 +51,7 @@ export function MobileNav({
   return (
     <div className="lg:hidden">
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
@@ -101,14 +108,13 @@ export function MobileNav({
                 </svg>
                 {repo.label}
               </a>
-              <Link
-                href={lang.href}
+              <LocaleSwitch
+                locale={lang.locale}
+                label={lang.label}
                 onClick={close}
-                aria-label={lang.aria}
+                ariaLabel={lang.aria}
                 className="flex h-10 w-14 items-center justify-center rounded-token border border-border text-sm font-bold uppercase tracking-widest text-muted transition hover:text-text"
-              >
-                {lang.label}
-              </Link>
+              />
             </div>
           </nav>
         </div>

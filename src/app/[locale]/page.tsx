@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { quickCopy } from "@/lib/workspace/quick-copy";
 import { socialPreview } from "@/lib/social-preview";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -63,6 +64,7 @@ export default async function HomePage({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
+  const quick = quickCopy[locale];
 
   // Server component → read the repositories directly (one ranked read each) so the
   // landing page shows real counts and the actual top projects, not placeholders.
@@ -88,6 +90,7 @@ export default async function HomePage({
 
   // The Quick Guide is a map of the app — one row per section, each linking to it.
   const guideSections = [
+    { href: localePath(locale, "/start"), label: quick.homeAction, body: quick.homeBody },
     { href: localePath(locale, "/board"), label: dict.nav.board, body: dict.guide.board },
     { href: localePath(locale, "/ecosystem"), label: dict.nav.shipped, body: dict.guide.ecosystem },
     { href: localePath(locale, "/builders"), label: dict.nav.builders, body: dict.guide.builders },
@@ -167,8 +170,13 @@ export default async function HomePage({
         </div>
       </section>
 
+      <section className="flex flex-col items-start justify-between gap-5 border-y border-border py-7 sm:flex-row sm:items-center">
+        <div className="max-w-2xl"><p className="eyebrow">ProjectHub</p><h2 className="mt-2 font-display text-2xl font-semibold tracking-tight">{quick.homeTitle}</h2><p className="mt-2 text-sm leading-relaxed text-muted">{quick.homeBody}</p></div>
+        <Link href={localePath(locale, "/start")} className="inline-flex min-h-11 shrink-0 items-center rounded-token bg-primary px-5 py-3 text-sm font-semibold text-primary-ink hover:opacity-90">{quick.homeAction} →</Link>
+      </section>
+
       {/* Sponsors — the backers strip. Auto-scrolling, data-driven (data/sponsors.seed.json):
-          any entry there appears here. Sits directly under the hero. */}
+          any entry there appears here, after the quick-start entry. */}
       <SponsorMarquee sponsors={sponsors} label={dict.home.sponsorsLabel} />
 
       {/* Visitor doorway — for people NOT here to build. Sits right after the hero so a
